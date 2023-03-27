@@ -1,17 +1,20 @@
 import Image from 'next/image';
-import profilePic from '../../public/assets/images/foto1.jpg';
+import profilePic from '../../public/assets/images/Ford-camion1.jpg';
+import image1 from '../../public/assets/images/Chevrolet-Silverado-3500-HD-III-K2XX-Double-Cab-Long-Box.jpg';
 
 export default function Home() {
   return (
     <main>
       <section className="mt-[80px] max-w-5xl mx-auto bg-blue-200 px-10 ">
-        <h1 className="text-3xl">Esta es la pagina inicial del proyecto</h1>
-        <div id="section1">
-          <h2 className="text-2xl text-blue-500 my-10">section 1</h2>
+        <h1 className="text-3xl">Vehiculos disponibles</h1>
+        <div id="section0">
+          <h2 className="text-2xl text-blue-500 my-10">
+            Chevrolet Silverado 3500
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
             <Image
-              src={profilePic}
-              alt="foto"
+              src={image1}
+              alt="Chevrolet Silverado 3500"
               placeholder="blur" // Optional blur-up while loading
             />
 
@@ -25,17 +28,31 @@ export default function Home() {
               sit amet consectetur, adipisicing elit. Consequuntur voluptas,
               praesentium et natus repellat porro ipsam modi vel vitae ipsa
               nobis veniam odit suscipit magni reiciendis eum harum perspiciatis
-              explicabo! Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Impedit loren50 Lorem ipsum dolor sit amet consectetur,
-              adipisicing elit. Consequuntur voluptas, praesentium et natus
-              repellat porro ipsam modi vel vitae ipsa nobis veniam odit
-              suscipit magni reiciendis eum harum perspiciatis explicabo! Lorem
-              ipsum dolor sit amet consectetur adipisicing elit. Impedit loren50
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Consequuntur voluptas, praesentium et natus repellat porro ipsam
-              modi vel vitae ipsa nobis veniam odit suscipit magni reiciendis
-              eum harum perspiciatis explicabo!
             </p>
+          </div>
+        </div>
+        <div id="section1">
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
+            <div>
+              <h2 className="text-2xl text-blue-500 my-10">Camión Ford 2019</h2>
+              <p className="my-120">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
+                loren50 Lorem ipsum dolor sit amet consectetur, adipisicing
+                elit. Consequuntur voluptas, praesentium et natus repellat porro
+                ipsam modi vel vitae ipsa nobis veniam odit suscipit magni
+                reiciendis eum harum perspiciatis explicabo! Lorem ipsum dolor
+                sit amet consectetur adipisicing elit. Impedit loren50 Lorem
+                ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur
+                voluptas, praesentium et natus repellat porro ipsam modi vel
+                vitae ipsa nobis veniam odit suscipit magni reiciendis eum harum
+                perspiciatis
+              </p>
+            </div>
+            <Image
+              src={profilePic}
+              alt="foto"
+              placeholder="blur" // Optional blur-up while loading
+            />
           </div>
         </div>
         <div id="section2">
