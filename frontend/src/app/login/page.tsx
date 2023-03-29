@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './login.module.css';
 import { Schema as schema } from './loginValidation';
+import { CustomButton } from '@/components/common/CustomButton';
 
 type FormValues = {
   password: string;
@@ -58,9 +59,13 @@ const Login = () => {
               </p>
             </div>
 
-            <button className={styles.button} type="submit">
-              Ingresar
-            </button>
+            <CustomButton
+              type={'Primary'}
+              text={'Ingresar'}
+              onClick={() => console.log('hizo click')}
+              bgColor="#ff0000"
+              txColor="#ffffff"
+            />
           </form>
         </div>
       </article>
