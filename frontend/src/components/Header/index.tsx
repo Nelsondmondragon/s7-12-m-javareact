@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FaBars, FaTimes } from 'react-icons/fa';
+
+import logo from '../../../public/assets/images/logo.png';
 
 export const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -10,14 +13,22 @@ export const Header = () => {
   };
 
   return (
-    <header>
-      <Link href="/" className="text-xl font-title text-blue-500 md:text-2xl">
-        Rent-A-Truck
+    <header className="bg-myBlue-500 px-[30]">
+      <Link href="/">
+        <div className="flex items-center">
+          <div className="h-[60px] w-[91px] mr-[30px]">
+            <Image src={logo} alt="Logo" className="w-full h-full" />
+          </div>
+          <div className="font-bold text-sm">
+            <p>{'"Mudarse nunca'}</p>
+            <p>{'fue tan facil"'}</p>
+          </div>
+        </div>
       </Link>
 
       <nav>
         <button
-          className="hover:text-blue-600 md:hidden"
+          className="hover:text-myBlue-300 md:hidden"
           onClick={handleShowToggleMenu}
         >
           {!showMenu ? <FaBars size={24} /> : <FaTimes size={24} />}
@@ -29,22 +40,13 @@ export const Header = () => {
           } md:menuDesktop`}
         >
           <li className="headerLink">
-            <a href="/#section1">Section 1</a>
+            <Link href="/booking">Vehículos</Link>
           </li>
           <li className="headerLink">
-            <a href="/#section2">Section 2</a>
+            <Link href="/quotes">Servicios</Link>
           </li>
           <li className="headerLink">
-            <Link href="/booking">Reservas</Link>
-          </li>
-          <li className="headerLink">
-            <Link href="/quotes">Cotizaciones</Link>
-          </li>
-          <li className="headerLink">
-            <Link href="/conditions">Condiciones</Link>
-          </li>
-          <li className="headerLink">
-            <Link href="/services">Servicios</Link>
+            <Link href="/conditions">Nosotros</Link>
           </li>
           <li className="headerLink">
             <Link href="/contact">Contacto</Link>
