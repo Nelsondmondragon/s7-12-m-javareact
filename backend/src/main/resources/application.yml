@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE}
+  datasource:
+    driver-class-name: com.postgresql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL_CONFIG}
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
