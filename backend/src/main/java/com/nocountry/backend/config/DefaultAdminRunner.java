@@ -25,7 +25,7 @@ public class DefaultAdminRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         var admin = User.builder()
-                .username("admin@nocountry.com")
+                .username("admin@movear.com")
                 .password(passwordEncoder.encode("1234"))
                 .role(Role.ADMIN.name())
                 .build();
