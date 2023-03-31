@@ -6,6 +6,7 @@ import com.nocountry.backend.util.enums.GenericMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -30,4 +31,10 @@ public class CarMapper {
     public List<Car> CarDTOListToCarEntityList(List<CarDto> carDtoList) {
         return carDtoList.stream().map(this::CarDTOToCarEntity).collect(Collectors.toList());
     }
+
+    public void updateCarFromDto(CarDto carDto, Car car, Class<Car> carClass){
+        carMapper.updateFromDto(carDto,car,Car.class);
+    };
+
+
 }
