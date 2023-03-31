@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: ${SPRING_PROFILES_ACTIVE}
+    active: lo
   datasource:
     driver-class-name: org.postgresql.Driver
   jpa:
