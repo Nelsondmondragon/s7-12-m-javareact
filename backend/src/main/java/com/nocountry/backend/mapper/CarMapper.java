@@ -5,6 +5,9 @@ import com.nocountry.backend.model.Car;
 import com.nocountry.backend.util.enums.GenericMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class CarMapper {
     private final GenericMapper<Car, CarDto> carMapper;
@@ -19,5 +22,12 @@ public class CarMapper {
 
     public Car CarDTOToCarEntity(CarDto carDto) {
         return carMapper.mapToEntity(carDto);
+    }
+
+    public List<CarDto> CarEntityListToCarDTOList(List<Car> allCar) {
+        return allCar.stream().map(this::CarEntityToCarDTO).collect(Collectors.toList());
+    }
+    public List<Car> CarDTOListToCarEntityList(List<CarDto> carDtoList) {
+        return carDtoList.stream().map(this::CarDTOToCarEntity).collect(Collectors.toList());
     }
 }
