@@ -1,5 +1,8 @@
 package com.nocountry.backend.repository;
 
-public interface ICarRepository {
+import com.nocountry.backend.model.Car;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ICarRepository extends JpaRepository<Car,Long>{
 
 }
