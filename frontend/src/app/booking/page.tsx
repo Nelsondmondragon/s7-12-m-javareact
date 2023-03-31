@@ -4,6 +4,9 @@ import DatePicker from "react-datepicker";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 import "react-datepicker/dist/react-datepicker.css";
+import vehicles from '../../cars.json'
+import { useDispatch, useSelector } from "react-redux";
+import { setCategory } from '../../store/slices/category.slider'
 
 export default function Booking() {
   const [startDate, setStartDate] = useState(new Date());
@@ -14,6 +17,10 @@ export default function Booking() {
   const [startPl, setStartPl] = useState()
   const [returnPl, setReturnPl] = useState()
 
+  const cat = useSelector((state) => state.category)
+  const dispatch = useDispatch()
+  
+  
   registerLocale("es", es);
 
   const categories = [
@@ -44,18 +51,21 @@ export default function Booking() {
 
   const onSearch = () => {
     
-    const selection = {
-      startPlace: startPl,
-      startDate: startDate,
-      startTime: startTime,
-      returnPlace: returnPl,
-      endDate: endDate,
-      endtTime: endTime,
-      category: category
-    }
+    // const selection = {
+    //   startPlace: startPl,
+    //   startDate: startDate,
+    //   startTime: startTime,
+    //   returnPlace: returnPl,
+    //   endDate: endDate,
+    //   endtTime: endTime,
+    //   category: category
+    // }
     
-    console.log(selection);
+
     
+    const result = vehicles.filter(vh => vh.categoria === category)
+    // dispatch(setCategory(result))
+    console.log(result);
 
   };
 
