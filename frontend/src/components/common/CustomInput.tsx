@@ -8,6 +8,14 @@
  *        icon: opcional nombre del icon en FontAwesome @expo/vector-icon
  *        onPress: () => void
  */
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Schema as schema } from '../login/loginValidation';
+
+type FormValues = {
+  password: string;
+  email: string;
+};
 
 type Props = {
   text: string;
@@ -18,7 +26,7 @@ type Props = {
   onClick: () => void;
 };
 
-export const CustomButton = ({
+export const CustomInput = ({
   onClick,
   text,
   type = 'Primary',
@@ -26,6 +34,16 @@ export const CustomButton = ({
   txColor,
   icon,
 }: Props) => {
+  const {
+    register,
+    formState: { errors },
+  } = useForm<FormValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    resolver: yupResolver(schema),
+  });
   const bg =
     type === 'Primary'
       ? bgColor
@@ -48,11 +66,19 @@ export const CustomButton = ({
 
   return (
     <>
-      <button
-        className={`w-full mx-auto px-1 py-4 rounded-md bg-blue-100 hover:bg-blue-300 hover:scale-95`}
-      >
-        {text}
-      </button>
+      <div className="w-full relative py-0 px-4 mx-auto mb-4 flex flex-col">
+        <label htmlFor="email" className="font-semibold">
+          Email
+        </label>
+        <input
+          {...register('email')}
+          placeholder="usuario@correo.com"
+          className="p-2 rounded-lg "
+        />
+        <p className="text-red-600 text-sm font-bold">
+          {errors?.email?.message}
+        </p>
+      </div>{' '}
     </>
   );
 };
