@@ -30,8 +30,7 @@ public class CarServiceImpl implements ICarService {
 
     @Override
     public CarDto saveCar(CarDto carDto) {
-        CarDto result = carMapper.CarEntityToCarDTO(repository.save(carMapper.CarDTOToCarEntity(carDto)));
-        return result;
+        return carMapper.CarEntityToCarDTO(repository.save(carMapper.CarDTOToCarEntity(carDto)));
     }
     @Override
     public CarDto getCarById(Long id){

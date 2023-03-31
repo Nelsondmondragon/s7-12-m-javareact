@@ -1,11 +1,7 @@
 package com.nocountry.backend.controller;
 
 import com.nocountry.backend.dto.CarDto;
-import com.nocountry.backend.model.Car;
-import jakarta.persistence.EntityNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import com.nocountry.backend.service.ICarService;
@@ -41,4 +37,20 @@ public class CarController {
         return ResponseEntity.ok(carDto);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CarDto> updateCar(@PathVariable(value = "id") Long id, @RequestBody CarDto carDetails) {
+        CarDto saved= service.updateCarById(id,carDetails);
+        return ResponseEntity.ok(saved);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteCar(@PathVariable(value = "id") Long id) {
+        Optional<CarDto> car = Optional.ofNullable(service.getCarById(id));
+        if (car.isPresent()) {
+            service.deleteCar(id);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
