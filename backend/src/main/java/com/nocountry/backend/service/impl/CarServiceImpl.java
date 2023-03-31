@@ -23,10 +23,17 @@ public class CarServiceImpl implements ICarService {
         this.carMapper = carMapper;
     }
 
+    @Override
     public List<CarDto> getCars(){
         return carMapper.CarEntityListToCarDTOList(repository.findAll());
     }
 
+    @Override
+    public CarDto saveCar(CarDto carDto) {
+        CarDto result = carMapper.CarEntityToCarDTO(repository.save(carMapper.CarDTOToCarEntity(carDto)));
+        return result;
+    }
+    @Override
     public CarDto getCarById(Long id){
         Optional<Car> carEntity = repository.findById(id);
         if (carEntity.isPresent()) {
@@ -37,6 +44,7 @@ public class CarServiceImpl implements ICarService {
 
     }
 
+    @Override
     public CarDto updateCarById(Long id,CarDto carDetailsDto){
         Optional<Car> carEntity = repository.findById(id);
         if (carEntity.isPresent()) {
@@ -49,12 +57,13 @@ public class CarServiceImpl implements ICarService {
         }
     }
 
+    @Override
     public void deleteCar(Long id) {
         Optional<Car> car = repository.findById(id);
         if (car.isPresent()) {
             repository.delete(car.get());
         } else {
-            throw new ObjectDeletedException("car with ID " + id + " can't be deleted.", id, "Cliente");
+            throw new ObjectDeletedException("car with ID " + id + " can't be deleted.", id, "Car");
         }
     }
 
