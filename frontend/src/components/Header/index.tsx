@@ -43,10 +43,10 @@ export const Header = () => {
             <Link href="/booking">Vehículos</Link>
           </li>
           <li className="headerLink">
-            <Link href="/quotes">Servicios</Link>
+            <Link href="/services">Servicios</Link>
           </li>
           <li className="headerLink">
-            <Link href="/conditions">Nosotros</Link>
+            <Link href="/about">Nosotros</Link>
           </li>
           <li className="headerLink">
             <Link href="/contact">Contacto</Link>
