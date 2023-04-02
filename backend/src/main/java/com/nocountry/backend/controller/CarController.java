@@ -33,7 +33,7 @@ public class CarController {
         return ResponseEntity.ok(carSaved);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<CarDto> getCarById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<CarDto> getCar(@PathVariable(value = "id") Long id) {
         CarDto carDto = service.getCarById(id);
         return ResponseEntity.ok(carDto);
     }
