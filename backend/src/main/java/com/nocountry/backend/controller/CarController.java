@@ -6,16 +6,17 @@ import org.springframework.web.bind.annotation.*;
 
 import com.nocountry.backend.service.ICarService;
 
-import lombok.RequiredArgsConstructor;
-
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/cars")
-@RequiredArgsConstructor
 public class CarController {
     private final ICarService service;
+    public CarController(ICarService service) {
+        this.service = service;
+    }
+
     @GetMapping
     public ResponseEntity<List<CarDto>> getAllCars() {
         List<CarDto> cars = service.getCars();

@@ -1,10 +1,11 @@
 package com.nocountry.backend.service.impl;
 
 import com.nocountry.backend.dto.CarDto;
-import com.nocountry.backend.mapper.CarMapper;
+import com.nocountry.backend.mapper.ICarMapper;
 import com.nocountry.backend.model.Car;
 import jakarta.persistence.EntityNotFoundException;
 import org.hibernate.ObjectDeletedException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.repository.ICarRepository;
@@ -15,12 +16,14 @@ import java.util.Optional;
 
 @Service
 public class CarServiceImpl implements ICarService {
-    private final ICarRepository repository;
-    private final CarMapper carMapper;
 
-    public CarServiceImpl(ICarRepository repository, CarMapper carMapper) {
+    private final ICarRepository repository;
+
+    @Autowired
+    ICarMapper carMapper;
+
+    public CarServiceImpl(ICarRepository repository) {
         this.repository = repository;
-        this.carMapper = carMapper;
     }
 
     @Override
@@ -30,13 +33,13 @@ public class CarServiceImpl implements ICarService {
 
     @Override
     public CarDto saveCar(CarDto carDto) {
-        return carMapper.CarEntityToCarDTO(repository.save(carMapper.CarDTOToCarEntity(carDto)));
+        return carMapper.CarToCarDto(repository.save(carMapper.CarDtoToCar(carDto)));
     }
     @Override
     public CarDto getCarById(Long id){
         Optional<Car> carEntity = repository.findById(id);
         if (carEntity.isPresent()) {
-            return carMapper.CarEntityToCarDTO(carEntity.get());
+            return carMapper.CarToCarDto(carEntity.get());
         } else {
             throw new EntityNotFoundException("Car not found with id: " + id);
         }
@@ -48,9 +51,9 @@ public class CarServiceImpl implements ICarService {
         Optional<Car> carEntity = repository.findById(id);
         if (carEntity.isPresent()) {
             Car car = carEntity.get();
-            carMapper.updateCarFromDto(carDetailsDto,car,Car.class);
+            carMapper.updateCarFromDto(carDetailsDto,car);
             Car updatedCar = repository.save(car);
-            return carMapper.CarEntityToCarDTO(updatedCar);
+            return carMapper.CarToCarDto(updatedCar);
         } else {
             throw new EntityNotFoundException("Car not found with id: " + id);
         }

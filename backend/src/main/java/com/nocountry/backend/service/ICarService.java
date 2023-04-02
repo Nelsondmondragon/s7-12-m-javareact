@@ -1,7 +1,6 @@
 package com.nocountry.backend.service;
 
 import com.nocountry.backend.dto.CarDto;
-import com.nocountry.backend.model.Car;
 
 import java.util.List;
 
