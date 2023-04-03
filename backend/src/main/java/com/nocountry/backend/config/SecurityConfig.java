@@ -5,9 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsUtils;
 
 import com.nocountry.backend.config.jwt.JwtAuthFilter;
@@ -23,6 +25,12 @@ public class SecurityConfig {
 
     private final AuthenticationProvider authenticationProvider;
 
+
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/swagger-ui/**", "/v3/api-docs/**"));
+//    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -31,7 +39,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                .requestMatchers("/api/v1/auth/**", "/api/v1/hello/**").permitAll()
+                .requestMatchers("/api/v1/auth/**", "/api/v1/hello/**","/swagger-ui/**","/v3/api-docs/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
