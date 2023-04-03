@@ -7,7 +7,9 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.nocountry.backend.model.Customer;
 import com.nocountry.backend.model.User;
+import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.repository.IUserRepository;
 import com.nocountry.backend.util.enums.Role;
 
@@ -18,7 +20,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DefaultAdminRunner implements ApplicationRunner {
 
-    private final IUserRepository repository;
+    private final IUserRepository userRepository;
+
+    private final ICustomerRepository customerRepository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -30,8 +34,17 @@ public class DefaultAdminRunner implements ApplicationRunner {
                 .role(Role.ADMIN.name())
                 .build();
 
-        if (!repository.findByUsername(admin.getUsername()).isPresent()) {
-            repository.save(admin);
+        var customer = Customer.builder()
+                .firstName("Administrador")
+                .email(admin.getUsername())
+                .build();
+
+        admin.setCustomer(customer);
+        customer.setUser(admin);
+
+        if (!userRepository.findByUsername(admin.getUsername()).isPresent()) {
+            userRepository.save(admin);
+            customerRepository.save(customer);
         }
     }
 }
