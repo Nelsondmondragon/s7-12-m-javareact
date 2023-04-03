@@ -1,5 +1,9 @@
 package com.nocountry.backend.service.impl;
 
+import com.nocountry.backend.dto.CustomerDto;
+import com.nocountry.backend.mapper.ICustomerMapper;
+import com.nocountry.backend.model.Customer;
+import com.nocountry.backend.repository.ICustomerRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,9 +15,7 @@ import com.nocountry.backend.config.jwt.JwtProvider;
 import com.nocountry.backend.dto.AuthRequestDto;
 import com.nocountry.backend.dto.AuthResponseDto;
 import com.nocountry.backend.dto.RegisterRequestDto;
-import com.nocountry.backend.model.Customer;
 import com.nocountry.backend.model.User;
-import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.repository.IUserRepository;
 import com.nocountry.backend.service.IAuthService;
 import com.nocountry.backend.util.enums.Role;
@@ -28,6 +30,8 @@ public class AuthServiceImpl implements IAuthService {
 
     private final ICustomerRepository customerRepository;
 
+    private final ICustomerMapper customerMapper;
+
     private final PasswordEncoder passwordEncoder;
 
     private final JwtProvider jwtProvider;
@@ -35,39 +39,28 @@ public class AuthServiceImpl implements IAuthService {
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public AuthResponseDto register(RegisterRequestDto request) {
+    public AuthResponseDto register(CustomerDto request) {
 
-        var userOptional = userRepository.findByUsername(request.getUsername());
+
+        var userOptional = userRepository.findByEmail(request.getEmail());
         if (userOptional.isPresent()) {
             throw new RuntimeException("Username already in use");
         }
 
         var user = User.builder()
-                .username(request.getUsername())
+                .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER.name())
                 .build();
 
-        var customer = Customer.builder()
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .phone(request.getPhone())
-                .email(request.getUsername())
-                .birthdate(request.getBirthdate())
-                .address(request.getAddress())
-                .build();
-
-        user.setCustomer(customer);
-        customer.setUser(user);
-
-        userRepository.save(user);
-        customerRepository.save(customer);
+        User userRepo = this.userRepository.save(user);
+        Customer customer = this.customerMapper.toCustomer(request);
+        customer.setFkUser(userRepo.getId());
+        this.customerRepository.save(customer);
 
         var jwt = jwtProvider.generateToken(user);
 
         return AuthResponseDto.builder()
-                .customerId(customer.getId())
-                .role(user.getRole())
                 .token(jwt)
                 .build();
     }
@@ -83,12 +76,10 @@ public class AuthServiceImpl implements IAuthService {
             throw new BadCredentialsException("Incorrect username or password", e);
         }
 
-        var user = userRepository.findByUsername(request.getUsername()).orElseThrow();
+        var user = userRepository.findByEmail(request.getUsername()).orElseThrow();
         var jwt = jwtProvider.generateToken(user);
 
         return AuthResponseDto.builder()
-                .customerId(user.getCustomer().getId())
-                .role(user.getRole())
                 .token(jwt)
                 .build();
     }

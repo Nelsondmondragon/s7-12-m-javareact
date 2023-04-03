@@ -1,5 +1,7 @@
 package com.nocountry.backend.controller;
 
+import com.nocountry.backend.service.ICustomerService;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nocountry.backend.model.Customer;
-import com.nocountry.backend.service.ICustomerService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +25,12 @@ public class CustomerController {
 
     private final ICustomerService customerService;
 
+
+    @GetMapping("/profile")
+    private ResponseEntity<CustomerDto> findByEmail(HttpServletRequest request) {
+        return new ResponseEntity<>(this.customerService.findByEmail(request), HttpStatus.OK);
     // List<CustomerListDto>
+
     @GetMapping("/all")
     public ResponseEntity<List<Customer>> getAllCustomers() {
         return new ResponseEntity<>(customerService.getAllCustomers(), HttpStatus.OK);

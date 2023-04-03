@@ -1,12 +1,16 @@
 package com.nocountry.backend.service;
 
-import java.util.List;
-
+import com.nocountry.backend.dto.CustomerDto;
 import com.nocountry.backend.model.Customer;
+import jakarta.servlet.http.HttpServletRequest;
+
+import java.util.List;
 
 public interface ICustomerService {
 
-    // List<CustomerListDto>
+
+    CustomerDto findByEmail(HttpServletRequest request);
+
     List<Customer> getAllCustomers();
 
     Customer getCustomerById(Long customerId);

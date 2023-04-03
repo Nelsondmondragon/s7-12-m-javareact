@@ -29,7 +29,7 @@ public class DefaultAdminRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         var admin = User.builder()
-                .username("admin@movear.com")
+                .email("admin@movear.com")
                 .password(passwordEncoder.encode("1234"))
                 .role(Role.ADMIN.name())
                 .build();
@@ -45,6 +45,8 @@ public class DefaultAdminRunner implements ApplicationRunner {
         if (!userRepository.findByUsername(admin.getUsername()).isPresent()) {
             userRepository.save(admin);
             customerRepository.save(customer);
+        if (!repository.findByEmail(admin.getEmail()).isPresent()) {
+            repository.save(admin);
         }
     }
 }
