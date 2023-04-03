@@ -1,5 +1,6 @@
 package com.nocountry.backend.controller;
 
+import com.nocountry.backend.dto.CustomerDetailsDto;
 import com.nocountry.backend.dto.CustomerDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nocountry.backend.dto.AuthRequestDto;
 import com.nocountry.backend.dto.AuthResponseDto;
-import com.nocountry.backend.dto.RegisterRequestDto;
 import com.nocountry.backend.service.IAuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class AuthController {
     private final IAuthService service;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody CustomerDto request) {
+    public ResponseEntity<?> register(@RequestBody CustomerDetailsDto request) {
         try {
             AuthResponseDto response = service.register(request);
             return new ResponseEntity<>(response, HttpStatus.CREATED);

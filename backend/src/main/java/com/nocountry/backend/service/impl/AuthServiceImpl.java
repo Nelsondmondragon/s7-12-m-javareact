@@ -1,9 +1,14 @@
 package com.nocountry.backend.service.impl;
 
-import com.nocountry.backend.dto.CustomerDto;
+import com.nocountry.backend.dto.AuthRequestDto;
+import com.nocountry.backend.dto.AuthResponseDto;
+import com.nocountry.backend.dto.CustomerDetailsDto;
 import com.nocountry.backend.mapper.ICustomerMapper;
 import com.nocountry.backend.model.Customer;
+import com.nocountry.backend.model.User;
 import com.nocountry.backend.repository.ICustomerRepository;
+import com.nocountry.backend.service.IAuthService;
+import com.nocountry.backend.util.enums.Role;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,13 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.config.jwt.JwtProvider;
-import com.nocountry.backend.dto.AuthRequestDto;
-import com.nocountry.backend.dto.AuthResponseDto;
-import com.nocountry.backend.dto.RegisterRequestDto;
-import com.nocountry.backend.model.User;
 import com.nocountry.backend.repository.IUserRepository;
-import com.nocountry.backend.service.IAuthService;
-import com.nocountry.backend.util.enums.Role;
+
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,9 +39,7 @@ public class AuthServiceImpl implements IAuthService {
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public AuthResponseDto register(CustomerDto request) {
-
-
+    public AuthResponseDto register(CustomerDetailsDto request) {
         var userOptional = userRepository.findByEmail(request.getEmail());
         if (userOptional.isPresent()) {
             throw new RuntimeException("Username already in use");
@@ -59,7 +57,6 @@ public class AuthServiceImpl implements IAuthService {
         this.customerRepository.save(customer);
 
         var jwt = jwtProvider.generateToken(user);
-
         return AuthResponseDto.builder()
                 .token(jwt)
                 .build();

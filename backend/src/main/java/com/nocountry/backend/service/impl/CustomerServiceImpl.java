@@ -1,11 +1,16 @@
 package com.nocountry.backend.service.impl;
 
 import com.nocountry.backend.config.jwt.JwtProvider;
+import com.nocountry.backend.dto.CustomerDetailsDto;
+import com.nocountry.backend.dto.UserDto;
+import com.nocountry.backend.mapper.ICustomerMapper;
 import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.service.ICustomerService;
+import com.nocountry.backend.service.IUserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 
@@ -24,11 +29,11 @@ public class CustomerServiceImpl implements ICustomerService {
     private final JwtProvider jwtProvider;
 
     @Override
-    public CustomerDto findByEmail(HttpServletRequest request) {
+    public CustomerDetailsDto findByEmail(HttpServletRequest request) {
         String authorization = request.getHeader("Authorization");
         String email = this.jwtProvider.extractUsername(authorization.substring(7));
         UserDto userRepository = this.userService.findByEmail(email);
-        CustomerDto customerDto = this.customerMapper.toCustomerDto(
+        CustomerDetailsDto customerDto = this.customerMapper.toCustomerDto(
                 this.customerRepository.findByFkUser(userRepository.getId()));
         customerDto.setEmail(email);
         return customerDto;
@@ -62,10 +67,6 @@ public class CustomerServiceImpl implements ICustomerService {
 
         if (customerDetailsDto.getPhone() != null) {
             customer.setPhone(customerDetailsDto.getPhone());
-        }
-
-        if (customerDetailsDto.getEmail() != null) {
-            customer.setEmail(customerDetailsDto.getEmail());
         }
 
         if (customerDetailsDto.getBirthdate() != null) {

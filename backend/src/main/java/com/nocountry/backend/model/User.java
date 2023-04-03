@@ -39,9 +39,7 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String email;
 
-
     private String password;
-
     private String role;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

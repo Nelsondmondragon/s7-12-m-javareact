@@ -19,28 +19,29 @@ public class Customer {
     @Column(name = "ID_CUSTOMER")
     private Long id;
 
-    @Column(name = "first_name")
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "LAST_NAME")
     private String lastName;
 
     @Column(name = "ADDRESS")
     private String address;
 
+    @Column(name = "BIRTH_DATE")
     private Date birthdate;
-
-    @Column(name = "DNI")
-    private String dni;
 
     @Column(name = "NO_LICENSE")
     private String license;
 
-    @Column(name = "national_id_img_url")
+    @Column(name = "PHONE")
+    private String phone;
+
+    @Column(name = "NATIONAL_ID_IMG_URL")
     private String nationalIdImgUrl;
 
 
-    @Column(name = "driver_licence_img_url")
+    @Column(name = "DRIVER_LICENSE_IMG_URL")
     private String driverLicenceImgUrl;
 
     @Column(name = "FK_USER")

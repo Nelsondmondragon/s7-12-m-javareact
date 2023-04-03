@@ -10,10 +10,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthResponseDto {
-
-    private Long customerId;
-
-    private String role;
-
     private String token;
 }

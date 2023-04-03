@@ -1,7 +1,9 @@
 package com.nocountry.backend.controller;
 
+import com.nocountry.backend.dto.CustomerDetailsDto;
 import com.nocountry.backend.service.ICustomerService;
 import jakarta.servlet.http.HttpServletRequest;
+
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -27,9 +29,10 @@ public class CustomerController {
 
 
     @GetMapping("/profile")
-    private ResponseEntity<CustomerDto> findByEmail(HttpServletRequest request) {
+    private ResponseEntity<CustomerDetailsDto> findByEmail(HttpServletRequest request) {
         return new ResponseEntity<>(this.customerService.findByEmail(request), HttpStatus.OK);
-    // List<CustomerListDto>
+        // List<CustomerListDto>
+    }
 
     @GetMapping("/all")
     public ResponseEntity<List<Customer>> getAllCustomers() {
@@ -45,7 +48,7 @@ public class CustomerController {
     // CustomerDetailsDto
     @PatchMapping("/{customerId}/update")
     public ResponseEntity<Customer> updateCustomer(@PathVariable Long customerId,
-            @RequestBody Customer customerDto) {
+                                                   @RequestBody Customer customerDto) {
         return new ResponseEntity<>(customerService.updateCustomer(customerId, customerDto), HttpStatus.ACCEPTED);
     }
 
@@ -54,4 +57,6 @@ public class CustomerController {
         customerService.deleteCustomer(customerId);
         return new ResponseEntity<>("Customer successfully deleted", HttpStatus.ACCEPTED);
     }
+
+
 }
