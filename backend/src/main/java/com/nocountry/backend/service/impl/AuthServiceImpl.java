@@ -3,6 +3,7 @@ package com.nocountry.backend.service.impl;
 import com.nocountry.backend.dto.AuthRequestDto;
 import com.nocountry.backend.dto.AuthResponseDto;
 import com.nocountry.backend.dto.CustomerDetailsDto;
+import com.nocountry.backend.dto.RegisterRequestDto;
 import com.nocountry.backend.mapper.ICustomerMapper;
 import com.nocountry.backend.model.Customer;
 import com.nocountry.backend.model.User;
@@ -39,7 +40,7 @@ public class AuthServiceImpl implements IAuthService {
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public AuthResponseDto register(CustomerDetailsDto request) {
+    public AuthResponseDto register(RegisterRequestDto request) {
         var userOptional = userRepository.findByEmail(request.getEmail());
         if (userOptional.isPresent()) {
             throw new RuntimeException("Username already in use");
@@ -67,13 +68,13 @@ public class AuthServiceImpl implements IAuthService {
 
         try {
             authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(),
+                    .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),
                             request.getPassword()));
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Incorrect username or password", e);
         }
 
-        var user = userRepository.findByEmail(request.getUsername()).orElseThrow();
+        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
         var jwt = jwtProvider.generateToken(user);
 
         return AuthResponseDto.builder()

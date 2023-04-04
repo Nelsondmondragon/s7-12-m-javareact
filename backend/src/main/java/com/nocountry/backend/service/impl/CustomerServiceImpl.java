@@ -2,6 +2,7 @@ package com.nocountry.backend.service.impl;
 
 import com.nocountry.backend.config.jwt.JwtProvider;
 import com.nocountry.backend.dto.CustomerDetailsDto;
+import com.nocountry.backend.dto.CustomerListDto;
 import com.nocountry.backend.dto.UserDto;
 import com.nocountry.backend.mapper.ICustomerMapper;
 import com.nocountry.backend.repository.ICustomerRepository;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 import com.nocountry.backend.model.Customer;
@@ -42,38 +44,23 @@ public class CustomerServiceImpl implements ICustomerService {
 
     // List<CustomerListDto>
     @Override
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
+    public List<CustomerListDto> getAllCustomers() {
+        return this.customerMapper.toCustomerListDtos(customerRepository.findAll());
     }
 
     // CustomerDetailsDto
     @Override
-    public Customer getCustomerById(Long customerId) {
-        return customerRepository.findById(customerId).orElseThrow();
+    public CustomerDetailsDto getCustomerById(Long customerId) {
+        return this.customerMapper.toCustomerDto(
+                customerRepository.findById(customerId).orElseThrow());
     }
 
     // CustomerDetailsDto
     @Override
-    public Customer updateCustomer(Long customerId, Customer customerDetailsDto) {
-        var customer = customerRepository.findById(customerId).orElseThrow();
-
-        if (customerDetailsDto.getFirstName() != null) {
-            customer.setFirstName(customerDetailsDto.getFirstName());
-        }
-
-        if (customerDetailsDto.getLastName() != null) {
-            customer.setLastName(customerDetailsDto.getLastName());
-        }
-
-        if (customerDetailsDto.getPhone() != null) {
-            customer.setPhone(customerDetailsDto.getPhone());
-        }
-
-        if (customerDetailsDto.getBirthdate() != null) {
-            customer.setBirthdate(customerDetailsDto.getBirthdate());
-        }
-
-        return customerRepository.save(customer);
+    public CustomerDetailsDto updateCustomer(Long customerId, CustomerDetailsDto customerDetailsDto) {
+        Optional<Customer> byId = this.customerRepository.findById(customerId);
+        this.customerMapper.updateCustomerDetails(customerDetailsDto, byId.get());
+        return customerDetailsDto;
     }
 
     @Override

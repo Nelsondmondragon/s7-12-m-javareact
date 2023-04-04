@@ -22,7 +22,6 @@ public class CustomerDetailsDto {
     private String lastName;
     private String phone;
 
-    //    @JsonIgnoreProperties("password")
     @JsonProperty(value = "password", access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private String email;

@@ -34,19 +34,14 @@ public class DefaultAdminRunner implements ApplicationRunner {
                 .role(Role.ADMIN.name())
                 .build();
 
-//        var customer = Customer.builder()
-//                .firstName("Administrador")
-//                .email(admin.getUsername())
-//                .build();
-//
-//        admin.setCustomer(customer);
-//        customer.setUser(admin);
+        if (!userRepository.findByEmail(admin.getUsername()).isPresent()) {
+            admin = userRepository.save(admin);
+            var customer = Customer.builder()
+                    .firstName("Administrador")
+                    .fkUser(admin.getId())
+                    .build();
+            customerRepository.save(customer);
 
-//        if (!userRepository.findByUsername(admin.getUsername()).isPresent()) {
-//            userRepository.save(admin);
-//            customerRepository.save(customer);
-//        if (!repository.findByEmail(admin.getEmail()).isPresent()) {
-//            repository.save(admin);
-//        }
+        }
     }
 }

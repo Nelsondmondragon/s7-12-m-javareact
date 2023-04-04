@@ -1,6 +1,7 @@
 package com.nocountry.backend.controller;
 
 import com.nocountry.backend.dto.CustomerDetailsDto;
+import com.nocountry.backend.dto.CustomerListDto;
 import com.nocountry.backend.service.ICustomerService;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -35,20 +36,20 @@ public class CustomerController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Customer>> getAllCustomers() {
+    public ResponseEntity<List<CustomerListDto>> getAllCustomers() {
         return new ResponseEntity<>(customerService.getAllCustomers(), HttpStatus.OK);
     }
 
     // CustomerDetailsDto
     @GetMapping("/{customerId}")
-    public ResponseEntity<Customer> getCustomerById(@PathVariable Long customerId) {
+    public ResponseEntity<CustomerDetailsDto> getCustomerById(@PathVariable Long customerId) {
         return new ResponseEntity<>(customerService.getCustomerById(customerId), HttpStatus.OK);
     }
 
     // CustomerDetailsDto
     @PatchMapping("/{customerId}/update")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable Long customerId,
-                                                   @RequestBody Customer customerDto) {
+    public ResponseEntity<CustomerDetailsDto> updateCustomer(@PathVariable Long customerId,
+                                                             @RequestBody CustomerDetailsDto customerDto) {
         return new ResponseEntity<>(customerService.updateCustomer(customerId, customerDto), HttpStatus.ACCEPTED);
     }
 

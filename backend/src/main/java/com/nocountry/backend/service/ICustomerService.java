@@ -1,7 +1,7 @@
 package com.nocountry.backend.service;
 
 import com.nocountry.backend.dto.CustomerDetailsDto;
-import com.nocountry.backend.dto.CustomerDto;
+import com.nocountry.backend.dto.CustomerListDto;
 import com.nocountry.backend.model.Customer;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -12,11 +12,11 @@ public interface ICustomerService {
 
     CustomerDetailsDto findByEmail(HttpServletRequest request);
 
-    List<Customer> getAllCustomers();
+    List<CustomerListDto> getAllCustomers();
 
-    Customer getCustomerById(Long customerId);
+    CustomerDetailsDto getCustomerById(Long customerId);
 
-    Customer updateCustomer(Long customerId, Customer customerDetailsDto);
+    CustomerDetailsDto updateCustomer(Long customerId, CustomerDetailsDto customerDetailsDto);
 
     void deleteCustomer(Long customerId);
 }

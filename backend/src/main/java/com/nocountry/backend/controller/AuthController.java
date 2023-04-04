@@ -1,7 +1,7 @@
 package com.nocountry.backend.controller;
 
 import com.nocountry.backend.dto.CustomerDetailsDto;
-import com.nocountry.backend.dto.CustomerDto;
+import com.nocountry.backend.dto.RegisterRequestDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -24,7 +24,7 @@ public class AuthController {
     private final IAuthService service;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody CustomerDetailsDto request) {
+    public ResponseEntity<?> register(@RequestBody RegisterRequestDto request) {
         try {
             AuthResponseDto response = service.register(request);
             return new ResponseEntity<>(response, HttpStatus.CREATED);

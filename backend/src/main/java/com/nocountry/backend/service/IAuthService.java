@@ -4,7 +4,7 @@ import com.nocountry.backend.dto.*;
 
 public interface IAuthService {
 
-    public AuthResponseDto register(CustomerDetailsDto request);
+    public AuthResponseDto register(RegisterRequestDto request);
 
     public AuthResponseDto login(AuthRequestDto request);
 }
