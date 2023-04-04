@@ -2,11 +2,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import basketReducer from '../features/basket/basketSlice';
 import userReducer from '../features/users/userSlice';
+import { categorySlice } from './slices/category.slider'
 
 export const store = configureStore({
   reducer: {
     basket: basketReducer,
     user: userReducer,
+    category: categorySlice.reducer
   },
 });
 
