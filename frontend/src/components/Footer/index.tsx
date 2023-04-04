@@ -1,26 +1,35 @@
 import Image from 'next/image';
-import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedinIn,
+  FaWhatsapp,
+} from 'react-icons/fa';
 
 type Props = {};
 export const Footer = (props: Props) => {
   return (
-    <footer className="bg-gray-300 p-16 text-black">
+    <footer>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
         <div className="flex">
           <Image
-            src={'/assets/images/logo_tr.png'}
+            src={'/assets/images/logo.png'}
             alt="logo"
-            width={250}
-            height={185}
+            width={150}
+            height={100}
+            className="w-[150px] h-[100px] mr-8"
           />
           <div>
             <p>Siguenos en:</p>
-            <div className="flex justify-center items-center space-x-4">
+            <div className="flex justify-center items-center space-x-4 mt-4">
               <span>
-                <FaInstagram size={24} />
+                <FaInstagram size={32} />
               </span>
               <span>
-                <FaFacebook size={24} />
+                <FaFacebook size={32} />
+              </span>
+              <span>
+                <FaLinkedinIn size={32} />
               </span>
             </div>
           </div>
@@ -53,12 +62,21 @@ export const Footer = (props: Props) => {
             </p>
           </div>
         </div>
-        <div className="flex justify-center items-center">
-          <div className="flex justify-center items-center space-x-4 bg-gray-100 border-2 border-gray-500 p-4">
+        <div className="flex flex-col justify-center items-center space-y-4">
+          <div className="flex justify-center items-center space-x-4">
             <span>
               <FaWhatsapp size={42} />
             </span>
             <span>+54 9 12 2659-2638</span>
+          </div>
+          <div className="flex justify-center items-center space-x-4">
+            <Image
+              src={'/assets/images/secure.png'}
+              alt="secure image"
+              width={226}
+              height={77}
+              className="w-[226px] h-[77px]"
+            />
           </div>
         </div>
       </div>

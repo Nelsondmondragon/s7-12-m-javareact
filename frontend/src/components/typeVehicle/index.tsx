@@ -17,7 +17,7 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
         height={45}
         alt={title}
       />
-      <div className=" bg-myBlue-500 pl-8 pt-4 rounded-b-[20px]">
+      <div className=" bg-primary-700 pl-8 pt-4 rounded-b-[20px]">
         <h3>{title}</h3>
         <div className="text-sm pb-8">
           <p>{line1}</p>
