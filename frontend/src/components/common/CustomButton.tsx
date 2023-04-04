@@ -48,7 +48,9 @@ export const CustomButton = ({
 
   return (
     <>
-      <button className={`w-[90%] px-1 py-4 rounded-md hover:bg-blue-500`}>
+      <button
+        className={`w-full mx-auto px-1 py-4 rounded-md bg-blue-100 hover:bg-blue-300 hover:scale-95`}
+      >
         {text}
       </button>
     </>

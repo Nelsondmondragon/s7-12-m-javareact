@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import hero from '../../public/assets/images/hero.png';
+import hero from '../../public/assets/images/home1.png';
 import { Faq } from '@/components/faq';
 import { TypesVehicle } from '@/components/typeVehicle';
 import { Requirement } from '@/components/requierement';
@@ -12,7 +12,7 @@ export default function Home() {
         <Image src={hero} alt="hero banner" className="w-full" />
         <TypesVehicle />
         <Requirement />
-        <Faq />
+        {/* <Faq /> */}
       </section>
     </main>
   );

@@ -10,6 +10,7 @@ import { setCategory } from '../../store/slices/category.slider';
 import { useRouter } from 'next/navigation';
 
 export default function Booking() {
+
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [startTime, setstartTime] = useState(new Date());
@@ -194,4 +195,5 @@ export default function Booking() {
             </div>
         </section>
     );
+
 }

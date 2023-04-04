@@ -14,21 +14,28 @@ module.exports = {
         26: '104px',
       },
       colors: {
-        yellow: {
-          300: '#FFDC5C',
-          500: '#FFD22C',
-          700: '#CCA000',
+        primary: {
+          50: '#D2EEFE',
+          100: '#A0DBFD',
+          200: '#6EC8FC',
+          300: '#3CB5FB',
+          400: '#0AA2FA',
+          500: '#0483CC',
+          600: '#03649B',
+          700: '#024369',
+          800: '#012337',
         },
-        myBlue: {
-          100: '#78c0e0',
-          300: '#38b6ff',
-          500: '#0A3E84',
-          700: '#150578',
-          900: '#0e0e52',
+        neutral: {
+          50: '#F0F0F0',
+          100: '#D6D6D6',
+          200: '#BDBDBD',
+          300: '#A3A3A3',
+          400: '#8A8A8A',
+          500: '#707070',
+          600: '#575757',
+          700: '#3D3D3D',
+          800: '#242424',
         },
-        purple: '#6f42c1',
-        primary: '#ffc800',
-        secondary: '#6c757d',
         success: '#198754',
         info: '#0dcaf0',
         warning: '#ffc800',
@@ -44,6 +51,15 @@ module.exports = {
           "linear-gradient(to right bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('/images/illustrations/hero1.svg')",
         'about-pattern':
           "linear-gradient(to right bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/images/illustrations/about1.svg')",
+      },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'translateX(100%)' },
+          '50%': { transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        wiggle: 'wiggle 1s ease-in-out infinite',
       },
     },
   },

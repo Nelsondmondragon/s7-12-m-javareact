@@ -2,9 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
-  name: null,
-  email: null,
-  avata: null,
+  currentUser: {
+    name: '',
+    email: '',
+    avatar: '',
+  },
+  showModalLogin: false,
 };
 
 export const userSlice = createSlice({
@@ -12,16 +15,27 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state = action.payload;
+      state.currentUser.name = action.payload.email;
+      state.currentUser.email = action.payload.email;
     },
     removeUser: (state) => {
-      state = initialState;
+      state.currentUser.name = '';
+      state.currentUser.email = '';
+      state.currentUser.avatar = '';
+    },
+    openModalLogin: (state) => {
+      state.showModalLogin = true;
+    },
+    closeModalLogin: (state) => {
+      state.showModalLogin = false;
     },
   },
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser, removeUser, openModalLogin, closeModalLogin } =
+  userSlice.actions;
 
-export const selectCurrentUser = (state) => state.user;
+export const selectCurrentUser = (state) => state.user.currentUser;
+export const selectShowModalLogin = (state) => state.user.showModalLogin;
 
 export default userSlice.reducer;

@@ -2,12 +2,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import basketReducer from '../features/basket/basketSlice';
 import userReducer from '../features/users/userSlice';
-import { categorySlice } from './slices/category.slider'
+import truckSlice from '@/features/truck/truckSlice';
+
 
 export const store = configureStore({
   reducer: {
     basket: basketReducer,
     user: userReducer,
+    truck: truckSlice,
     category: categorySlice.reducer
   },
 });
