@@ -35,7 +35,7 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public CustomerDetailsDto findByEmail(HttpServletRequest request) {
+    public CustomerDetailsDto findCustomerByEmail(HttpServletRequest request) {
         String authorization = request.getHeader("Authorization");
         String email = jwtProvider.extractUsername(authorization.substring(7));
 
@@ -49,8 +49,10 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public CustomerDetailsDto findCustomerById(Long customerId) {
-        return customerMapper.toCustomerDto(
-                customerRepository.findById(customerId).orElseThrow());
+        var customer = customerRepository.findById(customerId).orElseThrow();
+        var customerDetailsDto = customerMapper.toCustomerDto(customer);
+        customerDetailsDto.setEmail(customer.getUser().getEmail());
+        return customerDetailsDto;
     }
 
     @Override

@@ -11,7 +11,7 @@ public interface ICustomerService {
 
     public List<CustomerListDto> findAllCustomers();
 
-    public CustomerDetailsDto findByEmail(HttpServletRequest request);
+    public CustomerDetailsDto findCustomerByEmail(HttpServletRequest request);
 
     public CustomerDetailsDto findCustomerById(Long customerId);
 

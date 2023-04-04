@@ -32,8 +32,8 @@ public class CustomerController {
     }
 
     @GetMapping("/profile")
-    private ResponseEntity<CustomerDetailsDto> findByEmail(HttpServletRequest request) {
-        return new ResponseEntity<>(customerService.findByEmail(request), HttpStatus.OK);
+    private ResponseEntity<CustomerDetailsDto> getCustomerByEmail(HttpServletRequest request) {
+        return new ResponseEntity<>(customerService.findCustomerByEmail(request), HttpStatus.OK);
     }
 
     @GetMapping("/{customerId}")
