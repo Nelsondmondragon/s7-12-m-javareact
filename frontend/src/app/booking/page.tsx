@@ -6,7 +6,7 @@ import es from 'date-fns/locale/es';
 import 'react-datepicker/dist/react-datepicker.css';
 import vehicles from '../../cars.json';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategory } from '../../store/slices/category.slider';
+
 import { useRouter } from 'next/navigation';
 
 export default function Booking() {
@@ -19,8 +19,7 @@ export default function Booking() {
     const [startPl, setStartPl] = useState("Buenos Aires");
     const [returnPl, setReturnPl] = useState("Buenos Aires");
 
-    const cat = useSelector((state) => state.category);
-    const dispatch = useDispatch();
+  
     const router = useRouter();
 
     registerLocale('es', es);

@@ -9,8 +9,7 @@ export const store = configureStore({
   reducer: {
     basket: basketReducer,
     user: userReducer,
-    truck: truckSlice,
-    category: categorySlice.reducer
+    truck: truckSlice
   },
 });
 
