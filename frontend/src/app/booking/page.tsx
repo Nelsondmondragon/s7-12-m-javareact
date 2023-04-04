@@ -7,7 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import vehicles from '../../cars.json';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategory } from '../../store/slices/category.slider';
-import { log } from 'console';
+import { useRouter } from 'next/navigation';
 
 export default function Booking() {
     const [startDate, setStartDate] = useState(new Date());
@@ -20,6 +20,7 @@ export default function Booking() {
 
     const cat = useSelector((state) => state.category);
     const dispatch = useDispatch();
+    const router = useRouter();
 
     registerLocale('es', es);
 
@@ -60,12 +61,13 @@ export default function Booking() {
             category: category,
         };
 
-        console.log(selection);
-
+        // console.log(selection);
+        router.push(`/booking/${category}`)
         // const result = vehicles.filter(vh => vh.categoria === category)
         // // dispatch(setCategory(result))
         // console.log(result);
     };
+
 
     return (
         <section className="min-h-screen flex flex-col">
