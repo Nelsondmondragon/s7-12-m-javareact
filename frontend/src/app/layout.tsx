@@ -25,7 +25,6 @@ export default function RootLayout({
           {children}
           <Footer />
         </Provider>
-        <Register2></Register2>
       </body>
     </html>
   );

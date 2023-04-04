@@ -1,8 +1,8 @@
-"use client";
-import { useState } from "react";
-import cars from "../../../cars.json";
+'use client';
+import { useState } from 'react';
+import cars from '../../../cars.json';
 
-const page = ({ params }) => {
+const BookingCar = ({ params }) => {
   const [first, setfirst] = useState();
 
   const getCars = () => {
@@ -19,18 +19,18 @@ const page = ({ params }) => {
         </div>
         <div>
           <p>
-            {" "}
+            {' '}
             <b className=" text-lg">Marca:</b> {res.title}
           </p>
           <p>
-            {" "}
+            {' '}
             <b>Pasajeros: </b> {res.passengers}
           </p>
           <p>
             <b> Capacidad:</b> {res.capacity}
           </p>
           <p>
-            {" "}
+            {' '}
             <b> Total: </b> $ 1150
           </p>
         </div>
@@ -53,4 +53,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default BookingCar;

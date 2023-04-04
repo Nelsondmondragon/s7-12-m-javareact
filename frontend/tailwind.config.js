@@ -47,6 +47,7 @@ module.exports = {
         dark: '#212529',
       },
       backgroundImage: {
+        hero: 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #FAFAFA',
         'hero-pattern':
           "linear-gradient(to right bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('/images/illustrations/hero1.svg')",
         'about-pattern':
