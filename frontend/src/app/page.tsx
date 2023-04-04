@@ -1,16 +1,21 @@
 import Image from 'next/image';
 import profilePic from '../../public/assets/images/Ford-camion1.jpg';
 import image1 from '../../public/assets/images/Chevrolet-Silverado-3500-HD-III-K2XX-Double-Cab-Long-Box.jpg';
+import Register from './register/page';
 
 export default function Home() {
   return (
     <main>
       <section className="mt-[80px] max-w-5xl mx-auto bg-blue-200 px-10 ">
+
         <h1 className="text-3xl">Vehiculos disponibles</h1>
         <div id="section0">
           <h2 className="text-2xl text-blue-500 my-10">
             Chevrolet Silverado 3500
           </h2>
+          <div>
+            
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
             <Image
               src={image1}

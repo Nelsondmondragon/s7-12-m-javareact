@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import styles from './login.module.css';
+import styles from 'login.module,css';
 import { Schema as schema } from './loginValidation';
 
 type FormValues = {
