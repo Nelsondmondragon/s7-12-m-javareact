@@ -3,6 +3,7 @@ package com.nocountry.backend.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.nocountry.backend.service.ICarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nocountry.backend.dto.CarDto;
-import com.nocountry.backend.service.ICarService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -59,9 +59,9 @@ public class CarController {
         Optional<CarDto> car = Optional.ofNullable(carService.findCarById(carId));
         if (car.isPresent()) {
             carService.deleteCar(carId);
-            return new ResponseEntity<>("Customer successfully deleted", HttpStatus.ACCEPTED);
+            return new ResponseEntity<>("Car successfully deleted", HttpStatus.ACCEPTED);
         } else {
-            return new ResponseEntity<>("Customer not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Car not found", HttpStatus.NOT_FOUND);
         }
     }
 }
