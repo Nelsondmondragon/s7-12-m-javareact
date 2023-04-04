@@ -13,7 +13,7 @@ const articles = [
   {
     title: 'Cama Individual',
     volume: 180,
-    image: '/assets/images/bed-queen.png',
+    image: '/assets/images/single-bed.png',
   },
   {
     title: 'Cama Queen',
@@ -26,9 +26,24 @@ const articles = [
     image: '/assets/images/bed-queen.png',
   },
   {
+    title: 'Gabinete Pequeño',
+    volume: 200,
+    image: '/assets/images/bureau.png',
+  },
+  {
     title: 'Gabinete',
     volume: 400,
     image: '/assets/images/closet.png',
+  },
+  {
+    title: 'Cómoda',
+    volume: 300,
+    image: '/assets/images/buffet.png',
+  },
+  {
+    title: 'Estantes',
+    volume: 300,
+    image: '/assets/images/book-shelf.png',
   },
   {
     title: 'Lavadora',
@@ -41,14 +56,39 @@ const articles = [
     image: '/assets/images/secadora.png',
   },
   {
-    title: 'Nevera Pequeña',
+    title: 'Cocina',
     volume: 200,
+    image: '/assets/images/cooker.png',
+  },
+  {
+    title: 'Lavavajilla',
+    volume: 200,
+    image: '/assets/images/dishwasher.png',
+  },
+  {
+    title: 'Parillera',
+    volume: 200,
+    image: '/assets/images/grill.png',
+  },
+  {
+    title: 'Nevera Pequeña',
+    volume: 150,
     image: '/assets/images/refrigerador.png',
+  },
+  {
+    title: 'Nevera Mediana',
+    volume: 200,
+    image: '/assets/images/fridge.png',
   },
   {
     title: 'Nevera Grande',
     volume: 400,
     image: '/assets/images/refrigerador-big.png',
+  },
+  {
+    title: 'Sofa 1 puestos',
+    volume: 100,
+    image: '/assets/images/armchair.png',
   },
   {
     title: 'Sofa 2 puestos',
@@ -66,9 +106,29 @@ const articles = [
     image: '/assets/images/silla.png',
   },
   {
+    title: 'Mesa',
+    volume: 400,
+    image: '/assets/images/table.png',
+  },
+  {
+    title: 'Silla de Oficina',
+    volume: 100,
+    image: '/assets/images/office-chair.png',
+  },
+  {
     title: 'Escritorio y silla',
     volume: 400,
     image: '/assets/images/desk.png',
+  },
+  {
+    title: 'HD TV',
+    volume: 100,
+    image: '/assets/images/hdtv.png',
+  },
+  {
+    title: 'Caja 45 X 45 x 45',
+    volume: 100,
+    image: '/assets/images/box.png',
   },
 ];
 
@@ -94,8 +154,8 @@ export const MoveThing = (props: Props) => {
         Selecciona los Elementos que vas a mudar
       </h1>
 
-      <div className="grid grid-cols-[minmax(900px,_1fr)_250px] gap-2">
-        <div className="grid grid-cols-6 gap-2 p-4  ">
+      <div className="grid  md:grid-cols-[minmax(120px,_1fr)_300px] gap-2">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,_1fr))] gap-2 p-4">
           {articles.map((article) => {
             return <ThingCard thing={article} key={article.title} />;
           })}
@@ -108,7 +168,7 @@ export const MoveThing = (props: Props) => {
           </h2>
           {selectedItems.map((item) => {
             return (
-              <div key={item.title} className="flex items-center space-x-2">
+              <div key={item.title} className="flex items-center space-x-2 ">
                 <span> {item.qty}</span>
                 <Image
                   src={item.image}

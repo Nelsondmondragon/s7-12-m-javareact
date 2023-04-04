@@ -43,4 +43,23 @@
   .subtitle {
     @apply text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl;
   }
+
+  .move {
+    animation: move-to-right 1.5s forwards;
+    animation-timing-function: linear;
+  }
+}
+@keyframes move-to-rigth {
+  0% {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(50%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
 }

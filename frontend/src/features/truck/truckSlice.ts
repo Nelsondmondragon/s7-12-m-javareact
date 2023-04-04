@@ -14,7 +14,10 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
-  truckItems: [],
+  truckItems:
+    typeof window !== 'undefined' && localStorage.getItem('cart')
+      ? JSON.parse(localStorage.getItem('cart'))
+      : [],
   truckTotalVolume: 0,
   truckTotalQty: 0,
 };

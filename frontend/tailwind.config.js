@@ -52,6 +52,15 @@ module.exports = {
         'about-pattern':
           "linear-gradient(to right bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/images/illustrations/about1.svg')",
       },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'translateX(100%)' },
+          '50%': { transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        wiggle: 'wiggle 1s ease-in-out infinite',
+      },
     },
   },
   plugins: [],
