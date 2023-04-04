@@ -1,11 +1,16 @@
 package com.nocountry.backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
-@Getter
-@Setter
-@NoArgsConstructor
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class CarDto {
 
     @JsonProperty("id")
@@ -36,5 +41,5 @@ public class CarDto {
     private String patent;
 
     @JsonProperty("Available")
-    private boolean Available;
+    private boolean available;
 }

@@ -1,25 +1,34 @@
 package com.nocountry.backend.controller;
 
-import com.nocountry.backend.dto.CarDto;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import com.nocountry.backend.service.ICarService;
-
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.nocountry.backend.dto.CarDto;
+import com.nocountry.backend.service.ICarService;
+
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/api/v1/cars")
+@RequiredArgsConstructor
 public class CarController {
-    private final ICarService service;
-    public CarController(ICarService service) {
-        this.service = service;
-    }
 
-    @GetMapping
+    private final ICarService carService;
+
+    @GetMapping("/all")
     public ResponseEntity<List<CarDto>> getAllCars() {
-        List<CarDto> cars = service.getCars();
+        List<CarDto> cars = carService.findAllCars();
         if (cars.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {
@@ -27,31 +36,32 @@ public class CarController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<CarDto> createCar(@RequestBody CarDto carDto) {
-        CarDto carSaved=service.saveCar(carDto);
-        return ResponseEntity.ok(carSaved);
-    }
-    @GetMapping("/{id}")
-    public ResponseEntity<CarDto> getCar(@PathVariable(value = "id") Long id) {
-        CarDto carDto = service.getCarById(id);
+    @GetMapping("/{carId}")
+    public ResponseEntity<CarDto> getCar(@PathVariable(value = "carId") Long carId) {
+        CarDto carDto = carService.findCarById(carId);
         return ResponseEntity.ok(carDto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CarDto> updateCar(@PathVariable(value = "id") Long id, @RequestBody CarDto carDetails) {
-        CarDto saved= service.updateCarById(id,carDetails);
+    @PostMapping("/create")
+    public ResponseEntity<CarDto> createCar(@RequestBody CarDto carDto) {
+        CarDto carSaved = carService.saveCar(carDto);
+        return ResponseEntity.ok(carSaved);
+    }
+
+    @PutMapping("/{carId}/update")
+    public ResponseEntity<CarDto> updateCar(@PathVariable(value = "carId") Long carId, @RequestBody CarDto carDto) {
+        CarDto saved = carService.updateCar(carId, carDto);
         return ResponseEntity.ok(saved);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteCar(@PathVariable(value = "id") Long id) {
-        Optional<CarDto> car = Optional.ofNullable(service.getCarById(id));
+    @DeleteMapping("/{carId}/delete")
+    public ResponseEntity<String> deleteCar(@PathVariable(value = "carId") Long carId) {
+        Optional<CarDto> car = Optional.ofNullable(carService.findCarById(carId));
         if (car.isPresent()) {
-            service.deleteCar(id);
-            return ResponseEntity.ok().build();
+            carService.deleteCar(carId);
+            return new ResponseEntity<>("Customer successfully deleted", HttpStatus.ACCEPTED);
         } else {
-            return ResponseEntity.notFound().build();
+            return new ResponseEntity<>("Customer not found", HttpStatus.NOT_FOUND);
         }
     }
 }

@@ -29,21 +29,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, name = "EMAIL")
     private String email;
 
+    @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name = "ROLE")
     private String role;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "ID_CUSTOMER")
     @JsonIgnore
     private Customer customer;
 

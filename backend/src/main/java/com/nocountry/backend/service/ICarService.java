@@ -6,11 +6,13 @@ import java.util.List;
 
 public interface ICarService {
 
-    List<CarDto> getCars();
-    CarDto saveCar(CarDto carDto);
-    CarDto getCarById(Long id);
-    CarDto updateCarById(Long id, CarDto carDetailsDto);
-    void deleteCar(Long id);
+    public List<CarDto> findAllCars();
 
+    public CarDto findCarById(Long carId);
 
+    public CarDto saveCar(CarDto carDto);
+
+    public CarDto updateCar(Long carId, CarDto carDto);
+
+    public void deleteCar(Long carId);
 }

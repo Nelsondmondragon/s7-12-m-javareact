@@ -41,7 +41,6 @@ public class DefaultAdminRunner implements ApplicationRunner {
                     .fkUser(admin.getId())
                     .build();
             customerRepository.save(customer);
-
         }
     }
 }

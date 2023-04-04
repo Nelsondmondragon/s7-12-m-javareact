@@ -11,7 +11,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "customers")
+@Table(name = "CUSTOMERS")
 public class Customer {
 
     @Id
@@ -31,15 +31,11 @@ public class Customer {
     @Column(name = "BIRTH_DATE")
     private Date birthdate;
 
-    @Column(name = "NO_LICENSE")
-    private String license;
-
     @Column(name = "PHONE")
     private String phone;
 
     @Column(name = "NATIONAL_ID_IMG_URL")
     private String nationalIdImgUrl;
-
 
     @Column(name = "DRIVER_LICENSE_IMG_URL")
     private String driverLicenceImgUrl;

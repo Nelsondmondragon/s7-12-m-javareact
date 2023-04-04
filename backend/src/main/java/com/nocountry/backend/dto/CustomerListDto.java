@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class CustomerListDto {
 
     private Long id;
+
     private String firstName;
+
     private String lastName;
 }
