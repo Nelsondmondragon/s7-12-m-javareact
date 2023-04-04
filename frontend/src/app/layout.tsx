@@ -5,6 +5,7 @@ import { store } from '../store/store';
 import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import Register2 from './secondregister/page';
 
 const metadata = {
   title: 'MoveAr',
@@ -24,6 +25,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </Provider>
+        <Register2></Register2>
       </body>
     </html>
   );
