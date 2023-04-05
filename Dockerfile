@@ -1,6 +1,6 @@
 FROM maven:3.9.0-amazoncorretto-17 AS build
 COPY . .
-RUN (cd backend/; mvn clean package -Pdev -DskipTests)
+RUN (cd backend/; mvn clean package -Pprod -DskipTests)
 
 
 
