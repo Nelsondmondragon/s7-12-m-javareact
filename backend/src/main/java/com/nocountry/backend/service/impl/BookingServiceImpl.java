@@ -1,5 +1,7 @@
 package com.nocountry.backend.service.impl;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +13,7 @@ import com.nocountry.backend.model.Booking;
 import com.nocountry.backend.repository.IBookingRepository;
 import com.nocountry.backend.service.IBookingService;
 
+import jakarta.persistence.EntityExistsException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -34,7 +37,14 @@ public class BookingServiceImpl implements IBookingService {
 
     @Override
     public BookingDto saveBooking(BookingDto bookingDto) {
+        this.validateBooking(bookingDto);
         var booking = bookingMapper.toBooking(bookingDto);
+
+        booking.setFkCustomer(bookingDto.getFkCustomer());
+        booking.setFkCar(bookingDto.getFkCar());
+        booking.setStartTime(bookingDto.getStartTime());
+        booking.setEndTime(bookingDto.getEndTime());
+
         return bookingMapper.toBookingDto(bookingRepository.save(booking));
     }
 
@@ -49,4 +59,22 @@ public class BookingServiceImpl implements IBookingService {
     public void deleteBooking(Long bookingId) {
         bookingRepository.deleteById(bookingId);
     }
+
+    // crear BookingOverlapException
+    private void validateBooking(BookingDto bookingDto) {
+        List<Booking> allCarBookings = bookingRepository.findAllByFkCar(bookingDto.getFkCar());
+        Duration margin = Duration.ofHours(1);
+
+        for (Booking carBooking : allCarBookings) {
+            LocalDateTime newBookingStart = bookingDto.getStartTime().minus(margin);
+            LocalDateTime newBookingEnd = bookingDto.getEndTime().plus(margin);
+            LocalDateTime existingBookingStart = carBooking.getStartTime();
+            LocalDateTime existingBookingEnd = carBooking.getEndTime();
+
+            if (existingBookingStart.isBefore(newBookingEnd) && newBookingStart.isBefore(existingBookingEnd)) {
+                throw new EntityExistsException("The booking overlaps with another existing booking");
+            }
+        }
+    }
+
 }

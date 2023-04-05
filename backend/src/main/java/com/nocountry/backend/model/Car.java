@@ -1,14 +1,20 @@
 package com.nocountry.backend.model;
 
-import java.util.Objects;
+import java.util.List;
 
-import jakarta.persistence.*;
-import org.hibernate.Hibernate;
-
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Builder.Default;
 
 @Data
 @Builder
@@ -20,6 +26,7 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_CAR")
     private Long id;
 
     @Column(name = "IMAGE")
@@ -46,35 +53,10 @@ public class Car {
     @Column(name = "PATENT")
     private String patent;
 
+    @Default
     @Column(name = "AVAILABLE")
-    private boolean available;
+    private boolean available = true;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o))
-            return false;
-        Car car = (Car) o;
-        return id != null && Objects.equals(id, car.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
 }
-
-/*
- * private Category category;
- * private Booking booking;
- * private Double volume;
- * private Double Capacity;
- * private Integer length;
- * private Integer width;
- * private Integer height;
- */

@@ -31,8 +31,4 @@ public class CustomerDetailsDto {
     private Date birthdate;
 
     private String address;
-
-    private String nationalIdImgUrl;
-
-    private String driverLicenceImgUrl;
 }

@@ -1,14 +1,14 @@
 package com.nocountry.backend.service;
 
-import com.nocountry.backend.dto.CarDto;
-
 import java.util.List;
+
+import com.nocountry.backend.dto.CarDto;
 
 public interface ICarService {
 
     public List<CarDto> findAllCars();
 
-    List<CarDto> findAllCarsByCategory(Long categoryId);
+    // public List<CarDto> findAllCarsByCategory(Long categoryId);
 
     public CarDto findCarById(Long carId);
 

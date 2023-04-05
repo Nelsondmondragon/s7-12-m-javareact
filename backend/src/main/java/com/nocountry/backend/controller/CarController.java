@@ -3,7 +3,6 @@ package com.nocountry.backend.controller;
 import java.util.List;
 import java.util.Optional;
 
-import com.nocountry.backend.service.ICarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nocountry.backend.dto.CarDto;
+import com.nocountry.backend.service.ICarService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -35,15 +35,17 @@ public class CarController {
             return ResponseEntity.ok(cars);
         }
     }
-    @GetMapping("/category/{categoryId}")
-    public ResponseEntity<List<CarDto>> getAllByCategory(@PathVariable(value = "categoryId") Long categoryId) {
-        List<CarDto> cars = carService.findAllCarsByCategory(categoryId);
-        if (cars.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.ok(cars);
-        }
-    }
+
+    // @GetMapping("/category/{categoryId}")
+    // public ResponseEntity<List<CarDto>> getAllByCategory(@PathVariable(value =
+    // "categoryId") Long categoryId) {
+    // List<CarDto> cars = carService.findAllCarsByCategory(categoryId);
+    // if (cars.isEmpty()) {
+    // return ResponseEntity.noContent().build();
+    // } else {
+    // return ResponseEntity.ok(cars);
+    // }
+    // }
 
     @GetMapping("/{carId}")
     public ResponseEntity<CarDto> getCar(@PathVariable(value = "carId") Long carId) {
