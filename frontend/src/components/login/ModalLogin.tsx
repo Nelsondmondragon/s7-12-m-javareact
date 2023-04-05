@@ -115,7 +115,12 @@ export const ModalLogin = () => {
 
           <p className="text-center text-sm mb-8 ">
             <span className="italic  "> ¿Olvidaste tu contraseña?</span>{' '}
-            <span className="font-semibold "> Recuperar</span>
+            <span
+              className="font-semibold cursor-pointer hover:underline"
+              onClick={() => alert('recuperar')}
+            >
+              Recuperar
+            </span>
           </p>
           <div className="w-3/5 mx-auto">
             <button
