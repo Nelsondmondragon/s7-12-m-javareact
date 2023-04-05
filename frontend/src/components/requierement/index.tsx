@@ -9,13 +9,13 @@ const CardRequirement = ({ image, title, description }: RequirementType) => {
   return (
     <div className="w-full h-full">
       <Image
-        className="w-full object-cover object-center "
+        className="w-full object-cover object-center rounded-t-2xl "
         src={image}
         width={300}
         height={300}
         alt={title}
       />
-      <div className=" bg-neutral-300 px-8 pt-4 min-h-[150px]">
+      <div className=" bg-primary-600 px-8 pt-4 min-h-[150px] rounded-b-2xl text-white">
         <h3 className="text-xl">{title}</h3>
         <div className="text-sm pb-8">
           <p>{description}</p>
@@ -29,9 +29,9 @@ type Props = {};
 
 export const Requirement = (props: Props) => {
   return (
-    <section className="px-4 md:px-32">
-      <h2 className="text-xl my-12 font-bold  ">
-        ¿CUÁLES SON LOS REQUISITOS PARA RENTAR UN VEHÍCULO?
+    <section className="px-4 md:px-32 pb-32">
+      <h2 className="text-4xl text-white my-12 font-semibold ">
+        ¿Qúé necesitas para alquilar un vehículo con nosotros?
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-lg">
         <CardRequirement

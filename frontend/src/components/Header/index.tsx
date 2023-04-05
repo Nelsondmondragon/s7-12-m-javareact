@@ -33,16 +33,21 @@ export const Header = () => {
     setShowMenu(!showMenu);
   };
 
-  const logout = () => {
+  const handleLogout = () => {
     dispatch(removeUser());
     Cookies.remove('token');
-    sessionStorage.removeItem('token');
     localStorage.removeItem('token');
-    router.push('/about');
+    router.push('/');
   };
 
+  const handleLogin = () => {
+    dispatch(openModalLogin());
+  };
+  const handleRegister = () => {
+    router.push('/register');
+  };
   const handleProfile = () => {
-    currentUser.name !== '' ? logout() : dispatch(openModalLogin());
+    router.push('/profile');
   };
 
   return (
@@ -50,27 +55,42 @@ export const Header = () => {
       <header>
         <Link href="/">
           <div className="flex items-center">
-            <div className="h-[60px] w-[91px] mr-[30px]">
+            <div className="h-[73px] w-[81px] mr-[30px]">
               <Image src={logo} alt="Logo" className="w-full h-full" />
             </div>
             <div className="font-bold text-sm">
-              <p>{'"Mudarse nunca'}</p>
-              <p>{'fue tan facil"'}</p>
+              <p>{'Mudarse nunca fue'}</p>
+              <p>{'tan fácil"'}</p>
             </div>
           </div>
         </Link>
 
         <nav className="flex md:flex-row-reverse justify-between items-center">
-          <button
-            className="w-[60px] h-[60px] md:ml-12 bg-primary-200 hover:bg-primary-300 rounded-full"
-            onClick={handleProfile}
-          >
+          <div>
             {currentUser.name !== '' ? (
-              <p>{currentUser.name[0].toUpperCase()}</p>
+              <div className="flex space-x-2 ">
+                <button
+                  className="w-[60px] h-[60px] md:ml-12 bg-primary-200 hover:bg-primary-300 rounded-full flex justify-center items-center text-2xl"
+                  onClick={() => handleProfile()}
+                >
+                  {currentUser.name[0].toUpperCase()}
+                </button>
+
+                <button className="btn" onClick={() => handleLogout()}>
+                  Salir
+                </button>
+              </div>
             ) : (
-              <p> Login</p>
+              <div className="flex space-x-2 ">
+                <button className="btn btnSecond" onClick={() => handleLogin()}>
+                  Ingresar
+                </button>
+                <button className="btn" onClick={() => handleRegister()}>
+                  Registrarse
+                </button>
+              </div>
             )}
-          </button>
+          </div>
 
           <button
             className="hover:text-primary-200 md:hidden ml-4"

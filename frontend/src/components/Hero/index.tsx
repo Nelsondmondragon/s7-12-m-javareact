@@ -1,11 +1,14 @@
 'use client';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+
 import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
-import { sliderData } from './SlideShow/SliderData';
+import { sliderData } from './slideShow/sliderData';
 
 export const Hero = () => {
   const slideshow = useRef(null);
+  const router = useRouter();
 
   const autoScroll = true;
   let intervalTime = 7000;
@@ -68,9 +71,9 @@ export const Hero = () => {
               className="min-w-full overflow-hidden z-50 duration-500 ease-linear"
               key={i}
             >
-              <div className="">
+              <div className="bg-gradient-to-r from-[#000000ff] from-40% via-[#00000088]  to-[#000000ff] to-40% h-[512px] w-full relative  ">
                 <Image
-                  className="w-full align-top h-auto"
+                  className="w-full h-full object-cover absolute mix-blend-overlay"
                   width={1440}
                   height={512}
                   src={slide.image}
@@ -81,14 +84,16 @@ export const Hero = () => {
           );
         })}
       </div>
-      <div className="absolute top-0 left-0 w-full h-full bg-[#000000c2]">
+      <div className="absolute top-0 left-0 w-full h-full ">
         <div className="w-1/2 ml-auto text-white mt-12 p-12">
-          <h1 className="text-7xl font-semibold mb-6">Bienvenidx a MoveAR</h1>
-          <h2 className="text-4xl mb-6 ">La forma más fácil de mudarse</h2>
+          <h1 className="text-6xl font-semibold mb-6">Bienvenidx a MoveAR</h1>
+          <h2 className="text-4xl mb-6 font-medium  ">
+            La forma más fácil de mudarse
+          </h2>
           <p className="text-2xl mb-12 max-w-2xl ">
             Calcula tu mudanza y escoge un vehículo acorde a tus necesidades
           </p>
-          <button className="bg-white px-8 py-2 text-xl text-black">
+          <button className="btn" onClick={() => router.push('/calculator')}>
             Calcular
           </button>
         </div>
