@@ -1,8 +1,8 @@
 package com.nocountry.backend.service;
 
-import com.nocountry.backend.dto.CarDto;
-
 import java.util.List;
+
+import com.nocountry.backend.dto.CarDto;
 
 public interface ICarService {
 
@@ -17,5 +17,4 @@ public interface ICarService {
     public CarDto updateCar(Long carId, CarDto carDto);
 
     public void deleteCar(Long carId);
-
 }

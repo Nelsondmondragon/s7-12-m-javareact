@@ -1,13 +1,9 @@
 package com.nocountry.backend.dto;
 
-import com.nocountry.backend.model.Car;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @Builder
@@ -26,5 +22,4 @@ public class CategoryDto {
     private Integer width;
 
     private Integer height;
-
 }

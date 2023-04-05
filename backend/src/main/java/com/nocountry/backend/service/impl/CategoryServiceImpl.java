@@ -1,18 +1,19 @@
 package com.nocountry.backend.service.impl;
 
-import com.nocountry.backend.dto.CategoryDto;
-import com.nocountry.backend.mapper.ICategoryMapper;
-import com.nocountry.backend.model.Car;
-import com.nocountry.backend.model.Category;
-import com.nocountry.backend.repository.ICategoryRepository;
-import com.nocountry.backend.service.ICategoryService;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.Optional;
+
 import org.hibernate.ObjectDeletedException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.nocountry.backend.dto.CategoryDto;
+import com.nocountry.backend.mapper.ICategoryMapper;
+import com.nocountry.backend.model.Category;
+import com.nocountry.backend.repository.ICategoryRepository;
+import com.nocountry.backend.service.ICategoryService;
+
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +41,8 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public CategoryDto saveCategory(CategoryDto categoryDto) {
-        return categoryMapper.CategoryToCategoryDto(categoryRepository.save(categoryMapper.CategoryDtoToCategory(categoryDto)));
+        return categoryMapper
+                .CategoryToCategoryDto(categoryRepository.save(categoryMapper.CategoryDtoToCategory(categoryDto)));
     }
 
     @Override
@@ -62,7 +64,8 @@ public class CategoryServiceImpl implements ICategoryService {
         if (category.isPresent()) {
             categoryRepository.delete(category.get());
         } else {
-            throw new ObjectDeletedException("category with ID " + categoryId + " can't be deleted.", categoryId, "Car");
+            throw new ObjectDeletedException("category with ID " + categoryId + " can't be deleted.", categoryId,
+                    "Car");
         }
     }
 }
