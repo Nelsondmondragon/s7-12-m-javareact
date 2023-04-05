@@ -1,5 +1,10 @@
 package com.nocountry.backend.dto;
 
+
+import lombok.*;
+
+@Getter
+@Setter
 public class PaymentDto {
 
         private String cardNumber;
