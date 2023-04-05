@@ -130,6 +130,11 @@ const articles = [
     volume: 100,
     image: '/assets/images/calculator/box.png',
   },
+  {
+    title: 'Caja 60 X 60 x 45',
+    volume: 150,
+    image: '/assets/images/calculator/box.png',
+  },
 ];
 
 type Props = {};
@@ -146,7 +151,7 @@ export const MoveThing = (props: Props) => {
       return 'Camión Grande';
     }
 
-    return 'Camión Pequeño';
+    return 'Vehículo Pequeño';
   };
   return (
     <section className="px-4 py-8">

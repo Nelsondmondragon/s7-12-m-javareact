@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaUserAlt, FaUserPlus } from 'react-icons/fa';
 import Cookies from 'js-cookie';
 
 import logo from '../../../public/assets/images/logos/logo.png';
@@ -17,7 +17,6 @@ import {
 const links = [
   { label: 'Inicio', route: '/' },
   { label: 'Vehículos', route: '/' },
-  { label: 'Reserva', route: '/booking' },
   { label: 'Servicios', route: '/services' },
   { label: 'Nosotros', route: '/about' },
   { label: 'Contacto', route: '/contact' },
@@ -82,11 +81,23 @@ export const Header = () => {
               </div>
             ) : (
               <div className="flex space-x-2 ">
-                <button className="btn btnSecond" onClick={() => handleLogin()}>
+                <button
+                  className="hidden md:block btn btnSecond"
+                  onClick={() => handleLogin()}
+                >
                   Ingresar
                 </button>
-                <button className="btn" onClick={() => handleRegister()}>
+                <button className="md:hidden" onClick={() => handleLogin()}>
+                  <FaUserAlt size={20} />
+                </button>
+                <button
+                  className="hidden md:block btn"
+                  onClick={() => handleRegister()}
+                >
                   Registrarse
+                </button>
+                <button className="md:hidden" onClick={() => handleRegister()}>
+                  <FaUserPlus size={24} />
                 </button>
               </div>
             )}
@@ -102,7 +113,7 @@ export const Header = () => {
             onClick={handleShowToggleMenu}
             className={`menuMobile ${
               showMenu ? ' translate-x-0 ' : 'translate-x-full'
-            } md:menuDesktop`}
+            } md:menuDesktop md:-translate-x-48`}
           >
             {links.map((link) => {
               return (

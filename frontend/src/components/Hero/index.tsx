@@ -71,7 +71,7 @@ export const Hero = () => {
               className="min-w-full overflow-hidden z-50 duration-500 ease-linear"
               key={i}
             >
-              <div className="bg-gradient-to-r from-[#000000ff] from-40% via-[#00000088]  to-[#000000ff] to-40% h-[610px] w-full relative  ">
+              <div className="bg-black bg-opacity-70 h-[610px] w-full relative  ">
                 <Image
                   className="w-full h-full object-cover absolute mix-blend-overlay"
                   width={1440}
@@ -85,8 +85,8 @@ export const Hero = () => {
         })}
       </div>
       <div className="absolute top-0 left-0 w-full h-full ">
-        <div className="w-1/2 ml-auto text-white mt-12 p-12">
-          <h1 className="text-6xl font-semibold mb-6">Bienvenidx a MoveAR</h1>
+        <div className="w-full md:w-1/2 ml-auto text-white mt-12 p-12">
+          <h1 className="text-6xl font-semibold mb-6">Bienvenido a MoveAR</h1>
           <h2 className="text-4xl mb-6 font-medium  ">
             La forma más fácil de mudarse
           </h2>

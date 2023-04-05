@@ -15,8 +15,8 @@ const CardRequirement = ({ image, title, description }: RequirementType) => {
         height={300}
         alt={title}
       />
-      <div className=" bg-primary-600 px-8 pt-4 min-h-[150px] rounded-b-2xl text-white">
-        <h3 className="text-xl">{title}</h3>
+      <div className=" bg-primary-600 px-4 md:px-8 pt-4 min-h-[150px] rounded-b-2xl text-white">
+        <h3 className="text-base md:text-xl">{title}</h3>
         <div className="text-sm pb-8">
           <p>{description}</p>
         </div>
