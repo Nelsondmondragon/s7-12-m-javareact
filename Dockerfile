@@ -7,9 +7,9 @@ RUN (cd backend/; mvn clean package -Pprod -DskipTests)
 FROM amazoncorretto:17-alpine3.17
 ENV SPRING_PROFILES_ACTIVE=dev
 ENV DDL_CONFIG=update
-ENV DB_URL=postgresql://us-west-2.e2ff4c01-92c1-418d-a66c-c4ad687980e7.aws.ybdb.io:5433/yugabyte
-ENV DB_USER=admin
-ENV DB_PASSWORD=Imf76YU0xHWEr7OBV3kHGTs2HgSERn
+ENV DB_URL=postgresql://dpg-cgmkn102qv26cupubesg-a.oregon-postgres.render.com:5432/database_backend_nocountry
+ENV DB_USER=database_backend_nocountry_user
+ENV DB_PASSWORD=FkR43PvMBFYxmVQCLkZHfeNwfCRpV7eV
 COPY --from=build ./backend/target/*.jar app.jar
 
 
