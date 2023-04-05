@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 
 type TruckType = {
@@ -11,18 +12,25 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
   return (
     <div className="w-full">
       <Image
-        className="w-full"
+        className="w-full  rounded-t-[20px] "
         src={image}
         width={400}
         height={45}
         alt={title}
       />
-      <div className=" bg-primary-700 pl-8 pt-4 rounded-b-[20px]">
-        <h3>{title}</h3>
-        <div className="text-sm pb-8">
+      <div className=" bg-primary-600 px-8 pt-4 rounded-b-[20px]">
+        <h3 className="text-center text-2xl font-bold pb-2 border-b-4 border-b-white">
+          {title}
+        </h3>
+        <div className="text-sm py-4">
           <p>{line1}</p>
           <p>{line2}</p>
           <p>{line3}</p>
+        </div>
+        <div className="flex justify-end">
+          <button className="btn mb-8" onClick={() => alert('ver dispo')}>
+            Ver Disponibilidad
+          </button>
         </div>
       </div>
     </div>
@@ -33,8 +41,8 @@ type Props = {};
 export const TypesVehicle = (props: Props) => {
   return (
     <section className="p-4 md:px-32">
-      <h2 className="text-xl my-12 font-bold  ">
-        ¿QUÉ TIPO DE VEHÍCULO NECESITAS PARA TU MUDANZA?
+      <h2 className="text-4xl text-white my-12 font-semibold ">
+        Selecciona el vehículo que necesitas para tu mudanza
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-lg text-white">
         <CardTruck
