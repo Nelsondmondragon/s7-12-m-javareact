@@ -5,7 +5,13 @@ import { store } from '../store/store';
 import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import Register2 from './secondregister/page';
+
+import { Roboto, Russo_One } from 'next/font/google';
+
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 const metadata = {
   title: 'MoveAr',
@@ -19,13 +25,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={roboto.className}>
         <Provider store={store}>
           <Header />
-          {children}
+          <div className="bg-gradient-to-t from-primary-800 from-10% to-primary-600 to-90%">
+            {children}
+          </div>
           <Footer />
         </Provider>
-        <Register2></Register2>
       </body>
     </html>
   );

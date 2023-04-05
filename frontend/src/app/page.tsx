@@ -1,15 +1,13 @@
-import Image from 'next/image';
-
-import hero from '../../public/assets/images/home1.png';
 import { Faq } from '@/components/faq';
 import { TypesVehicle } from '@/components/typeVehicle';
 import { Requirement } from '@/components/requierement';
+import { Hero } from '@/components/Hero';
 
 export default function Home() {
   return (
     <main>
       <section>
-        <Image src={hero} alt="hero banner" className="w-full" />
+        <Hero />
         <TypesVehicle />
         <Requirement />
         {/* <Faq /> */}

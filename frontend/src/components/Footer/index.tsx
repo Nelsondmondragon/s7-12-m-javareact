@@ -13,23 +13,41 @@ export const Footer = (props: Props) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
         <div className="flex">
           <Image
-            src={'/assets/images/logo.png'}
+            src={'/assets/images/logos/logo-footer.png'}
             alt="logo"
             width={150}
             height={100}
             className="w-[150px] h-[100px] mr-8"
           />
           <div>
-            <p>Siguenos en:</p>
+            <p className="text-xl">Siguenos en:</p>
             <div className="flex justify-center items-center space-x-4 mt-4">
               <span>
-                <FaInstagram size={32} />
+                <Image
+                  src={'/assets/images/logos/instagram.png'}
+                  alt="instagram logo"
+                  width={48}
+                  height={48}
+                  className="w-[48px] h-[48px] mr-4"
+                />
               </span>
               <span>
-                <FaFacebook size={32} />
+                <Image
+                  src={'/assets/images/logos/facebook.png'}
+                  alt="facebook logo"
+                  width={48}
+                  height={48}
+                  className="w-[48px] h-[48px] mr-4"
+                />
               </span>
               <span>
-                <FaLinkedinIn size={32} />
+                <Image
+                  src={'/assets/images/logos/linkedin.png'}
+                  alt="linkedin logo"
+                  width={48}
+                  height={48}
+                  className="w-[48px] h-[48px] mr-4"
+                />
               </span>
             </div>
           </div>
@@ -65,9 +83,15 @@ export const Footer = (props: Props) => {
         <div className="flex flex-col justify-center items-center space-y-4">
           <div className="flex justify-center items-center space-x-4">
             <span>
-              <FaWhatsapp size={42} />
+              <Image
+                src={'/assets/images/logos/whatsapp.png'}
+                alt="linkedin logo"
+                width={48}
+                height={48}
+                className="w-[48px] h-[48px]"
+              />
             </span>
-            <span>+54 9 12 2659-2638</span>
+            <span className="text-xl">+54 9 12 2659-2638</span>
           </div>
           <div className="flex justify-center items-center space-x-4">
             <Image
