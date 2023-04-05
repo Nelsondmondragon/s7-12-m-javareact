@@ -35,6 +35,15 @@ public class CarController {
             return ResponseEntity.ok(cars);
         }
     }
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<CarDto>> getAllByCategory(@PathVariable(value = "categoryId") Long categoryId) {
+        List<CarDto> cars = carService.findAllCarsByCategory(categoryId);
+        if (cars.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(cars);
+        }
+    }
 
     @GetMapping("/{carId}")
     public ResponseEntity<CarDto> getCar(@PathVariable(value = "carId") Long carId) {
