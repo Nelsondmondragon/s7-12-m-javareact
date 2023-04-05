@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 type TruckType = {
   image: string;
@@ -8,7 +9,9 @@ type TruckType = {
   line2: string;
   line3: string;
 };
+
 const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
+  const router = useRouter();
   return (
     <div className="w-full">
       <Image
@@ -28,7 +31,7 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
           <p>{line3}</p>
         </div>
         <div className="flex justify-end">
-          <button className="btn mb-8" onClick={() => alert('ver dispo')}>
+          <button className="btn mb-8" onClick={() => router.push('/booking')}>
             Ver Disponibilidad
           </button>
         </div>
