@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Cookies from 'js-cookie';
 
-import logo from '../../../public/assets/images/logo.png';
+import logo from '../../../public/assets/images/logos/logo.png';
 import { ModalLogin } from '../login/ModalLogin';
 import {
   openModalLogin,

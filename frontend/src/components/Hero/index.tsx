@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
-import { sliderData } from './slideShow/sliderData';
+import { sliderData } from './sliderData';
 
 export const Hero = () => {
   const slideshow = useRef(null);
@@ -71,11 +71,11 @@ export const Hero = () => {
               className="min-w-full overflow-hidden z-50 duration-500 ease-linear"
               key={i}
             >
-              <div className="bg-gradient-to-r from-[#000000ff] from-40% via-[#00000088]  to-[#000000ff] to-40% h-[512px] w-full relative  ">
+              <div className="bg-gradient-to-r from-[#000000ff] from-40% via-[#00000088]  to-[#000000ff] to-40% h-[610px] w-full relative  ">
                 <Image
                   className="w-full h-full object-cover absolute mix-blend-overlay"
                   width={1440}
-                  height={512}
+                  height={610}
                   src={slide.image}
                   alt={slide.alt}
                 />
