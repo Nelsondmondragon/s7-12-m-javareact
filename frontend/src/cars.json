@@ -1,33 +1,44 @@
 [
-    {
-      "id": 1,
-      "title": "Volkswagen",
-      "image": "https://d2v9mob6nwdg55.cloudfront.net/gamas/images/186-269-557-1556901225.png",
-      "categoria":"pick",
-      "passengers": 3,
-      "capacity": 1400,
-      "a/c": true,
-      "gps": true
-    },
-    {
-      "id": 2,
-      "title": "RenoMaster",
-      "image": "https://tutuning.net/wp-content/uploads/2020/10/renault-master.jpg",
-      "categoria":"van",
-      "passengers": 3,
-      "capacity": 3000,
-      "a/c": true,
-      "gps": false
-    },
-    {
-      "id": 3,
-      "title": "Volvo",
-      "image": "https://http2.mlstatic.com/D_NQ_NP_683296-MLA49411913804_032022-O.jpg",
-      "passengers": 4,
-      "categoria":"camion",
-      "capacity": 8000,
-      "a/c": false,
-      "gps": true
-    }
-    
-  ]
+  {
+    "id": 1,
+    "title": "Pickup Manual ",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3bMTL9uoB2XZGIKVHp0o3BMKFXk-QsRa2kA&usqp=CAU",
+    "categoria": "chico",
+    "info": "Camioneta chica con capacidad de 1,00 x 1,80 x 2,30m perfecto para mudanzas cortas y rápidas"
+  },
+  {
+    "id": 2,
+    "title": "Pickup Manual ",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3bMTL9uoB2XZGIKVHp0o3BMKFXk-QsRa2kA&usqp=CAU",
+    "categoria": "chico",
+    "info": "Camioneta chica con capacidad de 1,00 x 1,80 x 2,30m perfecto para mudanzas cortas y rápidas"
+  },
+  {
+    "id": 3,
+    "title": "Van Clásica",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1a/2018_Ford_Transit_Custom_300_Base_2.0_facelift.jpg",
+    "categoria": "mediano",
+    "info": "Van Clásica con capacidad de 1,60 x1,80 x 3,00m"
+  },
+  {
+    "id": 4,
+    "title": "Van Clásica",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1a/2018_Ford_Transit_Custom_300_Base_2.0_facelift.jpg",
+    "categoria": "mediano",
+    "info": "perfecto para mudanzas cortas y rápidas"
+  },
+  {
+    "id": 5,
+    "title": "Camión Turbo",
+    "image": "https://www.vwcamionesybuses.com.ar/assets/front/img/delivery-f.jpg?123",
+    "categoria": "grande",
+    "info": "Camión grande con capacidad de 2,30 x 2,30 x 4,80m perfecto para mudanzas cortas y rápidas"
+  },
+  {
+    "id": 6,
+    "title": "Camión Turbo",
+    "image": "https://www.vwcamionesybuses.com.ar/assets/front/img/delivery-f.jpg?123",
+    "categoria": "grande",
+    "info": "Camión grande con capacidad de 2,30 x 2,30 x 4,80m perfecto para mudanzas cortas y rápidas"
+  }
+]
