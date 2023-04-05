@@ -33,13 +33,14 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .cors()
-                .and()
-                .csrf().disable()
+        return http.cors().and().csrf()
+                .disable()
                 .authorizeHttpRequests()
-                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                .requestMatchers("/api/v1/auth/**", "/api/v1/hello/**","/swagger-ui/**","/v3/api-docs/**").permitAll()
+                .requestMatchers(CorsUtils::isPreFlightRequest)
+                .permitAll()
+                .requestMatchers("/api/v1/auth/**", "/api/v1/hello/**", "/swagger-ui/**",
+                        "/swagger-ui.html", "/v3/api-docs/**")
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -47,7 +48,7 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(JwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+                .addFilterBefore(JwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class).build();
     }
 }
