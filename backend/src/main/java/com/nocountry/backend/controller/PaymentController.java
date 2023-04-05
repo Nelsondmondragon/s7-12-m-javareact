@@ -1,6 +1,7 @@
 package com.nocountry.backend.controller;
 
 import com.nocountry.backend.dto.PaymentDto;
+import com.stripe.exception.StripeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,9 @@ public class PaymentController {
     @Autowired
     private final IPaymentService service;
 
+
     @PostMapping("/pay")
-    public ResponseEntity<String> charge(@RequestBody PaymentDto paymentDto) throws Exception {
+    public ResponseEntity<String> charge(@RequestBody PaymentDto paymentDto) throws StripeException{
         String token = service.createToken(paymentDto);
         String chargeId = service.createCharge(paymentDto, token);
         return new ResponseEntity<>(chargeId, HttpStatus.OK);

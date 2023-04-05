@@ -2,6 +2,8 @@ package com.nocountry.backend.service.impl;
 
 import ch.qos.logback.core.subst.Token;
 import com.nocountry.backend.dto.PaymentDto;
+import com.stripe.Stripe;
+import com.stripe.model.Charge;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.stripe.exception.StripeException;
@@ -33,7 +35,7 @@ public class PaymentServiceImpl implements IPaymentService {
             Token token = Token.create(tokenParams);
             return token.getId();
         }
-        public String createCharge(PaymentDto paymentDto, String token) throws Exception {
+        public String createCharge(PaymentDto paymentDto, String token) throws StripeException {
             Stripe.apiKey = apiKey;
             Map<String, Object> chargeParams = new HashMap<>();
             chargeParams.put("amount", paymentDto.getAmount());
@@ -44,4 +46,4 @@ public class PaymentServiceImpl implements IPaymentService {
         }
     }
 
-}
+
