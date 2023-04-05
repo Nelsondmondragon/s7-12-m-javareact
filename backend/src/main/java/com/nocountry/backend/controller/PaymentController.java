@@ -1,6 +1,7 @@
 package com.nocountry.backend.controller;
 
 import com.nocountry.backend.dto.PaymentDto;
+import com.nocountry.backend.service.impl.PaymentServiceImpl;
 import com.stripe.exception.StripeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class PaymentController {
 
     @Autowired
-    private final IPaymentService service;
+    private final PaymentServiceImpl service;
 
 
     @PostMapping("/pay")

@@ -1,6 +1,6 @@
 package com.nocountry.backend.service.impl;
 
-import ch.qos.logback.core.subst.Token;
+import com.stripe.model.Token;
 import com.nocountry.backend.dto.PaymentDto;
 import com.stripe.Stripe;
 import com.stripe.model.Charge;
