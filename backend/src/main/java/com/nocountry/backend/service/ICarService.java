@@ -8,6 +8,8 @@ public interface ICarService {
 
     public List<CarDto> findAllCars();
 
+    List<CarDto> findAllCarsByCategory(Long categoryId);
+
     public CarDto findCarById(Long carId);
 
     public CarDto saveCar(CarDto carDto);
@@ -15,4 +17,5 @@ public interface ICarService {
     public CarDto updateCar(Long carId, CarDto carDto);
 
     public void deleteCar(Long carId);
+
 }
