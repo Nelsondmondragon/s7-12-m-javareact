@@ -38,8 +38,14 @@ public class Booking {
     @Column(name = "PICK_UP_LOCATION")
     private String pickUpLocation;
 
-    @Column(name = "DROP_OF_LOCATION")
+    @Column(name = "DROP_OFF_LOCATION")
     private String dropOffLocation;
+
+    @Column(name = "ASSIGNED_DRIVER")
+    private Boolean assignedDriver;
+
+    @Column(name = "HELPER_PAWN")
+    private Boolean helperPawn;
 
     @Column(name = "STATUS")
     private boolean status;

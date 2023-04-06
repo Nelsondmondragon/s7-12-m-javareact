@@ -25,6 +25,10 @@ public class BookingDto {
 
     private String dropOffLocation;
 
+    private Boolean assignedDriver;
+
+    private Boolean helperPawn;
+
     @JsonProperty("carId")
     private Long fkCar;
 

@@ -46,6 +46,8 @@ public class BookingServiceImpl implements IBookingService {
         booking.setEndTime(bookingDto.getEndTime());
         booking.setPickUpLocation(bookingDto.getPickUpLocation());
         booking.setDropOffLocation(bookingDto.getPickUpLocation());
+        booking.setAssignedDriver(bookingDto.getAssignedDriver());
+        booking.setHelperPawn(bookingDto.getHelperPawn());
 
         return bookingMapper.toBookingDto(bookingRepository.save(booking));
     }
