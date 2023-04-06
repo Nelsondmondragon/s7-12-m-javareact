@@ -35,6 +35,12 @@ public class Booking {
     @Column(name = "END_DATE")
     private LocalDateTime endTime;
 
+    @Column(name = "PICK_UP_LOCATION")
+    private String pickUpLocation;
+
+    @Column(name = "DROP_OF_LOCATION")
+    private String dropOffLocation;
+
     @Column(name = "STATUS")
     private boolean status;
 
@@ -51,7 +57,7 @@ public class Booking {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_CAR", referencedColumnName = "ID_CAR", insertable = false, updatable = false)
     private Car car;
-
-    @Column(name = "FK_PAYMENT")
-    private Long fkPayment;
 }
+
+// @Column(name = "FK_PAYMENT")
+// private Long fkPayment;

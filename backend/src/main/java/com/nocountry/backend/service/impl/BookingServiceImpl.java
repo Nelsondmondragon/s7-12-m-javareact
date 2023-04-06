@@ -44,6 +44,8 @@ public class BookingServiceImpl implements IBookingService {
         booking.setFkCar(bookingDto.getFkCar());
         booking.setStartTime(bookingDto.getStartTime());
         booking.setEndTime(bookingDto.getEndTime());
+        booking.setPickUpLocation(bookingDto.getPickUpLocation());
+        booking.setDropOffLocation(bookingDto.getPickUpLocation());
 
         return bookingMapper.toBookingDto(bookingRepository.save(booking));
     }
@@ -63,7 +65,7 @@ public class BookingServiceImpl implements IBookingService {
     // crear BookingOverlapException
     private void validateBooking(BookingDto bookingDto) {
         List<Booking> allCarBookings = bookingRepository.findAllByFkCar(bookingDto.getFkCar());
-        Duration margin = Duration.ofHours(1);
+        Duration margin = Duration.ofMinutes(30);
 
         for (Booking carBooking : allCarBookings) {
             LocalDateTime newBookingStart = bookingDto.getStartTime().minus(margin);
@@ -76,5 +78,4 @@ public class BookingServiceImpl implements IBookingService {
             }
         }
     }
-
 }

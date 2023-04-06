@@ -21,6 +21,10 @@ public class BookingDto {
 
     private LocalDateTime endTime;
 
+    private String pickUpLocation;
+
+    private String dropOffLocation;
+
     @JsonProperty("carId")
     private Long fkCar;
 
