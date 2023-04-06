@@ -50,11 +50,13 @@ export const ModalLogin = () => {
   const LoginUser = async (credentials: FormValues) => {
     const loginResult = postLogin(credentials);
     const result = await loginResult;
+    console.log(result);
 
     if (result.status !== 200) {
       alert('credenciales invalidas');
       return;
     }
+    alert('credenciales Validas');
     dispatch(setUser(credentials));
     Cookies.set('token', result.token);
     localStorage.setItem('token', JSON.stringify(result));
