@@ -1,5 +1,7 @@
 package com.nocountry.backend.config;
 
+import java.time.LocalDateTime;
+
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.Ordered;
@@ -14,8 +16,6 @@ import com.nocountry.backend.repository.IUserRepository;
 import com.nocountry.backend.util.enums.Role;
 
 import lombok.RequiredArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Component
 @Order(value = Ordered.HIGHEST_PRECEDENCE)
@@ -59,15 +59,9 @@ public class DefaultAdminRunner implements ApplicationRunner {
                     .phone("434534555")
                     .birthdate(LocalDateTime.now())
                     .address("direccion")
-                    .nationalIdImgUrl("http://dummyimage.com/202x100.png/ff4444/ffffff")
-                    .driverLicenceImgUrl("http://dummyimage.com/202x100.png/ff4444/ffffff")
                     .fkUser(test.getId())
                     .build();
             customerRepository.save(customer);
         }
-
-
     }
-
-
 }

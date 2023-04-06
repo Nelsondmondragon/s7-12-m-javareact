@@ -3,7 +3,6 @@ package com.nocountry.backend.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import com.nocountry.backend.dto.UserDto;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.config.jwt.JwtProvider;

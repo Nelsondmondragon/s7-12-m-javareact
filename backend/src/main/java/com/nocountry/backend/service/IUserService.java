@@ -6,5 +6,5 @@ public interface IUserService {
 
     public UserDto findByEmail(String email);
 
-    void deleteById(Long id);
+    public void deleteById(Long id);
 }

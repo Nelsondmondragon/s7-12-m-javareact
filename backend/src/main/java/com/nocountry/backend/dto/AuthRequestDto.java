@@ -12,12 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthRequestDto {
 
-    @Schema(
-            example = "test@test.com"
-    )
-    private String email;
-    @Schema(
-            example = "1234"
-    )
-    private String password;
+        @Schema(example = "test@test.com")
+        private String email;
+
+        @Schema(example = "1234")
+        private String password;
 }

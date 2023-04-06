@@ -19,28 +19,30 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final JwtAuthFilter JwtAuthenticationFilter;
+        private final JwtAuthFilter JwtAuthenticationFilter;
 
-    private final AuthenticationProvider authenticationProvider;
+        private final AuthenticationProvider authenticationProvider;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.cors().and().csrf()
-                .disable()
-                .authorizeHttpRequests()
-                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                .requestMatchers("/api/v1/auth/**",
-                         "/swagger-ui/**"
-                        , "/swagger-ui.html", "/v3/api-docs/**").permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(JwtAuthenticationFilter,
-                        UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                return http
+                                .cors()
+                                .and()
+                                .csrf().disable()
+                                .authorizeHttpRequests()
+                                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+                                .requestMatchers("/api/v1/auth/**",
+                                                "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**")
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated()
+                                .and()
+                                .sessionManagement()
+                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                                .and()
+                                .authenticationProvider(authenticationProvider)
+                                .addFilterBefore(JwtAuthenticationFilter,
+                                                UsernamePasswordAuthenticationFilter.class)
+                                .build();
+        }
 }

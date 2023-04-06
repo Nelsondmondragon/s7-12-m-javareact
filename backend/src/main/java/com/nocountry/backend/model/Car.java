@@ -14,7 +14,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Builder.Default;
 
 @Data
 @Builder
@@ -53,9 +52,8 @@ public class Car {
     @Column(name = "PATENT")
     private String patent;
 
-    @Default
     @Column(name = "AVAILABLE")
-    private boolean available = true;
+    private boolean available;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<Booking> bookings;

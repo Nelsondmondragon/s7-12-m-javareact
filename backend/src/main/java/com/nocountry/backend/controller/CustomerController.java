@@ -1,8 +1,5 @@
 package com.nocountry.backend.controller;
 
-import java.util.List;
-
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nocountry.backend.dto.CustomerDetailsDto;
-import com.nocountry.backend.dto.CustomerListDto;
 import com.nocountry.backend.service.ICustomerService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
@@ -28,10 +25,11 @@ public class CustomerController {
 
     private final ICustomerService customerService;
 
-//    @GetMapping("/all")
-//    public ResponseEntity<List<CustomerListDto>> getAllCustomers() {
-//        return new ResponseEntity<>(customerService.findAllCustomers(), HttpStatus.OK);
-//    }
+    // @GetMapping("/all")
+    // public ResponseEntity<List<CustomerListDto>> getAllCustomers() {
+    // return new ResponseEntity<>(customerService.findAllCustomers(),
+    // HttpStatus.OK);
+    // }
 
     @GetMapping("/profile")
     private ResponseEntity<CustomerDetailsDto> getCustomerByEmail(HttpServletRequest request) {
@@ -45,7 +43,7 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CustomerDetailsDto> updateCustomer(@PathVariable Long id,
-                                                             @RequestBody CustomerDetailsDto customerDetailsDto) {
+            @RequestBody CustomerDetailsDto customerDetailsDto) {
         return new ResponseEntity<>(customerService.updateCustomer(id, customerDetailsDto),
                 HttpStatus.ACCEPTED);
     }

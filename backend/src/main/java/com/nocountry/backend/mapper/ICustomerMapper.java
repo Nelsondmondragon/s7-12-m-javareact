@@ -12,7 +12,6 @@ import com.nocountry.backend.model.Customer;
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ICustomerMapper {
 
-
     @Mapping(target = "email", ignore = true)
     CustomerDetailsDto toCustomerDto(Customer customer);
 
