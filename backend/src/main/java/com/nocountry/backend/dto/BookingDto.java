@@ -1,7 +1,8 @@
 package com.nocountry.backend.dto;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,14 +15,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookingDto {
 
+    private Long id;
 
-    private LocalTime startTime;
+    private LocalDateTime startTime;
 
-    private LocalTime endTime;
+    private LocalDateTime endTime;
 
-    private LocalDateTime startDate;
+    private String pickUpLocation;
 
-    private LocalDateTime endDate;
+    private String dropOffLocation;
 
-    private LocalDateTime date;
+    @JsonProperty("carId")
+    private Long fkCar;
+
+    @JsonProperty("customerId")
+    private Long fkCustomer;
 }

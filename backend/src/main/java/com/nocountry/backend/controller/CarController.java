@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nocountry.backend.dto.CarDto;
 import com.nocountry.backend.service.ICarService;
+import com.nocountry.backend.service.ICarService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,15 +37,16 @@ public class CarController {
         }
     }
 
-    @GetMapping("/category/{categoryId}")
-    public ResponseEntity<List<CarDto>> getAllByCategory(@PathVariable(value = "categoryId") Long categoryId) {
-        List<CarDto> cars = carService.findAllCarsByCategory(categoryId);
-        if (cars.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.ok(cars);
-        }
-    }
+    // @GetMapping("/category/{categoryId}")
+    // public ResponseEntity<List<CarDto>> getAllByCategory(@PathVariable(value =
+    // "categoryId") Long categoryId) {
+    // List<CarDto> cars = carService.findAllCarsByCategory(categoryId);
+    // if (cars.isEmpty()) {
+    // return ResponseEntity.noContent().build();
+    // } else {
+    // return ResponseEntity.ok(cars);
+    // }
+    // }
 
     @GetMapping("/{carId}")
     public ResponseEntity<CarDto> getCar(@PathVariable(value = "carId") Long carId) {

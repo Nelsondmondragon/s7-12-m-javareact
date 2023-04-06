@@ -20,11 +20,9 @@ public class CustomerDetailsDto {
     private String firstName;
     private String lastName;
     private String phone;
-//    @JsonProperty(value = "password", access = JsonProperty.Access.WRITE_ONLY)
-//    private String password;
+    // @JsonProperty(value = "password", access = JsonProperty.Access.WRITE_ONLY)
+    // private String password;
     private String email;
     private LocalDateTime birthdate;
     private String address;
-    private String nationalIdImgUrl;
-    private String driverLicenceImgUrl;
 }

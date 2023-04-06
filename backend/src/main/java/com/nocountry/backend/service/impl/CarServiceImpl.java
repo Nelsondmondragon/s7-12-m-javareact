@@ -28,10 +28,11 @@ public class CarServiceImpl implements ICarService {
         return carMapper.CarEntityListToCarDTOList(carRepository.findAll());
     }
 
-    @Override
-    public List<CarDto> findAllCarsByCategory(Long categoryId) {
-        return carMapper.CarEntityListToCarDTOList(carRepository.findAllByCategory_Id(categoryId));
-    }
+    // @Override
+    // public List<CarDto> findAllCarsByCategory(Long categoryId) {
+    // return
+    // carMapper.CarEntityListToCarDTOList(carRepository.findAllByCategory_Id(categoryId));
+    // }
 
     @Override
     public CarDto findCarById(Long carId) {

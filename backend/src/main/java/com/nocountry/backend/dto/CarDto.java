@@ -41,7 +41,7 @@ public class CarDto {
     @JsonProperty("patent")
     private String patent;
 
-    @JsonProperty("Available")
+    @JsonProperty("available")
     private boolean available;
 
     @JsonProperty("category")
