@@ -1,35 +1,32 @@
-
-"use client";
-import React, { forwardRef, useState } from "react";
-import DatePicker from "react-datepicker";
-import { registerLocale, setDefaultLocale } from "react-datepicker";
-import es from "date-fns/locale/es";
-import "react-datepicker/dist/react-datepicker.css";
-import vehicles from "../../cars.json";
-import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
-import { CustomButton } from "@/components/common/CustomButton";
-import { SelectForm } from "@/components/ui/SelectForm";
-
+'use client';
+import React, { forwardRef, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import { registerLocale, setDefaultLocale } from 'react-datepicker';
+import es from 'date-fns/locale/es';
+import 'react-datepicker/dist/react-datepicker.css';
+import vehicles from '../../cars.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import { CustomButton } from '@/components/common/CustomButton';
+import { SelectForm } from '@/components/ui/SelectForm';
 
 export default function Booking() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [startTime, setstartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
-  const [category, setCategory] = useState("pick");
-  const [startPl, setStartPl] = useState("Buenos Aires");
-  const [returnPl, setReturnPl] = useState("Buenos Aires");
+  const [category, setCategory] = useState('pick');
+  const [startPl, setStartPl] = useState('Buenos Aires');
+  const [returnPl, setReturnPl] = useState('Buenos Aires');
 
   const router = useRouter();
 
-  registerLocale("es", es);
+  registerLocale('es', es);
 
   const onCategory = (cat) => {
     setCategory(cat.name);
     //console.log(cat.name);
   };
-
 
   const onSearch = () => {
     const selection = {
@@ -40,7 +37,6 @@ export default function Booking() {
       endDate: endDate,
       endtTime: endTime,
       category: category,
-
     };
 
     console.log(selection);
@@ -50,6 +46,7 @@ export default function Booking() {
     // console.log(result);
   };
 
+  // eslint-disable-next-line react/display-name
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <button
       className="text-[23px] bg-white w-[182px] h-[45px] text-left pl-2 rounded-md border-gray-400 shadow-md"
@@ -71,7 +68,7 @@ export default function Booking() {
           <div className="flex justify-between">
             <div className="w-[450px]">
               <select
-                defaultValue={"default"}
+                defaultValue={'default'}
                 className="w-full h-[46px] text-[23px] px-2 rounded-md border-gray-400 shadow-md"
                 //   onChange={(e) => setStartPl(e.target.value)}
               >
@@ -92,7 +89,6 @@ export default function Booking() {
               customInput={<ExampleCustomInput />}
               dateFormat="dd/MM/yyyy"
             />
-
 
             <DatePicker
               wrapperClassName="w-[200px]"
@@ -115,7 +111,7 @@ export default function Booking() {
           <div className="flex justify-between">
             <div className="w-[450px]">
               <select
-                defaultValue={"default"}
+                defaultValue={'default'}
                 className="w-full h-[46px] text-[23px] px-2 rounded-md border-gray-400 shadow-md"
                 //   onChange={(e) => setStartPl(e.target.value)}
               >
@@ -178,11 +174,13 @@ export default function Booking() {
             </div>
           </div>
         </div>
-        <button className=" bg-white text-primary-600 text-[23px] font-bold w-[342px] m-auto py-3 rounded-md" onClick={onSearch}>
+        <button
+          className=" bg-white text-primary-600 text-[23px] font-bold w-[342px] m-auto py-3 rounded-md"
+          onClick={onSearch}
+        >
           Ver Disponibilidad
         </button>
       </div>
     </section>
   );
-
 }

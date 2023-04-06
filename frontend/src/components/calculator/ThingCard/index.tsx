@@ -22,7 +22,7 @@ export const ThingCard = ({ thing }: ThingProps) => {
         <Image
           src={thing.image}
           alt={thing.title}
-          className={`transitions-theme hover:-rotate-12 object-cover`}
+          className={`transitions-theme hover:-rotate-12 object-contain`}
           width={80}
           height={80}
         />
