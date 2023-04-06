@@ -15,6 +15,8 @@ import com.nocountry.backend.util.enums.Role;
 
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Component
 @Order(value = Ordered.HIGHEST_PRECEDENCE)
 @RequiredArgsConstructor
@@ -34,7 +36,13 @@ public class DefaultAdminRunner implements ApplicationRunner {
                 .role(Role.ADMIN.name())
                 .build();
 
-        if (!userRepository.findByEmail(admin.getUsername()).isPresent()) {
+        var test = User.builder()
+                .email("test@test.com")
+                .password(passwordEncoder.encode("1234"))
+                .role(Role.USER.name())
+                .build();
+
+        if (userRepository.findByEmail(admin.getUsername()).isEmpty()) {
             admin = userRepository.save(admin);
             var customer = Customer.builder()
                     .firstName("Administrador")
@@ -42,5 +50,24 @@ public class DefaultAdminRunner implements ApplicationRunner {
                     .build();
             customerRepository.save(customer);
         }
+
+        if (userRepository.findByEmail(test.getEmail()).isEmpty()) {
+            test = userRepository.save(test);
+            var customer = Customer.builder()
+                    .firstName("User")
+                    .lastName("Test")
+                    .phone("434534555")
+                    .birthdate(LocalDateTime.now())
+                    .address("direccion")
+                    .nationalIdImgUrl("http://dummyimage.com/202x100.png/ff4444/ffffff")
+                    .driverLicenceImgUrl("http://dummyimage.com/202x100.png/ff4444/ffffff")
+                    .fkUser(test.getId())
+                    .build();
+            customerRepository.save(customer);
+        }
+
+
     }
+
+
 }

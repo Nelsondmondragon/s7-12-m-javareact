@@ -1,6 +1,7 @@
 package com.nocountry.backend.model;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,7 +40,7 @@ public class Customer {
     private String address;
 
     @Column(name = "BIRTH_DATE")
-    private Date birthdate;
+    private LocalDateTime birthdate;
 
     @Column(name = "PHONE")
     private String phone;

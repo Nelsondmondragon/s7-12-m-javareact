@@ -28,9 +28,10 @@ public class SecurityConfig {
         return http.cors().and().csrf()
                 .disable()
                 .authorizeHttpRequests()
-
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                .requestMatchers("/api/v1/auth/**", "/api/v1/hello/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                .requestMatchers("/api/v1/auth/**",
+                         "/swagger-ui/**"
+                        , "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
