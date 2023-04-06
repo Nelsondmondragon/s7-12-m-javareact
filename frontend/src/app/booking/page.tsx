@@ -66,7 +66,7 @@ export default function Booking() {
         <h3 className="text-[33px] text-white mt-14">
           Consulta disponibilidad y reserva al instante
         </h3>
-        <div className="h-[60vh] rounded-[20px] bg-form backdrop-blur-[8px] px-10 py-5">
+        <div className=" rounded-[20px] bg-form backdrop-blur-[8px] px-10 py-5">
           <p className="text-[29px]">Lugar de retiro</p>
           <div className="flex justify-between">
             <div className="w-[450px]">
