@@ -40,6 +40,7 @@ module.exports = {
         info: '#0dcaf0',
         warning: '#ffc800',
         danger: '#dc3545',
+        form: 'rgba(255, 255, 255, 0.8)',
         light: {
           100: '#f7fbff',
           300: '#d6d6d6',
@@ -62,6 +63,9 @@ module.exports = {
       animation: {
         wiggle: 'wiggle 1s ease-in-out infinite',
       },
+      backdropFilter: {
+        'blur': 'blur(8px)',
+      }
     },
   },
   plugins: [],
