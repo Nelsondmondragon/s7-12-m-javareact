@@ -48,7 +48,6 @@ export const ModalLogin = () => {
   };
 
   const LoginUser = async (credentials: FormValues) => {
-    // call backend to validate credencial
     const loginResult = postLogin(credentials);
     const result = await loginResult;
 
@@ -68,9 +67,8 @@ export const ModalLogin = () => {
   };
 
   return (
-    // <section className="absolute bg-white/60 w-screen h-screen top-0 left-0 z-50 flex justify-center items-center ">
     <section className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50 ">
-      <article className="h-[400px] w-[380px] relative p-4 rounded-2xl bg-primary-200 mx-auto">
+      <article className="h-[500px] w-[500px] relative p-4 rounded-2xl bg-neutral-200 mx-auto">
         <FaTimes
           size={24}
           className="absolute top-4 right-4 hover:text-primary-700 cursor-pointer"
@@ -87,7 +85,11 @@ export const ModalLogin = () => {
             <input
               {...register('email')}
               placeholder="usuario@correo.com"
-              className="p-2 rounded-lg "
+              className={`p-2 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                errors.email
+                  ? 'outline-2 outline-red-500 border-2 border-red-500'
+                  : ''
+              } `}
             />
             <p className="text-red-600 text-sm font-bold">
               {errors?.email?.message}
@@ -100,7 +102,11 @@ export const ModalLogin = () => {
             <input
               {...register('password')}
               placeholder="Clave"
-              className="p-2 rounded-lg "
+              className={`p-2 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                errors.password
+                  ? 'outline-2 outline-red-500 border-2 border-red-500'
+                  : ''
+              } `}
             />
             <p className="text-red-600 text-sm font-bold">
               {errors?.password?.message}
@@ -108,17 +114,21 @@ export const ModalLogin = () => {
           </div>
 
           <p className="text-center text-sm mb-8 ">
-            ¿Olvidaste tu contraseña?{' '}
-            <span className="font-semibold "> Recuperar</span>
+            <span className="italic  "> ¿Olvidaste tu contraseña?</span>{' '}
+            <span
+              className="font-semibold cursor-pointer hover:underline"
+              onClick={() => alert('recuperar')}
+            >
+              Recuperar
+            </span>
           </p>
-          <div className="w-4/5 mx-auto">
-            <CustomButton
-              type={'Primary'}
-              text={'Iniciar sesión'}
-              onClick={() => console.log('hizo click')}
-              bgColor="#ff0000"
-              txColor="#ffffff"
-            />
+          <div className="w-3/5 mx-auto">
+            <button
+              type="submit"
+              className="w-full bg-neutral-100 px-8 py-2 rounded-lg text-primary-500 hover:bg-primary-100"
+            >
+              Iniciar sesión
+            </button>
           </div>
         </form>
       </article>

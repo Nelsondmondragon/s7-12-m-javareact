@@ -55,26 +55,26 @@ export const Footer = (props: Props) => {
         <div className="flex">
           <div className="flex-col w-full">
             <p
-              onClick={() => console.log('ir a preguntas frecuentes')}
-              className="cursor-pointer mb-2 hover:underline hover:text-black/80"
+              onClick={() => alert('ir a preguntas frecuentes')}
+              className="cursor-pointer mb-2 hover:underline"
             >
               Preguntas frecuentes
             </p>
             <p
-              onClick={() => console.log('ir a preguntas frecuentes')}
-              className="cursor-pointer mb-2 hover:underline hover:text-black/80"
+              onClick={() => alert('ir a privacidad')}
+              className="cursor-pointer mb-2 hover:underline"
             >
               Política de privacidad de datos personales
             </p>
             <p
-              onClick={() => console.log('ir a preguntas frecuentes')}
-              className="cursor-pointer mb-2 hover:underline hover:text-black/80"
+              onClick={() => alert('ir cookies')}
+              className="cursor-pointer mb-2 hover:underline"
             >
               Política de Cookies
             </p>
             <p
-              onClick={() => console.log('ir a preguntas frecuentes')}
-              className="cursor-pointer mb-2 hover:underline hover:text-black/80"
+              onClick={() => alert('Consentimiento')}
+              className="cursor-pointer mb-2 hover:underline"
             >
               Consentimiento para el uso de Cookies
             </p>

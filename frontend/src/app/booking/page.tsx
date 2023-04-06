@@ -1,3 +1,4 @@
+
 "use client";
 import React, { forwardRef, useState } from "react";
 import DatePicker from "react-datepicker";
@@ -9,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { CustomButton } from "@/components/common/CustomButton";
 import { SelectForm } from "@/components/ui/SelectForm";
+
 
 export default function Booking() {
   const [startDate, setStartDate] = useState(new Date());
@@ -28,6 +30,7 @@ export default function Booking() {
     //console.log(cat.name);
   };
 
+
   const onSearch = () => {
     const selection = {
       startPlace: startPl,
@@ -37,6 +40,7 @@ export default function Booking() {
       endDate: endDate,
       endtTime: endTime,
       category: category,
+
     };
 
     console.log(selection);
@@ -88,6 +92,7 @@ export default function Booking() {
               customInput={<ExampleCustomInput />}
               dateFormat="dd/MM/yyyy"
             />
+
 
             <DatePicker
               wrapperClassName="w-[200px]"
@@ -179,4 +184,5 @@ export default function Booking() {
       </div>
     </section>
   );
+
 }
