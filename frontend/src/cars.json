@@ -2,43 +2,43 @@
   {
     "id": 1,
     "title": "Pickup Manual ",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3bMTL9uoB2XZGIKVHp0o3BMKFXk-QsRa2kA&usqp=CAU",
-    "categoria": "chico",
-    "info": "Camioneta chica con capacidad de 1,00 x 1,80 x 2,30m perfecto para mudanzas cortas y rápidas"
+    "categoria": "small",
+    "info": "Camioneta chica con capacidad de 1,00 x 1,80 x 2,30m perfecto para mudanzas cortas y rápidas",
+    "price": "35.000"
   },
   {
     "id": 2,
     "title": "Pickup Manual ",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3bMTL9uoB2XZGIKVHp0o3BMKFXk-QsRa2kA&usqp=CAU",
-    "categoria": "chico",
-    "info": "Camioneta chica con capacidad de 1,00 x 1,80 x 2,30m perfecto para mudanzas cortas y rápidas"
+    "categoria": "small",
+    "info": "Camioneta chica con capacidad de 1,00 x 1,80 x 2,30m perfecto para mudanzas cortas y rápidas",
+    "price": "35.000"
   },
   {
     "id": 3,
     "title": "Van Clásica",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1a/2018_Ford_Transit_Custom_300_Base_2.0_facelift.jpg",
-    "categoria": "mediano",
-    "info": "Van Clásica con capacidad de 1,60 x1,80 x 3,00m"
+    "categoria": "medium",
+    "info": "Van Clásica con capacidad de 1,60 x1,80 x 3,00m perfecto para mudanzas cortas y rápidas",
+    "price": "35.000"
   },
   {
     "id": 4,
     "title": "Van Clásica",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1a/2018_Ford_Transit_Custom_300_Base_2.0_facelift.jpg",
-    "categoria": "mediano",
-    "info": "perfecto para mudanzas cortas y rápidas"
+    "categoria": "medium",
+    "info": "Van Clásica con capacidad de 1,60 x1,80 x 3,00m perfecto para mudanzas cortas y rápidas",
+    "price": "35.000"
   },
   {
     "id": 5,
     "title": "Camión Turbo",
-    "image": "https://www.vwcamionesybuses.com.ar/assets/front/img/delivery-f.jpg?123",
-    "categoria": "grande",
-    "info": "Camión grande con capacidad de 2,30 x 2,30 x 4,80m perfecto para mudanzas cortas y rápidas"
+    "categoria": "large",
+    "info": "Camión large con capacidad de 2,30 x 2,30 x 4,80m perfecto para mudanzas cortas y rápidas",
+    "price": "35.000"
   },
   {
     "id": 6,
     "title": "Camión Turbo",
-    "image": "https://www.vwcamionesybuses.com.ar/assets/front/img/delivery-f.jpg?123",
     "categoria": "grande",
-    "info": "Camión grande con capacidad de 2,30 x 2,30 x 4,80m perfecto para mudanzas cortas y rápidas"
+    "info": "Camión grande con capacidad de 2,30 x 2,30 x 4,80m perfecto para mudanzas cortas y rápidas",
+    "price": "35.000"
   }
 ]
