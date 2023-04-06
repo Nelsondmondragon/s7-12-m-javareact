@@ -64,7 +64,7 @@ export const Header = () => {
           </div>
         </Link>
 
-        <nav className="flex md:flex-row-reverse justify-between items-center">
+        <nav className="flex lg:flex-row-reverse justify-between items-center">
           <div>
             {currentUser.name !== '' ? (
               <div className="flex space-x-2 ">
@@ -104,7 +104,7 @@ export const Header = () => {
           </div>
 
           <button
-            className="hover:text-primary-200 md:hidden ml-4"
+            className="hover:text-primary-200 lg:hidden ml-4"
             onClick={handleShowToggleMenu}
           >
             {!showMenu ? <FaBars size={24} /> : <FaTimes size={24} />}
@@ -113,7 +113,7 @@ export const Header = () => {
             onClick={handleShowToggleMenu}
             className={`menuMobile ${
               showMenu ? ' translate-x-0 ' : 'translate-x-full'
-            } md:menuDesktop md:-translate-x-48`}
+            } lg:menuDesktop xl:-translate-x-36`}
           >
             {links.map((link) => {
               return (
