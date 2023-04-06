@@ -9,6 +9,13 @@ RUN mvn clean package -Pprod -DskipTests
 # Package stage
 #
 FROM eclipse-temurin:17-jdk-alpine
-COPY --from=build /target/backend-0.0.1-SNAPSHOT.jar backend-0.0.1-SNAPSHOT.jar
+
+ENV SPRING_PROFILES_ACTIVE=dev
+ENV DDL_CONFIG=update
+ENV DB_URL=postgresql://dpg-cgmkn102qv26cupubesg-a.oregon-postgres.render.com:5432/database_backend_nocountry
+ENV DB_USER=database_backend_nocountry_user
+ENV DB_PASSWORD=FkR43PvMBFYxmVQCLkZHfeNwfCRpV7eV
+
+COPY --from=build ./target/*.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","backend-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]

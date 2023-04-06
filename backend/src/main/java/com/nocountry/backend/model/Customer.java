@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -29,7 +30,7 @@ public class Customer {
     private String address;
 
     @Column(name = "BIRTH_DATE")
-    private Date birthdate;
+    private LocalDateTime birthdate;
 
     @Column(name = "PHONE")
     private String phone;

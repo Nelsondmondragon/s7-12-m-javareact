@@ -3,6 +3,7 @@ package com.nocountry.backend.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import com.nocountry.backend.dto.UserDto;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.config.jwt.JwtProvider;
@@ -63,7 +64,9 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public void deleteCustomer(Long customerId) {
-        customerRepository.deleteById(customerId);
+    public void deleteCustomer(Long id) {
+        Long userId = this.userService.findByEmail(this.findCustomerById(id).getEmail()).getId();
+        this.customerRepository.deleteById(id);
+        this.userService.deleteById(userId);
     }
 }

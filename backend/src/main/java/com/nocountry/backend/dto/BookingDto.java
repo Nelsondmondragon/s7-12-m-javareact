@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookingDto {
 
+
     private LocalTime startTime;
 
     private LocalTime endTime;

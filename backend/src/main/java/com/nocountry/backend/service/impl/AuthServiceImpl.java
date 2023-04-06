@@ -50,7 +50,7 @@ public class AuthServiceImpl implements IAuthService {
                 .build();
 
         var userRepo = userRepository.save(user);
-        var customer = customerMapper.toCustomer(request);
+        var customer = customerMapper.toCustomerRegister(request);
 
         customer.setFkUser(userRepo.getId());
         customerRepository.save(customer);
