@@ -44,7 +44,7 @@ export default function Booking() {
     };
 
     console.log(selection);
-    router.push(`/booking/pick`);
+    router.push(`/booking/small`);
     // const result = vehicles.filter(vh => vh.categoria === category)
     // // dispatch(setCategory(result))
     // console.log(result);
