@@ -8,9 +8,12 @@ export default function Home() {
     <main>
       <section>
         <Hero />
-        <TypesVehicle />
-        <Requirement />
-        {/* <Faq /> */}
+        <div className="gradient relative z-0">
+          <div className="bg-global-pattern bg-cover  bg-no-repeat w-full h-full absolute top-0 left-0 -z-10"></div>
+          <TypesVehicle />
+          <Requirement />
+          {/* <Faq /> */}
+        </div>
       </section>
     </main>
   );

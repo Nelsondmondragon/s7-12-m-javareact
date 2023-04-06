@@ -44,8 +44,12 @@
     @apply text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl;
   }
 
+  .gradient {
+    @apply bg-gradient-to-b from-primary-700 to-primary-300;
+  }
+
   .btn {
-    @apply text-lg text-primary-700 px-6 py-2 bg-white rounded-2xl hover:bg-primary-50;
+    @apply text-lg text-primary-600 px-6 py-2 bg-white rounded-xl hover:bg-primary-50;
   }
   .btnSecond {
     @apply text-primary-100  bg-primary-600 hover:bg-primary-400;
@@ -77,4 +81,3 @@
   font-size: 20px;
   padding-left: 10px;
 } */
-

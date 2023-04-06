@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setAddItemToTruck,
   selectTruckItemsById,
+  setDecreaseItemFromTruck,
   setRemoveItemFromTruck,
 } from '../../../features/truck/truckSlice';
 
@@ -24,7 +25,7 @@ export const MoveToTruck = ({ thing }) => {
       volume: thing.volume,
       qty: selectedItem[0]?.qty,
     };
-    dispatch(setRemoveItemFromTruck(item));
+    dispatch(setDecreaseItemFromTruck(item));
     setTimeout(() => {
       setProcessing(false);
     }, 100);
@@ -48,7 +49,7 @@ export const MoveToTruck = ({ thing }) => {
       <button
         type="button"
         disabled={processing | (selectedItem.length === 0)}
-        className=" flex  px-2 py-1 bg-primary-600 rounded   shadow shadow-sky-200 disabled:opacity-50 text-xs "
+        className=" flex  px-2 py-1 bg-primary-600 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs "
         onClick={() => {
           onRestToCart();
         }}
@@ -59,7 +60,7 @@ export const MoveToTruck = ({ thing }) => {
       <button
         type="button"
         disabled={processing}
-        className=" flex  px-2 py-1 bg-primary-700 rounded   shadow shadow-sky-200 disabled:opacity-50 text-xs "
+        className=" flex  px-2 py-1 bg-primary-700 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs "
         onClick={() => {
           onAddToCart();
         }}

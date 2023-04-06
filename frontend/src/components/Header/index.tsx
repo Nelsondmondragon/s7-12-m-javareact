@@ -36,6 +36,7 @@ export const Header = () => {
     dispatch(removeUser());
     Cookies.remove('token');
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     router.push('/');
   };
 
@@ -66,13 +67,13 @@ export const Header = () => {
 
         <nav className="flex lg:flex-row-reverse justify-between items-center">
           <div>
-            {currentUser.name !== '' ? (
+            {currentUser.firstName !== '' ? (
               <div className="flex space-x-2 ">
                 <button
                   className="w-[60px] h-[60px] md:ml-12 bg-primary-200 hover:bg-primary-300 rounded-full flex justify-center items-center text-2xl"
                   onClick={() => handleProfile()}
                 >
-                  {currentUser.name[0].toUpperCase()}
+                  {`${currentUser.firstName[0].toUpperCase()}${currentUser.lastName[0].toUpperCase()}`}
                 </button>
 
                 <button className="btn" onClick={() => handleLogout()}>
@@ -125,7 +126,7 @@ export const Header = () => {
           </ul>
         </nav>
       </header>
-      {currentUser.name === '' && <ModalLogin />}
+      {currentUser.firstName === '' && <ModalLogin />}
     </>
   );
 };

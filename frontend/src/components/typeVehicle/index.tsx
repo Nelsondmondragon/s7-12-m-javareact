@@ -1,6 +1,8 @@
 'use client';
+import { setCategory } from '@/features/users/userSlice';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
 
 type TruckType = {
   image: string;
@@ -12,6 +14,14 @@ type TruckType = {
 
 const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
   const router = useRouter();
+
+  const dispatch = useDispatch();
+
+  const onCheckAvailability = (title) => {
+    dispatch(setCategory(title));
+    router.push('/booking');
+  };
+
   return (
     <div className="w-full">
       <Image
@@ -31,7 +41,10 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
           <p>{line3}</p>
         </div>
         <div className="flex justify-end">
-          <button className="btn mb-8" onClick={() => router.push('/booking')}>
+          <button
+            className="btn mb-8"
+            onClick={() => onCheckAvailability(title)}
+          >
             Ver Disponibilidad
           </button>
         </div>

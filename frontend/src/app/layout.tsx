@@ -28,9 +28,7 @@ export default function RootLayout({
       <body className={roboto.className}>
         <Provider store={store}>
           <Header />
-          <div className="bg-gradient-to-t from-primary-800 from-10% to-primary-600 to-90%">
-            {children}
-          </div>
+          <div className="relative gradient">{children}</div>
           <Footer />
         </Provider>
       </body>

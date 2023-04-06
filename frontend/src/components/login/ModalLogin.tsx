@@ -1,12 +1,12 @@
 'use client';
 import { useRouter } from 'next/navigation';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaTimes } from 'react-icons/fa';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Schema as schema } from './loginValidation';
 
-import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie';
 
 import { CustomButton } from '@/components/common/CustomButton';
@@ -17,6 +17,7 @@ import {
   setUser,
 } from '@/features/users/userSlice';
 import postLogin from '@/lib/postLogin';
+import getUser from '@/lib/getUser';
 
 type FormValues = {
   password: string;
@@ -50,16 +51,18 @@ export const ModalLogin = () => {
   const LoginUser = async (credentials: FormValues) => {
     const loginResult = postLogin(credentials);
     const result = await loginResult;
-    console.log(result);
 
-    if (result.status !== 200) {
+    if (!result.token) {
       alert('credenciales invalidas');
       return;
     }
-    alert('credenciales Validas');
-    dispatch(setUser(credentials));
+    const getUserData = getUser(result.token);
+    const userData = await getUserData;
+
+    dispatch(setUser(userData));
     Cookies.set('token', result.token);
     localStorage.setItem('token', JSON.stringify(result));
+    localStorage.setItem('user', JSON.stringify(userData));
     closeModal();
     router.push('/booking');
   };
