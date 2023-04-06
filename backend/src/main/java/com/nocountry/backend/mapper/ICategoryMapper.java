@@ -1,15 +1,14 @@
 package com.nocountry.backend.mapper;
 
-import com.nocountry.backend.dto.CarDto;
-import com.nocountry.backend.dto.CategoryDto;
-import com.nocountry.backend.model.Car;
-import com.nocountry.backend.model.Category;
+import java.util.List;
+
 import org.mapstruct.Condition;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-import java.util.List;
+import com.nocountry.backend.dto.CategoryDto;
+import com.nocountry.backend.model.Category;
 
 @Mapper(componentModel = "spring")
 public interface ICategoryMapper {

@@ -23,12 +23,6 @@ public class SecurityConfig {
 
     private final AuthenticationProvider authenticationProvider;
 
-    // @Bean
-    // public WebSecurityCustomizer webSecurityCustomizer() {
-    // return (web) -> web.ignoring().requestMatchers(new
-    // AntPathRequestMatcher("/swagger-ui/**", "/v3/api-docs/**"));
-    // }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.cors().and().csrf()
@@ -46,6 +40,7 @@ public class SecurityConfig {
                 .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(JwtAuthenticationFilter,
-                        UsernamePasswordAuthenticationFilter.class).build();
+                        UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 }

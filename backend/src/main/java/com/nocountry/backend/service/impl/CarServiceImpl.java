@@ -3,7 +3,6 @@ package com.nocountry.backend.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import com.nocountry.backend.service.ICarService;
 import org.hibernate.ObjectDeletedException;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +10,7 @@ import com.nocountry.backend.dto.CarDto;
 import com.nocountry.backend.mapper.ICarMapper;
 import com.nocountry.backend.model.Car;
 import com.nocountry.backend.repository.ICarRepository;
+import com.nocountry.backend.service.ICarService;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

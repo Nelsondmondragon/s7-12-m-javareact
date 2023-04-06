@@ -1,8 +1,8 @@
 package com.nocountry.backend.service;
 
-import com.nocountry.backend.dto.BookingDto;
-
 import java.util.List;
+
+import com.nocountry.backend.dto.BookingDto;
 
 public interface IBookingService {
 

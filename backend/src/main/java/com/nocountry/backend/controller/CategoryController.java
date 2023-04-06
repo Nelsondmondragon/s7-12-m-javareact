@@ -1,15 +1,23 @@
 package com.nocountry.backend.controller;
 
-import com.nocountry.backend.dto.CarDto;
-import com.nocountry.backend.dto.CategoryDto;
-import com.nocountry.backend.service.ICategoryService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.nocountry.backend.dto.CategoryDto;
+import com.nocountry.backend.service.ICategoryService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1/categories")
@@ -41,7 +49,8 @@ public class CategoryController {
     }
 
     @PutMapping("/{categoryId}/update")
-    public ResponseEntity<CategoryDto> updateCategory(@PathVariable(value = "categoryId") Long categoryId, @RequestBody CategoryDto categoryDto) {
+    public ResponseEntity<CategoryDto> updateCategory(@PathVariable(value = "categoryId") Long categoryId,
+            @RequestBody CategoryDto categoryDto) {
         CategoryDto saved = categoryService.updateCategory(categoryId, categoryDto);
         return ResponseEntity.ok(saved);
     }
