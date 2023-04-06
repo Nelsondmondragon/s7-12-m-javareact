@@ -20,8 +20,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -44,7 +43,7 @@ public class Customer {
     private String address;
 
     @Column(name = "BIRTH_DATE")
-    private Date birthdate;
+    private LocalDateTime birthdate;
 
     @Column(name = "PHONE")
     private String phone;
