@@ -23,13 +23,14 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
   };
 
   return (
-    <div className="w-full">
+    <div className="relative w-full ">
       <div
         className="absolute top-0 left-0 md:hidden cursor-pointer w-full h-full"
         onClick={() => {
           onCheckAvailability(title);
         }}
       ></div>
+
       <Image
         className="w-full  rounded-t-[20px] "
         src={image}
@@ -73,7 +74,7 @@ export const TypesVehicle = (props: Props) => {
           ¿Qué vehículo necesitas?
         </h2>
       </div>
-      <div className="grid grid-cols-3 gap-4 text-lg text-white">
+      <div className="relative grid grid-cols-3 gap-4 text-lg text-white">
         <CardTruck
           image="/assets/images/camion1.png"
           title="CAMIÓN CHICO"
