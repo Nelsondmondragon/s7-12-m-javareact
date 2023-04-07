@@ -1,8 +1,7 @@
 // import { MoveElements } from '@/components/calculator/MoveElement';
 import { MoveThing } from '@/components/calculator/MoveThing';
 
-type Props = {};
-const Calculator = (props: Props) => {
+const Calculator = () => {
   return (
     <section>
       {/* Elemento a mover */}

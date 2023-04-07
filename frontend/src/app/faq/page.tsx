@@ -1,0 +1,24 @@
+import { Question } from '@/components/faq';
+import Image from 'next/image';
+
+const Faq = () => {
+  return (
+    <section className="pb-32 bg-global-pattern bg-no-repeat bg-cover ">
+      <h1 className="text-4xl text-white text-center pt-10   ">
+        PREGUNTAS Y RESPUESTAS
+      </h1>
+      <div className="w-[860px] h-[442px] mx-auto mt-14 mb-10  ">
+        <Image
+          alt="Image FAQ"
+          src="/assets/images/faq.png"
+          width={860}
+          height={442}
+        />
+      </div>
+      <div className="max-w-5xl bg-white px-20 py-8 mx-auto rounded-2xl text-primary-700 text-xl">
+        <Question />
+      </div>
+    </section>
+  );
+};
+export default Faq;

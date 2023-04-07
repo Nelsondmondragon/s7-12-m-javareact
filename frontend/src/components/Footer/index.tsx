@@ -1,13 +1,9 @@
 import Image from 'next/image';
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedinIn,
-  FaWhatsapp,
-} from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
 
-type Props = {};
-export const Footer = (props: Props) => {
+export const Footer = () => {
+  const router = useRouter();
+
   return (
     <footer>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
@@ -55,7 +51,7 @@ export const Footer = (props: Props) => {
         <div className="flex">
           <div className="flex-col w-full">
             <p
-              onClick={() => alert('ir a preguntas frecuentes')}
+              onClick={() => router.push('/faq')}
               className="cursor-pointer mb-2 hover:underline"
             >
               Preguntas frecuentes
