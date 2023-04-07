@@ -74,7 +74,8 @@ module.exports = {
       },
 
       backgroundImage: {
-        'global-pattern': "url('/assets/images/route.svg')",
+        'global-pattern': "url('/assets/images/routes.svg')",
+        'mobile-pattern': "url('/assets/images/RouteMobile.svg')",
       },
       keyframes: {
         wiggle: {

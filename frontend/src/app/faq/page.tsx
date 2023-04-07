@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Faq = () => {
   return (
-    <section className="pb-32 bg-global-pattern bg-no-repeat bg-cover ">
+    <section className="pb-32 bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center ">
       <h1 className="text-4xl text-white text-center pt-10   ">
         PREGUNTAS Y RESPUESTAS
       </h1>

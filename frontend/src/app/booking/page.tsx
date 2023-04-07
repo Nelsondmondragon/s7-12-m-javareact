@@ -58,7 +58,7 @@ export default function Booking() {
   ));
 
   return (
-    <section className="min-h-screen flex flex-col items-center">
+    <section className="min-h-screen flex flex-col items-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
       <div className="flex flex-col gap-1 w-[70%]">
         <h3 className="text-[33px] text-white mt-14">
           Consulta disponibilidad y reserva al instante

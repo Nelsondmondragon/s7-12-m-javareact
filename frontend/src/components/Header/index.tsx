@@ -16,7 +16,7 @@ import {
 
 const links = [
   { label: 'Inicio', route: '/' },
-  { label: 'Vehículos', route: '/' },
+  { label: 'Vehículos', route: '/booking' },
   { label: 'Servicios', route: '/services' },
   { label: 'Nosotros', route: '/about' },
   { label: 'Contacto', route: '/contact' },
@@ -55,10 +55,10 @@ export const Header = () => {
       <header>
         <Link href="/">
           <div className="flex items-center">
-            <div className="h-[73px] w-[81px] mr-[30px]">
+            <div className="h-9 w-9  md:h-[73px] md:w-[81px] mr-[30px]">
               <Image src={logo} alt="Logo" className="w-full h-full" />
             </div>
-            <div className="font-bold text-sm">
+            <div className="hidden md:block font-bold text-sm">
               <p>{'Mudarse nunca fue'}</p>
               <p>{'tan fácil"'}</p>
             </div>
@@ -89,7 +89,7 @@ export const Header = () => {
                   Ingresar
                 </button>
                 <button className="md:hidden" onClick={() => handleLogin()}>
-                  <FaUserAlt size={20} />
+                  <FaUserAlt size={16} />
                 </button>
                 <button
                   className="hidden md:block btn"
@@ -98,7 +98,7 @@ export const Header = () => {
                   Registrarse
                 </button>
                 <button className="md:hidden" onClick={() => handleRegister()}>
-                  <FaUserPlus size={24} />
+                  <FaUserPlus size={20} />
                 </button>
               </div>
             )}
@@ -108,7 +108,7 @@ export const Header = () => {
             className="hover:text-primary-200 lg:hidden ml-4"
             onClick={handleShowToggleMenu}
           >
-            {!showMenu ? <FaBars size={24} /> : <FaTimes size={24} />}
+            {!showMenu ? <FaBars size={20} /> : <FaTimes size={20} />}
           </button>
           <ul
             onClick={handleShowToggleMenu}

@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center">
+    <section className="min-h-screen flex flex-col justify-center items-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
       <h2 className="text-3xl"> Mudarte nunca fue tan simple con MOVE AR </h2>
       <p>
         Somos una empresa joven que tiene como objetivo hacerte la vida mas

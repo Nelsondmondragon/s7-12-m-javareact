@@ -38,21 +38,28 @@ export const SelectedArticles = (props: Props) => {
         <h2 className="text-lg text-center font-semibold mb-4 ">
           Seleccionados
         </h2>
-        {selectedItems.map((item) => {
-          return (
-            <div key={item.title} className="flex items-center space-x-2 ">
-              <MoveToTruck thing={item} />
-              <Image src={item.image} alt={item.title} width={40} height={40} />
-              <div className="flex flex-1 justify-between">
-                <span className="text-xs"> {item.title}</span>
+        <div className="h-[300px] overflow-auto mb-8 ">
+          {selectedItems.map((item) => {
+            return (
+              <div key={item.title} className="flex items-center space-x-2 ">
+                <MoveToTruck thing={item} />
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={40}
+                  height={40}
+                />
+                <div className="flex flex-1 justify-between">
+                  <span className="text-xs"> {item.title}</span>
+                </div>
+                <span>{item.qty * item.volume}</span>
+                <div className="cursor-pointer text-error-500 hover:text-error-300 ">
+                  <FaRegTrashAlt onClick={() => onRemoveFromTruck(item)} />
+                </div>
               </div>
-              <span>{item.qty * item.volume}</span>
-              <div className="cursor-pointer text-error-500 hover:text-error-300 ">
-                <FaRegTrashAlt onClick={() => onRemoveFromTruck(item)} />
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
         {selectedItems.length > 0 && (
           <p className="absolute bottom-0 left-0 right-0 text-center text-lg">
             Necesitas un {calcVolumen()}

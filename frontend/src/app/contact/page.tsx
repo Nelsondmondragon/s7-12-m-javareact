@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function Contact() {
   return (
-    <section className="py-20 bg-global-pattern bg-no-repeat bg-cover ">
+    <section className="py-20 bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center ">
       <div className="max-w-5xl bg-white px-10 py-4 mx-auto mb-8 rounded-2xl text-primary-700 text-xl">
         <h1 className="text-3xl text-center pt-4">CONTÁCTENOS</h1>
         <p>
