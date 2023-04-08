@@ -1,5 +1,7 @@
 package com.nocountry.backend.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -18,12 +20,14 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@Tag(name = "Autenticacion", description = "Registro e inicio de sesion para los usuarios de MoveAr. ")
 public class AuthController {
 
     private final IAuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody RegisterRequestDto request) {
+    @Operation(summary = "Registrar un usuario en MoveAr.")
+    public ResponseEntity<?> register(@RequestBody RegisterRequestDto request) {
         try {
             AuthResponseDto response = authService.register(request);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -33,6 +37,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    @Operation(summary = "Inicio de sesion para un usuario de MoveAr.")
     public ResponseEntity<?> login(@RequestBody AuthRequestDto request) {
         try {
             AuthResponseDto response = authService.login(request);
