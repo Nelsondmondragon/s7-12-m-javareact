@@ -36,7 +36,6 @@ public class CarController {
             @RequestParam(required = true) LocalDateTime startTime,
             @RequestParam(required = true) LocalDateTime endTime
             ) {
-        //Long id_category= Long.valueOf(1);
         List<CarDto> cars = carService.findAllCarsByFilters(id_category,pickUpLocation,startTime,endTime);
         if (cars.isEmpty()) {
             return ResponseEntity.noContent().build();

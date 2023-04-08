@@ -75,36 +75,6 @@ public class BookingServiceImpl implements IBookingService {
         }
         return true;
 
-
-
-
-
-
-        //<(rango amplio)>
-      /*  if(startDate.isBefore(booking.getStartTime()) && endDate.isAfter(booking.getEndTime())){
-            return true;
-        }
-        //>=(rango incluido)<=
-        if((startDate.isAfter(booking.getStartTime())||startDate.isEqual(booking.getStartTime())) && (endDate.isAfter(booking.getEndTime())||endDate.isEqual(booking.getEndTime()))){
-            return true;
-        }
-        //si la reserva comienza antes pero influye en otras reservas <(rango incluido)
-        if((
-                startDate.isBefore(booking.getStartTime()))
-                &&
-                (endDate.isBefore(booking.getEndTime())||endDate.isEqual(booking.getEndTime()))){
-            return true;
-        }
-        //si la reserva comienza en el rango de otra reserva y termina en otra fecha mas amplia
-        if((
-                startDate.isAfter(booking.getStartTime())||startDate.isEqual(booking.getStartTime()))
-                &&
-                (endDate.isAfter(booking.getEndTime()))){
-            return true;
-        }*/
-
-  /*      return false;*/
-
     }
     // crear BookingOverlapException
     private void validateBooking(BookingDto bookingDto) {

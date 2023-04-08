@@ -39,36 +39,26 @@ public class CarServiceImpl implements ICarService {
         return carMapper.CarEntityListToCarDTOList(carRepository.findAll());
     }
 
-    // @Override
-    // public List<CarDto> findAllCarsByCategory(Long categoryId) {
-    // return
-    // carMapper.CarEntityListToCarDTOList(carRepository.findAllByCategory_Id(categoryId));
-    // }
-
     @Override
     public List<CarDto> findAllCarsByFilters(
-            Long id_category,
+            Long idCategory,
             String pickUpLocation,
             LocalDateTime startTime,
             LocalDateTime endTime
     ) {
 
         //trae todos los autos que no estan en reservas por categoria y Location
-        List<Car> allCars = carRepository.findAllByCategory_IdAndPickUpLocation( id_category, pickUpLocation);
+        List<Car> allCars = carRepository.findAllByCategory_IdAndPickUpLocation( idCategory, pickUpLocation);
 
         //trae todas las reservas por Location
         List<Booking> reservasPorUbicacionRetiro = bookingRepository.findAllByPickUpLocation(pickUpLocation);
-        List<Booking> reservasFinales = new ArrayList<Booking>();
+        List<Booking> reservasFinales = new ArrayList<>();
         for (Booking book : reservasPorUbicacionRetiro){
                if (bookingService.validateDateBooking(startTime,endTime,book)){
                    reservasFinales.add(book);
                }
         }
 
-
-/*
-        List<Booking> reservasPorUbicacionRetiro= bookingRepository.findAllByPickUpLocation(pickUpLocation);
-*/
         //filtrado de autos
         List<Car> carsFiltered = deleteCarsWithBooking(allCars,reservasFinales);
         return carMapper.CarEntityListToCarDTOList(carsFiltered);
@@ -77,20 +67,13 @@ public class CarServiceImpl implements ICarService {
     public List<Car> deleteCarsWithBooking(List<Car> cars, List<Booking> bookings) {
 
         Set<Long> idsBookingCars = bookings.stream().map(Booking::getFkCar).collect(Collectors.toSet());
-
         List<Car> availableCars = new ArrayList<>();
-
         for (Car car : cars) {
             if (!idsBookingCars.contains(car.getId())) {
                 availableCars.add(car);
             }
         }
-
         return availableCars;
-
-  /*      return cars.stream()
-                .filter(car -> !idsBookingCars.contains(car.getId()))
-                .collect(Collectors.toList());*/
     }
 
     @Override
