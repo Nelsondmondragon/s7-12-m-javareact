@@ -19,6 +19,6 @@ ENV EMAIL_USER=brightenglishtest@gmail.com
 ENV EMAIL_PASSWORD=qchviouqjxodugyb
 
 VOLUME /tmp
-COPY ./target/*.jar app.jar
+COPY target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/app.jar"]
