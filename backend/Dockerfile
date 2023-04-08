@@ -8,7 +8,7 @@
 #
 # Package stage
 #
-FROM eclipse-temurin:17-jdk-alpine AS build
+
 
 ENV SPRING_PROFILES_ACTIVE=dev
 ENV DDL_CONFIG=create-drop
@@ -18,6 +18,11 @@ ENV DB_PASSWORD=FkR43PvMBFYxmVQCLkZHfeNwfCRpV7eV
 ENV EMAIL_USER=brightenglishtest@gmail.com
 ENV EMAIL_PASSWORD=qchviouqjxodugyb
 
-COPY --from=build ./target/*.jar app.jar
+FROM eclipse-temurin:17-jdk-alpine
+ARG JAR_FILE=/target/*.jar
+COPY ${JAR_FILE} app.jar
+
+
+
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/app.jar"]
