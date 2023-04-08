@@ -2,14 +2,7 @@ package com.nocountry.backend.model;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -52,9 +45,25 @@ public class Car {
     @Column(name = "PATENT")
     private String patent;
 
+    @Column(name = "LENGTH")
+    private Integer length;
+
+    @Column(name = "WIDTH")
+    private Integer width;
+
+    @Column(name = "HEIGHT")
+    private Integer height;
+
+    @Column(name = "PICK_UP_LOCATION")
+    private String pickUpLocation;
+
     @Column(name = "AVAILABLE")
     private boolean available;
 
-    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
-    private List<Booking> bookings;
+    @ManyToOne
+    @JoinColumn(name = "id_category")
+    private Category category;
+
+/*    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    private List<Booking> bookings;*/
 }

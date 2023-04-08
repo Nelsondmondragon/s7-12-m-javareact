@@ -2,9 +2,9 @@ package com.nocountry.backend.mapper;
 
 import java.util.List;
 
-import org.mapstruct.InheritInverseConfiguration;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
+import com.nocountry.backend.dto.CarDto;
+import com.nocountry.backend.model.Car;
+import org.mapstruct.*;
 
 import com.nocountry.backend.dto.BookingDto;
 import com.nocountry.backend.model.Booking;
@@ -17,6 +17,10 @@ public interface IBookingMapper {
     List<BookingDto> toBookingDtos(List<Booking> bookings);
 
     void updateBooking(BookingDto bookingDto, @MappingTarget Booking booking);
+    @Condition
+    default boolean isNotEmpty(String value) {
+        return value != null && !value.isEmpty();
+    }
 
     @InheritInverseConfiguration
     Booking toBooking(BookingDto bookingDto);

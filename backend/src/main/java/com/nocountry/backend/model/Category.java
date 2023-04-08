@@ -19,11 +19,9 @@ public class Category {
 
     private Double volume;
 
-    private Double capacity;
+    private String name;
 
-    private Integer length;
+    private Double capacityLimit;
 
-    private Integer width;
 
-    private Integer height;
 }

@@ -23,7 +23,7 @@ public class AuthController {
     private final IAuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequestDto request) {
+    public ResponseEntity register(@RequestBody RegisterRequestDto request) {
         try {
             AuthResponseDto response = authService.register(request);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
