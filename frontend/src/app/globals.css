@@ -78,9 +78,13 @@
   }
 }
 
-/* .react-datepicker__input-container input {
-  height: 45px;
-  width: 182px;
-  font-size: 20px;
-  padding-left: 10px;
-} */
+.react-datepicker-wrapper {
+width: fit-content !important;
+}
+ .react-datepicker__input-container {
+  width: fit-content;
+ }
+
+ .react-datepicker__tab-loop {
+  position: absolute;
+ }

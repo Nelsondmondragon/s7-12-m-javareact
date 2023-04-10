@@ -1,14 +1,12 @@
-'use client';
-import React, { forwardRef, useState } from 'react';
-import DatePicker from 'react-datepicker';
-import { registerLocale, setDefaultLocale } from 'react-datepicker';
-import es from 'date-fns/locale/es';
-import 'react-datepicker/dist/react-datepicker.css';
-import vehicles from '../../cars.json';
-import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/navigation';
-import { CustomButton } from '@/components/common/CustomButton';
-import { SelectForm } from '@/components/ui/SelectForm';
+
+"use client";
+import React, { forwardRef, useState } from "react";
+import DatePicker from "react-datepicker";
+import { registerLocale} from "react-datepicker";
+import es from "date-fns/locale/es";
+import "react-datepicker/dist/react-datepicker.css";
+import { useRouter } from "next/navigation";
+
 
 export default function Booking() {
   const [startDate, setStartDate] = useState(new Date());
@@ -63,8 +61,8 @@ export default function Booking() {
         <h3 className="text-[33px] text-white mt-14">
           Consulta disponibilidad y reserva al instante
         </h3>
-        <div className=" rounded-[20px] bg-form backdrop-blur-[8px] px-10 py-5">
-          <p className="text-[29px]">Lugar de retiro</p>
+        <div className=" rounded-[20px] bg-form backdrop-blur-[8px] px-10 py-5 pb-10">
+          <p className="text-[29px] mb-3">Lugar de retiro</p>
           <div className="flex justify-between">
             <div className="w-[450px]">
               <select
@@ -107,7 +105,7 @@ export default function Booking() {
             <input type="checkbox" />
             <p className="text-[23px] ">Retiro y devuelvo en el mismo lugar</p>
           </div>
-          <p className="text-[29px]">Lugar de Entrega</p>
+          <p className="text-[29px] mb-3">Lugar de Entrega</p>
           <div className="flex justify-between">
             <div className="w-[450px]">
               <select
@@ -174,10 +172,7 @@ export default function Booking() {
             </div>
           </div>
         </div>
-        <button
-          className=" bg-white text-primary-600 text-[23px] font-bold w-[342px] m-auto py-3 rounded-md"
-          onClick={onSearch}
-        >
+        <button className=" bg-white text-primary-600 text-[23px] font-bold w-[342px] m-auto py-3 rounded-md mt-10" onClick={onSearch}>
           Ver Disponibilidad
         </button>
       </div>

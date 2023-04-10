@@ -3,7 +3,6 @@ import cars from '../../../cars.json';
 
 const BookingCar = ({ params }) => {
   const result = cars.filter((vh) => vh.categoria === params.id);
-
   return (
     <div className="h-screen flex justify-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
       <div className="w-full h-fit mx-10 my-10 p-10 bg-white/80 rounded-3xl flex flex-col items-center gap-8">
@@ -31,6 +30,7 @@ const BookingCar = ({ params }) => {
       </div>
     </div>
   );
+
 };
 
 export default BookingCar;
