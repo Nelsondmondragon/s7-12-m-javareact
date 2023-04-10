@@ -38,8 +38,8 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
         height={45}
         alt={title}
       />
-      <div className=" bg-primary-600 px-8 pb-4 md:pb-0 pt-4 rounded-b-[20px]">
-        <h3 className="text-center text-base md:text-2xl font-bold md:pb-2 md:border-b-4 md:border-b-white">
+      <div className=" bg-primary-600 px-0 md:px-4 lg:px-6 pb-4 md:pb-0 pt-4 rounded-b-[20px] grid">
+        <h3 className="text-center text-base md:text-xl font-bold md:pb-2  md:border-b-4 md:border-b-white">
           {title}
         </h3>
         <div className="hidden md:block text-sm py-4">
@@ -63,9 +63,9 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
 type Props = {};
 export const TypesVehicle = (props: Props) => {
   return (
-    <section className="p-4 md:px-32">
+    <section className="p-4 md:px-12 lg:px-24">
       <div className="hidden md:block">
-        <h2 className="text-4xl text-white my-12 font-semibold ">
+        <h2 className="text-2xl lg:text-3xl text-white my-12 font-semibold ">
           Selecciona el vehículo que necesitas para tu mudanza
         </h2>
       </div>
@@ -74,7 +74,7 @@ export const TypesVehicle = (props: Props) => {
           ¿Qué vehículo necesitas?
         </h2>
       </div>
-      <div className="relative grid grid-cols-3 gap-4 text-lg text-white">
+      <div className="relative grid grid-cols-3 md:grid-cols-1 lg:grid-cols-3 gap-2 md:gap-4 text-lg text-white">
         <CardTruck
           image="/assets/images/camion1.png"
           title="CAMIÓN CHICO"

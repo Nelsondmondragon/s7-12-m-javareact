@@ -55,12 +55,11 @@ export const Header = () => {
       <header>
         <Link href="/">
           <div className="flex items-center">
-            <div className="h-9 w-9  md:h-[73px] md:w-[81px] mr-[30px]">
+            <div className="h-9 w-9 md:w-12 md:h-12  lg:h-[73px] lg:w-[81px] mr-[30px]">
               <Image src={logo} alt="Logo" className="w-full h-full" />
             </div>
-            <div className="hidden md:block font-bold text-sm">
-              <p>{'Mudarse nunca fue'}</p>
-              <p>{'tan fácil"'}</p>
+            <div className="hidden lg:block font-bold text-sm max-w-[120px]">
+              <p>{'Mudarse nunca fue tan fácil'}</p>
             </div>
           </div>
         </Link>

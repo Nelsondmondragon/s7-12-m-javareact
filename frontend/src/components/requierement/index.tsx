@@ -29,7 +29,7 @@ type Props = {};
 
 export const Requirement = (props: Props) => {
   return (
-    <section className="px-4 md:px-32 pb-32">
+    <section className="px-4 md:px-24 pb-24">
       <h2 className="text-4xl text-white my-12 font-semibold ">
         ¿Qúé necesitas para alquilar un vehículo con nosotros?
       </h2>

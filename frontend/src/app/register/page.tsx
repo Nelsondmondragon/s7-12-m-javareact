@@ -1,6 +1,8 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Schema as schema } from './registerValidation';
 
@@ -13,6 +15,8 @@ type FormValues = {
 };
 
 const Register = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -29,6 +33,12 @@ const Register = () => {
   });
 
   const RegisterUser = async (values: FormValues) => {
+    console.log('guardar datatos parcial');
+    /**
+     * llamar a register2
+     */
+    router.push('secondregister');
+
     console.log(values);
   };
 

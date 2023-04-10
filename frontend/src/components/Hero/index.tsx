@@ -63,7 +63,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-primary-800 bg-opacity-75 h-[198px] md:h-[610px] w-full ">
+    <section className="relative overflow-hidden bg-primary-800 bg-opacity-75 h-[198px] md:h-[295px] lg:h-[610px] w-full ">
       <div className="hidden relative md:flex" ref={slideshow}>
         {sliderData.map((slide, i) => {
           return (
@@ -71,7 +71,7 @@ export const Hero = () => {
               className="min-w-full overflow-hidden z-50 duration-500 ease-linear"
               key={i}
             >
-              <div className="bg-black bg-opacity-70 h-[610px] w-full relative  ">
+              <div className="bg-black bg-opacity-70 md:h-[295px] lg:h-[610px] w-full relative  ">
                 <Image
                   className="w-full h-full object-cover absolute mix-blend-overlay"
                   width={1440}
@@ -85,17 +85,17 @@ export const Hero = () => {
         })}
       </div>
       <div className="absolute top-0 left-0 w-full h-full ">
-        <div className="w-full md:w-1/2 ml-auto text-white mt-4  md:mt-12 p-4 md:p-12">
-          <h1 className="flex flex-col md:flex-row text-4xl md:text-6xl font-semibold mb-6">
+        <div className="w-full md:w-2/3 ml-auto text-white mt-4 lg:mt-12 p-4 md:p-8 lg:p-12">
+          <h1 className="flex flex-col md:flex-row text-4xl lg:text-6xl font-semibold mb-6">
             <span>Bienvenido a </span> <span>MoveAR</span>
           </h1>
-          <h2 className="text-2xl md:text-4xl mb-6 font-medium  ">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl md:mb-2 lg:mb-6 font-medium  ">
             La forma más fácil de mudarse
           </h2>
-          <p className="hidden md:block text-2xl mb-12 max-w-2xl ">
+          <p className="hidden md:block lg:text-2xl lg:mb-12 max-w-2xl ">
             Calcula tu mudanza y escoge un vehículo acorde a tus necesidades
           </p>
-          <div className="hidden md:block">
+          <div className="hidden md:block md:text-end lg:text-start">
             <button className="btn" onClick={() => router.push('/calculator')}>
               Calcular
             </button>
