@@ -1,6 +1,7 @@
 package com.nocountry.backend.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 @Tag(name = "Autenticacion", description = "Registro e inicio de sesion para los usuarios de MoveAr. ")
+@SecurityRequirement(name = "bearerAuth")
 public class AuthController {
 
     private final IAuthService authService;
