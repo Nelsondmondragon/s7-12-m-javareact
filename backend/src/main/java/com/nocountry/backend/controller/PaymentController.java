@@ -4,6 +4,7 @@ import com.nocountry.backend.dto.PaymentDto;
 import com.nocountry.backend.service.impl.PaymentService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/payment")
-@CrossOrigin(origins = "*")
+@RequestMapping("/api/v1/payment")
+@SecurityRequirement(name = "bearerAuth")
 public class PaymentController {
 
     @Autowired
@@ -23,6 +24,7 @@ public class PaymentController {
 
     @PostMapping("/paymentintent")
     public ResponseEntity<String> payment(@RequestBody PaymentDto paymentIntentDto) throws StripeException {
+
         PaymentIntent paymentIntent = paymentService.paymentIntent(paymentIntentDto);
         String paymentStr = paymentIntent.toJson();
         return new ResponseEntity<String>(paymentStr, HttpStatus.OK);

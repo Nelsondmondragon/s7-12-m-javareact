@@ -24,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/categories")
 @RequiredArgsConstructor
 @SecurityRequirement(name = "bearerAuth")
-
 public class CategoryController {
 
     private final ICategoryService categoryService;
