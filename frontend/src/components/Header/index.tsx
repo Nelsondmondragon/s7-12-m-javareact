@@ -16,7 +16,7 @@ import {
 
 const links = [
   { label: 'Inicio', route: '/' },
-  { label: 'Vehículos', route: '/' },
+  { label: 'Vehículos', route: '/booking' },
   { label: 'Servicios', route: '/services' },
   { label: 'Nosotros', route: '/about' },
   { label: 'Contacto', route: '/contact' },
@@ -36,6 +36,7 @@ export const Header = () => {
     dispatch(removeUser());
     Cookies.remove('token');
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     router.push('/');
   };
 
@@ -54,25 +55,24 @@ export const Header = () => {
       <header>
         <Link href="/">
           <div className="flex items-center">
-            <div className="h-[73px] w-[81px] mr-[30px]">
+            <div className="h-9 w-9 md:w-12 md:h-12  lg:h-[73px] lg:w-[81px] mr-[30px]">
               <Image src={logo} alt="Logo" className="w-full h-full" />
             </div>
-            <div className="font-bold text-sm">
-              <p>{'Mudarse nunca fue'}</p>
-              <p>{'tan fácil"'}</p>
+            <div className="hidden lg:block font-bold text-sm max-w-[120px]">
+              <p>{'Mudarse nunca fue tan fácil'}</p>
             </div>
           </div>
         </Link>
 
         <nav className="flex lg:flex-row-reverse justify-between items-center">
           <div>
-            {currentUser.name !== '' ? (
+            {currentUser.firstName !== '' ? (
               <div className="flex space-x-2 ">
                 <button
                   className="w-[60px] h-[60px] md:ml-12 bg-primary-200 hover:bg-primary-300 rounded-full flex justify-center items-center text-2xl"
                   onClick={() => handleProfile()}
                 >
-                  {currentUser.name[0].toUpperCase()}
+                  {`${currentUser.firstName[0].toUpperCase()}${currentUser.lastName[0].toUpperCase()}`}
                 </button>
 
                 <button className="btn" onClick={() => handleLogout()}>
@@ -88,7 +88,7 @@ export const Header = () => {
                   Ingresar
                 </button>
                 <button className="md:hidden" onClick={() => handleLogin()}>
-                  <FaUserAlt size={20} />
+                  <FaUserAlt size={16} />
                 </button>
                 <button
                   className="hidden md:block btn"
@@ -97,7 +97,7 @@ export const Header = () => {
                   Registrarse
                 </button>
                 <button className="md:hidden" onClick={() => handleRegister()}>
-                  <FaUserPlus size={24} />
+                  <FaUserPlus size={20} />
                 </button>
               </div>
             )}
@@ -107,7 +107,7 @@ export const Header = () => {
             className="hover:text-primary-200 lg:hidden ml-4"
             onClick={handleShowToggleMenu}
           >
-            {!showMenu ? <FaBars size={24} /> : <FaTimes size={24} />}
+            {!showMenu ? <FaBars size={20} /> : <FaTimes size={20} />}
           </button>
           <ul
             onClick={handleShowToggleMenu}
@@ -125,7 +125,7 @@ export const Header = () => {
           </ul>
         </nav>
       </header>
-      {currentUser.name === '' && <ModalLogin />}
+      {currentUser.firstName === '' && <ModalLogin />}
     </>
   );
 };

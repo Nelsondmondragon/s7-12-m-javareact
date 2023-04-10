@@ -41,7 +41,7 @@ const truckSlice = createSlice({
       localStorage.setItem('truck', JSON.stringify(state.truckItems));
     },
 
-    setRemoveItemFromTruck: (state, action) => {
+    setDecreaseItemFromTruck: (state, action) => {
       if (action.payload.qty === 1) {
         const newState = state.truckItems.filter(
           (item) => item.title !== action.payload.title
@@ -58,10 +58,21 @@ const truckSlice = createSlice({
       }
       localStorage.setItem('truck', JSON.stringify(state.truckItems));
     },
+    setRemoveItemFromTruck: (state, action) => {
+      const newState = state.truckItems.filter(
+        (item) => item.title !== action.payload.title
+      );
+      state.truckItems = newState;
+      localStorage.setItem('truck', JSON.stringify(state.truckItems));
+    },
   },
 });
 
-export const { setAddItemToTruck, setRemoveItemFromTruck } = truckSlice.actions;
+export const {
+  setAddItemToTruck,
+  setDecreaseItemFromTruck,
+  setRemoveItemFromTruck,
+} = truckSlice.actions;
 
 export const selectTruckItems = (state) => state.truck.truckItems;
 

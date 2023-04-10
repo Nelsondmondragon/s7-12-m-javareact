@@ -14,16 +14,17 @@ module.exports = {
         26: '104px',
       },
       colors: {
-        primary: {
-          50: '#D2EEFE',
-          100: '#A0DBFD',
-          200: '#6EC8FC',
-          300: '#3CB5FB',
-          400: '#0AA2FA',
-          500: '#0483CC',
-          600: '#03649B',
-          700: '#024369',
-          800: '#012337',
+        error: {
+          50: '#FFF3F2',
+          100: '#FFCECB',
+          200: '#FF9D98',
+          300: '#FF7871',
+          400: '#FF544A',
+          500: '#FF3B30',
+          600: '#FF170A',
+          700: '#BD0A00',
+          800: '#720600',
+          900: '#260200',
         },
         neutral: {
           50: '#F0F0F0',
@@ -36,7 +37,31 @@ module.exports = {
           700: '#3D3D3D',
           800: '#242424',
         },
-        success: '#198754',
+        primary: {
+          50: '#D2EEFE',
+          100: '#A0DBFD',
+          200: '#6EC8FC',
+          300: '#3CB5FB',
+          400: '#0AA2FA',
+          500: '#0483CC',
+          600: '#03649B',
+          700: '#024369',
+          800: '#012337',
+        },
+        success: {
+          50: '#F2FCF5',
+          100: '#CCF2D5',
+          200: '#98E4AB',
+          300: '#72DA8C',
+          400: '#4BD06D',
+          500: '#34C759',
+          600: '#2EAE4E',
+          700: '#217C38',
+          800: '#144B21',
+          900: '#07190B',
+        },
+        black: '#1f1f1f',
+        white: '#fafafa',
         info: '#0dcaf0',
         warning: '#ffc800',
         danger: '#dc3545',
@@ -47,12 +72,10 @@ module.exports = {
         },
         dark: '#212529',
       },
+
       backgroundImage: {
-        hero: 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #FAFAFA',
-        'hero-pattern':
-          "linear-gradient(to right bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('/images/illustrations/hero1.svg')",
-        'about-pattern':
-          "linear-gradient(to right bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/images/illustrations/about1.svg')",
+        'global-pattern': "url('/assets/images/routes.svg')",
+        'mobile-pattern': "url('/assets/images/RouteMobile.svg')",
       },
       keyframes: {
         wiggle: {
@@ -64,8 +87,8 @@ module.exports = {
         wiggle: 'wiggle 1s ease-in-out infinite',
       },
       backdropFilter: {
-        'blur': 'blur(8px)',
-      }
+        blur: 'blur(8px)',
+      },
     },
   },
   plugins: [],

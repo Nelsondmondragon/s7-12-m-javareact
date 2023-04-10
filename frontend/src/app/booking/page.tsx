@@ -8,25 +8,23 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useRouter } from "next/navigation";
 
 
-
 export default function Booking() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [startTime, setstartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
-  const [category, setCategory] = useState("pick");
-  const [startPl, setStartPl] = useState("Buenos Aires");
-  const [returnPl, setReturnPl] = useState("Buenos Aires");
+  const [category, setCategory] = useState('pick');
+  const [startPl, setStartPl] = useState('Buenos Aires');
+  const [returnPl, setReturnPl] = useState('Buenos Aires');
 
   const router = useRouter();
 
-  registerLocale("es", es);
+  registerLocale('es', es);
 
   const onCategory = (cat) => {
     setCategory(cat.name);
     //console.log(cat.name);
   };
-
 
   const onSearch = () => {
     const selection = {
@@ -37,7 +35,6 @@ export default function Booking() {
       endDate: endDate,
       endtTime: endTime,
       category: category,
-
     };
 
     console.log(selection);
@@ -47,6 +44,7 @@ export default function Booking() {
     // console.log(result);
   };
 
+  // eslint-disable-next-line react/display-name
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <button
       className="text-[23px] bg-white w-[182px] h-[45px] text-left pl-2 rounded-md border-gray-400 shadow-md"
@@ -58,7 +56,7 @@ export default function Booking() {
   ));
 
   return (
-    <section className="min-h-screen flex flex-col items-center">
+    <section className="min-h-screen flex flex-col items-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
       <div className="flex flex-col gap-1 w-[70%]">
         <h3 className="text-[33px] text-white mt-14">
           Consulta disponibilidad y reserva al instante
@@ -68,7 +66,7 @@ export default function Booking() {
           <div className="flex justify-between">
             <div className="w-[450px]">
               <select
-                defaultValue={"default"}
+                defaultValue={'default'}
                 className="w-full h-[46px] text-[23px] px-2 rounded-md border-gray-400 shadow-md"
                 //   onChange={(e) => setStartPl(e.target.value)}
               >
@@ -89,7 +87,6 @@ export default function Booking() {
               customInput={<ExampleCustomInput />}
               dateFormat="dd/MM/yyyy"
             />
-
 
             <DatePicker
               wrapperClassName="w-[200px]"
@@ -112,7 +109,7 @@ export default function Booking() {
           <div className="flex justify-between">
             <div className="w-[450px]">
               <select
-                defaultValue={"default"}
+                defaultValue={'default'}
                 className="w-full h-[46px] text-[23px] px-2 rounded-md border-gray-400 shadow-md"
                 //   onChange={(e) => setStartPl(e.target.value)}
               >
@@ -181,5 +178,4 @@ export default function Booking() {
       </div>
     </section>
   );
-
 }
