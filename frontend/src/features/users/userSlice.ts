@@ -5,8 +5,14 @@ const initialState = {
   currentUser: {
     id: 0,
     email: '',
-    firstName: '',
-    lastName: '',
+    firstName:
+      typeof window !== 'undefined' && localStorage.getItem('user')
+        ? JSON.parse(localStorage.getItem('user')).firstName
+        : '',
+    lastName:
+      typeof window !== 'undefined' && localStorage.getItem('user')
+        ? JSON.parse(localStorage.getItem('user')).lastName
+        : '',
     address: '',
     birthdate: '',
     driverLicenceImgUrl: '',
@@ -14,6 +20,7 @@ const initialState = {
     phone: '',
   },
   showModalLogin: false,
+  showModalLoginError: false,
   category: '',
 };
 
@@ -40,6 +47,12 @@ export const userSlice = createSlice({
     closeModalLogin: (state) => {
       state.showModalLogin = false;
     },
+    openModalLoginError: (state) => {
+      state.showModalLoginError = true;
+    },
+    closeModalLoginError: (state) => {
+      state.showModalLoginError = false;
+    },
   },
 });
 
@@ -50,10 +63,14 @@ export const {
   removeUser,
   openModalLogin,
   closeModalLogin,
+  openModalLoginError,
+  closeModalLoginError,
 } = userSlice.actions;
 
 export const selectCurrentUser = (state) => state.user.currentUser;
 export const selectShowModalLogin = (state) => state.user.showModalLogin;
+export const selectShowModalLoginError = (state) =>
+  state.user.showModalLoginError;
 export const selectCategory = (state) => state.user.category;
 
 export default userSlice.reducer;

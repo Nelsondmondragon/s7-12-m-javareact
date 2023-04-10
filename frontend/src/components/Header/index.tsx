@@ -69,7 +69,7 @@ export const Header = () => {
             {currentUser.firstName !== '' ? (
               <div className="flex space-x-2 ">
                 <button
-                  className="w-[60px] h-[60px] md:ml-12 bg-primary-200 hover:bg-primary-300 rounded-full flex justify-center items-center text-2xl"
+                  className="w-8 h-8 md:w-[40px] md:h-[40px] lg:w-[60px] lg:h-[60px]  md:ml-12 bg-primary-200 hover:bg-primary-300 rounded-full flex justify-center items-center text-base md:text-xl"
                   onClick={() => handleProfile()}
                 >
                   {`${currentUser.firstName[0].toUpperCase()}${currentUser.lastName[0].toUpperCase()}`}

@@ -18,7 +18,7 @@
   }
 
   footer {
-    @apply flex w-full items-center justify-between px-16 py-16 transition-all lg:px-10 lg:py-6  bg-primary-700 text-white;
+    @apply w-full items-center justify-between px-16 py-16 transition-all lg:px-10 lg:py-6  bg-primary-700 text-white;
   }
 }
 
@@ -52,7 +52,7 @@
   }
 
   .btn {
-    @apply text-lg text-primary-600 px-6 py-2 bg-white rounded-[10px] hover:bg-primary-50;
+    @apply text-lg text-primary-600 px-6 py-1 bg-white rounded-[10px] hover:bg-primary-50;
   }
   .btnSecond {
     @apply text-primary-100  bg-primary-600 hover:bg-primary-400;
@@ -79,12 +79,12 @@
 }
 
 .react-datepicker-wrapper {
-width: fit-content !important;
+  width: fit-content !important;
 }
- .react-datepicker__input-container {
+.react-datepicker__input-container {
   width: fit-content;
- }
+}
 
- .react-datepicker__tab-loop {
+.react-datepicker__tab-loop {
   position: absolute;
- }
+}
