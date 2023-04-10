@@ -15,7 +15,7 @@ ENV DB_USER=database_backend_nocountry_user
 ENV DB_PASSWORD=FkR43PvMBFYxmVQCLkZHfeNwfCRpV7eV
 ENV EMAIL_USER=brightenglishtest@gmail.com
 ENV EMAIL_PASSWORD=qchviouqjxodugyb
-
+ENV STRIPE1=sk_test_51MWqRxIxcd7KGrT5brAhFhGuWOkRJWW5qFhGKxZtNbrzaZjau19jlg2kjWWDvqi0ucSmfBes360GszSPh33uCdRR00rTfMNOb2
 
 COPY --from=build ./target/*.jar app.jar
 EXPOSE 8080
