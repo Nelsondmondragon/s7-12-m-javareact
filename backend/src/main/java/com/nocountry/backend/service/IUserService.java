@@ -4,7 +4,7 @@ import com.nocountry.backend.dto.UserDto;
 
 public interface IUserService {
 
-    public UserDto findByEmail(String email);
+    public UserDto findUserByEmail(String email);
 
-    public void deleteById(Long id);
+    public void deleteUser(Long userId);
 }

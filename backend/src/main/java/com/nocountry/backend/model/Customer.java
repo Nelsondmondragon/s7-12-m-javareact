@@ -1,6 +1,5 @@
 package com.nocountry.backend.model;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -42,10 +41,13 @@ public class Customer {
     private String address;
 
     @Column(name = "BIRTH_DATE")
-    private LocalDateTime birthdate;
+    private String birthdate;
 
     @Column(name = "PHONE")
     private String phone;
+
+    @Column(name = "DRIVER_LICENCE")
+    private Long driverLicence;
 
     @Column(name = "FK_USER")
     private Long fkUser;

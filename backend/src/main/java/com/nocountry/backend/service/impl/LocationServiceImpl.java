@@ -20,8 +20,8 @@ public class LocationServiceImpl implements LocationsService {
     private final ILocationMapper locationMapper;
 
     @Override
-    public void savaAll(List<LocationDto> locationDtos) {
-        locationsRepository.saveAll(locationDtos.stream().map(locationMapper::toLocation).toList());
+    public List<LocationDto> findAllLocations() {
+        return this.locationMapper.toLocationDtos(this.locationsRepository.findAll());
     }
 
     @Override
@@ -31,8 +31,7 @@ public class LocationServiceImpl implements LocationsService {
     }
 
     @Override
-    public List<LocationDto> findAll() {
-        return this.locationMapper.toLocationDtos(this.locationsRepository.findAll());
+    public void saveAll(List<LocationDto> locationDtos) {
+        locationsRepository.saveAll(locationDtos.stream().map(locationMapper::toLocation).toList());
     }
-
 }

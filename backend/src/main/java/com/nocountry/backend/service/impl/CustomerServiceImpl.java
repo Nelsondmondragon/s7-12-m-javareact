@@ -39,7 +39,7 @@ public class CustomerServiceImpl implements ICustomerService {
         String authorization = request.getHeader("Authorization");
         String email = jwtProvider.extractUsername(authorization.substring(7));
 
-        var userRepository = userService.findByEmail(email);
+        var userRepository = userService.findUserByEmail(email);
         var customerDetailsDto = customerMapper.toCustomerDto(
                 customerRepository.findByFkUser(userRepository.getId()));
         customerDetailsDto.setEmail(email);
@@ -64,8 +64,8 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public void deleteCustomer(Long id) {
-        Long userId = this.userService.findByEmail(this.findCustomerById(id).getEmail()).getId();
-        this.customerRepository.deleteById(id);
-        this.userService.deleteById(userId);
+        Long userId = userService.findUserByEmail(findCustomerById(id).getEmail()).getId();
+        customerRepository.deleteById(id);
+        userService.deleteUser(userId);
     }
 }

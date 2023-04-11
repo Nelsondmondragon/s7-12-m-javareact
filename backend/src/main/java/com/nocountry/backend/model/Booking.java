@@ -47,9 +47,6 @@ public class Booking {
     @Column(name = "HELPER_PAWN")
     private Boolean helperPawn;
 
-    @Column(name = "STATUS")
-    private boolean status;
-
     @Column(name = "FK_CUSTOMER")
     private Long fkCustomer;
 

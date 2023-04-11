@@ -21,14 +21,14 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
-@Tag(name = "Autenticacion", description = "Registro e inicio de sesion para los usuarios de MoveAr. ")
+@Tag(name = "Authentication", description = "Registration and login for MoveAr users")
 @SecurityRequirement(name = "bearerAuth")
 public class AuthController {
 
     private final IAuthService authService;
 
     @PostMapping("/register")
-    @Operation(summary = "Registrar un usuario en MoveAr.")
+    @Operation(summary = "Register a user in MoveAr")
     public ResponseEntity<?> register(@RequestBody RegisterRequestDto request) {
         try {
             AuthResponseDto response = authService.register(request);
@@ -39,7 +39,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    @Operation(summary = "Inicio de sesion para un usuario de MoveAr.")
+    @Operation(summary = "Login for a MoveAr user")
     public ResponseEntity<?> login(@RequestBody AuthRequestDto request) {
         try {
             AuthResponseDto response = authService.login(request);

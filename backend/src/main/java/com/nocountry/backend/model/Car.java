@@ -62,10 +62,7 @@ public class Car {
     @Column(name = "PICK_UP_LOCATION")
     private String pickUpLocation;
 
-    @Column(name = "AVAILABLE")
-    private boolean available;
-
     @ManyToOne
-    @JoinColumn(name = "id_category")
+    @JoinColumn(name = "ID_CATEGORY")
     private Category category;
 }

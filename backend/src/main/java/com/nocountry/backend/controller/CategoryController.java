@@ -30,35 +30,32 @@ public class CategoryController {
 
     @GetMapping("/all")
     public ResponseEntity<List<CategoryDto>> getAllCategories() {
-        List<CategoryDto> categories = categoryService.findAllCategories();
+        var categories = categoryService.findAllCategories();
         if (categories.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            return ResponseEntity.ok(categories);
+            return new ResponseEntity<>(categories, HttpStatus.ACCEPTED);
         }
     }
 
     @GetMapping("/{categoryId}")
-    public ResponseEntity<CategoryDto> getCategory(@PathVariable(value = "categoryId") Long categoryId) {
-        CategoryDto categoryDto = categoryService.findCategoryById(categoryId);
-        return ResponseEntity.ok(categoryDto);
+    public ResponseEntity<CategoryDto> getCategory(@PathVariable Long categoryId) {
+        return new ResponseEntity<>(categoryService.findCategoryById(categoryId), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto) {
-        CategoryDto categorySaved = categoryService.saveCategory(categoryDto);
-        return ResponseEntity.ok(categorySaved);
+        return new ResponseEntity<>(categoryService.saveCategory(categoryDto), HttpStatus.OK);
     }
 
     @PutMapping("/{categoryId}/update")
-    public ResponseEntity<CategoryDto> updateCategory(@PathVariable(value = "categoryId") Long categoryId,
+    public ResponseEntity<CategoryDto> updateCategory(@PathVariable Long categoryId,
             @RequestBody CategoryDto categoryDto) {
-        CategoryDto saved = categoryService.updateCategory(categoryId, categoryDto);
-        return ResponseEntity.ok(saved);
+        return new ResponseEntity<>(categoryService.updateCategory(categoryId, categoryDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{categoryId}/delete")
-    public ResponseEntity<String> deleteCategory(@PathVariable(value = "categoryId") Long categoryId) {
+    public ResponseEntity<String> deleteCategory(@PathVariable Long categoryId) {
         Optional<CategoryDto> category = Optional.ofNullable(categoryService.findCategoryById(categoryId));
         if (category.isPresent()) {
             categoryService.deleteCategory(categoryId);

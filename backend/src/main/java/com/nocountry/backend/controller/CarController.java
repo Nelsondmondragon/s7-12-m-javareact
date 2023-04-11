@@ -33,48 +33,62 @@ public class CarController {
 
     @GetMapping("/all")
     public ResponseEntity<List<CarDto>> getAllCars() {
-        List<CarDto> cars = carService.findAllCars();
+        var cars = carService.findAllCars();
         if (cars.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            return ResponseEntity.ok(cars);
+            return new ResponseEntity<>(cars, HttpStatus.ACCEPTED);
         }
     }
 
+    @GetMapping("/filters")
+    public ResponseEntity<List<CarDto>> getCarsByFilters2(
+            @RequestParam(required = false) String model,
+            @RequestParam(required = false) String make,
+            @RequestParam(required = false) Integer year,
+            @RequestParam(required = false) Boolean air,
+            @RequestParam(required = false) Boolean gps,
+            @RequestParam(required = false) Integer passengers,
+            @RequestParam(required = false) String pickUpLocation,
+            @RequestParam(required = false) Long idCategory,
+            @RequestParam LocalDateTime startTime,
+            @RequestParam LocalDateTime endTime) {
+        List<CarDto> cars = carService.findCarsByFilters2(model, make, year, air, gps, passengers, pickUpLocation,
+                idCategory, startTime, endTime);
+        return new ResponseEntity<>(cars, HttpStatus.OK);
+    }
+
     @GetMapping("/getbyfilters")
-    public ResponseEntity<List<CarDto>> getAllCarsByFilter(
-            @RequestParam(required = false) Long id_category,
+    public ResponseEntity<List<CarDto>> getCarsByFilters(
+            @RequestParam(required = false) Long idCategory,
             @RequestParam(required = true) String pickUpLocation,
             @RequestParam(required = true) LocalDateTime startTime,
             @RequestParam(required = true) LocalDateTime endTime) {
-        List<CarDto> cars = carService.findAllCarsByFilters(id_category, pickUpLocation, startTime, endTime);
+        List<CarDto> cars = carService.findCarsByFilters(idCategory, pickUpLocation, startTime, endTime);
         if (cars.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            return ResponseEntity.ok(cars);
+            return new ResponseEntity<>(cars, HttpStatus.ACCEPTED);
         }
     }
 
     @GetMapping("/{carId}")
-    public ResponseEntity<CarDto> getCar(@PathVariable(value = "carId") Long carId) {
-        CarDto carDto = carService.findCarById(carId);
-        return ResponseEntity.ok(carDto);
+    public ResponseEntity<CarDto> getCarById(@PathVariable Long carId) {
+        return new ResponseEntity<>(carService.findCarById(carId), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<CarDto> createCar(@RequestBody CarDto carDto) {
-        CarDto carSaved = carService.saveCar(carDto);
-        return ResponseEntity.ok(carSaved);
+        return new ResponseEntity<>(carService.saveCar(carDto), HttpStatus.OK);
     }
 
     @PutMapping("/{carId}/update")
-    public ResponseEntity<CarDto> updateCar(@PathVariable(value = "carId") Long carId, @RequestBody CarDto carDto) {
-        CarDto saved = carService.updateCar(carId, carDto);
-        return ResponseEntity.ok(saved);
+    public ResponseEntity<CarDto> updateCar(@PathVariable Long carId, @RequestBody CarDto carDto) {
+        return new ResponseEntity<>(carService.updateCar(carId, carDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{carId}/delete")
-    public ResponseEntity<String> deleteCar(@PathVariable(value = "carId") Long carId) {
+    public ResponseEntity<String> deleteCar(@PathVariable Long carId) {
         Optional<CarDto> car = Optional.ofNullable(carService.findCarById(carId));
         if (car.isPresent()) {
             carService.deleteCar(carId);

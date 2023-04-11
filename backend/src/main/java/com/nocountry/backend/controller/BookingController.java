@@ -35,7 +35,7 @@ public class BookingController {
 
     @GetMapping("/{bookingId}")
     public ResponseEntity<BookingDto> getBookingById(@PathVariable Long bookingId) {
-        return new ResponseEntity<>(bookingService.getBookingById(bookingId), HttpStatus.OK);
+        return new ResponseEntity<>(bookingService.findBookingById(bookingId), HttpStatus.OK);
     }
 
     @PostMapping("/create")

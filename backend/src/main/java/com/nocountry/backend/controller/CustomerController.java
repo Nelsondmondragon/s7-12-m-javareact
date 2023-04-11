@@ -1,16 +1,19 @@
 package com.nocountry.backend.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nocountry.backend.dto.CustomerDetailsDto;
+import com.nocountry.backend.dto.CustomerListDto;
 import com.nocountry.backend.service.ICustomerService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,38 +27,48 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("api/v1/customers")
 @RequiredArgsConstructor
 @SecurityRequirement(name = "bearerAuth")
-@Tag(name = "Clientes", description = "Clientes de MoveAr.")
+@Tag(name = "Customers", description = "MoveAr's customers")
 public class CustomerController {
 
     private final ICustomerService customerService;
 
+    @GetMapping("/all")
+    @Operation(summary = "Customer details, send the JWT in the request header.")
+    public ResponseEntity<List<CustomerListDto>> getAllCustomers() {
+        var customers = customerService.findAllCustomers();
+        if (customers.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(customers, HttpStatus.ACCEPTED);
+        }
+    }
+
     @GetMapping("/profile")
-    @Operation(summary = "Detalles de un cliente, enviando en la cabecera de la peticion el JWT.")
+    @Operation(summary = "Get customer details by JWT, send token in the request header ")
     private ResponseEntity<CustomerDetailsDto> getCustomerByEmail(HttpServletRequest request) {
         return new ResponseEntity<>(customerService.findCustomerByEmail(request), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    @Operation(summary = "Obtener la informacion de un cliente por id.")
+    @GetMapping("/{customerId}")
+    @Operation(summary = "Get customer details by customerId")
     public ResponseEntity<CustomerDetailsDto> getCustomerById(
-            @Parameter(description = "Identificador unico del cliente.") @PathVariable Long id) {
-        return new ResponseEntity<>(customerService.findCustomerById(id), HttpStatus.OK);
+            @Parameter(description = "customerId - Unique identifier of the customer") @PathVariable Long customerId) {
+        return new ResponseEntity<>(customerService.findCustomerById(customerId), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Actualizar la informacion de un cliente por id.")
-
-    public ResponseEntity<CustomerDetailsDto> updateCustomer(@PathVariable Long id,
+    @PatchMapping("/{customerId}/update")
+    @Operation(summary = "Update customer details by customerId")
+    public ResponseEntity<CustomerDetailsDto> updateCustomer(@PathVariable Long customerId,
             @RequestBody CustomerDetailsDto customerDetailsDto) {
-        return new ResponseEntity<>(customerService.updateCustomer(id, customerDetailsDto),
+        return new ResponseEntity<>(customerService.updateCustomer(customerId, customerDetailsDto),
                 HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar un cliente por id.")
+    @DeleteMapping("/{customerId}/delete")
+    @Operation(summary = "Delete customer by customerId")
     public ResponseEntity<CustomerDetailsDto> deleteCustomer(
-            @Parameter(description = "Identificador unico del cliente.") @PathVariable Long id) {
-        customerService.deleteCustomer(id);
+            @Parameter(description = "customerId - Unique identifier of the customer") @PathVariable Long customerId) {
+        customerService.deleteCustomer(customerId);
         return ResponseEntity.noContent().build();
     }
 }

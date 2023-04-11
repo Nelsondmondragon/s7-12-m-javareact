@@ -6,9 +6,9 @@ import com.nocountry.backend.dto.CategoryDto;
 
 public interface ICategoryService {
 
-    public CategoryDto findCategoryById(Long categoryId);
+    public List<CategoryDto> findAllCategories();
 
-    public abstract List<CategoryDto> findAllCategories();
+    public CategoryDto findCategoryById(Long categoryId);
 
     public CategoryDto saveCategory(CategoryDto categoryDto);
 

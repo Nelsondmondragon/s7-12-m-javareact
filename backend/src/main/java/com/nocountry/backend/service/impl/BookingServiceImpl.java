@@ -30,14 +30,14 @@ public class BookingServiceImpl implements IBookingService {
     }
 
     @Override
-    public BookingDto getBookingById(Long bookingId) {
+    public BookingDto findBookingById(Long bookingId) {
         var booking = bookingRepository.findById(bookingId).orElseThrow();
         return bookingMapper.toBookingDto(booking);
     }
 
     @Override
     public BookingDto saveBooking(BookingDto bookingDto) {
-        this.validateBooking(bookingDto);
+        this.validateBookingOverlap(bookingDto);
         var booking = bookingMapper.toBooking(bookingDto);
 
         booking.setFkCustomer(bookingDto.getFkCustomer());
@@ -65,19 +65,19 @@ public class BookingServiceImpl implements IBookingService {
     }
 
     @Override
-    public boolean validateDateBooking(LocalDateTime startDate, LocalDateTime endDate, Booking booking){
+    public boolean validateDateBooking(LocalDateTime startDate, LocalDateTime endDate, Booking booking) {
 
-        if (startDate.isBefore(booking.getStartTime()) && endDate.isBefore(booking.getStartTime())){
+        if (startDate.isBefore(booking.getStartTime()) && endDate.isBefore(booking.getStartTime())) {
             return false;
         }
-        if (startDate.isAfter(booking.getEndTime()) && endDate.isAfter(booking.getEndTime())){
+        if (startDate.isAfter(booking.getEndTime()) && endDate.isAfter(booking.getEndTime())) {
             return false;
         }
         return true;
 
     }
-    // crear BookingOverlapException
-    private void validateBooking(BookingDto bookingDto) {
+
+    private void validateBookingOverlap(BookingDto bookingDto) {
         List<Booking> allCarBookings = bookingRepository.findAllByFkCar(bookingDto.getFkCar());
         Duration margin = Duration.ofMinutes(30);
 

@@ -6,9 +6,9 @@ import com.nocountry.backend.dto.LocationDto;
 
 public interface LocationsService {
 
-    public void savaAll(List<LocationDto> locationDtos);
+    public List<LocationDto> findAllLocations();
 
     public List<LocationDto> findAllLocationsContainingBranches();
 
-    public List<LocationDto> findAll();
+    public void saveAll(List<LocationDto> locationDtos);
 }

@@ -21,9 +21,11 @@ public class RegisterRequestDto {
 
     private String lastName;
 
-    private String phone;
-
     private Date birthdate;
 
+    private String phone;
+
     private String address;
+
+    private Long driverLicence;
 }

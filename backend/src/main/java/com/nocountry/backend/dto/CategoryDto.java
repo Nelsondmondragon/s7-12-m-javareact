@@ -13,13 +13,9 @@ public class CategoryDto {
 
     private Long id;
 
+    private String name;
+
     private Double volume;
 
-    private Double Capacity;
-
-    private Integer length;
-
-    private Integer width;
-
-    private Integer height;
+    private Double capacityLimit;
 }

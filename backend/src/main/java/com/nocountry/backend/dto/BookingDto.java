@@ -29,8 +29,6 @@ public class BookingDto {
 
     private Boolean helperPawn;
 
-    private boolean status;
-
     @JsonProperty("carId")
     private Long fkCar;
 

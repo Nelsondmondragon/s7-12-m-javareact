@@ -1,7 +1,5 @@
 package com.nocountry.backend.config;
 
-import java.time.LocalDateTime;
-
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.Ordered;
@@ -64,9 +62,7 @@ public class DefaultAdminRunner implements ApplicationRunner {
         }
 
         private void consumeApiGeorefArAPI() {
-                this.locationsService.savaAll(executeApi.execute().getLocations());
-                System.out.println("termino");
-
+                locationsService.saveAll(executeApi.execute().getLocations());
         }
 
         private void createUsers() {
@@ -76,30 +72,11 @@ public class DefaultAdminRunner implements ApplicationRunner {
                                 .role(Role.ADMIN.name())
                                 .build();
 
-                var test = User.builder()
-                                .email("test@test.com")
-                                .password(passwordEncoder.encode("1234"))
-                                .role(Role.USER.name())
-                                .build();
-
                 if (userRepository.findByEmail(admin.getUsername()).isEmpty()) {
                         admin = userRepository.save(admin);
                         var customer = Customer.builder()
                                         .firstName("Administrador")
                                         .fkUser(admin.getId())
-                                        .build();
-                        customerRepository.save(customer);
-                }
-
-                if (userRepository.findByEmail(test.getEmail()).isEmpty()) {
-                        test = userRepository.save(test);
-                        var customer = Customer.builder()
-                                        .firstName("User")
-                                        .lastName("Test")
-                                        .phone("434534555")
-                                        .birthdate(LocalDateTime.now())
-                                        .address("direccion")
-                                        .fkUser(test.getId())
                                         .build();
                         customerRepository.save(customer);
                 }

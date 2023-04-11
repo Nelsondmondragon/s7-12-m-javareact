@@ -10,7 +10,7 @@ public interface IBookingService {
 
     public List<BookingDto> findAllBookings();
 
-    public BookingDto getBookingById(Long bookingId);
+    public BookingDto findBookingById(Long bookingId);
 
     public BookingDto saveBooking(BookingDto bookingDto);
 

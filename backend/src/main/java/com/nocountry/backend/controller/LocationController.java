@@ -29,7 +29,7 @@ public class LocationController {
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Lista de todas las localidades de Argentina.")
     public ResponseEntity<List<LocationDto>> getAll() {
-        return new ResponseEntity<>(locationsService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(locationsService.findAllLocations(), HttpStatus.OK);
     }
 
     @Operation(summary = "Lita de todas las localidades de Argentina que contienen una sucursal de MoveAr.")
