@@ -48,18 +48,18 @@ const Counter = ({ thing }) => {
       <button
         type="button"
         disabled={processing | (thing.qty === 0)}
-        className=" flex  px-2 py-1 bg-primary-600 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs "
+        className=" flex justify-center items-center w-5  px-2 py-1 bg-primary-600 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs text-white "
         onClick={() => {
           onRestToCart(thing);
         }}
       >
         -
       </button>
-      <p className="text-red-500"> {thing.qty}</p>
+      <p className="text-red-500 w-4 text-right"> {thing.qty}</p>
       <button
         type="button"
         disabled={processing}
-        className=" flex  px-2 py-1 bg-primary-700 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs "
+        className=" flex justify-center items-center w-5  px-2 py-1 bg-primary-700 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs text-white "
         onClick={() => {
           onAddToCart(thing);
         }}

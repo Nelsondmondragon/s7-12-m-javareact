@@ -17,7 +17,10 @@ const initialState = {
     birthdate: '',
     driverLicenceImgUrl: '',
     nationalIdImgUrl: '',
-    phone: '',
+    phone:
+      typeof window !== 'undefined' && localStorage.getItem('category')
+        ? JSON.parse(localStorage.getItem('category'))
+        : '',
   },
   showModalLogin: false,
   showModalLoginError: false,

@@ -14,7 +14,7 @@
   }
 
   header {
-    @apply sticky z-10 flex w-full h-[var(--mobile-header-height)] md:h-[var(--tablet-header-height)] lg:h-[var(--header-height)] items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6 bg-primary-800 text-light-100 duration-200;
+    @apply sticky z-10 flex w-full h-[var(--mobile-header-height)] md:h-[var(--tablet-header-height)] lg:h-[var(--header-height)] items-center justify-between px-4 py-4 transition-all lg:px-6 xl:px-10 lg:py-6 bg-primary-800 text-light-100 duration-200;
   }
 
   footer {
@@ -32,7 +32,7 @@
   }
 
   .menuDesktop {
-    @apply lg:relative lg:flex lg:space-x-4 lg:min-h-0 lg:top-0 lg:px-0 lg:py-0 lg:space-y-0 lg:translate-x-0 lg:text-base;
+    @apply lg:relative lg:flex lg:space-x-1  xl:space-x-4 lg:min-h-0 lg:top-0 lg:px-0 lg:py-0 lg:space-y-0 lg:translate-x-0 lg:text-base;
   }
 
   .menuMobile {

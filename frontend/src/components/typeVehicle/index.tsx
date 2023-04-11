@@ -18,7 +18,15 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
   const dispatch = useDispatch();
 
   const onCheckAvailability = (title: string) => {
-    dispatch(setCategory(title));
+    const typeVehicle =
+      title === 'CAMIÓN CHICO'
+        ? 'small'
+        : title === 'CAMIÓN MEDIANO'
+        ? 'medium'
+        : 'large';
+    dispatch(setCategory(typeVehicle));
+    localStorage.setItem('category', JSON.stringify(typeVehicle));
+
     router.push('/booking');
   };
 

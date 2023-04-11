@@ -73,7 +73,7 @@ export const Hero = () => {
             >
               <div className="bg-black bg-opacity-70 md:h-[295px] lg:h-[610px] w-full relative  ">
                 <Image
-                  className="w-full h-full object-cover absolute mix-blend-overlay"
+                  className="w-full h-auto object-cover absolute mix-blend-overlay"
                   width={1440}
                   height={610}
                   src={slide.image}

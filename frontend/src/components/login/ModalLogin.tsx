@@ -1,5 +1,4 @@
 'use client';
-import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaTimes } from 'react-icons/fa';
 
@@ -9,11 +8,9 @@ import { Schema as schema } from './loginValidation';
 
 import Cookies from 'js-cookie';
 
-import { CustomButton } from '@/components/common/CustomButton';
 import {
   closeModalLogin,
   openModalLoginError,
-  selectCurrentUser,
   selectShowModalLogin,
   selectShowModalLoginError,
   setUser,
@@ -31,7 +28,6 @@ export const ModalLogin = () => {
   const showModal = useSelector(selectShowModalLogin);
   const showModalLoginError = useSelector(selectShowModalLoginError);
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const {
     register,
@@ -70,7 +66,6 @@ export const ModalLogin = () => {
     localStorage.setItem('user', JSON.stringify(userData));
     reset;
     closeModal();
-    router.push('/');
   };
 
   const onSubmit = (credentials: FormValues) => {
