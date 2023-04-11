@@ -1,7 +1,5 @@
 package com.nocountry.backend.Error;
 
-import com.nocountry.backend.Error.Exceptions.CarNotFoundException;
-import com.nocountry.backend.Error.Exceptions.RegisterException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -16,15 +14,15 @@ public enum ErrorCode {
     JSON_PARSE_ERROR("0005", "Make sure request payload should be a valid JSON object."),
     HTTP_MESSAGE_NOT_READABLE("0006", "Make sure request payload should be a valid JSON or XML object according to 'Content-Type'."),
 
-    ENTITY_NOT_FOUND("007", "Entity not found"),
+    ENTITY_NOT_FOUND("404", "Entity not found."),
 
     REGISTER_BAD_REQUEST("021",""),
-    EMAIL_EXISTS("022", "The email address you provided,is already in use"),
+    EMAIL_EXISTS("022", "The email address you provided,is already in use."),
 
-    CAR_NOT_FOUND("0011", "Requested Car not found."),
+    CAR_NOT_FOUND("404", "Requested Car not found."),
 
-    USER_NOT_FOUND("023","user not found"),
-    USER_REGISTER("20","Problem with registration."),
+    USER_NOT_FOUND("404","user not found."),
+    USER_REGISTER("400","Problem with registration."),
 
     LOGIN_BAD_CREDENTIALS("401","Bad login credentials.");
 

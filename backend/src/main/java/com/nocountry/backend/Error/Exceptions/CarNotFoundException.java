@@ -1,12 +1,12 @@
 package com.nocountry.backend.Error.Exceptions;
 
 import com.nocountry.backend.Error.ErrorCode;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
+import java.io.Serial;
 
 public class CarNotFoundException extends RuntimeException{
 
+    @Serial
     private static final long serialVersionUID = 1L;
     private final String errMsgKey;
     private final String errorCode;
