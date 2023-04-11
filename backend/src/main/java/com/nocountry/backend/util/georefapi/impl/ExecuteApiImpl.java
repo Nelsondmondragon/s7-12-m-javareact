@@ -1,13 +1,14 @@
 package com.nocountry.backend.util.georefapi.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Component;
+
 import com.nocountry.backend.dto.InformationLocationDto;
 import com.nocountry.backend.util.georefapi.APIFunctions;
 import com.nocountry.backend.util.georefapi.GeorefArAPI;
 import com.nocountry.backend.util.georefapi.IExecuteApi;
-import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class ExecuteApiImpl implements IExecuteApi {
@@ -19,12 +20,10 @@ public class ExecuteApiImpl implements IExecuteApi {
         return georefArAPI.locations(toMap());
     }
 
-
     private static Map<String, Object> toMap() {
         Map<String, Object> params = new HashMap<>();
         params.put("campos", "nombre");
         params.put("max", 3526);
         return params;
     }
-
 }

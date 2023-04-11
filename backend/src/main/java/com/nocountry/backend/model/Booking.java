@@ -64,6 +64,3 @@ public class Booking {
     @JoinColumn(name = "FK_CAR", referencedColumnName = "ID_CAR", insertable = false, updatable = false)
     private Car car;
 }
-
-// @Column(name = "FK_PAYMENT")
-// private Long fkPayment;

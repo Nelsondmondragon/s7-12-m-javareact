@@ -1,13 +1,15 @@
 package com.nocountry.backend.service.impl;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.nocountry.backend.dto.LocationDto;
 import com.nocountry.backend.mapper.ILocationMapper;
 import com.nocountry.backend.repository.ILocationsRepository;
 import com.nocountry.backend.service.LocationsService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -25,14 +27,12 @@ public class LocationServiceImpl implements LocationsService {
     @Override
     public List<LocationDto> findAllLocationsContainingBranches() {
         return this.locationsRepository.findAllByBranchesIsNotNull().stream().map(
-                locationMapper::toLocationDto
-        ).toList();
+                locationMapper::toLocationDto).toList();
     }
 
     @Override
     public List<LocationDto> findAll() {
         return this.locationMapper.toLocationDtos(this.locationsRepository.findAll());
     }
-
 
 }

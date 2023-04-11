@@ -1,10 +1,17 @@
 package com.nocountry.backend.model;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,11 +24,12 @@ public class Category {
     @Column(name = "ID_CATEGORY", nullable = false)
     private Long id;
 
-    private Double volume;
-
+    @Column(name = "NAME")
     private String name;
 
+    @Column(name = "VOLUME")
+    private Double volume;
+
+    @Column(name = "CAPACITY_LIMIT")
     private Double capacityLimit;
-
-
 }

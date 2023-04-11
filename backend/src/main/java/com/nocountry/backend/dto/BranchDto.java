@@ -1,14 +1,16 @@
 package com.nocountry.backend.dto;
 
 import com.google.gson.annotations.SerializedName;
-import jakarta.persistence.Column;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BranchDto {
 
     private Long id;

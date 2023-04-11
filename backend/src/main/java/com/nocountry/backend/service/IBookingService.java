@@ -18,5 +18,5 @@ public interface IBookingService {
 
     public void deleteBooking(Long bookingId);
 
-    boolean validateDateBooking(LocalDateTime startDate, LocalDateTime endDate, Booking booking);
+    public boolean validateDateBooking(LocalDateTime startDate, LocalDateTime endDate, Booking booking);
 }

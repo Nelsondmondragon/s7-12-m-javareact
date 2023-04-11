@@ -29,18 +29,6 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addMapping("/**").allowedMethods("*");
     }
 
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/**")
-//                .allowedOrigins("https://frontend-xi-pied.vercel.app/", "http://127.0.0.1:5173",
-//                        "http://localhost:5173", "http://localhost:3000")
-//                .allowedMethods("*")
-//                .allowedHeaders("*")
-//                .exposedHeaders("Authorization")
-//                .allowCredentials(true)
-//                .maxAge(3600);
-//    }
-
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {

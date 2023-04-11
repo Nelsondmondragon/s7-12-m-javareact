@@ -24,10 +24,10 @@ spring:
           starttls:
             enable: true
     default-encoding: UTF-8
-stripe:
-  api:
-    base:
-      url: https://api.stripe.com
-  key:
-    public: ${STRIPE1}
-    secret: ${STRIPE1}
+# stripe:
+#   api:
+#     base:
+#       url: https://api.stripe.com
+#   key:
+#     public: ${STRIPE1}
+#     secret: ${STRIPE1}

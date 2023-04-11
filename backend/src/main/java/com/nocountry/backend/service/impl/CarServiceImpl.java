@@ -7,16 +7,16 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.nocountry.backend.model.Booking;
-import com.nocountry.backend.repository.IBookingRepository;
-import com.nocountry.backend.service.IBookingService;
 import org.hibernate.ObjectDeletedException;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.dto.CarDto;
 import com.nocountry.backend.mapper.ICarMapper;
+import com.nocountry.backend.model.Booking;
 import com.nocountry.backend.model.Car;
+import com.nocountry.backend.repository.IBookingRepository;
 import com.nocountry.backend.repository.ICarRepository;
+import com.nocountry.backend.service.IBookingService;
 import com.nocountry.backend.service.ICarService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -44,23 +44,22 @@ public class CarServiceImpl implements ICarService {
             Long idCategory,
             String pickUpLocation,
             LocalDateTime startTime,
-            LocalDateTime endTime
-    ) {
+            LocalDateTime endTime) {
 
-        //trae todos los autos que no estan en reservas por categoria y Location
-        List<Car> allCars = carRepository.findAllByCategory_IdAndPickUpLocation( idCategory, pickUpLocation);
+        // trae todos los autos que no estan en reservas por categoria y Location
+        List<Car> allCars = carRepository.findAllByCategory_IdAndPickUpLocation(idCategory, pickUpLocation);
 
-        //trae todas las reservas por Location
+        // trae todas las reservas por Location
         List<Booking> reservasPorUbicacionRetiro = bookingRepository.findAllByPickUpLocation(pickUpLocation);
         List<Booking> reservasFinales = new ArrayList<>();
-        for (Booking book : reservasPorUbicacionRetiro){
-               if (bookingService.validateDateBooking(startTime,endTime,book)){
-                   reservasFinales.add(book);
-               }
+        for (Booking book : reservasPorUbicacionRetiro) {
+            if (bookingService.validateDateBooking(startTime, endTime, book)) {
+                reservasFinales.add(book);
+            }
         }
 
-        //filtrado de autos
-        List<Car> carsFiltered = deleteCarsWithBooking(allCars,reservasFinales);
+        // filtrado de autos
+        List<Car> carsFiltered = deleteCarsWithBooking(allCars, reservasFinales);
         return carMapper.CarEntityListToCarDTOList(carsFiltered);
     }
 
@@ -113,5 +112,11 @@ public class CarServiceImpl implements ICarService {
         } else {
             throw new ObjectDeletedException("car with ID " + carId + " can't be deleted.", carId, "Car");
         }
+    }
+
+    @Override
+    public List<CarDto> findAllCarsByCategory(Long categoryId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAllCarsByCategory'");
     }
 }

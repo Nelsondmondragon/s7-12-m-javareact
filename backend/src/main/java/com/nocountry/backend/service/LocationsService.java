@@ -1,16 +1,14 @@
 package com.nocountry.backend.service;
 
+import java.util.List;
 
 import com.nocountry.backend.dto.LocationDto;
 
-import java.util.List;
-
 public interface LocationsService {
 
-    void savaAll(List<LocationDto> locationDtos);
+    public void savaAll(List<LocationDto> locationDtos);
 
-    List<LocationDto> findAllLocationsContainingBranches();
+    public List<LocationDto> findAllLocationsContainingBranches();
 
-    List<LocationDto> findAll();
-
+    public List<LocationDto> findAll();
 }
