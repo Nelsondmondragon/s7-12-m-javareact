@@ -1,6 +1,7 @@
 package com.nocountry.backend.Error;
 
 import com.nocountry.backend.Error.Exceptions.CarNotFoundException;
+import com.nocountry.backend.Error.Exceptions.RegisterException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -21,7 +22,11 @@ public enum ErrorCode {
     EMAIL_EXISTS("022", "The email address you provided,is already in use"),
 
     CAR_NOT_FOUND("0011", "Requested Car not found."),
-    USER_REGISTER("20","Problem with registration.");
+
+    USER_NOT_FOUND("023","user not found"),
+    USER_REGISTER("20","Problem with registration."),
+
+    LOGIN_BAD_CREDENTIALS("401","Bad login credentials.");
 
 
     private String errCode;

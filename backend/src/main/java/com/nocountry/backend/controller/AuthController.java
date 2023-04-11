@@ -37,11 +37,7 @@ public class AuthController {
     @PostMapping("/login")
     @Operation(summary = "Inicio de sesion para un usuario de MoveAr.")
     public ResponseEntity<?> login(@RequestBody AuthRequestDto request) {
-        try {
             AuthResponseDto response = authService.login(request);
             return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
-        } catch (BadCredentialsException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
-        }
     }
 }

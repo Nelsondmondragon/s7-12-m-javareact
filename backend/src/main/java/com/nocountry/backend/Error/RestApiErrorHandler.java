@@ -3,6 +3,7 @@ package com.nocountry.backend.Error;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.nocountry.backend.Error.Exceptions.CarNotFoundException;
 import com.nocountry.backend.Error.Exceptions.GenericNotFoundException;
+import com.nocountry.backend.Error.Exceptions.LoginException;
 import com.nocountry.backend.Error.Exceptions.RegisterException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -33,8 +34,19 @@ public class RestApiErrorHandler {
     }
 
 
+    @ExceptionHandler(LoginException.class)
+    public ResponseEntity<Error> LoginException(HttpServletRequest request,
+                                                      LoginException ex, Locale locale) {
+        Error error = ErrorUtils
+                .createError(
+                        String.format("%s %s", ErrorCode.LOGIN_BAD_CREDENTIALS.getErrMsgKey(), ex.getMessage()),
+                        ex.getErrorCode(),
+                        HttpStatus.UNAUTHORIZED.value()).setUrl(request.getRequestURL().toString())
+                .setReqMethod(request.getMethod()).setTimestamp(Instant.now());
+        return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
+    }
     @ExceptionHandler(RegisterException.class)
-    public ResponseEntity<Error> handleNotFoundException(HttpServletRequest request,
+    public ResponseEntity<Error> handleRegisterException(HttpServletRequest request,
                                                          RegisterException ex, Locale locale) {
         Error error = ErrorUtils
                 .createError(
@@ -47,7 +59,7 @@ public class RestApiErrorHandler {
 
 
     @ExceptionHandler(GenericNotFoundException.class)
-    public ResponseEntity<Error> handleNotFoundException(HttpServletRequest request,
+    public ResponseEntity<Error> handleGenericNotFoundException(HttpServletRequest request,
                                                          GenericNotFoundException ex, Locale locale) {
         Error error = ErrorUtils
                 .createError(
