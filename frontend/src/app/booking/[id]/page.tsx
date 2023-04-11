@@ -1,11 +1,25 @@
+"use client";
 import Image from "next/image";
 import cars from "../../../cars.json";
 import ModalInicio from "@/components/ui/ModalInicio";
 import ModalLoading from "@/components/ui/ModalLoading";
 import ModalConfirm from "@/components/ui/ModalConfirm";
+import {useState} from 'react';
+import { useRouter } from "next/navigation";
 
 const BookingCar = ({ params }) => {
   const result = cars.filter((vh) => vh.categoria === params.id);
+
+  const [showModal, setShowModal] = useState(false)
+  const router = useRouter()
+
+  const handleBooking = () => {
+    let user = localStorage.getItem('user');
+    user === null ? setShowModal(true) : router.push('/pay');
+
+};
+
+
   return (
     <div className="h-screen flex justify-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
       <div className="w-full h-fit mx-10 my-10 p-10 bg-white/80 rounded-3xl flex flex-col items-center gap-8">
@@ -24,15 +38,19 @@ const BookingCar = ({ params }) => {
                 <p className="text-2xl leading-7">{car.info}</p>
                 <p className="text-3xl font-medium">$ {car.price}</p>
               </div>
-              <button className="bg-primary-600 self-end w-[288px] h-[59px] rounded-xl text-white text-2xl">
+              <button className="bg-primary-600 self-end w-[288px] h-[59px] rounded-xl text-white text-2xl"
+              onClick={handleBooking}>
                 Reservar
               </button>
             </div>
           );
         })}
       </div>
+      {
+        showModal ? <ModalInicio setShowModal={setShowModal}/> :  null
+      }
       {/* <ModalInicio/> */}
-      <ModalLoading />
+      {/* <ModalLoading /> */}
       {/* <ModalConfirm /> */}
     </div>
   );

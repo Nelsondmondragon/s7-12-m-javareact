@@ -1,6 +1,12 @@
+import ModalLoading from "@/components/ui/ModalLoading";
 import React from "react";
+// import {useState} from 'react';
 
 const PayPage = () => {
+
+  // const [modal, setModal] = useState(false)
+
+
   return (
     <section className="h-[80vh] flex justify-evenly items-center">
       {/* card */}
@@ -71,6 +77,9 @@ const PayPage = () => {
           </button>
         </div>
       </div>
+      {
+        <ModalLoading />
+      }
     </section>
   );
 };
