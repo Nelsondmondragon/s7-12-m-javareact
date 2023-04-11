@@ -31,7 +31,7 @@ export const ThingCard = ({ thing }: ThingProps) => {
       </div>
       <div className={`grid items-center justify-items-center text-darkBlue `}>
         <h2 className="text-[10px] text-center">{thing.title}</h2>
-        <MoveToTruck thing={thing} />
+        <MoveToTruck thing={thing} side={'left'} />
       </div>
     </article>
   );

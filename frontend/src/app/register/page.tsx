@@ -33,7 +33,6 @@ const Register = () => {
   });
 
   const RegisterUser = async (values: FormValues) => {
-    console.log('guardar datatos parcial');
     /**
      * llamar a register2
      */
