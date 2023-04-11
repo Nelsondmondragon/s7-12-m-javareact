@@ -8,7 +8,7 @@ import {
   setDecreaseItemFromTruck,
 } from '../../../features/truck/truckSlice';
 
-export const MoveToTruck = ({ thing }) => {
+export const MoveToTruck = ({ thing, side }) => {
   const dispatch = useDispatch();
 
   const selectedItem = useSelector((state) =>
@@ -46,27 +46,28 @@ export const MoveToTruck = ({ thing }) => {
   return (
     <div className="flex items-center gap-3 text-white">
       <div
-        className="absolute top-0 left-0 md:hidden cursor-pointer w-full h-full"
+        className="absolute top-0 left-0 md:hidden cursor-pointer bg-opacity-50 w-full h-full"
         onClick={() => {
           onAddToCart();
         }}
       ></div>
+
       <div className="hidden md:flex items-center gap-3">
         <button
           type="button"
           disabled={processing | (selectedItem.length === 0)}
-          className=" flex  px-2 py-1 bg-primary-600 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs "
+          className=" flex w-5 justify-center items-center  px-2 py-1 bg-primary-600 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs "
           onClick={() => {
             onRestToCart();
           }}
         >
           -
         </button>
-        <p className="text-red-500"> {selectedItem[0]?.qty}</p>
+        <p className="text-red-500 w-4 text-right"> {selectedItem[0]?.qty}</p>
         <button
           type="button"
           disabled={processing}
-          className=" flex  px-2 py-1 bg-primary-700 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs "
+          className=" flex w-5 justify-center items-center  px-2 py-1 bg-primary-700 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs "
           onClick={() => {
             onAddToCart();
           }}

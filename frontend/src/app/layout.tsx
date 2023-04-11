@@ -15,7 +15,7 @@ const roboto = Roboto({
 
 const metadata = {
   title: 'MoveAr',
-  description: 'La manera facil moverser',
+  description: 'La manera fácil moverse',
 };
 
 export default function RootLayout({

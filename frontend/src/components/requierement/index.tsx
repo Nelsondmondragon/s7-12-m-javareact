@@ -29,11 +29,11 @@ type Props = {};
 
 export const Requirement = (props: Props) => {
   return (
-    <section className="px-4 md:px-24 pb-24">
-      <h2 className="text-4xl text-white my-12 font-semibold ">
-        ¿Qúé necesitas para alquilar un vehículo con nosotros?
+    <section className="px-4 md:px-12 lg:px-24 pb-24">
+      <h2 className="md:text-2xl lg:text-3xl text-white my-12 font-semibold ">
+        ¿Qué necesitas para alquilar un vehículo con nosotros?
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-lg">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 text-lg">
         <CardRequirement
           image="/assets/images/licencia.png"
           title="LICENCIA DE CONDUCIR"

@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaRegTrashAlt } from 'react-icons/fa';
@@ -6,9 +7,68 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 import {
   selectTruckItems,
   selectTruckVolume,
+  setAddItemToTruck,
+  setDecreaseItemFromTruck,
   setRemoveItemFromTruck,
 } from '../../features/truck/truckSlice';
-import { MoveToTruck } from './ThingCard/MoveToTruck';
+
+const Counter = ({ thing }) => {
+  const [processing, setProcessing] = useState(false);
+  const dispatch = useDispatch();
+
+  const onRestToCart = (thing) => {
+    setProcessing(true);
+    const item = {
+      title: thing.title,
+      image: thing.image,
+      volume: thing.volume,
+      qty: thing.qty,
+    };
+    dispatch(setDecreaseItemFromTruck(item));
+    setTimeout(() => {
+      setProcessing(false);
+    }, 100);
+  };
+
+  const onAddToCart = (thing) => {
+    setProcessing(true);
+    const item = {
+      title: thing.title,
+      image: thing.image,
+      volume: thing.volume,
+    };
+    dispatch(setAddItemToTruck(item));
+    setTimeout(() => {
+      setProcessing(false);
+    }, 100);
+  };
+
+  return (
+    <div className="flex items-center gap-3">
+      <button
+        type="button"
+        disabled={processing | (thing.qty === 0)}
+        className=" flex justify-center items-center w-5  px-2 py-1 bg-primary-600 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs text-white "
+        onClick={() => {
+          onRestToCart(thing);
+        }}
+      >
+        -
+      </button>
+      <p className="text-red-500 w-4 text-right"> {thing.qty}</p>
+      <button
+        type="button"
+        disabled={processing}
+        className=" flex justify-center items-center w-5  px-2 py-1 bg-primary-700 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs text-white "
+        onClick={() => {
+          onAddToCart(thing);
+        }}
+      >
+        +
+      </button>
+    </div>
+  );
+};
 
 type Props = {};
 export const SelectedArticles = (props: Props) => {
@@ -42,7 +102,7 @@ export const SelectedArticles = (props: Props) => {
           {selectedItems.map((item) => {
             return (
               <div key={item.title} className="flex items-center space-x-2 ">
-                <MoveToTruck thing={item} />
+                <Counter thing={item} />
                 <Image
                   src={item.image}
                   alt={item.title}

@@ -17,8 +17,16 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
 
   const dispatch = useDispatch();
 
-  const onCheckAvailability = (title) => {
-    dispatch(setCategory(title));
+  const onCheckAvailability = (title: string) => {
+    const typeVehicle =
+      title === 'CAMIÓN CHICO'
+        ? 'small'
+        : title === 'CAMIÓN MEDIANO'
+        ? 'medium'
+        : 'large';
+    dispatch(setCategory(typeVehicle));
+    localStorage.setItem('category', JSON.stringify(typeVehicle));
+
     router.push('/booking');
   };
 
@@ -30,30 +38,31 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
           onCheckAvailability(title);
         }}
       ></div>
-
-      <Image
-        className="w-full  rounded-t-[20px] "
-        src={image}
-        width={400}
-        height={45}
-        alt={title}
-      />
-      <div className=" bg-primary-600 px-0 md:px-4 lg:px-6 pb-4 md:pb-0 pt-4 rounded-b-[20px] grid">
-        <h3 className="text-center text-base md:text-xl font-bold md:pb-2  md:border-b-4 md:border-b-white">
-          {title}
-        </h3>
-        <div className="hidden md:block text-sm py-4">
-          <p>{line1}</p>
-          <p>{line2}</p>
-          <p>{line3}</p>
-        </div>
-        <div className="hidden md:flex justify-end">
-          <button
-            className="btn mb-8"
-            onClick={() => onCheckAvailability(title)}
-          >
-            Ver Disponibilidad
-          </button>
+      <div className="md:grid md:grid-cols-2 lg:grid-cols-1 md:gap-4 lg:gap-0">
+        <Image
+          className="w-full  rounded-t-[20px] md:rounded-[20px] lg:rounded-b-none"
+          src={image}
+          width={400}
+          height={45}
+          alt={title}
+        />
+        <div className=" lg:h-64   bg-primary-600 md:bg-primary-700 md:rounded-[20px] lg:rounded-t-none px-0 md:px-4 lg:px-6 pb-4 md:pb-0 pt-4 rounded-b-[20px] grid">
+          <h3 className="text-center text-base md:text-xl font-bold md:pb-2  md:border-b-4 md:border-b-white">
+            {title}
+          </h3>
+          <div className="hidden md:block text-sm py-4">
+            <p>{line1}</p>
+            <p>{line2}</p>
+            <p>{line3}</p>
+          </div>
+          <div className="hidden md:flex justify-end">
+            <button
+              className="btn mb-8"
+              onClick={() => onCheckAvailability(title)}
+            >
+              Ver Disponibilidad
+            </button>
+          </div>
         </div>
       </div>
     </div>
