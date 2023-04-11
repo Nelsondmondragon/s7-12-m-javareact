@@ -7,6 +7,8 @@ import { FaBars, FaTimes, FaUserAlt, FaUserPlus } from 'react-icons/fa';
 import Cookies from 'js-cookie';
 
 import logo from '../../../public/assets/images/logos/logo.png';
+import logoMobile from '../../../public/assets/images/logos/logo-mobile.png';
+import logoTablet from '../../../public/assets/images/logos/logo-tablet.png';
 import { ModalLogin } from '../login/ModalLogin';
 import {
   openModalLogin,
@@ -15,11 +17,31 @@ import {
 } from '@/features/users/userSlice';
 
 const links = [
-  { label: 'Inicio', route: '/' },
-  { label: 'Vehículos', route: '/booking' },
-  { label: 'Servicios', route: '/services' },
-  { label: 'Nosotros', route: '/about' },
-  { label: 'Contacto', route: '/contact' },
+  { label: 'Inicio', icon: '/assets/images/home.svg', size: 24, route: '/' },
+  {
+    label: 'Vehículos',
+    icon: '/assets/images/cars.svg',
+    size: 24,
+    route: '/booking',
+  },
+  {
+    label: 'Servicios',
+    icon: '/assets/images/services.svg',
+    size: 24,
+    route: '/services',
+  },
+  {
+    label: 'Nosotros',
+    icon: '/assets/images/about.svg',
+    size: 24,
+    route: '/about',
+  },
+  {
+    label: 'Contacto',
+    icon: '/assets/images/contact.svg',
+    size: 24,
+    route: '/contact',
+  },
 ];
 
 export const Header = () => {
@@ -53,9 +75,21 @@ export const Header = () => {
   return (
     <>
       <header>
+        <button
+          className="hover:text-primary-200 lg:hidden ml-4"
+          onClick={handleShowToggleMenu}
+        >
+          {!showMenu ? <FaBars size={20} /> : <FaTimes size={20} />}
+        </button>
         <Link href="/">
           <div className="flex items-center">
-            <div className="h-9 w-9 md:w-12 md:h-12  lg:h-[73px] lg:w-[81px] mr-[30px]">
+            <div className="h-[39px] w-[84px] md:hidden">
+              <Image alt="logo move ar" src={logoMobile} placeholder="blur" />
+            </div>
+            <div className="hidden md:block md:h-[64px] md:w-[84px] lg:hidden">
+              <Image alt="logo move ar" src={logoTablet} placeholder="blur" />
+            </div>
+            <div className="hidden lg:block lg:h-[73px] lg:w-[81px] mr-[30px]">
               <Image src={logo} alt="Logo" className="w-full h-full" />
             </div>
             <div className="hidden lg:block font-bold text-sm max-w-[120px]">
@@ -103,22 +137,25 @@ export const Header = () => {
             )}
           </div>
 
-          <button
-            className="hover:text-primary-200 lg:hidden ml-4"
-            onClick={handleShowToggleMenu}
-          >
-            {!showMenu ? <FaBars size={20} /> : <FaTimes size={20} />}
-          </button>
           <ul
             onClick={handleShowToggleMenu}
             className={`menuMobile ${
-              showMenu ? ' translate-x-0 ' : 'translate-x-full'
+              showMenu ? 'translate-x-0' : '-translate-x-full'
             } lg:menuDesktop xl:-translate-x-36`}
           >
             {links.map((link) => {
               return (
                 <li className="headerLink" key={link.label}>
-                  <Link href={link.route}>{link.label}</Link>
+                  <Link href={link.route} className="flex space-x-2">
+                    <Image
+                      src={link.icon}
+                      alt={link.label}
+                      width={link.size}
+                      height={link.size}
+                      className="lg:hidden"
+                    />
+                    <span>{link.label}</span>
+                  </Link>
                 </li>
               );
             })}
