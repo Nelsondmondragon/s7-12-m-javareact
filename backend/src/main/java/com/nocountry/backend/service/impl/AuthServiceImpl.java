@@ -1,5 +1,9 @@
 package com.nocountry.backend.service.impl;
 
+import com.nocountry.backend.Error.ErrorCode;
+import com.nocountry.backend.Error.Exceptions.GenericNotFoundException;
+import com.nocountry.backend.Error.Exceptions.RegisterException;
+import jakarta.validation.constraints.Email;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -42,9 +46,15 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public AuthResponseDto register(RegisterRequestDto request) {
+
+        if(!mailSenderService.isMailValid(request.getEmail())) {
+            throw new RegisterException(
+                    String.format("the email address you provided is either not following the correct format or has been misspelled.Please check and re-enter the email address correctly.", request.getEmail()));
+        }
+
         var userOptional = userRepository.findByEmail(request.getEmail());
         if (userOptional.isPresent()) {
-            throw new RuntimeException("Email already in use");
+            throw new RegisterException(ErrorCode.EMAIL_EXISTS);
         }
 
         var user = User.builder()

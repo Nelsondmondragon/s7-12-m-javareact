@@ -1,4 +1,4 @@
-INSERT INTO Categories (VOLUME, NAME, CAPACITY_LIMIT)
+/*INSERT INTO Categories (VOLUME, NAME, CAPACITY_LIMIT)
 VALUES
 (10.0, 'Small', 1000.0),
 (20.0, 'Medium', 2000.0),
@@ -18,4 +18,4 @@ VALUES
 ('truck7.jpg', 'Small Truck', 'Isuzu', 2022, true, true, 2, 'STU123', 6000, 2200, 2400, 'Catan', false,1),
 ('truck8.jpg', 'Medium Truck', 'GMC', 2021, true, false, 3, 'VWX456', 8000, 2500, 2800, 'Liniers', true,2),
 ('truck9.jpg', 'Big Truck', 'Kenworth', 2020, true, true, 4, 'YZA789', 10000, 3000, 3200, 'Moron', true,3),
-('truck10.jpg', 'Small Truck', 'Mitsubishi', 2022, true, true, 2, 'BCD123', 6000, 2200, 2400, 'Lomas Del Mirador', true,1);
+('truck10.jpg', 'Small Truck', 'Mitsubishi', 2022, true, true, 2, 'BCD123', 6000, 2200, 2400, 'Lomas Del Mirador', true,1);*/

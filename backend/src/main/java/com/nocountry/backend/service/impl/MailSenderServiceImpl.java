@@ -10,6 +10,8 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 
+import java.util.regex.Pattern;
+
 @Service
 @RequiredArgsConstructor
 public class MailSenderServiceImpl implements IMailSenderService {
@@ -24,5 +26,11 @@ public class MailSenderServiceImpl implements IMailSenderService {
         helper.setSubject(subject);
         helper.setText(text, true);
         mailSender.send(message);
+    }
+
+    @Override
+    public boolean isMailValid(String email) {
+        Pattern emailPattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        return emailPattern.matcher(email).matches();
     }
 }

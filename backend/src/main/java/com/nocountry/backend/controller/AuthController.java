@@ -30,12 +30,8 @@ public class AuthController {
     @PostMapping("/register")
     @Operation(summary = "Registrar un usuario en MoveAr.")
     public ResponseEntity<?> register(@RequestBody RegisterRequestDto request) {
-        try {
             AuthResponseDto response = authService.register(request);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
-        }
     }
 
     @PostMapping("/login")

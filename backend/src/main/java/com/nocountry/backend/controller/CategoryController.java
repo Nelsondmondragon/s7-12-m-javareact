@@ -59,12 +59,7 @@ public class CategoryController {
 
     @DeleteMapping("/{categoryId}/delete")
     public ResponseEntity<String> deleteCategory(@PathVariable(value = "categoryId") Long categoryId) {
-        Optional<CategoryDto> category = Optional.ofNullable(categoryService.findCategoryById(categoryId));
-        if (category.isPresent()) {
-            categoryService.deleteCategory(categoryId);
-            return new ResponseEntity<>("Category successfully deleted", HttpStatus.ACCEPTED);
-        } else {
-            return new ResponseEntity<>("Category not found", HttpStatus.NOT_FOUND);
-        }
+        categoryService.deleteCategory(categoryId);
+        return new ResponseEntity<>("Category successfully deleted", HttpStatus.ACCEPTED);
     }
 }

@@ -3,6 +3,7 @@ package com.nocountry.backend.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nocountry.backend.model.Category;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,6 +41,15 @@ public class CarDto {
 
     @JsonProperty("patent")
     private String patent;
+
+    @JsonProperty("length")
+    private Integer length;
+
+    @JsonProperty("width")
+    private Integer width;
+
+    @JsonProperty("height")
+    private Integer height;
 
     @JsonProperty("available")
     private boolean available;

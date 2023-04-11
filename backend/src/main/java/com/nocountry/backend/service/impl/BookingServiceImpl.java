@@ -2,9 +2,12 @@ package com.nocountry.backend.service.impl;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.nocountry.backend.Error.Exceptions.GenericNotFoundException;
+import com.nocountry.backend.model.Category;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.dto.BookingDto;
@@ -26,13 +29,19 @@ public class BookingServiceImpl implements IBookingService {
 
     @Override
     public List<BookingDto> findAllBookings() {
-        return bookingMapper.toBookingDtos(bookingRepository.findAll());
+        List<Booking> bookingEntities = bookingRepository.findAll();
+        if (bookingEntities.isEmpty()) {
+            return new ArrayList<>();
+        } else {
+            return bookingMapper.toBookingDtos(bookingEntities);
+        }
     }
 
     @Override
     public BookingDto getBookingById(Long bookingId) {
-        var booking = bookingRepository.findById(bookingId).orElseThrow();
-        return bookingMapper.toBookingDto(booking);
+        Booking bookingEntity = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new GenericNotFoundException(String.format("The booking with the provided ID (%s) was not found", bookingId)));
+        return bookingMapper.toBookingDto(bookingEntity);
     }
 
     @Override
@@ -51,17 +60,20 @@ public class BookingServiceImpl implements IBookingService {
 
         return bookingMapper.toBookingDto(bookingRepository.save(booking));
     }
-
     @Override
     public BookingDto updateBooking(Long bookingId, BookingDto bookingDto) {
-        Optional<Booking> booking = bookingRepository.findById(bookingId);
-        bookingMapper.updateBooking(bookingDto, booking.get());
-        return bookingDto;
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new GenericNotFoundException(String.format("The booking with the provided ID (%s) was not found",bookingId)));
+        bookingMapper.updateBooking(bookingDto,booking);
+        Booking updatedBooking= bookingRepository.save(booking);
+        return bookingMapper.toBookingDto(updatedBooking);
     }
 
     @Override
     public void deleteBooking(Long bookingId) {
-        bookingRepository.deleteById(bookingId);
+        Booking booking = bookingRepository.findById(bookingId).orElseThrow(() ->
+                new GenericNotFoundException(String.format("The booking with ID %s was not found. You cannot delete a booking that does not exist.", bookingId)));
+        bookingRepository.delete(booking);
     }
 
     @Override
@@ -74,7 +86,6 @@ public class BookingServiceImpl implements IBookingService {
             return false;
         }
         return true;
-
     }
     // crear BookingOverlapException
     private void validateBooking(BookingDto bookingDto) {

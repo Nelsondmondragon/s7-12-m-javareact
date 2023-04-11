@@ -2,6 +2,7 @@ package com.nocountry.backend.controller;
 
 import java.util.List;
 
+import com.nocountry.backend.dto.CategoryDto;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,12 @@ public class BookingController {
 
     @GetMapping("/all")
     public ResponseEntity<List<BookingDto>> getAll() {
-        return new ResponseEntity<>(bookingService.findAllBookings(), HttpStatus.OK);
+        List<BookingDto> categories = bookingService.findAllBookings();
+        if (categories.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(categories);
+        }
     }
 
     @GetMapping("/{bookingId}")

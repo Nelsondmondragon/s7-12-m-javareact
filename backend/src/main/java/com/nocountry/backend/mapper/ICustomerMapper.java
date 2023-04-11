@@ -19,6 +19,7 @@ public interface ICustomerMapper {
 
     void updateCustomer(CustomerDetailsDto customerDetailsDto, @MappingTarget Customer customer);
 
+
     @InheritInverseConfiguration
     @Mapping(target = "user", ignore = true)
     @Mapping(target = "id", ignore = true)

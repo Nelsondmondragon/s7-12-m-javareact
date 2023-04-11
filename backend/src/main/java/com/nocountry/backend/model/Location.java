@@ -20,9 +20,7 @@ public class Location {
     @Column(name = "ID_LOCATION")
     private String id;
 
-
     private String name;
-
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "location")
     private List<Branch> branches;

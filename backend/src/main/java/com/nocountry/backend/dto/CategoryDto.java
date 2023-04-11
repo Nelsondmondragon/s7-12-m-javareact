@@ -17,9 +17,5 @@ public class CategoryDto {
 
     private Double Capacity;
 
-    private Integer length;
-
-    private Integer width;
-
-    private Integer height;
+    private String name;
 }
