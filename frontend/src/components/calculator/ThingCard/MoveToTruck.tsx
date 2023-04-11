@@ -46,13 +46,13 @@ export const MoveToTruck = ({ thing, side }) => {
   return (
     <div className="flex items-center gap-3 text-white">
       <div
-        className="absolute top-0 left-0 md:hidden cursor-pointer bg-opacity-50 w-full h-full"
+        className="absolute top-0 left-0 lg:hidden cursor-pointer bg-opacity-50 w-full h-full"
         onClick={() => {
           onAddToCart();
         }}
       ></div>
 
-      <div className="hidden md:flex items-center gap-3">
+      <div className="hidden lg:flex items-center gap-3">
         <button
           type="button"
           disabled={processing | (selectedItem.length === 0)}

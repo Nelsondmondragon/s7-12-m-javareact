@@ -16,10 +16,10 @@ export const ThingCard = ({ thing }: ThingProps) => {
   );
   return (
     <article
-      className={`relative grid bg-neutral-100 md:h-[130px] items-center justify-items-center rounded-xl py-1 px-1 transition-all duration-700 ease-in-out  hover:scale-105 border-2 border-primary `}
+      className={`relative grid bg-neutral-100 lg:h-[130px] items-center justify-items-center rounded-xl py-1 px-1 transition-all duration-700 ease-in-out  hover:scale-105 border-2 border-primary `}
     >
       <div
-        className={`flex items-center justify-center w-10 md:w-20 h-10 md:h-20 `}
+        className={`flex items-center justify-center w-10 lg:w-20 h-10 lg:h-20 `}
       >
         <Image
           src={thing.image}
