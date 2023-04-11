@@ -1,5 +1,8 @@
-import Image from 'next/image';
-import cars from '../../../cars.json';
+import Image from "next/image";
+import cars from "../../../cars.json";
+import ModalInicio from "@/components/ui/ModalInicio";
+import ModalLoading from "@/components/ui/ModalLoading";
+import ModalConfirm from "@/components/ui/ModalConfirm";
 
 const BookingCar = ({ params }) => {
   const result = cars.filter((vh) => vh.categoria === params.id);
@@ -28,9 +31,11 @@ const BookingCar = ({ params }) => {
           );
         })}
       </div>
+      {/* <ModalInicio/> */}
+      <ModalLoading />
+      {/* <ModalConfirm /> */}
     </div>
   );
-
 };
 
 export default BookingCar;
