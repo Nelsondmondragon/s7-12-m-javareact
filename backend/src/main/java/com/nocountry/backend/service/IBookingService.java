@@ -12,7 +12,7 @@ public interface IBookingService {
 
     public BookingDto findBookingById(Long bookingId);
 
-    public BookingDto saveBooking(BookingDto bookingDto);
+    public BookingDto saveBooking(Long carId, Long customerId, BookingDto bookingDto);
 
     public BookingDto updateBooking(Long bookingId, BookingDto bookingDto);
 

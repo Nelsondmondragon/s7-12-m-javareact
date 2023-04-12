@@ -1,0 +1,22 @@
+{
+    "id": 123,
+    "image": "https://example.com/car.jpg",
+    "model": "Small Truck",
+    "make": "Ford",
+    "year": 2022,
+    "air": true,
+    "gps": true,
+    "passengers": 2,
+    "patent": "ABC123",
+    "length": 6000,
+    "width": 2200,
+    "height": 2400,
+    "pickUpLocation": "CABA",
+    "category": {
+        "id": 456,
+        "name": "Small",
+        "volume": 10.0,
+        "capacityLimit": 1000.0,
+        "hourlyPrice": 40000.00
+    }
+}

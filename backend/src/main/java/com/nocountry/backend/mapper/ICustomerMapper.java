@@ -21,6 +21,8 @@ public interface ICustomerMapper {
 
     List<CustomerListDto> toCustomerListDtos(List<Customer> customers);
 
+    Customer customerDtoToCustomer(CustomerDetailsDto customerDetailsDto);
+
     void updateCustomer(CustomerDetailsDto customerDetailsDto, @MappingTarget Customer customer);
 
     @InheritInverseConfiguration

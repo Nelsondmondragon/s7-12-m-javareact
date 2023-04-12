@@ -10,12 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.dto.BookingDto;
 import com.nocountry.backend.mapper.IBookingMapper;
-import com.nocountry.backend.mapper.ICarMapper;
 import com.nocountry.backend.model.Booking;
 import com.nocountry.backend.repository.IBookingRepository;
+import com.nocountry.backend.repository.ICarRepository;
+import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.service.IBookingService;
-import com.nocountry.backend.service.ICarService;
-import com.nocountry.backend.service.ICustomerService;
 import com.nocountry.backend.service.IMailSenderService;
 
 import jakarta.mail.MessagingException;
@@ -30,11 +29,9 @@ public class BookingServiceImpl implements IBookingService {
 
     private final IBookingMapper bookingMapper;
 
-    private final ICarMapper carMapper;
+    private final ICarRepository carRepository;
 
-    private ICarService carService;
-
-    private ICustomerService customerService;
+    private final ICustomerRepository customerRepository;
 
     private final IMailSenderService mailSenderService;
 
@@ -50,12 +47,13 @@ public class BookingServiceImpl implements IBookingService {
     }
 
     @Override
-    public BookingDto saveBooking(BookingDto bookingDto) {
-        validateOverlapBooking(bookingDto);
+    public BookingDto saveBooking(Long carId, Long customerId, BookingDto bookingDto) {
+
+        validateOverlapBooking(carId, bookingDto);
 
         var booking = bookingMapper.toBooking(bookingDto);
-        var car = carService.findCarById(booking.getFkCar());
-        var customer = customerService.findCustomerById(booking.getFkCustomer());
+        var car = carRepository.findById(carId).orElse(null);
+        var customer = customerRepository.findById(customerId).orElse(null);
 
         booking.setStartTime(bookingDto.getStartTime());
         booking.setEndTime(bookingDto.getEndTime());
@@ -63,10 +61,10 @@ public class BookingServiceImpl implements IBookingService {
         booking.setDropOffLocation(bookingDto.getDropOffLocation());
         booking.setAssignedDriver(bookingDto.getAssignedDriver());
         booking.setHelperPawn(bookingDto.getHelperPawn());
-        booking.setCar(carMapper.CarDtoToCar(car));
-        booking.setFkCustomer(bookingDto.getFkCustomer());
+        booking.setFkCar(carId);
+        booking.setFkCustomer(customerId);
 
-        String to = customer.getEmail();
+        String to = "pulidodev@gmail.com";
         String subject = "Confirmación de reserva";
         String text = "<html><body>"
                 + "<p>Estimado/a " + customer.getFirstName() + ",</p>"
@@ -84,7 +82,7 @@ public class BookingServiceImpl implements IBookingService {
                 + "<li>Marca: " + car.getMake() + "</li>"
                 + "<li>Modelo: " + car.getModel() + "</li>"
                 + "<li>Patente: " + car.getPatent() + "</li>"
-                + "<li>Categoría: " + car.getCategory() + "</li>"
+                + "<li>Categoría: " + car.getCategory().getName() + "</li>"
                 + "<li>Cantidad de pasajeros: " + car.getPassengers() + "</li>"
                 + "</ul>"
                 + "<p>Por favor, asegúrese de llegar al lugar de retiro a tiempo y llevar consigo una identificación válida y la tarjeta de crédito utilizada para realizar la reserva. Si tiene alguna pregunta o necesita hacer algún cambio en su reserva, no dude en contactarnos por correo electrónico o por teléfono.</p>"
@@ -126,8 +124,8 @@ public class BookingServiceImpl implements IBookingService {
 
     }
 
-    private void validateOverlapBooking(BookingDto bookingDto) {
-        List<Booking> allCarBookings = bookingRepository.findAllByFkCar(bookingDto.getFkCar());
+    private void validateOverlapBooking(Long carId, BookingDto bookingDto) {
+        List<Booking> allCarBookings = bookingRepository.findAllByFkCar(carId);
         Duration margin = Duration.ofHours(1);
 
         for (Booking carBooking : allCarBookings) {

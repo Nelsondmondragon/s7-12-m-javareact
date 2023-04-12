@@ -2,9 +2,6 @@ package com.nocountry.backend.dto;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.nocountry.backend.model.Car;
-
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,13 +34,7 @@ public class BookingDto {
     @Schema(example = "false")
     private Boolean helperPawn;
 
-    @JsonProperty("carId")
-    @Schema(example = "1")
     private Long fkCar;
 
-    private Car car;
-
-    @JsonProperty("customerId")
-    @Schema(example = "2")
     private Long fkCustomer;
 }
