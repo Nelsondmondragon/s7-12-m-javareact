@@ -15,7 +15,9 @@ import com.nocountry.backend.dto.CarDto;
 import com.nocountry.backend.mapper.ICarMapper;
 import com.nocountry.backend.model.Booking;
 import com.nocountry.backend.model.Car;
+import com.nocountry.backend.repository.IBookingRepository;
 import com.nocountry.backend.repository.ICarRepository;
+import com.nocountry.backend.service.IBookingService;
 import com.nocountry.backend.service.ICarService;
 import com.nocountry.backend.specification.CarSpecification;
 
@@ -30,9 +32,9 @@ public class CarServiceImpl implements ICarService {
 
     private final ICarMapper carMapper;
 
-    // private final IBookingRepository bookingRepository;
+    private final IBookingRepository bookingRepository;
 
-    // private final IBookingService bookingService;
+    private final IBookingService bookingService;
 
     @Override
     public List<CarDto> findAllCars() {
@@ -91,26 +93,22 @@ public class CarServiceImpl implements ICarService {
             LocalDateTime startTime,
             LocalDateTime endTime) {
 
-        // // trae todos los autos que no estan en reservas por categoria y Location
-        // List<Car> allCars =
-        // carRepository.findAllByCategory_IdAndPickUpLocation(idCategory,
-        // pickUpLocation);
+        // trae todos los autos que no estan en reservas por categoria y Location
+        List<Car> allCars = carRepository.findAllByCategory_IdAndPickUpLocation(idCategory,
+                pickUpLocation);
 
-        // // trae todas las reservas por Location
-        // List<Booking> reservasPorUbicacionRetiro =
-        // bookingRepository.findAllByPickUpLocation(pickUpLocation);
-        // List<Booking> reservasFinales = new ArrayList<>();
-        // for (Booking book : reservasPorUbicacionRetiro) {
-        // if (bookingService.validateDateBooking(startTime, endTime, book)) {
-        // reservasFinales.add(book);
-        // }
-        // }
+        // trae todas las reservas por Location
+        List<Booking> reservasPorUbicacionRetiro = bookingRepository.findAllByPickUpLocation(pickUpLocation);
+        List<Booking> reservasFinales = new ArrayList<>();
+        for (Booking book : reservasPorUbicacionRetiro) {
+            if (bookingService.validateDateBooking(startTime, endTime, book)) {
+                reservasFinales.add(book);
+            }
+        }
 
-        // // filtrado de autos
-        // List<Car> carsFiltered = deleteCarsWithBooking(allCars, reservasFinales);
-        // return carMapper.CarEntityListToCarDTOList(carsFiltered);
-
-        return null;
+        // filtrado de autos
+        List<Car> carsFiltered = deleteCarsWithBooking(allCars, reservasFinales);
+        return carMapper.CarEntityListToCarDTOList(carsFiltered);
     }
 
     @Override

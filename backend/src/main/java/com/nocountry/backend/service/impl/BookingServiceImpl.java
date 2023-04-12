@@ -64,7 +64,7 @@ public class BookingServiceImpl implements IBookingService {
         booking.setFkCar(carId);
         booking.setFkCustomer(customerId);
 
-        String to = "pulidodev@gmail.com";
+        String to = customer.getUser().getEmail();
         String subject = "Confirmación de reserva";
         String text = "<html><body>"
                 + "<p>Estimado/a " + customer.getFirstName() + ",</p>"
