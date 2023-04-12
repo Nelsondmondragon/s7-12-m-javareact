@@ -24,5 +24,5 @@ public class Location {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "location")
-    private List<Branch> branches;
+    private List<Car> cars;
 }

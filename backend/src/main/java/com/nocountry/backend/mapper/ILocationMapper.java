@@ -18,6 +18,6 @@ public interface ILocationMapper {
     List<LocationDto> toLocationDtos(List<Location> locations);
 
     @InheritInverseConfiguration
-    @Mapping(target = "branches", ignore = true)
+    @Mapping(target = "cars", ignore = true)
     Location toLocation(LocationDto locationDto);
 }

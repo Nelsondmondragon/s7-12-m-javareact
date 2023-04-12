@@ -58,7 +58,7 @@ public class BookingServiceImpl implements IBookingService {
 
         booking.setStartTime(bookingDto.getStartTime());
         booking.setEndTime(bookingDto.getEndTime());
-        booking.setPickUpLocation(car.getPickUpLocation());
+//        booking.setPickUpLocation(car.getPickUpLocation());
         booking.setDropOffLocation(bookingDto.getDropOffLocation());
         booking.setAssignedDriver(bookingDto.getAssignedDriver());
         booking.setHelperPawn(bookingDto.getHelperPawn());
@@ -73,7 +73,7 @@ public class BookingServiceImpl implements IBookingService {
                 + "<ul>"
                 + "<li>Fecha y hora de retiro: "
                 + bookingDto.getStartTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "</li>"
-                + "<li>Lugar de retiro: " + car.getPickUpLocation() + "</li>"
+//                + "<li>Lugar de retiro: " + car.getPickUpLocation() + "</li>"
                 + "<li>Fecha y hora de entrega: "
                 + bookingDto.getEndTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "</li>"
                 + "<li>Lugar de entrega: " + bookingDto.getDropOffLocation() + "</li>"

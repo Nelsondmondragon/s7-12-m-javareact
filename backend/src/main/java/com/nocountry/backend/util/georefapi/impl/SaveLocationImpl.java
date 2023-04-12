@@ -1,6 +1,6 @@
 package com.nocountry.backend.util.georefapi.impl;
 
-import com.nocountry.backend.service.ILocationsService;
+import com.nocountry.backend.service.ILocationService;
 import com.nocountry.backend.util.georefapi.IExecute;
 import com.nocountry.backend.util.georefapi.ISaveLocation;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class SaveLocationImpl implements ISaveLocation {
     private final IExecute execute;
 
-    private final ILocationsService locationsService;
+    private final ILocationService locationsService;
 
 
     @Override

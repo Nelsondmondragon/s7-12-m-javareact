@@ -102,8 +102,10 @@ public class CarServiceImpl implements ICarService {
             LocalDateTime endTime) {
 
         // trae todos los autos que no estan en reservas por categoria y Location
-        List<Car> allCars = carRepository.findAllByCategory_IdAndPickUpLocation(idCategory,
+        List<Car> allCars = carRepository.findAllByCategoryIdAndLocationId(idCategory,
                 pickUpLocation);
+
+
 
         // trae todas las reservas por Location
         List<Booking> reservasPorUbicacionRetiro = bookingRepository.findAllByPickUpLocation(pickUpLocation);

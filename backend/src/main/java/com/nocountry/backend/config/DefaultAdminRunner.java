@@ -1,11 +1,5 @@
 package com.nocountry.backend.config;
 
-import java.time.LocalDateTime;
-
-import com.nocountry.backend.dto.BranchDto;
-import com.nocountry.backend.service.IBranchesService;
-import com.nocountry.backend.service.ILocationsService;
-import com.nocountry.backend.util.georefapi.IExecute;
 import com.nocountry.backend.util.georefapi.ISaveLocation;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -27,47 +21,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DefaultAdminRunner implements ApplicationRunner {
 
-        private final IUserRepository userRepository;
+    private final IUserRepository userRepository;
 
-        private final ICustomerRepository customerRepository;
+    private final ICustomerRepository customerRepository;
 
-        private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    private final ISaveLocation saveLocation;
-    private final IBranchesService IBranchesService;
-
-//    private
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         createUsers();
-        consumeApiGeorefArAPI();
-        createBranches();
-    }
-
-
-    private void createBranches() {
-        IBranchesService.save(BranchDto.builder()
-                .fkLocation("02000010")
-                .name("Wilderman, Runolfsdottir and Schamberger").build());
-        IBranchesService.save(BranchDto.builder()
-                .fkLocation("14014010")
-                .name("Hegmann, Hickle and Smith").build());
-        IBranchesService.save(BranchDto.builder()
-                .fkLocation("06441030")
-                .name("Funk-Larkin").build());
-        IBranchesService.save(BranchDto.builder()
-                .fkLocation("10077020")
-                .name("Runolfsdottir LLC").build());
-        IBranchesService.save(BranchDto.builder()
-                .fkLocation("66028050")
-                .name("Harber and Sons").build());
-    }
-
-
-
-    private void consumeApiGeorefArAPI() {
-        this.saveLocation.save();
     }
 
 
@@ -99,7 +62,7 @@ public class DefaultAdminRunner implements ApplicationRunner {
                     .firstName("User")
                     .lastName("Test")
                     .phone("434534555")
-                    .birthdate(LocalDateTime.now())
+                    .birthdate("LocalDateTime.now()")
                     .address("direccion")
                     .fkUser(test.getId())
                     .build();

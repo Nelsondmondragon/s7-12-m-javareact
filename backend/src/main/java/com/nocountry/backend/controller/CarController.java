@@ -72,11 +72,11 @@ public class CarController {
 
     @GetMapping("/getbyfilters")
     public ResponseEntity<List<CarDto>> getAllCarsByFilter(
-            @RequestParam(required = false) Long id_category,
+            @RequestParam(required = false) Long idCategory,
             @RequestParam(required = true) String pickUpLocation,
             @RequestParam(required = true) LocalDateTime startTime,
             @RequestParam(required = true) LocalDateTime endTime) {
-        List<CarDto> cars = carService.findAllCarsByFilters(id_category, pickUpLocation, startTime, endTime);
+        List<CarDto> cars = carService.findAllCarsByFilters(idCategory, pickUpLocation, startTime, endTime);
         if (cars.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {

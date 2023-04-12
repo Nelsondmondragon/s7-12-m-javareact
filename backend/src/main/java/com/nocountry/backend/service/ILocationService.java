@@ -5,13 +5,11 @@ import com.nocountry.backend.dto.LocationDto;
 
 import java.util.List;
 
-public interface ILocationsService {
+public interface ILocationService {
 
-    void savaAll(List<LocationDto> locationDtos);
 
     void save(LocationDto locationDto);
 
-    List<LocationDto> findAllLocationsContainingBranches();
 
     List<LocationDto> findAll();
 

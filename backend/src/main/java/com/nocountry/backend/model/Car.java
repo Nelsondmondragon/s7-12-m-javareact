@@ -1,14 +1,6 @@
 package com.nocountry.backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -61,10 +53,19 @@ public class Car {
     @Column(name = "HEIGHT")
     private Integer height;
 
-    @Column(name = "PICK_UP_LOCATION")
-    private String pickUpLocation;
+
+    @Column(name = "FK_LOCATION")
+    private String fkLocation;
+
 
     @ManyToOne
     @JoinColumn(name = "ID_CATEGORY")
     private Category category;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_LOCATION", referencedColumnName = "ID_LOCATION", insertable = false, updatable = false)
+    private Location location;
+
+
 }
