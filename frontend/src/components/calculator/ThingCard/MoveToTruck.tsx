@@ -63,7 +63,7 @@ export const MoveToTruck = ({ thing }) => {
         >
           -
         </button>
-        <p className="text-red-500 w-4 text-right"> {selectedItem[0]?.qty}</p>
+        <p className="text-white w-4 text-right"> {selectedItem[0]?.qty}</p>
         <button
           type="button"
           disabled={processing}

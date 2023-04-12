@@ -47,7 +47,7 @@ export const calculatorData = [
   {
     title: 'Secadora',
     volume: 200,
-    image: '/assets/images/calculator/secadora.png',
+    image: '/assets/images/calculator/washing-dryer.png',
   },
   {
     title: 'Lavavajilla',
@@ -70,19 +70,14 @@ export const calculatorData = [
     image: '/assets/images/calculator/grill.png',
   },
   {
-    title: 'Nevera Pequeña',
-    volume: 150,
-    image: '/assets/images/calculator/refrigerador.png',
-  },
-  {
-    title: 'Nevera Mediana',
+    title: 'Nevera',
     volume: 200,
     image: '/assets/images/calculator/fridge.png',
   },
   {
     title: 'Nevera Grande',
     volume: 400,
-    image: '/assets/images/calculator/refrigerador-big.png',
+    image: '/assets/images/calculator/fridgeBig.png',
   },
   {
     title: 'Sofa 1 puestos',
@@ -97,12 +92,12 @@ export const calculatorData = [
   {
     title: 'Sofa 3 puestos',
     volume: 400,
-    image: '/assets/images/calculator/sofa-3-plazas.png',
+    image: '/assets/images/calculator/sofa-3.png',
   },
   {
     title: 'Silla',
     volume: 100,
-    image: '/assets/images/calculator/silla.png',
+    image: '/assets/images/calculator/chair.png',
   },
   {
     title: 'Mesa',
@@ -113,11 +108,6 @@ export const calculatorData = [
     title: 'Silla de Oficina',
     volume: 100,
     image: '/assets/images/calculator/office-chair.png',
-  },
-  {
-    title: 'Escritorio y silla',
-    volume: 400,
-    image: '/assets/images/calculator/desk.png',
   },
   {
     title: 'HD TV',

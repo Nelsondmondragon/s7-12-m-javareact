@@ -55,7 +55,7 @@ const Counter = ({ thing }) => {
       >
         -
       </button>
-      <p className="text-red-500 w-4 text-right"> {thing.qty}</p>
+      <p className="text-black  w-4 text-right"> {thing.qty}</p>
       <button
         type="button"
         disabled={processing}
