@@ -36,13 +36,13 @@ public class Car {
     private String make;
 
     @Column(name = "YEAR")
-    private int year;
+    private Integer year;
 
     @Column(name = "AIR")
-    private boolean air;
+    private Boolean air;
 
     @Column(name = "GPS")
-    private boolean gps;
+    private Boolean gps;
 
     @Column(name = "PASSENGERS")
     private Integer passengers;

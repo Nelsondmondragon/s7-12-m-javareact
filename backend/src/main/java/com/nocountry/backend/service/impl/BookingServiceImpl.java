@@ -2,6 +2,7 @@ package com.nocountry.backend.service.impl;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +13,11 @@ import com.nocountry.backend.mapper.IBookingMapper;
 import com.nocountry.backend.model.Booking;
 import com.nocountry.backend.repository.IBookingRepository;
 import com.nocountry.backend.service.IBookingService;
+import com.nocountry.backend.service.ICarService;
+import com.nocountry.backend.service.ICustomerService;
+import com.nocountry.backend.service.IMailSenderService;
 
+import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityExistsException;
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +28,12 @@ public class BookingServiceImpl implements IBookingService {
     private final IBookingRepository bookingRepository;
 
     private final IBookingMapper bookingMapper;
+
+    private final IMailSenderService mailSenderService;
+
+    private ICarService carService;
+
+    private ICustomerService customerService;
 
     @Override
     public List<BookingDto> findAllBookings() {
@@ -38,6 +49,7 @@ public class BookingServiceImpl implements IBookingService {
     @Override
     public BookingDto saveBooking(BookingDto bookingDto) {
         validateOverlapBooking(bookingDto);
+
         var booking = bookingMapper.toBooking(bookingDto);
 
         booking.setFkCustomer(bookingDto.getFkCustomer());
@@ -49,49 +61,40 @@ public class BookingServiceImpl implements IBookingService {
         booking.setAssignedDriver(bookingDto.getAssignedDriver());
         booking.setHelperPawn(bookingDto.getHelperPawn());
 
-        // var customerDto =
-        // customerService.findCustomerById(bookingDto.getFkCustomer());
-        // var carDto = carService.findCarById(bookingDto.getFkCar());
-        // String to = customerDto.getEmail();
-        // String subject = "Confirmación de reserva";
-        // String text = "<html><body>"
-        // + "<p>Estimado/a " + customerDto.getFirstName() + ",</p>"
-        // + "<p>Le agradecemos por elegir MoveAR para sus necesidades de mudanza. Este
-        // correo electrónico es para confirmar la reserva del vehículo que solicitó. A
-        // continuación encontrará los detalles de su reserva:</p>"
-        // + "<ul>"
-        // + "<li>Fecha y hora de retiro: "
-        // + bookingDto.getStartTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy
-        // HH:mm")) + "</li>"
-        // + "<li>Lugar de retiro: " + bookingDto.getPickUpLocation() + "</li>"
-        // + "<li>Fecha y hora de entrega: "
-        // + bookingDto.getEndTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy
-        // HH:mm")) + "</li>"
-        // + "<li>Lugar de entrega: " + bookingDto.getDropOffLocation() + "</li>"
-        // + "</ul>"
-        // + "<p>Información del vehículo:</p>"
-        // + "<ul>"
-        // + "<li>Marca: " + carDto.getMake() + "</li>"
-        // + "<li>Modelo: " + carDto.getModel() + "</li>"
-        // + "<li>Patente: " + carDto.getPatent() + "</li>"
-        // + "<li>Categoría: " + carDto.getCategory() + "</li>"
-        // + "<li>Número de pasajeros: " + carDto.getPassengers() + "</li>"
-        // + "</ul>"
-        // + "<p>Por favor, asegúrese de llegar al lugar de retiro a tiempo y llevar
-        // consigo una identificación válida y la tarjeta de crédito utilizada para
-        // realizar la reserva. Si tiene alguna pregunta o necesita hacer algún cambio
-        // en su reserva, no dude en contactarnos por correo electrónico o por
-        // teléfono.</p>"
-        // + "<p>Gracias por confiar en MoveAR para su mudanza. Esperamos proporcionarle
-        // una experiencia sin estrés y satisfactoria. ¡Que tenga un buen día!</p>"
-        // + "<p>Atentamente,<br>El equipo de MoveAR</p>"
-        // + "</body></html>";
+        var car = carService.findCarById(booking.getFkCar());
+        var customer = customerService.findCustomerById(booking.getFkCustomer());
 
-        // try {
-        // mailSenderService.sendEmail(to, subject, text);
-        // } catch (MessagingException e) {
-        // e.printStackTrace();
-        // }
+        String to = customer.getEmail();
+        String subject = "Confirmación de reserva";
+        String text = "<html><body>"
+                + "<p>Estimado/a " + customer.getFirstName() + ",</p>"
+                + "<p>Le agradecemos por elegir MoveAR para sus necesidades de mudanza. Este correo electrónico es para confirmar la reserva del vehículo que solicitó. A continuación encontrará los detalles de su reserva:</p>"
+                + "<ul>"
+                + "<li>Fecha y hora de retiro: "
+                + bookingDto.getStartTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "</li>"
+                + "<li>Lugar de retiro: " + bookingDto.getPickUpLocation() + "</li>"
+                + "<li>Fecha y hora de entrega: "
+                + bookingDto.getEndTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "</li>"
+                + "<li>Lugar de entrega: " + bookingDto.getDropOffLocation() + "</li>"
+                + "</ul>"
+                + "<p>Información del vehículo:</p>"
+                + "<ul>"
+                + "<li>Marca: " + car.getMake() + "</li>"
+                + "<li>Modelo: " + car.getModel() + "</li>"
+                + "<li>Patente: " + car.getPatent() + "</li>"
+                + "<li>Categoría: " + car.getCategory() + "</li>"
+                + "<li>Número de pasajeros: " + car.getPassengers() + "</li>"
+                + "</ul>"
+                + "<p>Por favor, asegúrese de llegar al lugar de retiro a tiempo y llevar consigo una identificación válida y la tarjeta de crédito utilizada para realizar la reserva. Si tiene alguna pregunta o necesita hacer algún cambio en su reserva, no dude en contactarnos por correo electrónico o por teléfono.</p>"
+                + "<p>Gracias por confiar en MoveAR para su mudanza. Esperamos proporcionarle una experiencia sin estrés satisfactoria. ¡Que tenga un buen día!</p>"
+                + "<p>Atentamente,<br>El equipo de MoveAR</p>"
+                + "</body></html>";
+
+        try {
+            mailSenderService.sendEmail(to, subject, text);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
 
         return bookingMapper.toBookingDto(bookingRepository.save(booking));
     }
@@ -123,7 +126,7 @@ public class BookingServiceImpl implements IBookingService {
 
     private void validateOverlapBooking(BookingDto bookingDto) {
         List<Booking> allCarBookings = bookingRepository.findAllByFkCar(bookingDto.getFkCar());
-        Duration margin = Duration.ofMinutes(30);
+        Duration margin = Duration.ofHours(1);
 
         for (Booking carBooking : allCarBookings) {
             LocalDateTime newBookingStart = bookingDto.getStartTime().minus(margin);
