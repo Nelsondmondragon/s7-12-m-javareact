@@ -17,11 +17,13 @@ public class CustomerDetailsDto {
 
     private String lastName;
 
-    private String phone;
+    private String birthdate;
 
     private String email;
 
-    private String birthdate;
+    private String phone;
 
     private String address;
+
+    private Long driverLicence;
 }

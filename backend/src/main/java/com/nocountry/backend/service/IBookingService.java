@@ -10,13 +10,13 @@ public interface IBookingService {
 
     public List<BookingDto> findAllBookings();
 
-    public BookingDto getBookingById(Long bookingId);
+    public BookingDto findBookingById(Long bookingId);
 
-    public BookingDto saveBooking(BookingDto bookingDto);
+    public BookingDto saveBooking(Long carId, Long customerId, BookingDto bookingDto);
 
     public BookingDto updateBooking(Long bookingId, BookingDto bookingDto);
 
     public void deleteBooking(Long bookingId);
 
-    boolean validateDateBooking(LocalDateTime startDate, LocalDateTime endDate, Booking booking);
+    public boolean validateDateBooking(LocalDateTime startDate, LocalDateTime endDate, Booking booking);
 }

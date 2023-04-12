@@ -13,17 +13,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "locations")
+@Table(name = "LOCATIONS")
 public class Location {
     @Id
 //    @GeneratedValue(strategy = GenerationType.)
     @Column(name = "ID_LOCATION")
     private String id;
 
-
+    @Column(name = "NAME")
     private String name;
 
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "location")
-    private List<Branch> branches;
+    private List<Car> cars;
 }

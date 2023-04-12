@@ -1,7 +1,5 @@
 package com.nocountry.backend.model;
 
-import java.util.List;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,8 +19,9 @@ public class Car {
     @Column(name = "ID_CAR")
     private Long id;
 
-    @Column(name = "IMAGE")
-    private String image;
+    @OneToOne
+    @JoinColumn(name = "ID_MEDIA")
+    private MediaResource imageResource;
 
     @Column(name = "MODEL")
     private String model;
@@ -31,13 +30,13 @@ public class Car {
     private String make;
 
     @Column(name = "YEAR")
-    private int year;
+    private Integer year;
 
     @Column(name = "AIR")
-    private boolean air;
+    private Boolean air;
 
     @Column(name = "GPS")
-    private boolean gps;
+    private Boolean gps;
 
     @Column(name = "PASSENGERS")
     private Integer passengers;
@@ -54,16 +53,19 @@ public class Car {
     @Column(name = "HEIGHT")
     private Integer height;
 
-    @Column(name = "PICK_UP_LOCATION")
-    private String pickUpLocation;
 
-    @Column(name = "AVAILABLE")
-    private boolean available;
+    @Column(name = "FK_LOCATION")
+    private String fkLocation;
+
 
     @ManyToOne
-    @JoinColumn(name = "id_category")
+    @JoinColumn(name = "ID_CATEGORY")
     private Category category;
 
-/*    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
-    private List<Booking> bookings;*/
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_LOCATION", referencedColumnName = "ID_LOCATION", insertable = false, updatable = false)
+    private Location location;
+
+
 }

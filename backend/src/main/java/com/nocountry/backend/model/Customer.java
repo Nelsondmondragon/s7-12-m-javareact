@@ -46,6 +46,9 @@ public class Customer {
     @Column(name = "PHONE")
     private String phone;
 
+    @Column(name = "DRIVER_LICENCE")
+    private Long driverLicence;
+
     @Column(name = "FK_USER")
     private Long fkUser;
 

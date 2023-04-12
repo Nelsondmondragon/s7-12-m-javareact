@@ -14,6 +14,7 @@ import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.service.ICustomerService;
 import com.nocountry.backend.service.IUserService;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
@@ -39,7 +40,7 @@ public class CustomerServiceImpl implements ICustomerService {
         String authorization = request.getHeader("Authorization");
         String email = jwtProvider.extractUsername(authorization.substring(7));
 
-        var userRepository = userService.findByEmail(email);
+        var userRepository = userService.findUserByEmail(email);
         var customerDetailsDto = customerMapper.toCustomerDto(
                 customerRepository.findByFkUser(userRepository.getId()));
         customerDetailsDto.setEmail(email);
@@ -57,15 +58,23 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public CustomerDetailsDto updateCustomer(Long customerId, CustomerDetailsDto customerDetailsDto) {
-        Optional<Customer> customer = customerRepository.findById(customerId);
-        customerMapper.updateCustomer(customerDetailsDto, customer.get());
-        return customerDetailsDto;
+        Optional<Customer> customerEntity = customerRepository.findById(customerId);
+        if (customerEntity.isPresent()) {
+            Customer customer = customerEntity.get();
+            customerMapper.updateCustomer(customerDetailsDto, customer);
+            Customer updatedCustomer = customerRepository.save(customer);
+            CustomerDetailsDto updatedCustomerDto = customerMapper.toCustomerDto(updatedCustomer);
+            updatedCustomerDto.setEmail(updatedCustomer.getUser().getEmail());
+            return updatedCustomerDto;
+        } else {
+            throw new EntityNotFoundException("customer not found with id: " + customerId);
+        }
     }
 
     @Override
     public void deleteCustomer(Long id) {
-        Long userId = this.userService.findByEmail(this.findCustomerById(id).getEmail()).getId();
-        this.customerRepository.deleteById(id);
-        this.userService.deleteById(userId);
+        Long userId = userService.findUserByEmail(findCustomerById(id).getEmail()).getId();
+        customerRepository.deleteById(id);
+        userService.deleteUser(userId);
     }
 }

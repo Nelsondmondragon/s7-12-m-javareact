@@ -18,13 +18,13 @@ public class UserServiceImpl implements IUserService {
     private final IUserMapper userMapper;
 
     @Override
-    public UserDto findByEmail(String email) {
+    public UserDto findUserByEmail(String email) {
         return userRepository.findByEmail(email).map(userMapper::toUserDto)
                 .orElseThrow(() -> new RuntimeException("Email user does not exist"));
     }
 
     @Override
-    public void deleteById(Long id) {
-        this.userRepository.deleteById(id);
+    public void deleteUser(Long userId) {
+        this.userRepository.deleteById(userId);
     }
 }

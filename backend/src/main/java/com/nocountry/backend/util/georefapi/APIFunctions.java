@@ -10,7 +10,4 @@ public interface APIFunctions {
                 .decoder(new GsonDecoder())
                 .target(clazz, url);
     }
-
-
-
 }

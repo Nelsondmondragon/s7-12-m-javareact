@@ -47,8 +47,12 @@ public class Booking {
     @Column(name = "HELPER_PAWN")
     private Boolean helperPawn;
 
-    @Column(name = "STATUS")
-    private boolean status;
+    @Column(name = "FK_CAR")
+    private Long fkCar;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_CAR", referencedColumnName = "ID_CAR", insertable = false, updatable = false)
+    private Car car;
 
     @Column(name = "FK_CUSTOMER")
     private Long fkCustomer;
@@ -56,14 +60,4 @@ public class Booking {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_CUSTOMER", referencedColumnName = "ID_CUSTOMER", insertable = false, updatable = false)
     private Customer customer;
-
-    @Column(name = "FK_CAR")
-    private Long fkCar;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_CAR", referencedColumnName = "ID_CAR", insertable = false, updatable = false)
-    private Car car;
 }
-
-// @Column(name = "FK_PAYMENT")
-// private Long fkPayment;
