@@ -97,7 +97,10 @@ export const Hero = () => {
             Calcula tu mudanza y escoge un vehículo acorde a tus necesidades
           </p>
           <div className="hidden md:block md:text-end lg:text-start">
-            <button className="btn" onClick={() => router.push('/calculator')}>
+            <button
+              className="btn px-20 py-2  "
+              onClick={() => router.push('/calculator')}
+            >
               Calcular
             </button>
           </div>
