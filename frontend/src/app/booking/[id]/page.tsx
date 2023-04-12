@@ -19,24 +19,27 @@ const BookingCar = ({ params }) => {
 
 };
 
+let item = JSON.parse(localStorage.getItem('cars'))
+console.log(item);
+
 
   return (
     <div className="h-screen flex justify-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
       <div className="w-full h-fit mx-10 my-10 p-10 bg-white/80 rounded-3xl flex flex-col items-center gap-8">
-        {result.map((car) => {
+        {item.map((it) => {
           return (
-            <div key={car.id} className="w-11/12 flex">
+            <div key={it.id} className="w-11/12 flex">
               <Image
-                src={`/assets/images/booking/vh-${car.categoria}.jpg`}
-                alt={car.title}
+                src={`/assets/images/booking/vh-small.jpg`}
+                alt={it.model}
                 width={200}
                 height={200}
                 className="rounded-3xl"
               />
               <div className="flex flex-col w-5/12 justify-around ml-14">
-                <h3 className="text-3xl font-medium">{car.title}</h3>
-                <p className="text-2xl leading-7">{car.info}</p>
-                <p className="text-3xl font-medium">$ {car.price}</p>
+                <h3 className="text-3xl font-medium">{it.model}</h3>
+                <p className="text-2xl leading-7">{it.model}</p>
+                <p className="text-3xl font-medium">$ {it.model}</p>
               </div>
               <button className="bg-primary-600 self-end w-[288px] h-[59px] rounded-xl text-white text-2xl"
               onClick={handleBooking}>

@@ -6,14 +6,14 @@ import { registerLocale} from "react-datepicker";
 import es from "date-fns/locale/es";
 import "react-datepicker/dist/react-datepicker.css";
 import { useRouter } from "next/navigation";
-
+import postCarsAvailable  from '../../lib/postCarsAvailable'
 
 export default function Booking() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [startTime, setstartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
-  const [category, setCategory] = useState('pick');
+  // const [category, setCategory] = useState(0);
   const [startPl, setStartPl] = useState('Buenos Aires');
   const [returnPl, setReturnPl] = useState('Buenos Aires');
 
@@ -23,28 +23,37 @@ export default function Booking() {
 
   let item = JSON.parse(localStorage.getItem('category'))
 
+  const onSearch = async () => {
+    let category
+    console.log(item);
+    
+    
+    if (item==='small') {
+      category = 1
+    }
+    else if (item==='medium') {
+      category = 2
+    }
+    else {
+      category = 3
+    }
+   
 
-  const onCategory = (cat) => {
-    setCategory(cat.name);
-    //console.log(cat.name);
-  };
-
-  const onSearch = () => {
     const selection = {
       startPlace: startPl,
-      startDate: startDate,
-      startTime: startTime,
+      start: startDate.toISOString().split('T')[0] +'T'+ startTime.toLocaleTimeString(),
       returnPlace: returnPl,
-      endDate: endDate,
-      endtTime: endTime,
-      category: category,
+      end: endDate.toISOString().split('T')[0]  + 'T' +endTime.toLocaleTimeString() ,      
+      id: category,
     };
 
-    console.log(selection);
+    const postCar = await postCarsAvailable(selection)
+    localStorage.setItem('cars', JSON.stringify(postCar))
+
+     
+
     router.push(`/booking/${item}`);
-    // const result = vehicles.filter(vh => vh.categoria === category)
-    // // dispatch(setCategory(result))
-    // console.log(result);
+ 
   };
 
   // eslint-disable-next-line react/display-name
@@ -71,7 +80,7 @@ export default function Booking() {
               <select
                 defaultValue={'default'}
                 className="w-full h-[46px] text-[23px] px-2 rounded-md border-gray-400 shadow-md"
-                //   onChange={(e) => setStartPl(e.target.value)}
+                  onChange={(e) => setStartPl(e.target.value)}
               >
                 <option value="Buenos Aires">Buenos Aires</option>
                 <option value="Córdoba">Córdoba</option>
@@ -114,7 +123,7 @@ export default function Booking() {
               <select
                 defaultValue={'default'}
                 className="w-full h-[46px] text-[23px] px-2 rounded-md border-gray-400 shadow-md"
-                //   onChange={(e) => setStartPl(e.target.value)}
+                  onChange={(e) => setReturnPl(e.target.value)}
               >
                 <option value="Buenos Aires">Buenos Aires</option>
                 <option value="Córdoba">Córdoba</option>
