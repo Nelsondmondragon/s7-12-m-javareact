@@ -1,8 +1,10 @@
 package com.nocountry.backend.service.impl;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,15 +12,19 @@ import java.util.stream.Collectors;
 import org.hibernate.ObjectDeletedException;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.cloudinary.utils.ObjectUtils;
 import com.nocountry.backend.dto.CarDto;
 import com.nocountry.backend.mapper.ICarMapper;
 import com.nocountry.backend.model.Booking;
 import com.nocountry.backend.model.Car;
+import com.nocountry.backend.model.MediaResource;
 import com.nocountry.backend.repository.IBookingRepository;
 import com.nocountry.backend.repository.ICarRepository;
 import com.nocountry.backend.service.IBookingService;
 import com.nocountry.backend.service.ICarService;
+import com.nocountry.backend.service.ICloudinaryService;
 import com.nocountry.backend.specification.CarSpecification;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -35,6 +41,8 @@ public class CarServiceImpl implements ICarService {
     private final IBookingRepository bookingRepository;
 
     private final IBookingService bookingService;
+
+    private final ICloudinaryService cloudinaryService;
 
     @Override
     public List<CarDto> findAllCars() {
@@ -159,5 +167,19 @@ public class CarServiceImpl implements ICarService {
             }
         }
         return availableCars;
+    }
+
+    @Override
+    public void updateCarImage(Long carId, MultipartFile file) throws IOException {
+        var car = carRepository.findById(carId).orElseThrow();
+        var fileName = car.getModel();
+        Map options = ObjectUtils.asMap(
+                "folder", "images/",
+                "overwrite", true,
+                "resource_type", "image",
+                "original_filename", fileName);
+        MediaResource response = cloudinaryService.getMediaResource(file, fileName, options);
+        car.setImageResource(response);
+        carRepository.save(car);
     }
 }

@@ -1,7 +1,10 @@
 package com.nocountry.backend.service;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.nocountry.backend.dto.CarDto;
 
@@ -21,6 +24,8 @@ public interface ICarService {
         public CarDto saveCar(CarDto carDto);
 
         public CarDto updateCar(Long carId, CarDto carDto);
+
+        public void updateCarImage(Long carId, MultipartFile file) throws IOException;
 
         public void deleteCar(Long carId);
 }

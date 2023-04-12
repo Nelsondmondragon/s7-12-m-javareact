@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,8 +27,9 @@ public class Car {
     @Column(name = "ID_CAR")
     private Long id;
 
-    @Column(name = "IMAGE")
-    private String image;
+    @OneToOne
+    @JoinColumn(name = "ID_MEDIA")
+    private MediaResource imageResource;
 
     @Column(name = "MODEL")
     private String model;

@@ -1,6 +1,7 @@
 package com.nocountry.backend.dto;
 
 import com.nocountry.backend.model.Category;
+import com.nocountry.backend.model.MediaResource;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ public class CarDto {
 
     private Long id;
 
-    private String image;
+    private MediaResource imageResource;
 
     @Schema(example = "Small Truck")
     private String model;

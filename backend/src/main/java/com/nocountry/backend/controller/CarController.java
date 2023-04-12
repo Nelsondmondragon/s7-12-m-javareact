@@ -1,13 +1,16 @@
 package com.nocountry.backend.controller;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.nocountry.backend.dto.CarDto;
 import com.nocountry.backend.service.ICarService;
@@ -96,6 +100,15 @@ public class CarController {
     @Operation(summary = "Update an existing car by Id.")
     public ResponseEntity<CarDto> updateCar(@PathVariable Long carId, @RequestBody CarDto carDto) {
         return new ResponseEntity<>(carService.updateCar(carId, carDto), HttpStatus.OK);
+    }
+
+    @PatchMapping(value = "/{carId}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "Update car image by Id.")
+    public ResponseEntity<String> updateCarImage(
+            @PathVariable Long carId,
+            @RequestParam(name = "file") MultipartFile file) throws IOException {
+        carService.updateCarImage(carId, file);
+        return new ResponseEntity<>("Car Image has been successfully updated", HttpStatus.OK);
     }
 
     @DeleteMapping("/{carId}/delete")

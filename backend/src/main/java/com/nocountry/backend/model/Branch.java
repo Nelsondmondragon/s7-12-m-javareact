@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "branches")
+@Table(name = "BRANCHES")
 public class Branch {
 
     @Id
