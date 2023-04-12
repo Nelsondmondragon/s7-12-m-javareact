@@ -14,6 +14,7 @@ import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.service.ICustomerService;
 import com.nocountry.backend.service.IUserService;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
@@ -57,9 +58,17 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public CustomerDetailsDto updateCustomer(Long customerId, CustomerDetailsDto customerDetailsDto) {
-        Optional<Customer> customer = customerRepository.findById(customerId);
-        customerMapper.updateCustomer(customerDetailsDto, customer.get());
-        return customerDetailsDto;
+        Optional<Customer> customerEntity = customerRepository.findById(customerId);
+        if (customerEntity.isPresent()) {
+            Customer customer = customerEntity.get();
+            customerMapper.updateCustomer(customerDetailsDto, customer);
+            Customer updatedCustomer = customerRepository.save(customer);
+            CustomerDetailsDto updatedCustomerDto = customerMapper.toCustomerDto(updatedCustomer);
+            updatedCustomerDto.setEmail(updatedCustomer.getUser().getEmail());
+            return updatedCustomerDto;
+        } else {
+            throw new EntityNotFoundException("customer not found with id: " + customerId);
+        }
     }
 
     @Override

@@ -19,6 +19,7 @@ import com.nocountry.backend.service.IMailSenderService;
 
 import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -101,9 +102,16 @@ public class BookingServiceImpl implements IBookingService {
 
     @Override
     public BookingDto updateBooking(Long bookingId, BookingDto bookingDto) {
-        Optional<Booking> booking = bookingRepository.findById(bookingId);
-        bookingMapper.updateBooking(bookingDto, booking.get());
-        return bookingDto;
+        Optional<Booking> bookingEntity = bookingRepository.findById(bookingId);
+        if (bookingEntity.isPresent()) {
+            Booking booking = bookingEntity.get();
+            bookingMapper.updateBooking(bookingDto, booking);
+            Booking updatedBooking = bookingRepository.save(booking);
+            BookingDto updatedBookingDto = bookingMapper.toBookingDto(updatedBooking);
+            return updatedBookingDto;
+        } else {
+            throw new EntityNotFoundException("Booking not found with id: " + bookingId);
+        }
     }
 
     @Override

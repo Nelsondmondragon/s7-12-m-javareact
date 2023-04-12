@@ -6,11 +6,12 @@ import org.mapstruct.Condition;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import com.nocountry.backend.dto.BookingDto;
 import com.nocountry.backend.model.Booking;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface IBookingMapper {
 
     BookingDto toBookingDto(Booking booking);
