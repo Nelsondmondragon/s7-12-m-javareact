@@ -86,8 +86,9 @@ export const Hero = () => {
       </div>
       <div className="absolute top-0 left-0 w-full h-full ">
         <div className="w-full md:w-2/3 ml-auto text-white mt-4 lg:mt-12 p-4 md:p-8 lg:p-12">
-          <h1 className="flex flex-col md:flex-row text-4xl lg:text-6xl font-semibold mb-6">
-            <span>Bienvenido a </span> <span>MoveAR</span>
+          <h1 className="flex flex-col md:flex-row md:space-x-3 text-4xl lg:text-6xl font-semibold mb-6">
+            <span>Bienvenido a</span>
+            <span>MoveAR</span>
           </h1>
           <h2 className="text-2xl md:text-3xl lg:text-4xl md:mb-2 lg:mb-6 font-medium  ">
             La forma más fácil de mudarse

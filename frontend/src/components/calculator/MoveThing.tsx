@@ -20,8 +20,8 @@ export const MoveThing = (props: Props) => {
         Selecciona los Elementos que vas a mudar
       </h1> */}
 
-      <div className="grid lg:grid-cols-[minmax(120px,_1fr)_400px] gap-2">
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(80px,_1fr))] lg:grid-cols-[repeat(auto-fill,minmax(120px,_1fr))] gap-1 md:gap-2 px-1 md:px-4 ">
+      <div className="grid lg:grid-cols-[minmax(100px,_1fr)_400px] gap-2">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(80px,_1fr))] lg:grid-cols-[repeat(auto-fill,minmax(100px,_1fr))] gap-1 md:gap-2 px-1 md:px-4 lg:gap-y-8	 ">
           {calculatorData.map((article) => {
             return <ThingCard thing={article} key={article.title} />;
           })}

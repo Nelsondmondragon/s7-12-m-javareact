@@ -10,7 +10,7 @@
     --footer-height: 189px;
   }
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth text-black;
   }
 
   header {
@@ -24,7 +24,7 @@
 
 @layer components {
   .headerLink {
-    @apply max-w-xs mx-auto md:ml-7 p-2 cursor-pointer transition duration-300 hover:bg-primary-100 md:text-lg font-medium hover:text-dark hover:rounded-lg;
+    @apply max-w-xs mx-auto md:ml-7 p-2 cursor-pointer transition duration-300 hover:bg-primary-100 md:text-lg font-medium hover:text-black hover:rounded-lg;
   }
 
   .bannerButton {

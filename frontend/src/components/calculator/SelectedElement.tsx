@@ -48,7 +48,7 @@ const Counter = ({ thing }) => {
       <button
         type="button"
         disabled={processing | (thing.qty === 0)}
-        className=" flex justify-center items-center w-5  px-2 py-1 bg-primary-600 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs text-white "
+        className=" flex justify-center items-center w-6 h-6 bg-primary-600 rounded disabled:bg-neutral-400  text-white "
         onClick={() => {
           onRestToCart(thing);
         }}
@@ -59,7 +59,7 @@ const Counter = ({ thing }) => {
       <button
         type="button"
         disabled={processing}
-        className=" flex justify-center items-center w-5  px-2 py-1 bg-primary-700 rounded   shadow shadow-sky-200 disabled:bg-neutral-400 text-xs text-white "
+        className=" flex justify-center items-center w-6 h-6 bg-primary-700 rounded  disabled:bg-neutral-400  text-white "
         onClick={() => {
           onAddToCart(thing);
         }}
@@ -108,7 +108,7 @@ export const SelectedArticles = (props: Props) => {
                   height={40}
                 />
                 <div className="flex flex-1 justify-between">
-                  <span className="text-xs"> {item.title}</span>
+                  <span className=""> {item.title}</span>
                 </div>
                 <span>{item.qty * item.volume}</span>
                 <div className="cursor-pointer text-error-500 hover:text-error-300 ">

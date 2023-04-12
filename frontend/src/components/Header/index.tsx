@@ -85,6 +85,7 @@ export const Header = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('category');
     setShowModalPerfil(false);
+    console.log('pulso logout');
     router.push('/');
   };
 

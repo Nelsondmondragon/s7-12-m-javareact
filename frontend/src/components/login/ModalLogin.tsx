@@ -64,7 +64,7 @@ export const ModalLogin = () => {
     Cookies.set('token', result.token);
     localStorage.setItem('token', JSON.stringify(result));
     localStorage.setItem('user', JSON.stringify(userData));
-    reset;
+    reset();
     closeModal();
   };
 
