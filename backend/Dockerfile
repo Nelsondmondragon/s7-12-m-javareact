@@ -1,10 +1,6 @@
-
 FROM maven:3.9.0-eclipse-temurin-17 AS build
 COPY . .
 RUN mvn clean package -Pprod -DskipTests
-
-
-
 
 FROM eclipse-temurin:17-jdk-alpine
 
@@ -20,12 +16,6 @@ ENV CLOUDINARY_URL=cloudinary://458121582779468:qe9F7aqn8-18h8AbfZG2Dv6BEQE@dqkk
 ENV API_KEY_CLOUD=458121582779468
 ENV API_SECRET=qe9F7aqn8-18h8AbfZG2Dv6BEQE
 ENV CLOUD_NAME=dqkkehztd
-
-CLOUDINARY_URL=cloudinary://458121582779468:qe9F7aqn8-18h8AbfZG2Dv6BEQE@dqkkehztd;
-API_KEY_CLOUD=458121582779468;
-API_SECRET=qe9F7aqn8-18h8AbfZG2Dv6BEQE;
-CLOUD_NAME=dqkkehztd
-
 
 COPY --from=build ./target/*.jar app.jar
 EXPOSE 8080

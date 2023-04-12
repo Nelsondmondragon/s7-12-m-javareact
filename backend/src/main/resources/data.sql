@@ -9,7 +9,7 @@ VALUES
 INSERT INTO LOCATIONS(ID_LOCATION, NAME) values  ('02000010','Ciudad Autónoma de Buenos Aires'),
                                                  ('14014010','Córdoba'),
                                                  ('06441030','La Plata'),
-                                                 ('10077020','El Rosario'),
+                                                 ('10077020','Rosario'),
                                                  ('66028050','Salta');
 
 -- insert moving trucks

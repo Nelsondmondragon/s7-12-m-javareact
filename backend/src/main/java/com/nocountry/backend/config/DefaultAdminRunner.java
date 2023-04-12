@@ -1,6 +1,5 @@
 package com.nocountry.backend.config;
 
-import com.nocountry.backend.util.georefapi.ISaveLocation;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.Ordered;
@@ -27,12 +26,10 @@ public class DefaultAdminRunner implements ApplicationRunner {
 
     private final PasswordEncoder passwordEncoder;
 
-
     @Override
     public void run(ApplicationArguments args) throws Exception {
         createUsers();
     }
-
 
     private void createUsers() {
         var admin = User.builder()
