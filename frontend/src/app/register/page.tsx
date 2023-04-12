@@ -5,45 +5,57 @@ import { useRouter } from 'next/navigation';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Schema as schema } from './registerValidation';
+import { useState } from 'react';
+import postRegister from '@/lib/postRegister';
 
 type FormValues = {
-  name: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   password: string;
-  repeatPassword: string;
   email: string;
 };
 
 const Register = () => {
   const router = useRouter();
-
+  
+  
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      name: '',
-      lastname: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
-      repeatPassword: '',
     },
     resolver: yupResolver(schema),
   });
-
+  
   const RegisterUser = async (values: FormValues) => {
+    actualizarDatos(values)
     console.log('guardar datatos parcial');
     /**
      * llamar a register2
-     */
-    router.push('secondregister');
-
-    console.log(values);
+    */
+    // router.push('secondregister');
+    postRegister(values)
+   console.log(values);
   };
-
+  const [datos, setDatos] = useState({
+    
+  })
+  const actualizarDatos = (nuevosDatos) => {
+    
+    console.log(datos)
+    setDatos({...nuevosDatos})
+  }
+  
   const onSubmit = (values: FormValues) => {
     RegisterUser(values);
+    actualizarDatos(values)
   };
 
   return (
@@ -62,27 +74,27 @@ const Register = () => {
         <div className="w-1/2">
           <form onSubmit={handleSubmit(onSubmit)} className='w-full flex flex-col'>
             <div className="w-2/3 flex flex-col pb-2 self-end">
-              <label htmlFor="name" className="font-semibold pb-2">
+              <label htmlFor="firstName" className="font-semibold pb-2">
                 Nombre
               </label>
               <input
                 className="rounded-md h-11 bg-[#FFFFFF] outline-none px-2 py-4"
-                {...register('name')}
+                {...register('firstName')}
               />
               <p className="text-red-600 text-sm font-bold">
-                {errors?.name?.message}
+                {errors?.firstName?.message}
               </p>
             </div>
             <div className="w-2/3 flex flex-col pb-2 self-end">
-              <label htmlFor="lastname" className="font-semibold pb-2">
+              <label htmlFor="lastName" className="font-semibold pb-2">
                 Apellido
               </label>
               <input
                 className="rounded-md h-11 bg-[#FFFFFF] outline-none px-2 py-4"
-                {...register('lastname')}
+                {...register('lastName')}
               />
               <p className="text-red-600 text-sm font-bold">
-                {errors?.lastname?.message}
+                {errors?.lastName?.message}
               </p>
             </div>
             <div className="w-2/3 flex flex-col pb-2 self-end">
@@ -116,7 +128,6 @@ const Register = () => {
               </label>
               <input
                 className="rounded-md h-11 bg-[#FFFFFF] outline-none px-2 py-4"
-                {...register('repeatPassword')}
               />
               <p className="text-red-600 text-sm font-bold">
                 {errors?.repeatPassword?.message}
