@@ -13,4 +13,11 @@ public class InformationLocationDto {
     @SerializedName("localidades_censales")
     private List<LocationDto> locations;
 
+
+    public LocationDto locationDto(){
+
+
+        return this.locations.get(0);
+    }
+
 }

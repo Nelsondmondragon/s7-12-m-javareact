@@ -3,7 +3,7 @@ package com.nocountry.backend.service.impl;
 import com.nocountry.backend.dto.LocationDto;
 import com.nocountry.backend.mapper.ILocationMapper;
 import com.nocountry.backend.repository.ILocationsRepository;
-import com.nocountry.backend.service.LocationsService;
+import com.nocountry.backend.service.ILocationsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class LocationServiceImpl implements LocationsService {
+public class LocationServiceImpl implements ILocationsService {
 
     private final ILocationsRepository locationsRepository;
 
@@ -20,6 +20,11 @@ public class LocationServiceImpl implements LocationsService {
     @Override
     public void savaAll(List<LocationDto> locationDtos) {
         locationsRepository.saveAll(locationDtos.stream().map(locationMapper::toLocation).toList());
+    }
+
+    @Override
+    public void save(LocationDto locationDto) {
+        this.locationsRepository.save(this.locationMapper.toLocation(locationDto));
     }
 
     @Override

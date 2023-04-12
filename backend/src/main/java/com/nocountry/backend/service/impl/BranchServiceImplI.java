@@ -4,13 +4,13 @@ package com.nocountry.backend.service.impl;
 import com.nocountry.backend.dto.BranchDto;
 import com.nocountry.backend.mapper.IBranchMapper;
 import com.nocountry.backend.repository.IBranchRepository;
-import com.nocountry.backend.service.BranchesService;
+import com.nocountry.backend.service.IBranchesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class BranchServiceImpl implements BranchesService {
+public class BranchServiceImplI implements IBranchesService {
 
     private final IBranchRepository branchRepository;
 

@@ -1,15 +1,12 @@
 package com.nocountry.backend.config;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import com.nocountry.backend.dto.BranchDto;
-import com.nocountry.backend.dto.InformationLocationDto;
-import com.nocountry.backend.dto.LocationDto;
-import com.nocountry.backend.mapper.ILocationMapper;
-import com.nocountry.backend.service.BranchesService;
-import com.nocountry.backend.service.LocationsService;
-import com.nocountry.backend.util.georefapi.IExecuteApi;
+import com.nocountry.backend.service.IBranchesService;
+import com.nocountry.backend.service.ILocationsService;
+import com.nocountry.backend.util.georefapi.IExecute;
+import com.nocountry.backend.util.georefapi.ISaveLocation;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.Ordered;
@@ -36,11 +33,8 @@ public class DefaultAdminRunner implements ApplicationRunner {
 
     private final PasswordEncoder passwordEncoder;
 
-
-    private final LocationsService locationsService;
-    private final IExecuteApi executeApi;
-
-    private final BranchesService branchesService;
+    private final ISaveLocation saveLocation;
+    private final IBranchesService IBranchesService;
 
 //    private
 
@@ -53,27 +47,28 @@ public class DefaultAdminRunner implements ApplicationRunner {
 
 
     private void createBranches() {
-        branchesService.save(BranchDto.builder()
-                .fkLocation("06014030")
+        IBranchesService.save(BranchDto.builder()
+                .fkLocation("02000010")
                 .name("Wilderman, Runolfsdottir and Schamberger").build());
-        branchesService.save(BranchDto.builder()
-                .fkLocation("06063030")
+        IBranchesService.save(BranchDto.builder()
+                .fkLocation("14014010")
                 .name("Hegmann, Hickle and Smith").build());
-        branchesService.save(BranchDto.builder()
-                .fkLocation("06063040")
+        IBranchesService.save(BranchDto.builder()
+                .fkLocation("06441030")
                 .name("Funk-Larkin").build());
-        branchesService.save(BranchDto.builder()
-                .fkLocation("06063050")
+        IBranchesService.save(BranchDto.builder()
+                .fkLocation("10077020")
                 .name("Runolfsdottir LLC").build());
-        branchesService.save(BranchDto.builder()
-                .fkLocation("06063060")
+        IBranchesService.save(BranchDto.builder()
+                .fkLocation("66028050")
                 .name("Harber and Sons").build());
     }
 
-    private void consumeApiGeorefArAPI() {
-        this.locationsService.savaAll(executeApi.execute().getLocations());
-        System.out.println("termino");
 
+    private static final String CABA = "localidades-censales?nombre=ciudad%20de%20buenos%20aires&campos=nombre";
+
+    private void consumeApiGeorefArAPI() {
+        this.saveLocation.save();
     }
 
 
