@@ -43,7 +43,7 @@ public class CarServiceImpl implements ICarService {
     }
 
     @Override
-    public List<CarDto> findCarsByFilters2(String model, String make, Integer year, Boolean air, Boolean gps,
+    public List<CarDto> findCarsByFilters(String model, String make, Integer year, Boolean air, Boolean gps,
             Integer passengers, String pickUpLocation, Long idCategory, LocalDateTime startTime,
             LocalDateTime endTime) {
 
@@ -87,14 +87,14 @@ public class CarServiceImpl implements ICarService {
     }
 
     @Override
-    public List<CarDto> findCarsByFilters(
+    public List<CarDto> findAllCarsByFilters(
             Long idCategory,
             String pickUpLocation,
             LocalDateTime startTime,
             LocalDateTime endTime) {
 
         // trae todos los autos que no estan en reservas por categoria y Location
-        List<Car> allCars = carRepository.findAllByCategoryIdAndPickUpLocation(idCategory, pickUpLocation);
+        List<Car> allCars = carRepository.findAllByCategory_IdAndPickUpLocation(idCategory, pickUpLocation);
 
         // trae todas las reservas por Location
         List<Booking> reservasPorUbicacionRetiro = bookingRepository.findAllByPickUpLocation(pickUpLocation);
@@ -150,7 +150,6 @@ public class CarServiceImpl implements ICarService {
     }
 
     private List<Car> deleteCarsWithBooking(List<Car> cars, List<Booking> bookings) {
-
         Set<Long> idsBookingCars = bookings.stream().map(Booking::getFkCar).collect(Collectors.toSet());
         List<Car> availableCars = new ArrayList<>();
         for (Car car : cars) {

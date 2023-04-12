@@ -15,7 +15,7 @@ public class PaymentDto {
 
         private String description;
 
-        private int amount;
+        private Integer amount;
 
         private Currency currency;
 }

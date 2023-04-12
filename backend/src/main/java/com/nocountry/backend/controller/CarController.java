@@ -37,12 +37,13 @@ public class CarController {
         if (cars.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<>(cars, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cars, HttpStatus.OK);
         }
     }
 
+    // all filters
     @GetMapping("/filters")
-    public ResponseEntity<List<CarDto>> getCarsByFilters2(
+    public ResponseEntity<List<CarDto>> getCarsByFilters(
             @RequestParam(required = false) String model,
             @RequestParam(required = false) String make,
             @RequestParam(required = false) Integer year,
@@ -53,22 +54,26 @@ public class CarController {
             @RequestParam(required = false) Long idCategory,
             @RequestParam LocalDateTime startTime,
             @RequestParam LocalDateTime endTime) {
-        List<CarDto> cars = carService.findCarsByFilters2(model, make, year, air, gps, passengers, pickUpLocation,
+        var cars = carService.findCarsByFilters(model, make, year, air, gps, passengers, pickUpLocation,
                 idCategory, startTime, endTime);
-        return new ResponseEntity<>(cars, HttpStatus.OK);
-    }
-
-    @GetMapping("/getbyfilters")
-    public ResponseEntity<List<CarDto>> getCarsByFilters(
-            @RequestParam(required = false) Long idCategory,
-            @RequestParam(required = true) String pickUpLocation,
-            @RequestParam(required = true) LocalDateTime startTime,
-            @RequestParam(required = true) LocalDateTime endTime) {
-        List<CarDto> cars = carService.findCarsByFilters(idCategory, pickUpLocation, startTime, endTime);
         if (cars.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<>(cars, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cars, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/getbyfilters")
+    public ResponseEntity<List<CarDto>> getAllCarsByFilter(
+            @RequestParam(required = false) Long id_category,
+            @RequestParam(required = true) String pickUpLocation,
+            @RequestParam(required = true) LocalDateTime startTime,
+            @RequestParam(required = true) LocalDateTime endTime) {
+        List<CarDto> cars = carService.findAllCarsByFilters(id_category, pickUpLocation, startTime, endTime);
+        if (cars.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(cars);
         }
     }
 

@@ -30,7 +30,12 @@ public class BookingController {
 
     @GetMapping("/all")
     public ResponseEntity<List<BookingDto>> getAll() {
-        return new ResponseEntity<>(bookingService.findAllBookings(), HttpStatus.OK);
+        var bookings = bookingService.findAllBookings();
+        if (bookings.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(bookings, HttpStatus.OK);
+        }
     }
 
     @GetMapping("/{bookingId}")

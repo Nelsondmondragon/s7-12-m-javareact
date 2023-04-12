@@ -9,7 +9,7 @@ import com.nocountry.backend.model.Car;
 
 public interface ICarRepository extends JpaRepository<Car, Long> {
 
-     public List<Car> findAllByCategoryIdAndPickUpLocation(Long category, String pickUpLocation);
-
      public List<Car> findAll(Specification<Car> spec);
+
+     public List<Car> findAllByCategory_IdAndPickUpLocation(Long category, String pickUpLocation);
 }

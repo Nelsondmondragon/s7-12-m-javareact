@@ -37,7 +37,7 @@ public class BookingServiceImpl implements IBookingService {
 
     @Override
     public BookingDto saveBooking(BookingDto bookingDto) {
-        this.validateBookingOverlap(bookingDto);
+        validateOverlapBooking(bookingDto);
         var booking = bookingMapper.toBooking(bookingDto);
 
         booking.setFkCustomer(bookingDto.getFkCustomer());
@@ -48,6 +48,50 @@ public class BookingServiceImpl implements IBookingService {
         booking.setDropOffLocation(bookingDto.getPickUpLocation());
         booking.setAssignedDriver(bookingDto.getAssignedDriver());
         booking.setHelperPawn(bookingDto.getHelperPawn());
+
+        // var customerDto =
+        // customerService.findCustomerById(bookingDto.getFkCustomer());
+        // var carDto = carService.findCarById(bookingDto.getFkCar());
+        // String to = customerDto.getEmail();
+        // String subject = "Confirmación de reserva";
+        // String text = "<html><body>"
+        // + "<p>Estimado/a " + customerDto.getFirstName() + ",</p>"
+        // + "<p>Le agradecemos por elegir MoveAR para sus necesidades de mudanza. Este
+        // correo electrónico es para confirmar la reserva del vehículo que solicitó. A
+        // continuación encontrará los detalles de su reserva:</p>"
+        // + "<ul>"
+        // + "<li>Fecha y hora de retiro: "
+        // + bookingDto.getStartTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy
+        // HH:mm")) + "</li>"
+        // + "<li>Lugar de retiro: " + bookingDto.getPickUpLocation() + "</li>"
+        // + "<li>Fecha y hora de entrega: "
+        // + bookingDto.getEndTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy
+        // HH:mm")) + "</li>"
+        // + "<li>Lugar de entrega: " + bookingDto.getDropOffLocation() + "</li>"
+        // + "</ul>"
+        // + "<p>Información del vehículo:</p>"
+        // + "<ul>"
+        // + "<li>Marca: " + carDto.getMake() + "</li>"
+        // + "<li>Modelo: " + carDto.getModel() + "</li>"
+        // + "<li>Patente: " + carDto.getPatent() + "</li>"
+        // + "<li>Categoría: " + carDto.getCategory() + "</li>"
+        // + "<li>Número de pasajeros: " + carDto.getPassengers() + "</li>"
+        // + "</ul>"
+        // + "<p>Por favor, asegúrese de llegar al lugar de retiro a tiempo y llevar
+        // consigo una identificación válida y la tarjeta de crédito utilizada para
+        // realizar la reserva. Si tiene alguna pregunta o necesita hacer algún cambio
+        // en su reserva, no dude en contactarnos por correo electrónico o por
+        // teléfono.</p>"
+        // + "<p>Gracias por confiar en MoveAR para su mudanza. Esperamos proporcionarle
+        // una experiencia sin estrés y satisfactoria. ¡Que tenga un buen día!</p>"
+        // + "<p>Atentamente,<br>El equipo de MoveAR</p>"
+        // + "</body></html>";
+
+        // try {
+        // mailSenderService.sendEmail(to, subject, text);
+        // } catch (MessagingException e) {
+        // e.printStackTrace();
+        // }
 
         return bookingMapper.toBookingDto(bookingRepository.save(booking));
     }
@@ -77,7 +121,7 @@ public class BookingServiceImpl implements IBookingService {
 
     }
 
-    private void validateBookingOverlap(BookingDto bookingDto) {
+    private void validateOverlapBooking(BookingDto bookingDto) {
         List<Booking> allCarBookings = bookingRepository.findAllByFkCar(bookingDto.getFkCar());
         Duration margin = Duration.ofMinutes(30);
 

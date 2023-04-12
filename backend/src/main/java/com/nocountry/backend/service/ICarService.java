@@ -9,11 +9,11 @@ public interface ICarService {
 
         public List<CarDto> findAllCars();
 
-        public List<CarDto> findCarsByFilters2(String model, String make, Integer year, Boolean air, Boolean gps,
+        public List<CarDto> findCarsByFilters(String model, String make, Integer year, Boolean air, Boolean gps,
                         Integer passengers, String pickUpLocation, Long idCategory, LocalDateTime startTime,
                         LocalDateTime endTime);
 
-        public List<CarDto> findCarsByFilters(Long idCategory, String pickUpLocation, LocalDateTime startTime,
+        public List<CarDto> findAllCarsByFilters(Long id_category, String pickUpLocation, LocalDateTime startTime,
                         LocalDateTime endTime);
 
         public CarDto findCarById(Long carId);
