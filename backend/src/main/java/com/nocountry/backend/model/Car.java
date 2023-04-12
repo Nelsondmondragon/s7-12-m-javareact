@@ -1,8 +1,14 @@
 package com.nocountry.backend.model;
 
-import java.util.List;
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,8 +27,9 @@ public class Car {
     @Column(name = "ID_CAR")
     private Long id;
 
-    @Column(name = "IMAGE")
-    private String image;
+    @OneToOne
+    @JoinColumn(name = "ID_MEDIA")
+    private MediaResource imageResource;
 
     @Column(name = "MODEL")
     private String model;
@@ -31,13 +38,13 @@ public class Car {
     private String make;
 
     @Column(name = "YEAR")
-    private int year;
+    private Integer year;
 
     @Column(name = "AIR")
-    private boolean air;
+    private Boolean air;
 
     @Column(name = "GPS")
-    private boolean gps;
+    private Boolean gps;
 
     @Column(name = "PASSENGERS")
     private Integer passengers;
@@ -57,13 +64,7 @@ public class Car {
     @Column(name = "PICK_UP_LOCATION")
     private String pickUpLocation;
 
-    @Column(name = "AVAILABLE")
-    private boolean available;
-
     @ManyToOne
-    @JoinColumn(name = "id_category")
+    @JoinColumn(name = "ID_CATEGORY")
     private Category category;
-
-/*    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
-    private List<Booking> bookings;*/
 }

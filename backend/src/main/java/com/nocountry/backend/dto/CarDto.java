@@ -1,9 +1,9 @@
 package com.nocountry.backend.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nocountry.backend.model.Category;
+import com.nocountry.backend.model.MediaResource;
 
-import jakarta.persistence.Column;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,45 +15,43 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CarDto {
 
-    @JsonProperty("id")
     private Long id;
 
-    @JsonProperty("image")
-    private String image;
+    private MediaResource imageResource;
 
-    @JsonProperty("model")
+    @Schema(example = "Small Truck")
     private String model;
 
-    @JsonProperty("make")
+    @Schema(example = "Peugeot")
     private String make;
 
-    @JsonProperty("year")
-    private int year;
+    @Schema(example = "2022")
+    private Integer year;
 
-    @JsonProperty("air")
-    private boolean air;
+    @Schema(example = "true")
+    private Boolean air;
 
-    @JsonProperty("gps")
-    private boolean gps;
+    @Schema(example = "true")
+    private Boolean gps;
 
-    @JsonProperty("passengers")
+    @Schema(example = "2")
     private Integer passengers;
 
-    @JsonProperty("patent")
+    @Schema(example = "ABC456")
     private String patent;
 
-    @JsonProperty("length")
+    @Schema(example = "6000")
     private Integer length;
 
-    @JsonProperty("width")
+    @Schema(example = "2200")
     private Integer width;
 
-    @JsonProperty("height")
+    @Schema(example = "2400")
     private Integer height;
 
-    @JsonProperty("available")
-    private boolean available;
+    @Schema(example = "CABA")
+    private String pickUpLocation;
 
-    @JsonProperty("category")
+    @Schema(example = "1")
     private Category category;
 }

@@ -1,7 +1,5 @@
 package com.nocountry.backend.model;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,32 +7,33 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "CATEGORIES")
-public class Category {
+@Table(name = "MEDIA")
+public class MediaResource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CATEGORY")
+    @Column(name = "ID_MEDIA")
     private Long id;
 
-    @Column(name = "NAME")
-    private String name;
+    @Column(name = "URL_SECURE")
+    private String urlSecure;
 
-    @Column(name = "VOLUME")
-    private Double volume;
+    @Column(name = "TITLE")
+    private String title;
 
-    @Column(name = "CAPACITY_LIMIT")
-    private Double capacityLimit;
+    @Column(name = "TYPE_FORMAT")
+    private String typeFormat;
 
-    @Column(name = "HOURLY_PRICE")
-    private BigDecimal hourlyPrice;
+    @Column(name = "PUBLIC_ID")
+    public String publicId;
+
+    @Column(name = "BYTES")
+    private Integer bytes;
 }

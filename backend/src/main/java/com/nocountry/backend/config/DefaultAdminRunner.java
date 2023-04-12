@@ -27,11 +27,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DefaultAdminRunner implements ApplicationRunner {
 
-    private final IUserRepository userRepository;
+        private final IUserRepository userRepository;
 
-    private final ICustomerRepository customerRepository;
+        private final ICustomerRepository customerRepository;
 
-    private final PasswordEncoder passwordEncoder;
+        private final PasswordEncoder passwordEncoder;
 
     private final ISaveLocation saveLocation;
     private final IBranchesService IBranchesService;
@@ -65,7 +65,6 @@ public class DefaultAdminRunner implements ApplicationRunner {
     }
 
 
-    private static final String CABA = "localidades-censales?nombre=ciudad%20de%20buenos%20aires&campos=nombre";
 
     private void consumeApiGeorefArAPI() {
         this.saveLocation.save();

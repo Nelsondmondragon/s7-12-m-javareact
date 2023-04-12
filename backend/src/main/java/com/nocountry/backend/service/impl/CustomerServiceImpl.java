@@ -1,11 +1,8 @@
 package com.nocountry.backend.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.nocountry.backend.Error.Exceptions.GenericNotFoundException;
-import com.nocountry.backend.model.Category;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.config.jwt.JwtProvider;
@@ -17,6 +14,7 @@ import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.service.ICustomerService;
 import com.nocountry.backend.service.IUserService;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
@@ -34,12 +32,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public List<CustomerListDto> findAllCustomers() {
-        List<Customer> customerEntities = customerRepository.findAll();
-        if (customerEntities.isEmpty()) {
-            return new ArrayList<>();
-        } else {
-            return customerMapper.toCustomerListDtos(customerEntities);
-        }
+        return customerMapper.toCustomerListDtos(customerRepository.findAll());
     }
 
     @Override
@@ -47,7 +40,7 @@ public class CustomerServiceImpl implements ICustomerService {
         String authorization = request.getHeader("Authorization");
         String email = jwtProvider.extractUsername(authorization.substring(7));
 
-        var userRepository = userService.findByEmail(email);
+        var userRepository = userService.findUserByEmail(email);
         var customerDetailsDto = customerMapper.toCustomerDto(
                 customerRepository.findByFkUser(userRepository.getId()));
         customerDetailsDto.setEmail(email);
@@ -57,8 +50,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public CustomerDetailsDto findCustomerById(Long customerId) {
-        var customer = customerRepository.findById(customerId)
-                .orElseThrow(() -> new GenericNotFoundException(String.format("The customer with the provided ID (%s) was not found",customerId)));
+        var customer = customerRepository.findById(customerId).orElseThrow();
         var customerDetailsDto = customerMapper.toCustomerDto(customer);
         customerDetailsDto.setEmail(customer.getUser().getEmail());
         return customerDetailsDto;
@@ -66,18 +58,23 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public CustomerDetailsDto updateCustomer(Long customerId, CustomerDetailsDto customerDetailsDto) {
-        Customer customer = customerRepository.findById(customerId)
-                .orElseThrow(() -> new GenericNotFoundException(String.format("The customer with the provided ID (%s) was not found", customerId)));
-        customerMapper.updateCustomer(customerDetailsDto,customer);
-        Customer updatedCustomer= customerRepository.save(customer);
-        return customerMapper.toCustomerDto(updatedCustomer);
-
+        Optional<Customer> customerEntity = customerRepository.findById(customerId);
+        if (customerEntity.isPresent()) {
+            Customer customer = customerEntity.get();
+            customerMapper.updateCustomer(customerDetailsDto, customer);
+            Customer updatedCustomer = customerRepository.save(customer);
+            CustomerDetailsDto updatedCustomerDto = customerMapper.toCustomerDto(updatedCustomer);
+            updatedCustomerDto.setEmail(updatedCustomer.getUser().getEmail());
+            return updatedCustomerDto;
+        } else {
+            throw new EntityNotFoundException("customer not found with id: " + customerId);
+        }
     }
 
     @Override
     public void deleteCustomer(Long id) {
-        Long userId = this.userService.findByEmail(this.findCustomerById(id).getEmail()).getId();
-        this.customerRepository.deleteById(id);
-        this.userService.deleteById(userId);
+        Long userId = userService.findUserByEmail(findCustomerById(id).getEmail()).getId();
+        customerRepository.deleteById(id);
+        userService.deleteUser(userId);
     }
 }

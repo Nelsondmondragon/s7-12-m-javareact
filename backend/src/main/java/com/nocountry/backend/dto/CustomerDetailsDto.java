@@ -1,6 +1,6 @@
 package com.nocountry.backend.dto;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,12 +19,13 @@ public class CustomerDetailsDto {
 
     private String lastName;
 
-    private String phone;
-    // @JsonProperty(value = "password", access = JsonProperty.Access.WRITE_ONLY)
-    // private String password;
+    private String birthdate;
+
     private String email;
 
-    private LocalDateTime birthdate;
+    private String phone;
 
     private String address;
+
+    private Long driverLicence;
 }

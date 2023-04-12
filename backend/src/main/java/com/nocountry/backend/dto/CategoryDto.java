@@ -1,5 +1,8 @@
 package com.nocountry.backend.dto;
 
+import java.math.BigDecimal;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,9 +16,15 @@ public class CategoryDto {
 
     private Long id;
 
+    @Schema(example = "Other")
+    private String name;
+
+    @Schema(example = "5.0")
     private Double volume;
 
-    private Double Capacity;
+    @Schema(example = "500.0")
+    private Double capacityLimit;
 
-    private String name;
+    @Schema(example = "20000.00")
+    private BigDecimal hourlyPrice;
 }
