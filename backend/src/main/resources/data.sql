@@ -1,10 +1,10 @@
 -- insert categories
 
-INSERT INTO Categories (NAME, VOLUME, CAPACITY_LIMIT)
+INSERT INTO Categories (NAME, VOLUME, CAPACITY_LIMIT, HOURLY_PRICE)
 VALUES
-('Small', 10.0, 1000.0),
-('Medium', 20.0, 2000.0),
-('Big', 30.0, 3000.0);
+('Small', 10.0, 1000.0, 40000.00),
+('Medium', 20.0, 2000.0, 50000.00),
+('Big', 30.0, 3000.0, 60000.00);
 
 -- insert moving trucks
 

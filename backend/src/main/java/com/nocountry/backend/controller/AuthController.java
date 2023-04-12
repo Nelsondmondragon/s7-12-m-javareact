@@ -21,25 +21,25 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
-@Tag(name = "Authentication", description = "Registration and login for MoveAr users")
+@Tag(name = "Authentication", description = "Registration and login for MoveAr users.")
 @SecurityRequirement(name = "bearerAuth")
 public class AuthController {
 
     private final IAuthService authService;
 
     @PostMapping("/register")
-    @Operation(summary = "Register a user in MoveAr")
+    @Operation(summary = "Register a user in MoveAr.")
     public ResponseEntity<?> register(@RequestBody RegisterRequestDto request) {
         try {
             AuthResponseDto response = authService.register(request);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        } catch (BadCredentialsException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
         }
     }
 
     @PostMapping("/login")
-    @Operation(summary = "Login for a MoveAr user")
+    @Operation(summary = "Login for a MoveAr user.")
     public ResponseEntity<?> login(@RequestBody AuthRequestDto request) {
         try {
             AuthResponseDto response = authService.login(request);

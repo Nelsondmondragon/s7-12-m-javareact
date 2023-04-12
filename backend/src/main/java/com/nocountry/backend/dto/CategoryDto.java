@@ -1,5 +1,7 @@
 package com.nocountry.backend.dto;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,4 +20,6 @@ public class CategoryDto {
     private Double volume;
 
     private Double capacityLimit;
+
+    private BigDecimal hourlyPrice;
 }

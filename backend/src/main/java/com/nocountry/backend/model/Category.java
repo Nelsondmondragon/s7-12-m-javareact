@@ -1,5 +1,7 @@
 package com.nocountry.backend.model;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,4 +34,7 @@ public class Category {
 
     @Column(name = "CAPACITY_LIMIT")
     private Double capacityLimit;
+
+    @Column(name = "HOURLY_PRICE")
+    private BigDecimal hourlyPrice;
 }

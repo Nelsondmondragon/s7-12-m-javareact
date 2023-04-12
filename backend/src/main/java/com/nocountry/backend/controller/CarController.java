@@ -19,19 +19,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nocountry.backend.dto.CarDto;
 import com.nocountry.backend.service.ICarService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1/cars")
 @RequiredArgsConstructor
+@Tag(name = "Cars", description = "Management of cars available for rent in MoveAr. It allows creating, modifying, and deleting vehicles, as well as obtaining detailed information about them.")
 @SecurityRequirement(name = "bearerAuth")
-
 public class CarController {
 
     private final ICarService carService;
 
     @GetMapping("/all")
+    @Operation(summary = "Get all cars.")
     public ResponseEntity<List<CarDto>> getAllCars() {
         var cars = carService.findAllCars();
         if (cars.isEmpty()) {
@@ -41,8 +44,8 @@ public class CarController {
         }
     }
 
-    // all filters
     @GetMapping("/filters")
+    @Operation(summary = "Get all cars according to the specified filters. startTime and endTime cannot be null.")
     public ResponseEntity<List<CarDto>> getCarsByFilters(
             @RequestParam(required = false) String model,
             @RequestParam(required = false) String make,
@@ -78,21 +81,25 @@ public class CarController {
     }
 
     @GetMapping("/{carId}")
+    @Operation(summary = "Get a car by Id.")
     public ResponseEntity<CarDto> getCarById(@PathVariable Long carId) {
         return new ResponseEntity<>(carService.findCarById(carId), HttpStatus.OK);
     }
 
     @PostMapping("/create")
+    @Operation(summary = "Create a new car.")
     public ResponseEntity<CarDto> createCar(@RequestBody CarDto carDto) {
         return new ResponseEntity<>(carService.saveCar(carDto), HttpStatus.OK);
     }
 
     @PutMapping("/{carId}/update")
+    @Operation(summary = "Update an existing car by Id.")
     public ResponseEntity<CarDto> updateCar(@PathVariable Long carId, @RequestBody CarDto carDto) {
         return new ResponseEntity<>(carService.updateCar(carId, carDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{carId}/delete")
+    @Operation(summary = "Delete an existing car by Id.")
     public ResponseEntity<String> deleteCar(@PathVariable Long carId) {
         Optional<CarDto> car = Optional.ofNullable(carService.findCarById(carId));
         if (car.isPresent()) {
