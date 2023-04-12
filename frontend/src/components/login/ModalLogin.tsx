@@ -5,6 +5,7 @@ import { FaTimes } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Schema as schema } from './loginValidation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import Cookies from 'js-cookie';
 
@@ -24,10 +25,14 @@ type FormValues = {
   email: string;
 };
 
+
+
 export const ModalLogin = () => {
   const showModal = useSelector(selectShowModalLogin);
   const showModalLoginError = useSelector(selectShowModalLoginError);
   const dispatch = useDispatch();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const {
     register,
@@ -69,7 +74,13 @@ export const ModalLogin = () => {
   };
 
   const onSubmit = (credentials: FormValues) => {
+   
     LoginUser(credentials);
+    if (pathname.includes('booking')) {
+      router.push(`/pay`);
+      
+    }
+    
   };
 
   return (
