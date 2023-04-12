@@ -26,7 +26,6 @@ public class BookingDto {
     @Schema(example = "2023-04-05T16:30")
     private LocalDateTime endTime;
 
-    @Schema(example = "CABA")
     private String pickUpLocation;
 
     @Schema(example = "CABA")
@@ -42,9 +41,9 @@ public class BookingDto {
     @Schema(example = "1")
     private Long fkCar;
 
+    private Car car;
+
     @JsonProperty("customerId")
     @Schema(example = "2")
     private Long fkCustomer;
-
-    private Car car;
 }

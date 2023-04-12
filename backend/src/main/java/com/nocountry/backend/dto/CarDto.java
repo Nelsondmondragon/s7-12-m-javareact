@@ -21,7 +21,7 @@ public class CarDto {
     @Schema(example = "Small Truck")
     private String model;
 
-    @Schema(example = "Ford")
+    @Schema(example = "Peugeot")
     private String make;
 
     @Schema(example = "2022")
@@ -36,7 +36,7 @@ public class CarDto {
     @Schema(example = "2")
     private Integer passengers;
 
-    @Schema(example = "ABC123")
+    @Schema(example = "ABC456")
     private String patent;
 
     @Schema(example = "6000")

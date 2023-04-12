@@ -16,15 +16,15 @@ public class CategoryDto {
 
     private Long id;
 
-    @Schema(example = "Small")
+    @Schema(example = "Other")
     private String name;
 
-    @Schema(example = "10.0")
+    @Schema(example = "5.0")
     private Double volume;
 
-    @Schema(example = "1000.0")
+    @Schema(example = "500.0")
     private Double capacityLimit;
 
-    @Schema(example = "40000.00")
+    @Schema(example = "20000.00")
     private BigDecimal hourlyPrice;
 }

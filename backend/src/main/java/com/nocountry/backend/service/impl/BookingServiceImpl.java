@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.dto.BookingDto;
 import com.nocountry.backend.mapper.IBookingMapper;
+import com.nocountry.backend.mapper.ICarMapper;
 import com.nocountry.backend.model.Booking;
 import com.nocountry.backend.repository.IBookingRepository;
 import com.nocountry.backend.service.IBookingService;
@@ -29,11 +30,13 @@ public class BookingServiceImpl implements IBookingService {
 
     private final IBookingMapper bookingMapper;
 
-    private final IMailSenderService mailSenderService;
+    private final ICarMapper carMapper;
 
     private ICarService carService;
 
     private ICustomerService customerService;
+
+    private final IMailSenderService mailSenderService;
 
     @Override
     public List<BookingDto> findAllBookings() {
@@ -51,18 +54,17 @@ public class BookingServiceImpl implements IBookingService {
         validateOverlapBooking(bookingDto);
 
         var booking = bookingMapper.toBooking(bookingDto);
-
-        booking.setFkCustomer(bookingDto.getFkCustomer());
-        booking.setFkCar(bookingDto.getFkCar());
-        booking.setStartTime(bookingDto.getStartTime());
-        booking.setEndTime(bookingDto.getEndTime());
-        booking.setPickUpLocation(bookingDto.getPickUpLocation());
-        booking.setDropOffLocation(bookingDto.getPickUpLocation());
-        booking.setAssignedDriver(bookingDto.getAssignedDriver());
-        booking.setHelperPawn(bookingDto.getHelperPawn());
-
         var car = carService.findCarById(booking.getFkCar());
         var customer = customerService.findCustomerById(booking.getFkCustomer());
+
+        booking.setStartTime(bookingDto.getStartTime());
+        booking.setEndTime(bookingDto.getEndTime());
+        booking.setPickUpLocation(car.getPickUpLocation());
+        booking.setDropOffLocation(bookingDto.getDropOffLocation());
+        booking.setAssignedDriver(bookingDto.getAssignedDriver());
+        booking.setHelperPawn(bookingDto.getHelperPawn());
+        booking.setCar(carMapper.CarDtoToCar(car));
+        booking.setFkCustomer(bookingDto.getFkCustomer());
 
         String to = customer.getEmail();
         String subject = "Confirmación de reserva";
@@ -72,7 +74,7 @@ public class BookingServiceImpl implements IBookingService {
                 + "<ul>"
                 + "<li>Fecha y hora de retiro: "
                 + bookingDto.getStartTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "</li>"
-                + "<li>Lugar de retiro: " + bookingDto.getPickUpLocation() + "</li>"
+                + "<li>Lugar de retiro: " + car.getPickUpLocation() + "</li>"
                 + "<li>Fecha y hora de entrega: "
                 + bookingDto.getEndTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "</li>"
                 + "<li>Lugar de entrega: " + bookingDto.getDropOffLocation() + "</li>"
@@ -83,7 +85,7 @@ public class BookingServiceImpl implements IBookingService {
                 + "<li>Modelo: " + car.getModel() + "</li>"
                 + "<li>Patente: " + car.getPatent() + "</li>"
                 + "<li>Categoría: " + car.getCategory() + "</li>"
-                + "<li>Número de pasajeros: " + car.getPassengers() + "</li>"
+                + "<li>Cantidad de pasajeros: " + car.getPassengers() + "</li>"
                 + "</ul>"
                 + "<p>Por favor, asegúrese de llegar al lugar de retiro a tiempo y llevar consigo una identificación válida y la tarjeta de crédito utilizada para realizar la reserva. Si tiene alguna pregunta o necesita hacer algún cambio en su reserva, no dude en contactarnos por correo electrónico o por teléfono.</p>"
                 + "<p>Gracias por confiar en MoveAR para su mudanza. Esperamos proporcionarle una experiencia sin estrés satisfactoria. ¡Que tenga un buen día!</p>"
