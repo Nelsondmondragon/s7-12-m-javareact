@@ -21,6 +21,9 @@ export default function Booking() {
 
   registerLocale('es', es);
 
+  let item = JSON.parse(localStorage.getItem('category'))
+
+
   const onCategory = (cat) => {
     setCategory(cat.name);
     //console.log(cat.name);
@@ -38,7 +41,7 @@ export default function Booking() {
     };
 
     console.log(selection);
-    router.push(`/booking/small`);
+    router.push(`/booking/${item}`);
     // const result = vehicles.filter(vh => vh.categoria === category)
     // // dispatch(setCategory(result))
     // console.log(result);
