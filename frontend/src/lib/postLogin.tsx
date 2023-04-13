@@ -6,7 +6,8 @@ const postLogin = async ({ email, password }: LoginProps) => {
   console.log('en postLogin');
   try {
     const response = await fetch(
-      'https://backend-nocountry.onrender.com/api/v1/auth/login',
+      // 'https://backend-nocountry.onrender.com/api/v1/auth/login',
+      'https://s7-12-m-javareact-production.up.railway.app/api/v1/auth/login',
       {
         method: 'POST',
         headers: {

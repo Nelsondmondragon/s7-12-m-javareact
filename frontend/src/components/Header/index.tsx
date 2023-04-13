@@ -17,11 +17,6 @@ import {
   selectCurrentUser,
 } from '@/features/users/userSlice';
 
-/**
- * show = 1 se muestra en el menu (tablet y desktop)
- * show = 2 se muestra en el menu (tablet)
- */
-
 const links = [
   {
     label: 'Inicio',
@@ -93,7 +88,7 @@ export const Header = () => {
     dispatch(openModalLogin());
   };
   const handleRegister = () => {
-    router.push('/register');
+    router.push('/newregister');
   };
   const handleOpenModalProfile = () => {
     setShowModalPerfil(true);

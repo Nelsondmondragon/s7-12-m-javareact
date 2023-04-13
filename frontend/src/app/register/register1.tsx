@@ -9,133 +9,126 @@ import { useState } from 'react';
 import postRegister from '@/lib/postRegister';
 
 type FormValues = {
-  firstName: string;
-  lastName: string;
   password: string;
   email: string;
   confirmPassword: string;
 };
 
-const Register1 = ({pasos, actualizarDatos}) => {
+const Register1 = ({ pasos, actualizarDatos }) => {
   const router = useRouter();
-  
-  
-  
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      firstName: '',
-      lastName: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
     },
     resolver: yupResolver(schema),
   });
-  
+
   const RegisterUser = async (values: FormValues) => {
-    
     const data = {
-      firstName: values.firstName,
-      lastName: values.lastName,
       email: values.email,
       password: values.password,
-    }
-    actualizarDatos(data)
+    };
+    actualizarDatos(data);
     console.log('guardar datatos parcial');
-    pasos(1)
-   console.log(values);
-   console.log(data);
-  };                                                                                        
-  
+    pasos(1);
+    console.log(values);
+    console.log(data);
+  };
+
   const onSubmit = (values: FormValues) => {
     RegisterUser(values);
   };
 
   return (
-    <div className="register flex justify-center px-10 py-11 bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center ">
-      <div className='flex justify-center rounded-[20px] bg-form backdrop-blur-[8px] px-16 py-10'>
-        <div className="info w-1/2 flex flex-col h-96">
-          <h1 className="text-4xl pb-5 font-bold">Registro de usuario</h1>
-          <p className="text-2xl">
-            Para empezar te pediremos algunos datos. <br /> <br />
-            Toda la información que nos brindes será utilizada para agilizar el
-            proceso de reserva y es estrictamente confidencial.
-          </p>
-          <button className="py-4 px-7 mt-4 w-40 bg-[#FAFAFA] text-base text-[#03649B] rounded-md justify-self-end"> Volver al inicio
-          </button>
-        </div>
-        <div className="w-1/2">
-          <form onSubmit={handleSubmit(onSubmit)} className='w-full flex flex-col'>
-            <div className="w-2/3 flex flex-col pb-2 self-end">
-              <label htmlFor="firstName" className="font-semibold pb-2">
-                Nombre
-              </label>
-              <input
-                className="rounded-md h-11 bg-[#FFFFFF] outline-none px-2 py-4"
-                {...register('firstName')}
-              />
-              <p className="text-red-600 text-sm font-bold">
-                {errors?.firstName?.message}
-              </p>
-            </div>
-            <div className="w-2/3 flex flex-col pb-2 self-end">
-              <label htmlFor="lastName" className="font-semibold pb-2">
-                Apellido
-              </label>
-              <input
-                className="rounded-md h-11 bg-[#FFFFFF] outline-none px-2 py-4"
-                {...register('lastName')}
-              />
-              <p className="text-red-600 text-sm font-bold">
-                {errors?.lastName?.message}
-              </p>
-            </div>
-            <div className="w-2/3 flex flex-col pb-2 self-end">
-              <label htmlFor="email" className="font-semibold pb-2">
-                Email
-              </label>
-              <input
-                className="rounded-md h-11 bg-[#FFFFFF] outline-none px-2 py-4"
-                {...register('email')}
-              />
-              <p className="text-red-600 text-sm font-bold">
-                {errors?.email?.message}
-              </p>
-            </div>
+    <div className="register flex justify-center px-2 md:px-4 py-2 md:py-4 lg:px-10 lg:py-10 bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center ">
+      <div className="flex justify-center rounded-[10px] md:rounded-[20px] bg-white bg-opacity-70 max-w-7xl">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+          <div className="flex flex-col">
+            <h1 className="text-3xl text-center md:text-left md:text-4xl px-2 md:px-8 lg:px-16 py-4 md:py-10 font-bold">
+              Registro de usuario
+            </h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 px-2 md:px-8 lg:px-16 gap-6">
+              <div className="info flex flex-col">
+                <p className="text-xl md:text-2xl">
+                  Para empezar te pediremos algunos datos. <br />
+                  <br /> Toda la información que nos brindes será utilizada para
+                  agilizar el proceso de reserva y es estrictamente
+                  confidencial.
+                </p>
+              </div>
 
-            <div className="w-2/3 flex flex-col pb-2 self-end">
-              <label htmlFor="password" className="font-semibold pb-2">
-                Contraseña
-              </label>
-              <input
-                className="rounded-md h-11 bg-[#FFFFFF] outline-none px-2 py-4"
-                {...register('password')}
-              />
-              <p className="text-red-600 text-sm font-bold">
-                {errors?.password?.message}
-              </p>
+              <div className="">
+                <div className="w-full flex flex-col pb-2 self-end">
+                  <label htmlFor="email" className="font-semibold pb-2">
+                    Email
+                  </label>
+                  <input
+                    className={`rounded-md h-11 border-2 border-ttansparent bg-white outline-none px-2 py-4 ${
+                      errors.email ? 'outline-0  border-red-500' : ''
+                    }`}
+                    {...register('email')}
+                    placeholder="john@correo.com"
+                  />
+                  <p className="text-red-600 text-sm font-bold">
+                    {errors?.email?.message}
+                  </p>
+                </div>
+                <div className="w-full flex flex-col pb-2 self-end">
+                  <label htmlFor="password" className="font-semibold pb-2">
+                    Contraseña
+                  </label>
+                  <input
+                    className={`rounded-md h-11 border-2 border-ttansparent bg-white outline-none px-2 py-4 ${
+                      errors.password ? 'outline-0  border-red-500' : ''
+                    }`}
+                    {...register('password')}
+                  />
+                  <p className="text-red-600 text-sm font-bold">
+                    {errors?.password?.message}
+                  </p>
+                </div>
+                <div className="w-full flex flex-col pb-2 self-end">
+                  <label
+                    htmlFor="repeatPassword"
+                    className="font-semibold pb-2"
+                  >
+                    Repetir Contraseña
+                  </label>
+                  <input
+                    className={`rounded-md h-11 border-2 border-ttansparent bg-white outline-none px-2 py-4 ${
+                      errors.confirmPassword ? 'outline-0  border-red-500' : ''
+                    }`}
+                    {...register('confirmPassword')}
+                  />
+                  <p className="text-red-600 text-sm font-bold">
+                    {errors?.confirmPassword?.message}
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="w-2/3 flex flex-col self-end">
-              <label htmlFor="repeatPassword" className="font-semibold pb-2">
-                Repetir Contraseña
-              </label>
-              <input
-                className="rounded-md h-11 bg-[#FFFFFF] outline-none px-2 py-4"
-                {...register('confirmPassword')}
-              />
-              <p className="text-red-600 text-sm font-bold">
-                {errors?.confirmPassword?.message}
-              </p>
-            </div>
-
-            <button className="py-4 px-7 mt-4 w-40 bg-[#03649B] text-base text-[#D2EEFE] rounded-md self-end" type="submit"> Iniciar registro
+          </div>
+          <div className="p-16 md:px-8 flex justify-center md:justify-between  items-center mb-8">
+            <button
+              className="hidden md:block py-4 px-7 w-40 bg-white text-base text-primary-600 rounded-md"
+              onClick={() => alert('ir al inicio')}
+            >
+              Volver al inicio
             </button>
-          </form>
-        </div>
+            <button
+              className="py-4 px-7 w-40 bg-primary-600 text-base text-primary-50 rounded-md "
+              type="submit"
+            >
+              Iniciar registro
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

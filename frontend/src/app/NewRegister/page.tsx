@@ -1,11 +1,12 @@
 'use client';
-// import { useRouter } from 'next/navigation';
+import { openModalLogin } from '@/features/users/userSlice';
+import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
 // import { FaArrowLeft } from 'react-icons/fa';
 
-import Image from 'next/image';
-
 export default function NewRegister() {
-  // const router = useRouter();
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   // const handleGoBack = () => {
   //   router.back();
@@ -21,8 +22,8 @@ export default function NewRegister() {
           <p>Nosotros</p>
         </div>
       </button> */}
-      <div className="flex flex-col justify-center items-center gap-4 md:gap-0 p-2 md:p-8 lg:px-20 ">
-        <div className="relative bg-white bg-opacity-70 p-2 md:h-4/5 md:p-8 lg:p-16  rounded-[10px] md:rounded-[20px] ">
+      <div className="flex flex-col justify-center items-center gap-4 md:gap-0 p-2 md:p-8 lg:px-16 xl:px-24 ">
+        <div className="relative bg-white bg-opacity-70 p-2 md:h-4/5 md:p-8 lg:p-12 xl:px-16  rounded-[10px] md:rounded-[20px] ">
           <h2 className="font-semibold text-center md:text-left mb-3 md:mb-10  text-xl md:text-4xl">
             Nos alegra mucho verte por acá
           </h2>
@@ -53,7 +54,7 @@ export default function NewRegister() {
               <div className="flex flex-col justify-center items-center">
                 <button
                   className="btn btnSecond my-4 block"
-                  onClick={() => alert('login')}
+                  onClick={() => dispatch(openModalLogin())}
                 >
                   Iniciar sesión
                 </button>
@@ -62,7 +63,7 @@ export default function NewRegister() {
 
                 <button
                   className="btn mt-1 mb-4"
-                  onClick={() => alert('Register')}
+                  onClick={() => router.push('/register')}
                 >
                   Registrarme
                 </button>
