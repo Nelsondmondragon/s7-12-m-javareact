@@ -46,7 +46,7 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
           height={45}
           alt={title}
         />
-        <div className=" lg:h-64   bg-primary-600 md:bg-primary-700 md:rounded-[20px] lg:rounded-t-none px-0 md:px-4 lg:px-6 pb-4 md:pb-0 pt-4 rounded-b-[20px] grid">
+        <div className=" lg:h-64 bg-primary-600 md:bg-primary-700 md:rounded-[20px] lg:rounded-t-none px-0 md:px-4 lg:px-6 pb-4 md:pb-0 pt-4 rounded-b-[20px] grid">
           <h3 className="text-center text-base md:text-xl font-bold md:pb-2  md:border-b-4 md:border-b-white">
             {title}
           </h3>
@@ -55,12 +55,15 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
             <p>{line2}</p>
             <p>{line3}</p>
           </div>
-          <div className="hidden md:flex justify-end">
+          <div className="hidden md:flex justify-end text-base">
             <button
-              className="btn mb-8"
+              className="btn mb-6 w-max px-4"
               onClick={() => onCheckAvailability(title)}
             >
-              Ver Disponibilidad
+              <p className="flex space-x-2 font-semibold">
+                <span>Ver</span>
+                <span className="hidden md:flex "> Disponibilidad</span>
+              </p>
             </button>
           </div>
         </div>
@@ -72,7 +75,7 @@ const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
 type Props = {};
 export const TypesVehicle = (props: Props) => {
   return (
-    <section className="p-4 md:px-12 lg:px-24">
+    <section className="p-4 md:px-12 lg:px-20">
       <div className="hidden md:block">
         <h2 className="text-2xl lg:text-3xl text-white my-12 font-semibold ">
           Selecciona el vehículo que necesitas para tu mudanza

@@ -1,4 +1,5 @@
 import { Question } from '@/components/faq';
+import { Accordion } from '@/components/faq/Accordion';
 import Image from 'next/image';
 
 const Faq = () => {
@@ -18,6 +19,9 @@ const Faq = () => {
       <div className="max-w-5xl bg-white px-20 py-8 mx-auto rounded-2xl text-primary-700 text-xl">
         <Question />
       </div>
+      {/* <div className="max-w-5xl bg-white px-20 py-8 mx-auto rounded-2xl text-primary-700 text-xl">
+        <Accordion />
+      </div> */}
     </section>
   );
 };

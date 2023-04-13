@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
@@ -84,6 +85,7 @@ export const Header = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('category');
     setShowModalPerfil(false);
+    console.log('pulso logout');
     router.push('/');
   };
 

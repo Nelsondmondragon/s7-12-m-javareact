@@ -69,7 +69,7 @@ export const ModalLogin = () => {
     Cookies.set('token', result.token);
     localStorage.setItem('token', JSON.stringify(result));
     localStorage.setItem('user', JSON.stringify(userData));
-    reset;
+    reset();
     closeModal();
   };
 
@@ -143,7 +143,7 @@ export const ModalLogin = () => {
             <div className="w-3/5 mx-auto">
               <button
                 type="submit"
-                className="w-full bg-neutral-100 px-8 py-2 rounded-lg text-primary-500 hover:bg-primary-100"
+                className="w-full bg-neutral-100 px-8 py-2 rounded-lg text-primary-500 font-semibold  hover:bg-primary-100"
               >
                 Iniciar sesión
               </button>

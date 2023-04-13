@@ -15,42 +15,42 @@ export const Hero = () => {
   let slideInterval: NodeJS.Timer;
 
   const autoAdvance = () => {
-    slideInterval = setInterval(prevSlide, intervalTime);
+    slideInterval = setInterval(nextSlide, intervalTime);
   };
 
-  // const nextSlide = () => {
-  //   if (slideshow.current.children.length > 0) {
-  //     const firstSlide = slideshow.current.children[0];
-  //     slideshow.current.style.transition = `2s linear all`;
-  //     slideshow.current.style.transform = `translateX(-100%)`;
-
-  //     const transition = () => {
-  //       slideshow.current.style.transition = `none`;
-  //       slideshow.current.style.transform = `translateX(0)`;
-  //       slideshow.current.appendChild(firstSlide);
-  //       slideshow.current.removeEventListener('transitionend', transition);
-  //     };
-
-  //     slideshow.current.addEventListener('transitionend', transition);
-  //   }
-  // };
-
-  const prevSlide = () => {
+  const nextSlide = () => {
     if (slideshow.current.children.length > 0) {
-      const lastSlide =
-        slideshow.current.children[slideshow.current.children.length - 1];
+      const firstSlide = slideshow.current.children[0];
+      slideshow.current.style.transition = `2s linear all`;
+      slideshow.current.style.transform = `translateX(-100%)`;
 
-      slideshow.current.insertBefore(lastSlide, slideshow.current.firstChild);
-      slideshow.current.style.transition = 'none';
-      const tamañoSlide = slideshow.current.children[0].offsetWidth;
-      slideshow.current.style.transform = `translateX(-${tamañoSlide}px)`;
-
-      setTimeout(() => {
-        slideshow.current.style.transition = `2s linear all`;
+      const transition = () => {
+        slideshow.current.style.transition = `none`;
         slideshow.current.style.transform = `translateX(0)`;
-      }, 30);
+        slideshow.current.appendChild(firstSlide);
+        slideshow.current.removeEventListener('transitionend', transition);
+      };
+
+      slideshow.current.addEventListener('transitionend', transition);
     }
   };
+
+  // const prevSlide = () => {
+  //   if (slideshow.current.children.length > 0) {
+  //     const lastSlide =
+  //       slideshow.current.children[slideshow.current.children.length - 1];
+
+  //     slideshow.current.insertBefore(lastSlide, slideshow.current.firstChild);
+  //     slideshow.current.style.transition = 'none';
+  //     const tamañoSlide = slideshow.current.children[0].offsetWidth;
+  //     slideshow.current.style.transform = `translateX(-${tamañoSlide}px)`;
+
+  //     setTimeout(() => {
+  //       slideshow.current.style.transition = `2s linear all`;
+  //       slideshow.current.style.transform = `translateX(0)`;
+  //     }, 30);
+  //   }
+  // };
 
   useEffect(() => {
     if (autoScroll) {
@@ -84,10 +84,11 @@ export const Hero = () => {
           );
         })}
       </div>
-      <div className="absolute top-0 left-0 w-full h-full ">
-        <div className="w-full md:w-2/3 ml-auto text-white mt-4 lg:mt-12 p-4 md:p-8 lg:p-12">
-          <h1 className="flex flex-col md:flex-row text-4xl lg:text-6xl font-semibold mb-6">
-            <span>Bienvenido a </span> <span>MoveAR</span>
+      <div className="absolute top-0 left-0 w-full h-full z-[100] ">
+        <div className="w-full md:w-2/3 xl:w-3/5 ml-auto text-white mt-4 lg:mt-12 p-4 md:p-8 lg:p-12">
+          <h1 className="flex flex-col md:flex-row md:space-x-3 text-4xl lg:text-6xl font-semibold mb-6">
+            <span>Bienvenido a</span>
+            <span>MoveAR</span>
           </h1>
           <h2 className="text-2xl md:text-3xl lg:text-4xl md:mb-2 lg:mb-6 font-medium  ">
             La forma más fácil de mudarse
@@ -96,7 +97,10 @@ export const Hero = () => {
             Calcula tu mudanza y escoge un vehículo acorde a tus necesidades
           </p>
           <div className="hidden md:block md:text-end lg:text-start">
-            <button className="btn" onClick={() => router.push('/calculator')}>
+            <button
+              className="btn px-20 py-2  "
+              onClick={() => router.push('/calculator')}
+            >
               Calcular
             </button>
           </div>
