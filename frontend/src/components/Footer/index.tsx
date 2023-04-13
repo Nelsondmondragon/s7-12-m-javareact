@@ -5,26 +5,26 @@ export const Footer = () => {
   const router = useRouter();
 
   return (
-    <footer className="text-sm md:text-lg p-4 md:p-10     ">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 w-full">
+    <footer className="text-sm lg:text-lg p-4  md:p-8 lg:p-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 w-full">
         <div className="flex order-1">
           <Image
             src={'/assets/images/logos/logo-footer.png'}
             alt="logo"
             width={150}
             height={100}
-            className="hidden md:block w-[150px] h-[100px] mr-8"
+            className="hidden lg:block w-[150px] h-[100px] mr-8"
           />
           <div>
             <p>Siguenos en:</p>
-            <div className="flex justify-center items-center space-x-3 md:space-x-4 mt-2 md:mt-4">
+            <div className="flex justify-center items-center space-x-2 lg:space-x-3 mt-2 lg:mt-4">
               <span>
                 <Image
                   src={'/assets/images/logos/instagram.png'}
                   alt="instagram logo"
                   width={48}
                   height={48}
-                  className="w-6 h-6  md:w-12 md:h-12"
+                  className="w-6 h-6  lg:w-10 lg:h-10"
                 />
               </span>
               <span>
@@ -33,7 +33,7 @@ export const Footer = () => {
                   alt="facebook logo"
                   width={48}
                   height={48}
-                  className="w-6 h-6  md:w-12 md:h-12"
+                  className="w-6 h-6  lg:w-10 lg:h-10"
                 />
               </span>
               <span>
@@ -42,13 +42,13 @@ export const Footer = () => {
                   alt="linkedin logo"
                   width={48}
                   height={48}
-                  className="w-6 h-6  md:w-12 md:h-12"
+                  className="w-6 h-6  lg:w-10 lg:h-10"
                 />
               </span>
             </div>
           </div>
         </div>
-        <div className="flex order-none md:order-2">
+        <div className="flex order-none lg:order-2">
           <div className="flex-col w-full">
             <p
               onClick={() => router.push('/faq')}
@@ -76,15 +76,15 @@ export const Footer = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-start md:items-center md:space-y-4 order-3">
-          <div className="justify-center items-center space-x-4 hidden md:flex">
+        <div className="flex flex-col justify-center items-start lg:items-center lg:space-y-4 order-3">
+          <div className="justify-center items-center space-x-4 hidden lg:flex">
             <span>
               <Image
                 src={'/assets/images/logos/whatsapp.png'}
                 alt="linkedin logo"
                 width={48}
                 height={48}
-                className="w-6 h-6  md:w-12 md:h-12 mr-4"
+                className="w-6 h-6  lg:w-12 lg:h-12 mr-4"
               />
             </span>
             <span className="text-xl">+54 9 12 2659-2638</span>
@@ -95,11 +95,14 @@ export const Footer = () => {
               alt="secure image"
               width={226}
               height={77}
-              className="w-auto h-6 md:w-56 md:h-20"
+              className="w-auto h-6 lg:w-56 lg:h-20"
             />
           </div>
         </div>
       </div>
+      <p className="text-center text-xs lg:text-left">
+        Movear @2023. Todos los derechos reservados.
+      </p>
     </footer>
   );
 };

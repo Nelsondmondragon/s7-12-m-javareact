@@ -4,13 +4,14 @@ import type { NextRequest } from 'next/server';
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   const userToken = await request.cookies.get('token')?.value;
-  if (!userToken) {
-    return NextResponse.redirect(new URL('/', request.url));
+  if (userToken) {
+    console.log(userToken);
+    return NextResponse.redirect(new URL('/about', request.url));
   } else {
     return NextResponse.next();
   }
 }
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: '/services/:path*',
+  matcher: '/register/:path*',
 };

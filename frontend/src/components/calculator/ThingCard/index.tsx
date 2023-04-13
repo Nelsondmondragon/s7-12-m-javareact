@@ -16,22 +16,26 @@ export const ThingCard = ({ thing }: ThingProps) => {
   );
   return (
     <article
-      className={`relative grid bg-neutral-100 md:h-[130px] items-center justify-items-center rounded-xl py-1 px-1 transition-all duration-700 ease-in-out  hover:scale-105 border-2 border-primary `}
+      className={`relative grid lg:grid-rows-[3fr,1fr,2fr] lg:h-[170px]  justify-items-center rounded-xl transition-all duration-700 ease-in-out  hover:scale-105 text-white `}
     >
       <div
-        className={`flex items-center justify-center w-10 md:w-20 h-10 md:h-20 `}
+        className={`bg-white flex items-center justify-center w-16 lg:w-24 h-16 md:w-20 md:h-20 lg:h-24 rounded-lg  `}
       >
         <Image
           src={thing.image}
           alt={thing.title}
           className={`transitions-theme hover:-rotate-12 object-contain`}
-          width={80}
-          height={80}
+          width={100}
+          height={100}
         />
       </div>
-      <div className={`grid items-center justify-items-center text-darkBlue `}>
-        <h2 className="text-[10px] text-center">{thing.title}</h2>
+      <div className="self-start mt-1">
         <MoveToTruck thing={thing} />
+      </div>
+      <div className="self-start">
+        <h2 className=" flex justify-center items-center w-full text-xs md:text-base font-medium  text-center">
+          {thing.title}
+        </h2>
       </div>
     </article>
   );

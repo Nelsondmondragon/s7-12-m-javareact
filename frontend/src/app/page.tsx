@@ -28,7 +28,7 @@ export default function Home() {
             </p>
             <div className="flex justify-center items-center my-8">
               <button
-                className="btn"
+                className="btn px-12 py-2"
                 onClick={() => router.push('/calculator')}
               >
                 Calcular

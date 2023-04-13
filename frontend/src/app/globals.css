@@ -10,21 +10,21 @@
     --footer-height: 189px;
   }
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth text-black;
   }
 
   header {
-    @apply sticky z-10 flex w-full h-[var(--mobile-header-height)] md:h-[var(--tablet-header-height)] lg:h-[var(--header-height)] items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6 bg-primary-800 text-light-100 duration-200;
+    @apply sticky z-10 flex w-full h-[var(--mobile-header-height)] md:h-[var(--tablet-header-height)] lg:h-[var(--header-height)] items-center justify-between px-4 py-4 transition-all lg:px-6 xl:px-10 lg:py-6 bg-primary-800 text-light-100 duration-200;
   }
 
   footer {
-    @apply flex w-full items-center justify-between px-16 py-16 transition-all lg:px-10 lg:py-6  bg-primary-700 text-white;
+    @apply w-full items-center justify-between px-16 py-16 transition-all lg:px-10 lg:py-6  bg-primary-700 text-white;
   }
 }
 
 @layer components {
   .headerLink {
-    @apply max-w-xs mx-auto p-4 md:p-2 cursor-pointer transition duration-300 hover:bg-primary-100 lg:text-lg font-medium hover:text-dark hover:rounded-lg;
+    @apply max-w-xs mx-auto md:ml-7 p-2 cursor-pointer transition duration-300 hover:bg-primary-100 md:text-lg font-medium hover:text-black hover:rounded-lg;
   }
 
   .bannerButton {
@@ -32,11 +32,11 @@
   }
 
   .menuDesktop {
-    @apply lg:relative lg:flex lg:space-x-4 lg:min-h-0 lg:top-0 lg:px-0 lg:py-0 lg:space-y-0 lg:translate-x-0 lg:text-base;
+    @apply lg:relative lg:flex lg:space-x-1  xl:space-x-4 lg:min-h-0 lg:top-0 lg:px-0 lg:py-0 lg:space-y-0 lg:translate-x-0 lg:text-base;
   }
 
   .menuMobile {
-    @apply fixed left-0 right-0 top-[var(--mobile-header-height)] md:top-[var(--tablet-header-height)]  min-h-[calc(100vh-var(--header-height))] px-4 pt-8 space-y-4 bg-primary-800 text-4xl transform text-center transition duration-300;
+    @apply fixed left-0 w-2/3 top-[var(--mobile-header-height)] md:top-[var(--tablet-header-height)]  min-h-[calc(100vh-var(--header-height))] px-8 pt-8 space-y-4 bg-primary-700 lg:bg-primary-800 transform text-left transition duration-300;
   }
 
   .title {
@@ -52,7 +52,7 @@
   }
 
   .btn {
-    @apply text-lg text-primary-600 px-6 py-2 bg-white rounded-[10px] hover:bg-primary-50;
+    @apply text-lg text-primary-600  px-4 py-0.5 md:py-1 bg-white rounded-[10px] hover:bg-primary-50;
   }
   .btnSecond {
     @apply text-primary-100  bg-primary-600 hover:bg-primary-400;
@@ -79,12 +79,12 @@
 }
 
 .react-datepicker-wrapper {
-width: fit-content !important;
+  width: fit-content !important;
 }
- .react-datepicker__input-container {
+.react-datepicker__input-container {
   width: fit-content;
- }
+}
 
- .react-datepicker__tab-loop {
+.react-datepicker__tab-loop {
   position: absolute;
- }
+}

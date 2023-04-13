@@ -15,8 +15,10 @@ const CardRequirement = ({ image, title, description }: RequirementType) => {
         height={300}
         alt={title}
       />
-      <div className=" bg-primary-600 px-4 md:px-8 pt-4 min-h-[150px] rounded-b-2xl text-white">
-        <h3 className="text-base md:text-xl">{title}</h3>
+      <div className=" bg-primary-600 px-4 md:px-6 lg:px-4 pt-4 min-h-[150px] rounded-b-2xl text-white">
+        <h3 className="text-base md:text-xl lg:text-base xl:text-xl font-semibold text-center mb-2">
+          {title}
+        </h3>
         <div className="text-sm pb-8">
           <p>{description}</p>
         </div>
@@ -29,11 +31,11 @@ type Props = {};
 
 export const Requirement = (props: Props) => {
   return (
-    <section className="px-4 md:px-24 pb-24">
-      <h2 className="text-4xl text-white my-12 font-semibold ">
-        ¿Qúé necesitas para alquilar un vehículo con nosotros?
+    <section className="px-4 md:px-12 lg:px-20 pb-24">
+      <h2 className="md:text-2xl lg:text-3xl text-white my-12 font-semibold ">
+        ¿Qué necesitas para alquilar un vehículo con nosotros?
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-lg">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 md:gap-4 lg:gap-2 xl:gap-4 text-lg">
         <CardRequirement
           image="/assets/images/licencia.png"
           title="LICENCIA DE CONDUCIR"
