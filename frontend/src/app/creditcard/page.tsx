@@ -2,6 +2,7 @@
 // import { useRouter } from 'next/navigation';
 // import { FaArrowLeft } from 'react-icons/fa';
 
+import { FormCreditCard } from '@/components/payments/FormPay';
 import Image from 'next/image';
 
 export default function CrediCard() {
@@ -60,7 +61,7 @@ export default function CrediCard() {
               Aqui van los datos de la tarjeta
             </h2>
             <div>
-              <p className=" h-32 "></p>
+              <FormCreditCard />
             </div>
           </div>
         </div>
