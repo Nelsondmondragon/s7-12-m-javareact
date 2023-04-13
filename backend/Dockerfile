@@ -6,7 +6,7 @@ FROM eclipse-temurin:17-jdk-alpine
 
 ENV SPRING_PROFILES_ACTIVE=dev
 ENV DDL_CONFIG=create-drop
-ENV DB_URL=postgresql://backend-prod.cmflltbz8hh0.us-east-1.rds.amazonaws.com:5432/postgres
+ENV DB_URL=postgresql://backend-prod.cmflltbz8hh0.us-east-1.rds.amazonaws.com/postgres
 ENV DB_USER=postgres
 ENV DB_PASSWORD=TC6af6RKYcxJ96j0sUxV
 ENV EMAIL_USER=brightenglishtest@gmail.com
