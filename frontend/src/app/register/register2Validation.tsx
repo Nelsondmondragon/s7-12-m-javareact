@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
 
 export const Schema = Yup.object().shape({
-    name: Yup.string()
+    firstName: Yup.string()
         .required('Requerido'),
-    lastname: Yup.string()
+    lastName: Yup.string()
         .required('Requerido'),
     email: Yup.string()
         .email('Email invalido')
@@ -13,9 +13,6 @@ export const Schema = Yup.object().shape({
         .required('Requerido'),
     adress: Yup.string()
         .required('Requerido'),
-    dni: Yup.string()
-        .required('Requerido'),
-    licence: Yup.string()
-        .required('Requerido')
+
 
 });

@@ -6,43 +6,45 @@ import vector from './vector.svg';
 import { useRouter } from 'next/navigation';
 // import { Schema as schema } from './registerValidation';
 import { Schema as schema } from './register2Validation';
+import postRegister from '@/lib/postRegister';
 
  type FormValues = {
-  name: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   city: string;
   adress: string;
-  dni: string;
-  licence: string;
+  // dni: string;
+  // licence: string;
   
 };
 
-const Register2 = () => {
+const Register2 = ({pasos, actualizarDatos, datos}) => {
 
   const router = useRouter();
 
-  const irAtras = () => router.push("register")
      const {
        register,
        handleSubmit,
        formState: { errors },
      } = useForm<FormValues>({
        defaultValues: {
-        name: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
         email: '',
         city: '',
         adress: '',
-        dni: '',
-        licence: '',
+        // dni: '',
+        // licence: '',
         
       },
        resolver: yupResolver(schema),
      });
 
      const RegisterUser = async (values: FormValues) => {
-      console.log('guardando datos')
+      console.log('guardando datos registro2')
+      actualizarDatos(values)
+      postRegister(datos)
        console.log(values);
      };
 
@@ -64,9 +66,9 @@ const Register2 = () => {
                   Nombre
                 </label>
                 <input className="w-96 rounded-md h-11 bg-[#FFFFFF] outline-none px-2 py-4 border-[#77CEFF] border-solid border" 
-                {...register('name')} />
+                {...register('firstName')} />
                 <p className="text-red-600 text-sm font-bold">
-                  {errors?.name?.message}
+                  {errors?.firstName?.message}
                 </p>
               </div>
               <div className="flex flex-col pb-2">
@@ -74,9 +76,9 @@ const Register2 = () => {
                   Apellido
                 </label>
                 <input className="w-96 rounded-md h-11 bg-[#FFFFFF] outline-none px-2 py-4 border-[#77CEFF] border-solid border" 
-                {...register('lastname')} />
+                {...register('lastName')} />
                 <p className="text-red-600 text-sm font-bold">
-                  {errors?.lastname?.message}
+                  {errors?.lastName?.message}
                 </p>
               </div>
               <div className="flex flex-col pb-2">
@@ -112,7 +114,7 @@ const Register2 = () => {
                   {errors?.adress?.message}
                 </p>
               </div>
-              <div className="flex flex-col pb-2">
+              {/* <div className="flex flex-col pb-2">
                 <label htmlFor="dni" className="font-semibold pb-2">
                   DNI
                 </label>
@@ -121,8 +123,8 @@ const Register2 = () => {
                 <p className="text-red-600 text-sm font-bold">
                   {errors?.dni?.message}
                 </p>
-              </div>
-              <div className="flex flex-col pb-2">
+              </div> */}
+              {/* <div className="flex flex-col pb-2">
                 <label htmlFor="licence" className="font-semibold pb-2">
                   N° Licencia conducir
                 </label>
@@ -130,7 +132,7 @@ const Register2 = () => {
                 <p className="text-red-600 text-sm font-bold">
                   {errors?.licence?.message}
                 </p>
-              </div>
+              </div> */}
               {/* <div className="flex flex-col pb-2">
                 <label htmlFor="name" className="font-semibold pb-2">
                   Fecha de nacimiento
@@ -144,7 +146,7 @@ const Register2 = () => {
           </div>
 
           <div className='flex justify-between pt-11'>
-            <button className="py-2 px-7 mt-4 w-48 bg-[#FAFAFA] text-base text-[#03649B] rounded-md justify-self-end font-bold" type='button' onClick={irAtras}> Volver
+            <button className="py-2 px-7 mt-4 w-48 bg-[#FAFAFA] text-base text-[#03649B] rounded-md justify-self-end font-bold" type='button' onClick={()=>{pasos(0)}}> Volver
             </button>
             <button className="py-2 px-7 mt-4 w-48 bg-[#03649B] text-base text-[#D2EEFE] rounded-md self-end" type="submit"> Guardar y Avanzar
             </button>

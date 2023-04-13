@@ -16,6 +16,9 @@ export const Schema = Yup.object().shape({
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/,
             'La contraseña debe tener al menos una letra mayúscula, una letra minúscula y un número'
           ),
+    confirmPassword: Yup.string()
+          .required('Required')
+          .oneOf([Yup.ref('password'), null], 'Las contraseñas no coinciden'),
     
 
 });

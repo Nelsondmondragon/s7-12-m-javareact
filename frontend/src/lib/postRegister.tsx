@@ -3,8 +3,10 @@ type registerProps = {
   lastName: string;
   email: string;
   password: string;
+  city: string;
+  adress: string;
 };
-const postRegister = async ({ firstName, lastName, email, password }: registerProps) => {
+const postRegister = async ({ firstName, lastName, email, password, city, adress }: registerProps) => {
   console.log('en postRegister');
   try {
     const response = await fetch(
@@ -14,7 +16,7 @@ const postRegister = async ({ firstName, lastName, email, password }: registerPr
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ firstName, lastName, email, password }),
+        body: JSON.stringify({ firstName, lastName, email, password, city, adress }),
       }
     );
     console.log('respuesta', response.status);
