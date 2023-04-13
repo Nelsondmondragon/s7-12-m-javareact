@@ -1,6 +1,20 @@
+'use client'
+import ModalConfirm from "@/components/ui/ModalConfirm";
+import ModalLoading from "@/components/ui/ModalLoading";
 import React from "react";
+import { useState } from 'react';
 
 const PayPage = () => {
+
+  const [modal, setModal] = useState('')
+
+  const timer = async() => {
+    setModal('loading')
+    setTimeout(() => {
+      setModal('confirm')
+    }, 3000);
+  }
+
   return (
     <section className="h-[80vh] flex justify-evenly items-center">
       {/* card */}
@@ -66,11 +80,20 @@ const PayPage = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          <button className="bg-white text-primary-600 text-[23px] font-bold w-[342px] py-3 rounded-md mt-10 shadow-lg">
+          <button className="bg-white text-primary-600 text-[23px] font-bold w-[342px] py-3 rounded-md mt-10 shadow-lg"
+          onClick={timer}>
             Pagar
           </button>
         </div>
       </div>
+      {
+        modal === 'loading' && <ModalLoading /> 
+      
+      }
+          {
+        modal === 'confirm' && <ModalConfirm /> 
+      
+      }
     </section>
   );
 };
