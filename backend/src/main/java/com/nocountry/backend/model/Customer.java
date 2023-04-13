@@ -55,4 +55,8 @@ public class Customer {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_LOCATION", referencedColumnName = "ID_LOCATION", insertable = false, updatable = false)
     private Location location;
+
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+    private List<Card> cards;
 }

@@ -14,17 +14,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RegisterRequestDto {
 
-    @Schema(example = "user@test.com")
     private String email;
 
     @Schema(example = "1234")
     private String password;
 
-    @Schema(example = "Francisco")
+    @Schema(example = "User Test")
     private String fullName;
 
     @Schema(example = "02000010")
-    private Long idLocation;
+    private String idLocation;
 
     @Schema(example = "Calle sin nombre 123, Buenos Aires")
     private String address;

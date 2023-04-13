@@ -26,8 +26,11 @@ public interface ICustomerMapper {
 
 
     @InheritInverseConfiguration
-    @Mapping(target = "user", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "fkUser", ignore = true)
+    @Mapping(target = "user", ignore = true)
+    @Mapping(target = "bookings", ignore = true)
+    @Mapping(target = "location", ignore = true)
+    @Mapping(target = "fkLocation", source = "idLocation")
     Customer toCustomerRegister(RegisterRequestDto customerDto);
 }
