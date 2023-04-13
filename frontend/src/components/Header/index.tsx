@@ -143,7 +143,7 @@ export const Header = () => {
             ) : (
               <div className="flex space-x-2 ">
                 <button
-                  className="hidden md:block btn btnSecond"
+                  className="hidden md:block btn btnSecond px-2"
                   onClick={() => handleLogin()}
                 >
                   Ingresar
@@ -152,7 +152,7 @@ export const Header = () => {
                   <FaUserAlt size={16} />
                 </button>
                 <button
-                  className="hidden md:block btn"
+                  className="hidden md:block btn px-2"
                   onClick={() => handleRegister()}
                 >
                   Registrarse
