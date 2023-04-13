@@ -21,10 +21,10 @@ export default function About() {
           <p>Nosotros</p>
         </div>
       </button> */}
-      <div className="flex flex-col gap-4 md:gap-0 p-4 md:p-8 ">
-        <div className="bg-white bg-opacity-60 p-4 rounded-[10px] md:rounded-none md:rounded-t-[20px] ">
+      <div className="flex flex-col gap-4 md:gap-0 p-2 md:p-8 lg:px-20 ">
+        <div className="bg-white bg-opacity-60 p-2 md:px-8 lg:px-16  rounded-[10px] md:rounded-none md:rounded-t-[20px] ">
           <h2 className="font-semibold text-center md:text-left mb-3 md:mb-10 text-2xl md:text-4xl">
-            ¿Quines somos en MoveAr?
+            ¿Quienes somos en MoveAr?
           </h2>
           <p className="mb-3">
             Somos una empresa joven que tiene como objetivo facilitarte la vida.
@@ -52,7 +52,7 @@ export default function About() {
           </p>
         </div>
 
-        <div className="bg-white bg-opacity-60 p-4 rounded-[10px] md:rounded-none md:rounded-b-[20px] md:flex md:gap-8 md:flex-row-reverse ">
+        <div className="bg-white bg-opacity-60 p-4 md:px-8 lg:px-16  rounded-[10px] md:rounded-none md:rounded-b-[20px] md:flex md:gap-8 md:flex-row-reverse ">
           <div className="flex-1">
             <h2 className="font-semibold text-center md:text-left mb-3 md:mb-10 text-2xl md:text-4xl">
               Nuestro personal
