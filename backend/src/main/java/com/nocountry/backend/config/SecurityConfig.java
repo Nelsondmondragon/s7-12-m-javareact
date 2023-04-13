@@ -35,7 +35,7 @@ public class SecurityConfig {
         configuration.setAllowedOriginPatterns(List.of("https://s7-12-m-javareact-production.up.railway.app",
                 "http://s7-12-m-javareact-production.up.railway.app",
                 "http://localhost:8080"));
-        configuration.setAllowedMethods(List.of("*"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
