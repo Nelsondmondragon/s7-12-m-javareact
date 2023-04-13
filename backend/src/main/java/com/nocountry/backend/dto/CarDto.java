@@ -49,8 +49,8 @@ public class CarDto {
     @Schema(example = "2400")
     private Integer height;
 
-    @Schema(example = "CABA")
-    private String pickUpLocation;
+    @Schema(example = "02000010")
+    private String idLocation;
 
     @Schema(example = "1")
     private Category category;

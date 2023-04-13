@@ -31,7 +31,7 @@ public class CarSpecification {
     }
 
     public static Specification<Car> hasPickUpLocation(String pickUpLocation) {
-        return (root, query, cb) -> cb.equal(root.get("pickUpLocation"), pickUpLocation);
+        return (root, query, cb) -> cb.equal(root.get("idLocation"), pickUpLocation);
     }
 
     public static Specification<Car> hasCategory(Long categoryId) {

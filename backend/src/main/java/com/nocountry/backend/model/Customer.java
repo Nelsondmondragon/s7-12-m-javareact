@@ -1,18 +1,10 @@
 package com.nocountry.backend.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,23 +23,24 @@ public class Customer {
     @Column(name = "ID_CUSTOMER")
     private Long id;
 
-    @Column(name = "FIRST_NAME")
-    private String firstName;
+    @Column(name = "FULL_NAME")
+    private String fullName;
 
-    @Column(name = "LAST_NAME")
-    private String lastName;
 
     @Column(name = "ADDRESS")
     private String address;
 
-    @Column(name = "BIRTH_DATE")
-    private String birthdate;
+    @Column(name = "DNI")
+    private String dni;
 
-    @Column(name = "PHONE")
-    private String phone;
+    @Column(name = "NUMBER_LICENSE")
+    private String numberLicence;
 
-    @Column(name = "DRIVER_LICENCE")
-    private Long driverLicence;
+    @Column(name = "DATE_EXPIRATION")
+    private LocalDateTime dateExpiration;
+
+    @Column(name = "FK_LOCATION")
+    private String fkLocation;
 
     @Column(name = "FK_USER")
     private Long fkUser;
@@ -58,4 +51,8 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Booking> bookings;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_LOCATION", referencedColumnName = "ID_LOCATION", insertable = false, updatable = false)
+    private Location location;
 }

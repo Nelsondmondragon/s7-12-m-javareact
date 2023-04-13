@@ -68,7 +68,7 @@ public class BookingServiceImpl implements IBookingService {
         String to = customer.getUser().getEmail();
         String subject = "Confirmación de reserva";
         String text = "<html><body>"
-                + "<p>Estimado/a " + customer.getFirstName() + ",</p>"
+                + "<p>Estimado/a " + customer.getFullName() + ",</p>"
                 + "<p>Le agradecemos por elegir MoveAR para sus necesidades de mudanza. Este correo electrónico es para confirmar la reserva del vehículo que solicitó. A continuación encontrará los detalles de su reserva:</p>"
                 + "<ul>"
                 + "<li>Fecha y hora de retiro: "

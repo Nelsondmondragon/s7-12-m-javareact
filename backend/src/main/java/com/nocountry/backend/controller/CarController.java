@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/cars")
 @RequiredArgsConstructor
 @Tag(name = "Cars", description = "Management of cars available for rent in MoveAr. It allows creating, modifying, and deleting vehicles, as well as obtaining detailed information about them.")
-@SecurityRequirement(name = "bearerAuth")
 public class CarController {
 
     private final ICarService carService;
@@ -57,11 +57,11 @@ public class CarController {
             @RequestParam(required = false) Boolean air,
             @RequestParam(required = false) Boolean gps,
             @RequestParam(required = false) Integer passengers,
-            @RequestParam(required = false) String pickUpLocation,
+            @RequestParam(required = false) String idLocation,
             @RequestParam(required = false) Long idCategory,
             @RequestParam LocalDateTime startTime,
             @RequestParam LocalDateTime endTime) {
-        var cars = carService.findCarsByFilters(model, make, year, air, gps, passengers, pickUpLocation,
+        var cars = carService.findCarsByFilters(model, make, year, air, gps, passengers, idLocation,
                 idCategory, startTime, endTime);
         if (cars.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -72,11 +72,11 @@ public class CarController {
 
     @GetMapping("/getbyfilters")
     public ResponseEntity<List<CarDto>> getAllCarsByFilter(
-            @RequestParam(required = false) Long idCategory,
-            @RequestParam(required = true) String pickUpLocation,
+            @Parameter(example = "1") @RequestParam(required = false) Long idCategory,
+            @Parameter(example = "02000010") @RequestParam(required = true) String idLocation,
             @RequestParam(required = true) LocalDateTime startTime,
             @RequestParam(required = true) LocalDateTime endTime) {
-        List<CarDto> cars = carService.findAllCarsByFilters(idCategory, pickUpLocation, startTime, endTime);
+        List<CarDto> cars = carService.findAllCarsByFilters(idCategory, idLocation, startTime, endTime);
         if (cars.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {

@@ -28,10 +28,9 @@ spring:
     multipart:
       max-file-size: 50MB
       max-request-size: 50MB
-# stripe:
-#   api:
-#     base:
-#       url: https://api.stripe.com
-#   key:
-#     public: ${STRIPE1}
-#     secret: ${STRIPE1}
+stripe:
+  api:
+    base:
+      url: https://api.stripe.com
+  key:
+    secret: ${STRIPE1}

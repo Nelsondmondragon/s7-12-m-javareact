@@ -52,8 +52,8 @@ public class CarServiceImpl implements ICarService {
 
     @Override
     public List<CarDto> findCarsByFilters(String model, String make, Integer year, Boolean air, Boolean gps,
-            Integer passengers, String pickUpLocation, Long idCategory, LocalDateTime startTime,
-            LocalDateTime endTime) {
+                                          Integer passengers, String idLocation, Long idCategory, LocalDateTime startTime,
+                                          LocalDateTime endTime) {
 
         // Create a new query with the specified filters
         Specification<Car> spec = Specification.where(null);
@@ -82,8 +82,8 @@ public class CarServiceImpl implements ICarService {
             spec = spec.and(CarSpecification.hasPassengers(passengers));
         }
 
-        if (pickUpLocation != null) {
-            spec = spec.and(CarSpecification.hasPickUpLocation(pickUpLocation));
+        if (idLocation != null) {
+            spec = spec.and(CarSpecification.hasPickUpLocation(idLocation));
         }
 
         if (idCategory != null) {
@@ -97,18 +97,18 @@ public class CarServiceImpl implements ICarService {
     @Override
     public List<CarDto> findAllCarsByFilters(
             Long idCategory,
-            String pickUpLocation,
+            String idLocation,
             LocalDateTime startTime,
             LocalDateTime endTime) {
 
         // trae todos los autos que no estan en reservas por categoria y Location
         List<Car> allCars = carRepository.findAllByCategoryIdAndLocationId(idCategory,
-                pickUpLocation);
+                idLocation);
 
 
 
         // trae todas las reservas por Location
-        List<Booking> reservasPorUbicacionRetiro = bookingRepository.findAllByPickUpLocation(pickUpLocation);
+        List<Booking> reservasPorUbicacionRetiro = bookingRepository.findAllByPickUpLocation(idLocation);
         List<Booking> reservasFinales = new ArrayList<>();
         for (Booking book : reservasPorUbicacionRetiro) {
             if (bookingService.validateDateBooking(startTime, endTime, book)) {

@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1/locations")
-@Tag(name = "Localidades", description = "Localidades de Argentina.")
+@Tag(name = "Locations", description = "Localidades de Argentina.")
 @RequiredArgsConstructor
 @SecurityRequirement(name = "bearerAuth")
 public class LocationController {

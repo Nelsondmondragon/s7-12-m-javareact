@@ -46,10 +46,7 @@ public class User implements UserDetails {
     @Column(name = "ROLE")
     private String role;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_CUSTOMER")
-    @JsonIgnore
-    private Customer customer;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

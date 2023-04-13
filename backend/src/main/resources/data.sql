@@ -1,3 +1,48 @@
+-- insert user --
+
+INSERT INTO users(EMAIL, PASSWORD, ROLE)
+VALUES ('maria@correo.com','$2a$10$6BOKBHct.1.6NvCb2UDBuOM.w1S7SC29ggEzhYO.LlffwfxD9kjta','ADMIN'),
+('pedro@correo.com','$2a$10$6BOKBHct.1.6NvCb2UDBuOM.w1S7SC29ggEzhYO.LlffwfxD9kjta','ADMIN'),
+('admin@movear.com','$2a$10$6BOKBHct.1.6NvCb2UDBuOM.w1S7SC29ggEzhYO.LlffwfxD9kjta','ADMIN'),
+('user@test.com','$2a$10$6BOKBHct.1.6NvCb2UDBuOM.w1S7SC29ggEzhYO.LlffwfxD9kjta','ADMIN')
+;
+
+
+INSERT INTO LOCATIONS(ID_LOCATION, NAME) values  ('02000010','Ciudad Autónoma de Buenos Aires'),
+                                                 ('14014010','Córdoba'),
+                                                 ('06441030','La Plata'),
+                                                 ('10077020','Rosario'),
+                                                 ('66028050','Salta');
+
+INSERT INTO CUSTOMERS(full_name, fk_location,fk_user, address,dni,number_license,date_expiration)
+VALUES ('Maria Contrera','02000010',1,'Control','234234234','234234234','2026-09-12'),
+('Pedro Perez','14014010',2,'Otra direccion','345345345','234234234','2029-09-12'),
+('Admin Admin','10077020',3,'Otra direccion','6768768','4565466','2025-09-12'),
+('Test Test','06441030',4,'Otra direccion','97979','456456','2049-09-12')
+;
+
+
+
+--
+--gregar estos usuarios: {
+--  "email": "maria@correo.com",
+--  "password": "1234",
+--  "firstName": "Maria",
+--  "lastName": "Contrera",
+--  "phone": "+519111234567",
+--  "birthdate": "2001-04-11",
+--  "address": "Control"
+--}{
+--  "email": "pedro@correo.com",
+--  "password": "1234",
+--  "firstName": "Pedro",
+--  "lastName": "Perez",
+--  "phone": "+519111234567",
+--  "birthdate": "1990-04-11",
+--  "address": "Otra direccion"
+--}
+
+
 -- insert categories
 
 INSERT INTO Categories (NAME, VOLUME, CAPACITY_LIMIT, HOURLY_PRICE)
@@ -6,11 +51,9 @@ VALUES
 ('Medium', 20.0, 2000.0, 50000.00),
 ('Big', 30.0, 3000.0, 60000.00);
 
-INSERT INTO LOCATIONS(ID_LOCATION, NAME) values  ('02000010','Ciudad Autónoma de Buenos Aires'),
-                                                 ('14014010','Córdoba'),
-                                                 ('06441030','La Plata'),
-                                                 ('10077020','Rosario'),
-                                                 ('66028050','Salta');
+
+-- insert locations --
+
 
 -- insert moving trucks
 

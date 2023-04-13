@@ -1,12 +1,9 @@
 package com.nocountry.backend.service.impl;
 
 import com.nocountry.backend.Error.ErrorCode;
-import com.nocountry.backend.Error.Exceptions.GenericNotFoundException;
 import com.nocountry.backend.Error.Exceptions.LoginException;
 import com.nocountry.backend.Error.Exceptions.RegisterException;
-import jakarta.validation.constraints.Email;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -73,9 +70,9 @@ public class AuthServiceImpl implements IAuthService {
         var jwt = jwtProvider.generateToken(user);
 
         String to = request.getEmail();
-        String subject = "Bienvenido/a a MoveAR, " + request.getFirstName() + "!";
+        String subject = "Bienvenido/a a MoveAR, " + request.getFullName() + "!";
         String text = "<html><body>"
-                + "<p>Estimado/a " + request.getFirstName() + ",</p>"
+                + "<p>Estimado/a " + request.getFullName() + ",</p>"
                 + "<p>¡Bienvenido/a a MoveAR! Nos complace mucho que te hayas registrado en nuestra plataforma de alquiler de vehículos para mudanzas. Con MoveAR, mudarse nunca fue tan fácil.</p>"
                 + "<p>Nuestro objetivo es ayudarte a que tu experiencia de mudanza sea lo más cómoda y sin estrés posible. Con nuestra amplia selección de vehículos disponibles para alquilar, podrás encontrar la opción perfecta para transportar tus pertenencias de manera segura y eficiente.</p>"
                 + "<p>Además, nuestro equipo de expertos en mudanzas está siempre disponible para responder a cualquier pregunta o preocupación que puedas tener durante el proceso de alquiler. Nos enorgullece ofrecer un servicio al cliente excepcional y estamos comprometidos en hacer que tu experiencia con nosotros sea lo más satisfactoria posible.</p>"

@@ -1,6 +1,6 @@
 package com.nocountry.backend.dto;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -21,20 +21,21 @@ public class RegisterRequestDto {
     private String password;
 
     @Schema(example = "Francisco")
-    private String firstName;
+    private String fullName;
 
-    @Schema(example = "Pulido")
-    private String lastName;
-
-    @Schema(example = "1987-06-24")
-    private Date birthdate;
-
-    @Schema(example = "+54 11 1234 5678")
-    private String phone;
+    @Schema(example = "02000010")
+    private Long idLocation;
 
     @Schema(example = "Calle sin nombre 123, Buenos Aires")
     private String address;
 
-    @Schema(example = "1234567890")
-    private Long driverLicence;
+    @Schema(example = "44332244")
+    private String dni;
+
+    @Schema(example = "34533355")
+    private String numberLicence;
+
+    @Schema(example = "2023-01-15T12:00:00")
+    private LocalDateTime dateExpiration;
+
 }

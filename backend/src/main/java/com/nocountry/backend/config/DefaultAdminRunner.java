@@ -41,7 +41,7 @@ public class DefaultAdminRunner implements ApplicationRunner {
                 if (userRepository.findByEmail(admin.getUsername()).isEmpty()) {
                         admin = userRepository.save(admin);
                         var customer = Customer.builder()
-                                        .firstName("Administrador")
+                                        .fullName("Administrador")
                                         .fkUser(admin.getId())
                                         .build();
                         customerRepository.save(customer);

@@ -22,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 @Tag(name = "Authentication", description = "Registration and login for MoveAr users.")
-@SecurityRequirement(name = "bearerAuth")
 public class AuthController {
 
     private final IAuthService authService;
