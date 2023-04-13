@@ -52,10 +52,10 @@
   }
 
   .btn {
-    @apply text-lg text-primary-600  px-4 py-0.5 md:py-1 bg-white rounded-[10px] hover:bg-primary-50;
+    @apply text-lg text-primary-700  px-12 py-1 md:py-1 bg-white rounded-[10px] hover:bg-primary-100;
   }
   .btnSecond {
-    @apply text-primary-100  bg-primary-600 hover:bg-primary-400;
+    @apply text-primary-50  bg-primary-700 hover:bg-primary-50 hover:text-primary-600;
   }
 
   .move {
