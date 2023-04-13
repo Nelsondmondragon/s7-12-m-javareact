@@ -34,7 +34,7 @@ const links = [
     label: 'Vehículos',
     icon: '/assets/images/cars.svg',
     size: 24,
-    route: '/booking',
+    route: '/vehicles',
     show: '1',
   },
   {
