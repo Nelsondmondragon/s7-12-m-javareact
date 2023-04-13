@@ -20,31 +20,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DefaultAdminRunner implements ApplicationRunner {
 
-        private final IUserRepository userRepository;
 
-        private final ICustomerRepository customerRepository;
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+    }
 
-        private final PasswordEncoder passwordEncoder;
-
-        @Override
-        public void run(ApplicationArguments args) throws Exception {
-                createUsers();
-        }
-
-        private void createUsers() {
-                var admin = User.builder()
-                                .email("admin@movear.com")
-                                .password(passwordEncoder.encode("1234"))
-                                .role(Role.ADMIN.name())
-                                .build();
-
-                if (userRepository.findByEmail(admin.getUsername()).isEmpty()) {
-                        admin = userRepository.save(admin);
-                        var customer = Customer.builder()
-                                        .fullName("Administrador")
-                                        .fkUser(admin.getId())
-                                        .build();
-                        customerRepository.save(customer);
-                }
-        }
 }
