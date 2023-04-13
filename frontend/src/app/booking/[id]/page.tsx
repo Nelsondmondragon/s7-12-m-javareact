@@ -38,8 +38,8 @@ console.log(item);
               />
               <div className="flex flex-col w-5/12 justify-around ml-14">
                 <h3 className="text-3xl font-medium">{it.model}</h3>
-                <p className="text-2xl leading-7">{it.model}</p>
-                <p className="text-3xl font-medium">$ {it.model}</p>
+                <p className="text-2xl leading-7">{it.make} {it.year} de capacidad de: {it.passengers}</p>
+                <p className="text-3xl font-medium">$ 50000</p>
               </div>
               <button className="bg-primary-600 self-end w-[288px] h-[59px] rounded-xl text-white text-2xl"
               onClick={handleBooking}>
