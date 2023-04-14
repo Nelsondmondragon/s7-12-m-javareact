@@ -53,7 +53,7 @@ export default function Booking() {
     localStorage.setItem("cars", JSON.stringify(postCar));
     console.log(postCar);
     
-    // router.push(`/booking/${item}`);
+    router.push(`/booking/${item}`);
   };
 
   // eslint-disable-next-line react/display-name
