@@ -156,6 +156,8 @@ public class RestApiErrorHandler {
     public ResponseEntity<Error> handleException(HttpServletRequest request, Exception ex,
                                                  Locale locale) {
         ex.printStackTrace(); // TODO: solo para desarrollo
+        System.out.println("Aca entramos ");
+        System.out.println(request.toString());
         Error error = ErrorUtils
                 .createError(ErrorCode.GENERIC_ERROR.getErrMsgKey(), ErrorCode.GENERIC_ERROR.getErrCode(),
                         HttpStatus.INTERNAL_SERVER_ERROR.value()).setUrl(request.getRequestURL().toString())
