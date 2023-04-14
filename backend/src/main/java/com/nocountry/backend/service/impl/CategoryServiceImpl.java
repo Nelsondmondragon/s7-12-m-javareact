@@ -6,7 +6,7 @@ import java.util.List;
 import com.nocountry.backend.Error.Exceptions.GenericNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.nocountry.backend.dto.CategoryDto;
+import com.nocountry.backend.dto.category.CategoryDto;
 import com.nocountry.backend.mapper.ICategoryMapper;
 import com.nocountry.backend.model.Category;
 import com.nocountry.backend.repository.ICategoryRepository;

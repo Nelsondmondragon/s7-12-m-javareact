@@ -2,20 +2,23 @@ package com.nocountry.backend.service;
 
 import java.util.List;
 
-import com.nocountry.backend.dto.CustomerDetailsDto;
-import com.nocountry.backend.dto.CustomerListDto;
+import com.nocountry.backend.dto.customer.CustomerDetailsDto;
+import com.nocountry.backend.dto.customer.CustomerListDto;
 
+import com.nocountry.backend.dto.customer.CustomerRegisterDto;
 import jakarta.servlet.http.HttpServletRequest;
 
 public interface ICustomerService {
 
-    public List<CustomerListDto> findAllCustomers();
+    List<CustomerListDto> findAllCustomers();
 
-    public CustomerDetailsDto findCustomerByEmail(HttpServletRequest request);
+    CustomerDetailsDto save(CustomerRegisterDto customerRegisterDto);
 
-    public CustomerDetailsDto findCustomerById(Long customerId);
+    CustomerDetailsDto findCustomerByEmail(HttpServletRequest request);
 
-    public CustomerDetailsDto updateCustomer(Long customerId, CustomerDetailsDto customerDetailsDto);
+    CustomerDetailsDto findCustomerById(Long customerId);
 
-    public void deleteCustomer(Long customerId);
+    CustomerDetailsDto updateCustomer(Long customerId, CustomerDetailsDto customerDetailsDto);
+
+    void deleteCustomer(Long customerId);
 }

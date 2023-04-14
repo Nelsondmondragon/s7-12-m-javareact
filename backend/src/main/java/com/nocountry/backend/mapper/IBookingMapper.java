@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
-import com.nocountry.backend.dto.BookingDto;
+import com.nocountry.backend.dto.booking.BookingDto;
 import com.nocountry.backend.model.Booking;
 
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

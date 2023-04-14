@@ -19,8 +19,9 @@ import java.util.List;
 public class Card {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CARD")
-    private String id;
+    private Long id;
 
 
     @Column(name = "NUMBER_CARD")

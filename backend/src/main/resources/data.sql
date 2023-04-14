@@ -23,27 +23,8 @@ VALUES ('Maria Contrera','02000010',1,'Control','234234234','234234234','2026-09
 
 
 
---
---gregar estos usuarios: {
---  "email": "maria@correo.com",
---  "password": "1234",
---  "firstName": "Maria",
---  "lastName": "Contrera",
---  "phone": "+519111234567",
---  "birthdate": "2001-04-11",
---  "address": "Control"
---}{
---  "email": "pedro@correo.com",
---  "password": "1234",
---  "firstName": "Pedro",
---  "lastName": "Perez",
---  "phone": "+519111234567",
---  "birthdate": "1990-04-11",
---  "address": "Otra direccion"
---}
 
 
--- insert categories
 
 INSERT INTO Categories (NAME, VOLUME, CAPACITY_LIMIT, HOURLY_PRICE)
 VALUES

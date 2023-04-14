@@ -1,12 +1,11 @@
 package com.nocountry.backend.util.georefapi.impl;
 
-import com.nocountry.backend.dto.InformationLocationDto;
+import com.nocountry.backend.dto.location.InformationLocationDto;
 import com.nocountry.backend.util.georefapi.APIFunctions;
 import com.nocountry.backend.util.georefapi.GeorefArAPI;
 import com.nocountry.backend.util.georefapi.IExecute;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Component

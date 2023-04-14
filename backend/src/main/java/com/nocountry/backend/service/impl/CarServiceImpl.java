@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.utils.ObjectUtils;
-import com.nocountry.backend.dto.CarDto;
+import com.nocountry.backend.dto.car.CarDto;
 import com.nocountry.backend.mapper.ICarMapper;
 import com.nocountry.backend.model.Booking;
 import com.nocountry.backend.model.Car;

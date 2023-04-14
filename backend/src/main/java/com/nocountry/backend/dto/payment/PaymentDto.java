@@ -1,4 +1,4 @@
-package com.nocountry.backend.dto;
+package com.nocountry.backend.dto.payment;
 
 import com.nocountry.backend.util.enums.Currency;
 

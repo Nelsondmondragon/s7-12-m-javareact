@@ -3,11 +3,12 @@ package com.nocountry.backend.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import com.nocountry.backend.dto.customer.CustomerRegisterDto;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.config.jwt.JwtProvider;
-import com.nocountry.backend.dto.CustomerDetailsDto;
-import com.nocountry.backend.dto.CustomerListDto;
+import com.nocountry.backend.dto.customer.CustomerDetailsDto;
+import com.nocountry.backend.dto.customer.CustomerListDto;
 import com.nocountry.backend.mapper.ICustomerMapper;
 import com.nocountry.backend.model.Customer;
 import com.nocountry.backend.repository.ICustomerRepository;
@@ -33,6 +34,12 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public List<CustomerListDto> findAllCustomers() {
         return customerMapper.toCustomerListDtos(customerRepository.findAll());
+    }
+
+    @Override
+    public CustomerDetailsDto save(CustomerRegisterDto customerRegisterDto) {
+        return this.customerMapper.toCustomerDto(
+                this.customerRepository.save(this.customerMapper.toCustomerRegister(customerRegisterDto)));
     }
 
     @Override

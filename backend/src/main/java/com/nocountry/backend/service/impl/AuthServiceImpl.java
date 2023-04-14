@@ -3,6 +3,10 @@ package com.nocountry.backend.service.impl;
 import com.nocountry.backend.Error.ErrorCode;
 import com.nocountry.backend.Error.Exceptions.LoginException;
 import com.nocountry.backend.Error.Exceptions.RegisterException;
+import com.nocountry.backend.dto.card.CardSaveDto;
+import com.nocountry.backend.dto.customer.CustomerDetailsDto;
+import com.nocountry.backend.service.ICardService;
+import com.nocountry.backend.service.ICustomerService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -10,12 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.config.jwt.JwtProvider;
-import com.nocountry.backend.dto.AuthRequestDto;
-import com.nocountry.backend.dto.AuthResponseDto;
-import com.nocountry.backend.dto.RegisterRequestDto;
-import com.nocountry.backend.mapper.ICustomerMapper;
+import com.nocountry.backend.dto.customer.CustomerRequestDto;
+import com.nocountry.backend.dto.token.TokenDto;
+import com.nocountry.backend.dto.customer.CustomerRegisterDto;
 import com.nocountry.backend.model.User;
-import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.repository.IUserRepository;
 import com.nocountry.backend.service.IAuthService;
 import com.nocountry.backend.service.IMailSenderService;
@@ -30,10 +32,7 @@ public class AuthServiceImpl implements IAuthService {
 
     private final IUserRepository userRepository;
 
-    private final ICustomerRepository customerRepository;
-
-    private final ICustomerMapper customerMapper;
-
+    private final ICustomerService customerService;
     private final PasswordEncoder passwordEncoder;
 
     private final JwtProvider jwtProvider;
@@ -42,10 +41,12 @@ public class AuthServiceImpl implements IAuthService {
 
     private final IMailSenderService mailSenderService;
 
-    @Override
-    public AuthResponseDto register(RegisterRequestDto request) {
+    private final ICardService cardService;
 
-        if(!mailSenderService.isMailValid(request.getEmail())) {
+    @Override
+    public TokenDto register(CustomerRegisterDto request) {
+
+        if (!mailSenderService.isMailValid(request.getEmail())) {
             throw new RegisterException(
                     String.format("the email address you provided is either not following the correct format or has been misspelled.Please check and re-enter the email address correctly.", request.getEmail()));
         }
@@ -55,17 +56,26 @@ public class AuthServiceImpl implements IAuthService {
             throw new RegisterException(ErrorCode.EMAIL_EXISTS);
         }
 
+        System.out.println("pppp");
+
         var user = User.builder()
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER.name())
                 .build();
 
-        var userRepo = userRepository.save(user);
-        var customer = customerMapper.toCustomerRegister(request);
 
-        customer.setFkUser(userRepo.getId());
-        customerRepository.save(customer);
+
+
+        var userRepo = userRepository.save(user);
+        System.out.println(userRepo.getId() + " jjjj id");
+
+        request.setFkUser(userRepo.getId());
+        CustomerDetailsDto customerRegister = this.customerService.save(request);
+
+        CardSaveDto card1 = request.getCard();
+        card1.setFkCustomer(customerRegister.getId());
+        this.cardService.save(card1);
 
         var jwt = jwtProvider.generateToken(user);
 
@@ -86,13 +96,13 @@ public class AuthServiceImpl implements IAuthService {
             e.printStackTrace();
         }
 
-        return AuthResponseDto.builder()
+        return TokenDto.builder()
                 .token(jwt)
                 .build();
     }
 
     @Override
-    public AuthResponseDto login(AuthRequestDto request) {
+    public TokenDto login(CustomerRequestDto request) {
 
         userRepository.findByEmail(request.getEmail()).orElseThrow(() ->
                 new LoginException(String.format("the email address you provided is either not registered in our system")));
@@ -107,7 +117,7 @@ public class AuthServiceImpl implements IAuthService {
         var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
         var jwt = jwtProvider.generateToken(user);
 
-        return AuthResponseDto.builder()
+        return TokenDto.builder()
                 .token(jwt)
                 .build();
     }

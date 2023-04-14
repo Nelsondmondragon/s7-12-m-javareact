@@ -3,3 +3,9 @@ spring:
     url: jdbc:${DATABASE_URL}?createDatabaseIfNotExist=true&useSSL=false
     username: ${PGUSER}
     password: ${PGPASSWORD}
+  jpa:
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql

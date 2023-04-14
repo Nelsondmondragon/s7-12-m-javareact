@@ -1,4 +1,4 @@
-package com.nocountry.backend.dto;
+package com.nocountry.backend.dto.category;
 
 import java.math.BigDecimal;
 

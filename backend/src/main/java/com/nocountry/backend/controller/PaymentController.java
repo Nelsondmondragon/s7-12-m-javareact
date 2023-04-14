@@ -1,6 +1,6 @@
 package com.nocountry.backend.controller;
 
-import com.nocountry.backend.dto.PaymentDto;
+import com.nocountry.backend.dto.payment.PaymentDto;
 import com.nocountry.backend.service.IPaymentService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;

@@ -1,6 +1,6 @@
 package com.nocountry.backend.service.impl;
 
-import com.nocountry.backend.dto.LocationDto;
+import com.nocountry.backend.dto.location.LocationDto;
 import com.nocountry.backend.mapper.ILocationMapper;
 import com.nocountry.backend.repository.ILocationRepository;
 import com.nocountry.backend.service.ILocationService;
