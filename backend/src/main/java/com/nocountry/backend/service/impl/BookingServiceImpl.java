@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.Error.ErrorCode;
@@ -18,6 +19,7 @@ import com.nocountry.backend.repository.ICarRepository;
 import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.service.IBookingService;
 import com.nocountry.backend.service.IMailSenderService;
+import com.nocountry.backend.specification.BookingSpecification;
 
 import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
@@ -42,26 +44,51 @@ public class BookingServiceImpl implements IBookingService {
         return bookingMapper.toBookingDtos(bookingRepository.findAll());
     }
 
-    public List<BookingDto> findAllActiveBookings() {
-        var bookings = bookingRepository.findAll();
-        for (Booking booking : bookings) {
-            if (booking.getEndTime().isBefore(LocalDateTime.now())) {
-                booking.setActive(false);
-                bookingRepository.save(booking);
-            }
-        }
-
-        return bookingMapper.toBookingDtos(bookingRepository.findByActiveTrue());
-    }
-
     @Override
-    public List<BookingDto> findBookingByCustomerId(Long customerId) {
-        var customer = customerRepository.findById(customerId).orElseThrow();
-        var bookings = customer.getBookings();
-        if (bookings == null || bookings.isEmpty()) {
-            throw new EntityNotFoundException("The customer has no bookings registered.");
+    public List<BookingDto> findBookingsByFilters(LocalDateTime startTime, LocalDateTime endTime, String pickUpLocation,
+            String dropOffLocation, Boolean assignedDriver, Boolean helperPawn, Boolean active, Long fkCar,
+            Long fkCustomer) {
+
+        Specification<Booking> spec = Specification.where(null);
+
+        if (startTime != null) {
+            spec = spec.and(BookingSpecification.hasStartTime(startTime));
         }
-        return bookingMapper.toBookingDtos(bookings);
+
+        if (endTime != null) {
+            spec = spec.and(BookingSpecification.hasEndTime(endTime));
+        }
+
+        if (pickUpLocation != null) {
+            spec = spec.and(BookingSpecification.hasPickUpLocation(pickUpLocation));
+        }
+
+        if (dropOffLocation != null) {
+            spec = spec.and(BookingSpecification.hasDropOffLocation(dropOffLocation));
+        }
+
+        if (assignedDriver != null) {
+            spec = spec.and(BookingSpecification.hasAssignedDriver(assignedDriver));
+        }
+
+        if (helperPawn != null) {
+            spec = spec.and(BookingSpecification.hasHelperPawn(helperPawn));
+        }
+
+        if (active != null) {
+            spec = spec.and(BookingSpecification.hasActive(active));
+        }
+
+        if (fkCar != null) {
+            spec = spec.and(BookingSpecification.hasFkCar(fkCar));
+        }
+
+        if (fkCustomer != null) {
+            spec = spec.and(BookingSpecification.hasFkCustomer(fkCustomer));
+        }
+
+        var bookingsFiltered = bookingRepository.findAll(spec);
+        return bookingMapper.toBookingDtos(bookingsFiltered);
     }
 
     @Override
@@ -129,6 +156,10 @@ public class BookingServiceImpl implements IBookingService {
         if (bookingEntity.isPresent()) {
             Booking booking = bookingEntity.get();
             bookingMapper.updateBooking(bookingDto, booking);
+
+            // check if is it possible to update
+            validateOverlapBooking(booking.getFkCar(), bookingDto);
+
             Booking updatedBooking = bookingRepository.save(booking);
             BookingDto updatedBookingDto = bookingMapper.toBookingDto(updatedBooking);
             return updatedBookingDto;
@@ -170,5 +201,4 @@ public class BookingServiceImpl implements IBookingService {
             }
         }
     }
-
 }

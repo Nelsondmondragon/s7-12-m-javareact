@@ -1,12 +1,9 @@
 package com.nocountry.backend.Error.Exceptions;
 
-import java.io.Serial;
-
 import com.nocountry.backend.Error.ErrorCode;
 
 public class OverlappedBookingException extends RuntimeException {
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
     private final String errMsgKey;

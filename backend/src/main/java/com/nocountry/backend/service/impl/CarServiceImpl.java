@@ -57,7 +57,6 @@ public class CarServiceImpl implements ICarService {
             Integer passengers, String idLocation, Long idCategory, LocalDateTime startTime,
             LocalDateTime endTime) {
 
-        // Create a new query with the specified filters
         Specification<Car> spec = Specification.where(null);
 
         if (model != null) {

@@ -22,7 +22,7 @@ public class CarSpecification {
         return (root, query, cb) -> cb.equal(root.get("air"), air);
     }
 
-    public static Specification<Car> hasGps(boolean gps) {
+    public static Specification<Car> hasGps(Boolean gps) {
         return (root, query, cb) -> cb.equal(root.get("gps"), gps);
     }
 

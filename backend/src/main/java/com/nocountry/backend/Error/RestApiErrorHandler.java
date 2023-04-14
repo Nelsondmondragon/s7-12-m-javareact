@@ -93,7 +93,7 @@ public class RestApiErrorHandler {
                 return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
         }
 
-        @ExceptionHandler(CarNotFoundException.class)
+        @ExceptionHandler(OverlappedBookingException.class)
         public ResponseEntity<Error> handleOverlappedBookingException(HttpServletRequest request,
                         OverlappedBookingException ex, Locale locale) {
                 Error error = ErrorUtils

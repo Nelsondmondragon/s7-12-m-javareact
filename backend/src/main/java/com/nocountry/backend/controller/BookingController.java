@@ -1,5 +1,6 @@
 package com.nocountry.backend.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -42,21 +43,25 @@ public class BookingController {
         }
     }
 
-    @GetMapping("/active")
-    @Operation(summary = "Get all active bookings.")
-    public ResponseEntity<List<BookingDto>> getAllActiveBookings() {
-        var bookings = bookingService.findAllActiveBookings();
+    @GetMapping("/filters")
+    @Operation(summary = "Get all bookings according to the specified filters.")
+    public ResponseEntity<List<BookingDto>> getbookingsByFilters(
+            @RequestParam(required = false) LocalDateTime startTime,
+            @RequestParam(required = false) LocalDateTime endTime,
+            @RequestParam(required = false) String pickUpLocation,
+            @RequestParam(required = false) String dropOffLocation,
+            @RequestParam(required = false) Boolean assignedDriver,
+            @RequestParam(required = false) Boolean helperPawn,
+            @RequestParam(required = false) Boolean active,
+            @RequestParam(required = false) Long fkCar,
+            @RequestParam(required = false) Long fkCustomer) {
+        var bookings = bookingService.findBookingsByFilters(startTime, endTime, pickUpLocation, dropOffLocation,
+                assignedDriver, helperPawn, active, fkCar, fkCustomer);
         if (bookings.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(bookings, HttpStatus.OK);
         }
-    }
-
-    @GetMapping("/{customerId}")
-    @Operation(summary = "Get all bookings by customer Id.")
-    public ResponseEntity<List<BookingDto>> getBookingByCustomerId(@PathVariable Long customerId) {
-        return new ResponseEntity<>(bookingService.findBookingByCustomerId(customerId), HttpStatus.OK);
     }
 
     @GetMapping("/{bookingId}")
