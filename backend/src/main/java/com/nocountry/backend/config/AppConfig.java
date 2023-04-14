@@ -57,8 +57,8 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("https://s7-12-m-javareact-production.up.railway.app")
-                .allowedMethods("GET", "POST", "PUT", "DELETE");
+        registry.addMapping("/**").allowedOrigins("*")
+                .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE");
     }
 
     @Bean
