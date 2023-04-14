@@ -1,6 +1,4 @@
-package com.nocountry.backend.dto;
-
-import java.time.LocalDateTime;
+package com.nocountry.backend.dto.customer;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -8,16 +6,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequestDto {
+public class CustomerDetailsDto {
+
+    private Long id;
 
     private String email;
-
-    @Schema(example = "1234")
-    private String password;
 
     @Schema(example = "User Test")
     private String fullName;

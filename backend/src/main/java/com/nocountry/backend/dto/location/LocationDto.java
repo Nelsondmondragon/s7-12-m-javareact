@@ -1,4 +1,4 @@
-package com.nocountry.backend.dto;
+package com.nocountry.backend.dto.location;
 
 import com.google.gson.annotations.SerializedName;
 

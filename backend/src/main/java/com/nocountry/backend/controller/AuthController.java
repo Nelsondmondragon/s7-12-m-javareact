@@ -1,17 +1,16 @@
 package com.nocountry.backend.controller;
 
+import com.nocountry.backend.dto.customer.CustomerRegisterDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
-import com.nocountry.backend.dto.AuthRequestDto;
-import com.nocountry.backend.dto.AuthResponseDto;
-import com.nocountry.backend.dto.RegisterRequestDto;
+import com.nocountry.backend.dto.customer.CustomerRequestDto;
+import com.nocountry.backend.dto.token.TokenDto;
 import com.nocountry.backend.service.IAuthService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -26,9 +25,9 @@ public class AuthController {
 
     @PostMapping("/register")
     @Operation(summary = "Register a user in MoveAr.")
-    public ResponseEntity<?> register(@RequestBody RegisterRequestDto request) {
+    public ResponseEntity<?> register(@RequestBody CustomerRegisterDto request) {
         try {
-            AuthResponseDto response = authService.register(request);
+            TokenDto response = authService.register(request);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (BadCredentialsException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
@@ -37,9 +36,9 @@ public class AuthController {
 
     @PostMapping("/login")
     @Operation(summary = "Login for a MoveAr user.")
-    public ResponseEntity<?> login(@RequestBody AuthRequestDto request) {
+    public ResponseEntity<?> login(@RequestBody CustomerRequestDto request) {
         try {
-            AuthResponseDto response = authService.login(request);
+            TokenDto response = authService.login(request);
             return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
         } catch (BadCredentialsException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);

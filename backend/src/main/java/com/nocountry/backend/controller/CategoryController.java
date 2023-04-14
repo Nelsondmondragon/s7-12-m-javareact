@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nocountry.backend.dto.CategoryDto;
+import com.nocountry.backend.dto.category.CategoryDto;
 import com.nocountry.backend.service.ICategoryService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/categories")
 @RequiredArgsConstructor
 @Tag(name = "Categories", description = "Management of vehicle categories in MoveAr. It allows creating, modifying, and deleting categories, as well as obtaining detailed information about them.")
-@SecurityRequirement(name = "bearerAuth")
 public class CategoryController {
 
     private final ICategoryService categoryService;
@@ -57,7 +55,7 @@ public class CategoryController {
     @PutMapping("/{categoryId}/update")
     @Operation(summary = "Update an existing category by Id.")
     public ResponseEntity<CategoryDto> updateCategory(@PathVariable Long categoryId,
-            @RequestBody CategoryDto category) {
+                                                      @RequestBody CategoryDto category) {
         return new ResponseEntity<>(categoryService.updateCategory(categoryId, category), HttpStatus.OK);
     }
 

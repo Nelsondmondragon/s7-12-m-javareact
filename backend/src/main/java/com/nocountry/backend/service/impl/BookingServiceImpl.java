@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.nocountry.backend.dto.BookingDto;
+import com.nocountry.backend.dto.booking.BookingDto;
 import com.nocountry.backend.mapper.IBookingMapper;
 import com.nocountry.backend.model.Booking;
 import com.nocountry.backend.repository.IBookingRepository;

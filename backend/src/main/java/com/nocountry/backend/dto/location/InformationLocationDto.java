@@ -1,9 +1,10 @@
-package com.nocountry.backend.dto;
+package com.nocountry.backend.dto.location;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import com.nocountry.backend.dto.location.LocationDto;
 import lombok.Getter;
 import lombok.Setter;
 

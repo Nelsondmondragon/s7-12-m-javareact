@@ -3,7 +3,7 @@ package com.nocountry.backend.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.nocountry.backend.dto.BookingDto;
+import com.nocountry.backend.dto.booking.BookingDto;
 import com.nocountry.backend.model.Booking;
 
 public interface IBookingService {

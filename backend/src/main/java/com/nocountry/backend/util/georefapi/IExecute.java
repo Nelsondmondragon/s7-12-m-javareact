@@ -1,6 +1,6 @@
 package com.nocountry.backend.util.georefapi;
 
-import com.nocountry.backend.dto.InformationLocationDto;
+import com.nocountry.backend.dto.location.InformationLocationDto;
 
 import java.util.Map;
 

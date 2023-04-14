@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
-import com.nocountry.backend.dto.LocationDto;
+import com.nocountry.backend.dto.location.LocationDto;
 import com.nocountry.backend.model.Location;
 
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
