@@ -64,36 +64,40 @@ const Register = () => {
               </div>
 
               <div className="">
-                <div className="w-full flex flex-col pb-2 self-end">
+                <div className=" relative w-full flex flex-col h-24 mb-2 self-end">
                   <label htmlFor="email" className="font-semibold pb-2">
                     Email
                   </label>
                   <input
-                    className={`rounded-md h-11 border-2 border-transparent bg-white outline-none px-2 py-4 ${
-                      errors.email ? 'outline-0  border-red-500' : ''
-                    }`}
+                    className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                      errors.email
+                        ? 'outline-2 outline-error-600 border-2 border-error-600'
+                        : ''
+                    } `}
                     {...register('email')}
                     placeholder="john@correo.com"
                   />
-                  <p className="text-red-600 text-sm font-bold">
+                  <p className="text-error-600 text-sm font-bold">
                     {errors?.email?.message}
                   </p>
                 </div>
-                <div className="w-full flex flex-col pb-2 self-end">
+                <div className=" relative w-full flex flex-col h-24 mb-2 self-end">
                   <label htmlFor="password" className="font-semibold pb-2">
                     Contraseña
                   </label>
                   <input
-                    className={`rounded-md h-11 border-2 border-transparent bg-white outline-none px-2 py-4 ${
-                      errors.password ? 'outline-0  border-red-500' : ''
-                    }`}
+                    className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                      errors.password
+                        ? 'outline-2 outline-error-600 border-2 border-error-600'
+                        : ''
+                    } `}
                     {...register('password')}
                   />
-                  <p className="text-red-600 text-sm font-bold">
+                  <p className="text-error-600 text-sm font-bold">
                     {errors?.password?.message}
                   </p>
                 </div>
-                <div className="w-full flex flex-col pb-2 self-end">
+                <div className=" relative w-full flex flex-col h-24 mb-2 self-end">
                   <label
                     htmlFor="repeatPassword"
                     className="font-semibold pb-2"
@@ -101,12 +105,15 @@ const Register = () => {
                     Repetir Contraseña
                   </label>
                   <input
-                    className={`rounded-md h-11 border-2 border-transparent bg-white outline-none px-2 py-4 ${
-                      errors.confirmPassword ? 'outline-0  border-red-500' : ''
-                    }`}
+                    type="password"
+                    className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                      errors.email
+                        ? 'outline-2 outline-error-600 border-2 border-error-600'
+                        : ''
+                    } `}
                     {...register('confirmPassword')}
                   />
-                  <p className="text-red-600 text-sm font-bold">
+                  <p className="text-error-600 text-sm font-bold">
                     {errors?.confirmPassword?.message}
                   </p>
                 </div>

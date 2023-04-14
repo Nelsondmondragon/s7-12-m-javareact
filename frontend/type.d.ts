@@ -1,23 +1,15 @@
 type User = {
-  id: number;
-  name: string;
-  username: string;
   email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
+  fullName: string;
+  idLocation: string;
+  address: string;
+  dni: string;
+  numberLicence: string;
+  dateExpiration: string;
+  card: {
+    numberCard: string;
+    fullName: string;
+    date_expiration: string;
+    cvv: string;
   };
 };

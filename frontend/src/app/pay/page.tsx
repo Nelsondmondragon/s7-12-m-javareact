@@ -1,28 +1,30 @@
-'use client'
-import ModalConfirm from "@/components/ui/ModalConfirm";
-import ModalLoading from "@/components/ui/ModalLoading";
-import React from "react";
+'use client';
+import ModalConfirm from '@/components/ui/ModalConfirm';
+import ModalLoading from '@/components/ui/ModalLoading';
+import Image from 'next/image';
+import React from 'react';
 import { useState } from 'react';
 
 const PayPage = () => {
+  const [modal, setModal] = useState('');
 
-  const [modal, setModal] = useState('')
-
-  const timer = async() => {
-    setModal('loading')
+  const timer = async () => {
+    setModal('loading');
     setTimeout(() => {
-      setModal('confirm')
+      setModal('confirm');
     }, 3000);
-  }
+  };
 
   return (
     <section className="h-[80vh] flex justify-evenly items-center">
       {/* card */}
       <div className=" text-white w-[393px] h-[575px] rounded-t-lg">
-        <img
+        <Image
           className="h-[364px]  object-cover rounded-t-lg"
           src="https://www.revistaautocrash.com/wp-content/uploads/2018/09/FC9J-Camion-2-e1537912962588.jpg"
           alt=""
+          width={393}
+          height={364}
         />
         <div className=" bg-primary-700 pt-5 rounded-b-lg">
           <p className=" text-center text-xl">CAMION CHICO</p>
@@ -80,20 +82,16 @@ const PayPage = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          <button className="bg-white text-primary-600 text-[23px] font-bold w-[342px] py-3 rounded-md mt-10 shadow-lg"
-          onClick={timer}>
+          <button
+            className="bg-white text-primary-600 text-[23px] font-bold w-[342px] py-3 rounded-md mt-10 shadow-lg"
+            onClick={timer}
+          >
             Pagar
           </button>
         </div>
       </div>
-      {
-        modal === 'loading' && <ModalLoading /> 
-      
-      }
-          {
-        modal === 'confirm' && <ModalConfirm /> 
-      
-      }
+      {modal === 'loading' && <ModalLoading />}
+      {modal === 'confirm' && <ModalConfirm />}
     </section>
   );
 };

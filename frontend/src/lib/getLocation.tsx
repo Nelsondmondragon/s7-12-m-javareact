@@ -1,7 +1,7 @@
-const getUser = async (token: string) => {
+const getLocations = async (token: string) => {
   const URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-  const response = await fetch(`${URL}customers/profile`, {
+  const response = await fetch(`${URL}locations`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -14,4 +14,4 @@ const getUser = async (token: string) => {
   }
   return await response.json();
 };
-export default getUser;
+export default getLocations;

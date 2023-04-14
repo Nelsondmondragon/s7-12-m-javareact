@@ -2,41 +2,37 @@
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import vector from './vector.svg';
 import { useRouter } from 'next/navigation';
 // import { Schema as schema } from './registerValidation';
 import { Schema as schema } from './validation';
 import postRegister from '@/lib/postRegister';
 import Image from 'next/image';
+import getUser from '@/lib/getUser';
+import { useEffect } from 'react';
 
 type FormValues = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  city: string;
+  fullName: string;
+  location: string;
   address: string;
   dni: string;
-  licence: string;
-  licenceDate: string;
+  numberLicence: string;
+  dateExpiration: string;
 };
 
 const UpdateUser = () => {
   const router = useRouter();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      city: '',
+      fullName: '',
+      location: '',
       address: '',
       dni: '',
-      licence: '',
-      licenceDate: '',
+      numberLicence: '',
+      dateExpiration: '',
     },
     resolver: yupResolver(schema),
   });
@@ -78,59 +74,52 @@ const UpdateUser = () => {
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
               <div className="w-full">
-                <div className="w-full flex flex-col pb-2 self-end">
-                  <label htmlFor="firstName" className="font-semibold pb-2">
-                    Nombre
+                <div className=" relative w-full flex flex-col h-24 mb-2 self-end">
+                  <label htmlFor="fullName" className="font-semibold pb-1">
+                    Nombre y apellido
                   </label>
                   <input
-                    className={`rounded-md h-11 border-2 border-transparent focus:border-primary-100 bg-white outline-none px-2 py-4 ${
-                      errors.firstName ? 'outline-0  border-error-600' : ''
-                    }`}
-                    {...register('firstName')}
+                    className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                      errors.fullName
+                        ? 'outline-2 outline-error-600 border-2 border-error-600'
+                        : ''
+                    } `}
+                    {...register('fullName')}
                     placeholder="john"
                   />
                   <p className="text-error-600 text-sm font-bold">
-                    {errors?.firstName?.message}
+                    {errors?.fullName?.message}
                   </p>
                 </div>
-                <div className="w-full flex flex-col pb-2 self-end">
-                  <label htmlFor="lastName" className="font-semibold pb-2">
-                    Apellido
-                  </label>
-                  <input
-                    className={`rounded-md h-11 border-2 border-transparent focus:border-primary-100 bg-white outline-none px-2 py-4 ${
-                      errors.lastName ? 'outline-0  border-error-600' : ''
-                    }`}
-                    {...register('lastName')}
-                    placeholder="Doe"
-                  />
-                  <p className="text-error-600 text-sm font-bold">
-                    {errors?.lastName?.message}
-                  </p>
-                </div>
-                <div className="w-full flex flex-col pb-2 self-end">
-                  <label htmlFor="city" className="font-semibold pb-2">
+
+                <div className=" relative w-full flex flex-col h-24 mb-2 self-end">
+                  <label htmlFor="location" className="font-semibold pb-1">
                     Ciudad
                   </label>
                   <input
-                    className={`rounded-md h-11 border-2 border-transparent focus:border-primary-100 bg-white outline-none px-2 py-4 ${
-                      errors.city ? 'outline-0  border-error-600' : ''
-                    }`}
-                    {...register('city')}
+                    className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                      errors.location
+                        ? 'outline-2 outline-error-600 border-2 border-error-600'
+                        : ''
+                    } `}
+                    {...register('location')}
                     placeholder="Ciudad"
                   />
                   <p className="text-error-600 text-sm font-bold">
-                    {errors?.city?.message}
+                    {errors?.location?.message}
                   </p>
                 </div>
-                <div className="w-full flex flex-col pb-2 self-end">
-                  <label htmlFor="address" className="font-semibold pb-2">
+
+                <div className=" relative w-full flex flex-col h-24 mb-2 self-end">
+                  <label htmlFor="address" className="font-semibold pb-1">
                     Domicilio
                   </label>
                   <input
-                    className={`rounded-md h-11 border-2 border-transparent focus:border-primary-100 bg-white outline-none px-2 py-4 ${
-                      errors.address ? 'outline-0  border-error-600' : ''
-                    }`}
+                    className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                      errors.address
+                        ? 'outline-2 outline-error-600 border-2 border-error-600'
+                        : ''
+                    } `}
                     {...register('address')}
                     placeholder="Domicilio actual"
                   />
@@ -141,14 +130,16 @@ const UpdateUser = () => {
               </div>
 
               <div className="w-full">
-                <div className="w-full flex flex-col pb-2 self-end">
-                  <label htmlFor="dni" className="font-semibold pb-2">
+                <div className=" relative w-full flex flex-col h-24 mb-2 self-end">
+                  <label htmlFor="dni" className="font-semibold pb-1">
                     DNI
                   </label>
                   <input
-                    className={`rounded-md h-11 border-2 border-transparent focus:border-primary-100 bg-white outline-none px-2 py-4 ${
-                      errors.dni ? 'outline-0  border-error-600' : ''
-                    }`}
+                    className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                      errors.dni
+                        ? 'outline-2 outline-error-600 border-2 border-error-600'
+                        : ''
+                    } `}
                     {...register('dni')}
                     placeholder="Identificación"
                   />
@@ -157,50 +148,57 @@ const UpdateUser = () => {
                   </p>
                 </div>
 
-                <div className="w-full flex flex-col pb-2 self-end">
-                  <label htmlFor="licence" className="font-semibold pb-2">
+                <div className=" relative w-full flex flex-col h-24 mb-2 self-end">
+                  <label htmlFor="numberLicence" className="font-semibold pb-1">
                     N° Licencia conducir
                   </label>
                   <input
-                    className={`rounded-md h-11 border-2 border-transparent focus:border-primary-100 bg-white outline-none px-2 py-4 ${
-                      errors.licence ? 'outline-0  border-error-600' : ''
-                    }`}
-                    {...register('licence')}
+                    className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                      errors.numberLicence
+                        ? 'outline-2 outline-error-600 border-2 border-error-600'
+                        : ''
+                    } `}
+                    {...register('numberLicence')}
                     placeholder="Identificación"
                   />
                   <p className="text-error-600 text-sm font-bold">
-                    {errors?.licence?.message}
+                    {errors?.numberLicence?.message}
                   </p>
                 </div>
 
-                <div className="w-full flex flex-col pb-2 self-end">
-                  <label htmlFor="licenceDate" className="font-semibold pb-2">
+                <div className=" relative w-full flex flex-col h-24 mb-2 self-end">
+                  <label
+                    htmlFor="dateExpiration"
+                    className="font-semibold pb-1"
+                  >
                     Fecha de vencimiento
                   </label>
                   <input
-                    className={`rounded-md h-11 border-2 border-transparent focus:border-primary-100 bg-white outline-none px-2 py-4 ${
-                      errors.licenceDate ? 'outline-0  border-error-600' : ''
-                    }`}
+                    className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                      errors.dateExpiration
+                        ? 'outline-2 outline-error-600 border-2 border-error-600'
+                        : ''
+                    } `}
                     type="date"
-                    {...register('licenceDate')}
+                    {...register('dateExpiration')}
                     placeholder="DD/MM/AA"
                   />
                   <p className="text-error-600 text-sm font-bold">
-                    {errors?.licenceDate?.message}
+                    {errors?.dateExpiration?.message}
                   </p>
                 </div>
               </div>
             </div>
             <div className="flex justify-center md:justify-between pt-11">
               <button
-                className=" hidden md:block py-2 px-7 mt-4 w-48 bg-white text-base text-primary-600 rounded-md justify-self-end font-bold"
+                className=" hidden md:block py-2 px-7 mt-4 w-48 bg-white text-base text-primary-600 rounded-[10px] justify-self-end font-semibold"
                 type="button"
                 onClick={() => router.back()}
               >
                 Volver
               </button>
               <button
-                className="py-2 px-7 mt-4 w-48 bg-[#03649B] text-base text-[#D2EEFE] rounded-md self-end"
+                className="py-2 px-7 mt-4 w-48 bg-primary-600 text-base text-primary-50 font-semibold rounded-[10px] self-end"
                 type="submit"
               >
                 Guardar y Avanzar

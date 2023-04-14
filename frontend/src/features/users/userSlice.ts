@@ -1,30 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+const user: User =
+  typeof window !== 'undefined' && localStorage.getItem('user')
+    ? JSON.parse(localStorage.getItem('user'))
+    : {
+        email: '',
+        fullName: '',
+        idLocation: '',
+        address: '',
+        dni: '',
+        numberLicence: '',
+        dateExpiration: '',
+        card: {
+          numberCard: '',
+          fullName: '',
+          date_expiration: '',
+          cvv: '',
+        },
+      };
+
 const initialState = {
-  currentUser: {
-    id: 0,
-    email: '',
-    firstName:
-      typeof window !== 'undefined' && localStorage.getItem('user')
-        ? JSON.parse(localStorage.getItem('user')).firstName
-        : '',
-    lastName:
-      typeof window !== 'undefined' && localStorage.getItem('user')
-        ? JSON.parse(localStorage.getItem('user')).lastName
-        : '',
-    address: '',
-    birthdate: '',
-    driverLicenceImgUrl: '',
-    nationalIdImgUrl: '',
-    phone:
-      typeof window !== 'undefined' && localStorage.getItem('category')
-        ? JSON.parse(localStorage.getItem('category'))
-        : '',
-  },
-  showModalLogin: false,
+  currentUser: user,
   showModalLoginError: false,
-  category: '',
+  category:
+    typeof window !== 'undefined' && localStorage.getItem('category')
+      ? JSON.parse(localStorage.getItem('category'))
+      : '',
 };
 
 export const userSlice = createSlice({

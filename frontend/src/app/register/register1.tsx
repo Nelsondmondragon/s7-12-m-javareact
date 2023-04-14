@@ -38,8 +38,6 @@ const Register1 = ({ pasos, actualizarDatos }) => {
     actualizarDatos(data);
     console.log('guardar datatos parcial');
     pasos(1);
-    console.log(values);
-    console.log(data);
   };
 
   const onSubmit = (values: FormValues) => {

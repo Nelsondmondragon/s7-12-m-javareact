@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 // import { useRouter } from 'next/navigation';
 // import { FaArrowLeft } from 'react-icons/fa';
 
@@ -23,12 +23,12 @@ export default function CrediCard() {
         </div>
       </button> */}
       <div className="flex flex-col gap-4 md:gap-0 p-2 md:p-8 lg:px-20 ">
-        <div className="bg-white bg-opacity-60 p-2 md:px-8 md:pt-16 lg:px-16  rounded-[10px] md:rounded-none md:rounded-t-[20px] ">
+        <div className="bg-white bg-opacity-60 p-2 md:px-8 md:py-16 lg:px-16  rounded-[10px] md:rounded-[20px] ">
           <h2 className="font-semibold text-center md:text-left mb-3 md:mb-10 text-2xl md:text-4xl">
             Ya casi terminamos...
           </h2>
-          <div className="px-2 md:px-4 py-2 md:py-4 lg:px-10 lg:py-6">
-            <h1 className=" flex items-center space-x-2 text-center text-2xl md:text-4xl pb-4">
+          <div className="hidden md:block">
+            <h1 className="font-semibold flex items-center space-x-2 text-center md:text-left text-2xl md:text-4xl pb-4">
               <span className="hidden md:block">
                 <Image
                   src={'/assets/images/wallet.svg'}
@@ -38,9 +38,9 @@ export default function CrediCard() {
                   className="w-[60px] h-[60px] mr-2 md:mr-4"
                 />
               </span>
-              Datos de contacto
+              Información de pago
             </h1>
-          </div>{' '}
+          </div>
           <p className="mb-3">
             Esta sección podrás completarla ahora, o mas tarde.
           </p>
@@ -53,16 +53,9 @@ export default function CrediCard() {
             pagos siempre serán realizados en la oficina seleccionada, cuando
             retires el vehículo.
           </p>
-        </div>
 
-        <div className="bg-neutral-100 bg-opacity-85 p-4 md:px-8 lg:px-16 md:pb-16  rounded-[10px] md:rounded-none md:rounded-b-[20px] md:flex md:gap-8 md:flex-row-reverse ">
-          <div className="flex-1">
-            <h2 className="font-semibold text-center md:text-left mb-3 md:mb-10 text-2xl md:text-4xl">
-              Aqui van los datos de la tarjeta
-            </h2>
-            <div>
-              <FormCreditCard />
-            </div>
+          <div className="max-w-lg mx-auto">
+            <FormCreditCard />
           </div>
         </div>
       </div>

@@ -10,25 +10,22 @@ import { usePathname, useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 
 import {
-  closeModalLogin,
   openModalLoginError,
-  selectShowModalLogin,
   selectShowModalLoginError,
   setUser,
 } from '@/features/users/userSlice';
 import postLogin from '@/lib/postLogin';
 import getUser from '@/lib/getUser';
 import ModalError from './ModalError';
+import { Hero } from '@/components/Hero';
+import { TypesVehicle } from '@/components/typeVehicle';
 
 type FormValues = {
   password: string;
   email: string;
 };
 
-
-
-export const ModalLogin = () => {
-  const showModal = useSelector(selectShowModalLogin);
+const Login = () => {
   const showModalLoginError = useSelector(selectShowModalLoginError);
   const dispatch = useDispatch();
   const pathname = usePathname();
@@ -47,10 +44,8 @@ export const ModalLogin = () => {
     resolver: yupResolver(schema),
   });
 
-  if (!showModal) return null;
-
   const closeModal = () => {
-    dispatch(closeModalLogin());
+    router.back();
   };
 
   const LoginUser = async (credentials: FormValues) => {
@@ -64,28 +59,29 @@ export const ModalLogin = () => {
 
     const getUserData = getUser(result.token);
     const userData = await getUserData;
-
-    dispatch(setUser(userData));
-    Cookies.set('token', result.token);
     localStorage.setItem('token', JSON.stringify(result));
-    localStorage.setItem('user', JSON.stringify(userData));
-    reset();
-    closeModal();
+    Cookies.set('token', result.token);
+
+    if (userData.fullName) {
+      router.push('/updateuser');
+    } else {
+      dispatch(setUser(userData));
+      // Cookies.set('user', JSON.stringify(userData));
+      localStorage.setItem('user', JSON.stringify(userData));
+      reset();
+      closeModal();
+    }
   };
 
   const onSubmit = (credentials: FormValues) => {
-   
     LoginUser(credentials);
-    if (pathname.includes('booking')) {
-      router.push(`/pay`);
-      
-    }
-    
   };
 
   return (
     <>
-      <section className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50 ">
+      <Hero />
+      <TypesVehicle />
+      <section className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-[150]  ">
         <article className="h-[500px] w-[500px] relative p-4 rounded-2xl bg-neutral-200 mx-auto">
           <FaTimes
             size={24}
@@ -96,37 +92,37 @@ export const ModalLogin = () => {
             className="w-full h-full flex flex-col justify-center "
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="w-full relative py-0 px-4 mx-auto mb-4 flex flex-col">
+            <div className="w-full relative py-0 px-4 mx-auto h-24 mb-4 flex flex-col">
               <label htmlFor="email" className="font-semibold">
                 Email
               </label>
               <input
                 {...register('email')}
                 placeholder="usuario@correo.com"
-                className={`p-2 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
                   errors.email
-                    ? 'outline-2 outline-red-500 border-2 border-red-500'
+                    ? 'outline-2 outline-error-600 border-2 border-error-600'
                     : ''
                 } `}
               />
-              <p className="text-red-600 text-sm font-bold">
+              <p className="text-error-600 text-sm font-bold">
                 {errors?.email?.message}
               </p>
             </div>
-            <div className="w-full relative py-0 px-4 mx-auto mb-4  flex flex-col">
+            <div className="w-full relative py-0 px-4 mx-auto h-24 mb-4  flex flex-col">
               <label htmlFor="password" className="font-semibold">
                 Clave
               </label>
               <input
                 {...register('password')}
                 placeholder="Clave"
-                className={`p-2 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
                   errors.password
-                    ? 'outline-2 outline-red-500 border-2 border-red-500'
+                    ? 'outline-2 outline-error-600 border-2 border-error-600'
                     : ''
                 } `}
               />
-              <p className="text-red-600 text-sm font-bold">
+              <p className="text-error-600 text-sm font-bold">
                 {errors?.password?.message}
               </p>
             </div>
@@ -155,3 +151,5 @@ export const ModalLogin = () => {
     </>
   );
 };
+
+export default Login;
