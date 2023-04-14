@@ -1,5 +1,11 @@
 spring:
   datasource:
-    url: jdbc:${DB_URL}?createDatabaseIfNotExist=true&useSSL=false
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    url: jdbc:${DATABASE_URL}?createDatabaseIfNotExist=true&useSSL=false
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
+  jpa:
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
