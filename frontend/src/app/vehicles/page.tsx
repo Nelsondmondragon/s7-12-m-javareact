@@ -18,38 +18,40 @@ const Vehicles = () => {
     //getCars();
     return (
         <div className="min-h-screen flex flex-col items-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
-            <div className="mt-14">
+            <div className="mt-14 flex flex-col items-center">
                 {/* <div onClick={getCars}>PRUEBA</div> */}
                 <select
                     defaultValue={'Vehículos pequeños'}
-                    className="w-full h-[46px] text-[23px] px-2 rounded-md border-gray-400 shadow-md text-center"
+                    className="h-[46px] text-[18px] md:text-[23px] px-2 rounded-md border-gray-400 shadow-md text-center"
                     onChange={(e) => setCategory(e.target.value)}
                 >
                     <option value="1">Vehículos pequeños</option>
                     <option value="2">Vehículos medianos</option>
                     <option value="3">Vehículos grandes</option>
                 </select>
-                <p className="text-[23px] text-[#FAFAFA] mt-5">Seleccione el tamaño del vehículo</p>
+                <p className="text-[18px] md:text-[23px] text-[#FAFAFA] mt-5">Seleccione el tamaño del vehículo</p>
             </div>
-            <div className="w-[90%] h-fit my-10 p-10 bg-white/80 rounded-3xl flex flex-col items-center gap-8">
+            <div className="w-[92%] sm:w-[90%] h-fit my-10 py-[2%] bg-white/80 rounded-3xl flex flex-col items-center gap-8">
                 {filter.map((car) => {
                     return (
-                        <div key={car.id} className="w-11/12 flex">
+                        <div key={car.id} className="w-[96%] flex gap-2">
                             <Image
                                 src={`/assets/images/booking/vh-small.jpg`}
                                 alt={car.title}
                                 width={200}
                                 height={200}
-                                className="rounded-3xl  object-contain"
+                                className="rounded-3xl object-contain"
                             />
-                            <div className="flex flex-col w-[44%] justify-around ml-14">
-                                <h3 className="text-3xl font-medium">{car.title}</h3>
-                                <p className="text-2xl leading-7">{car.info}</p>
-                                <p className="text-3xl font-medium">$ {car.price}</p>
+                            <div className="flex flex-col justify-around w-full">
+                                <h3 className="text-lg md:text-[29px] font-semibold">{car.title}</h3>
+                                <p className="leading-5 md:leading-7 md:text-[23px] md:mt-4">{car.info}</p>
+                                <div className="flex justify-between items-end w-full">
+                                    <p className="md:text-[29px] font-semibold">$ {car.price}</p>
+                                    <button className="bg-primary-600  w-[78px] md:w-[288px] h-[27px] md:h-[59px] rounded-[5px] md:rounded-[10px] text-white md:text-2xl">
+                                        Reservar
+                                    </button>
+                                </div>
                             </div>
-                            <button className="bg-primary-600 self-end ml-auto w-[288px] h-[59px] rounded-xl text-white text-2xl">
-                                Reservar
-                            </button>
                         </div>
                     );
                 })}

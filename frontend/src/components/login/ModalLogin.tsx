@@ -76,11 +76,11 @@ export const ModalLogin = () => {
   const onSubmit = (credentials: FormValues) => {
    
     LoginUser(credentials);
-    if (pathname.includes('booking')) {
-      router.push(`/pay`);
+    // if (pathname.includes('booking')) {
+    //   router.push(`/pay`);
       
-    }
-    
+    // }
+    ["small", "medium", "large"].includes(pathname) && router.push(`/pay`);
   };
 
   return (
