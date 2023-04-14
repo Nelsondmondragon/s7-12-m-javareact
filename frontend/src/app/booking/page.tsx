@@ -37,21 +37,16 @@ export default function Booking() {
 
     const selection = {
       startPlace: startPl,
-      start:
-        startDate.toISOString().split("T")[0] +
-        "T" +
-        startTime.toLocaleTimeString(),
+      start: startDate.toISOString().split(".")[0],
       returnPlace: returnPl,
-      end:
-        endDate.toISOString().split("T")[0] +
-        "T" +
-        endTime.toLocaleTimeString(),
+      end: endDate.toISOString().split(".")[0],
       id: category,
     };
 
     const postCar = await postCarsAvailable(selection);
     localStorage.setItem("cars", JSON.stringify(postCar));
-    console.log(postCar);
+    // console.log(postCar);
+    console.log(selection);
     
     router.push(`/booking/${item}`);
   };
@@ -86,10 +81,11 @@ export default function Booking() {
                 className="w-full h-[36px] text-[16px] px-2 rounded-md border-gray-400 shadow-md md:h-[46px] md:text-[20px] md:max-w-sm lg:max-w-lg"
                 onChange={(e) => setStartPl(e.target.value)}
               >
-                <option value="Buenos Aires">Buenos Aires</option>
-                <option value="Córdoba">Córdoba</option>
-                <option value="Entre Ríos">Entre Ríos</option>
-                <option value="Santa Fé">Santa Fé</option>
+                <option value="02000010">Buenos Aires</option>
+                <option value="14014010">Córdoba</option>
+                <option value="06441030">La Plata</option>
+                <option value="10077020">Rosario</option>
+                <option value="66028050">Salta</option>
               </select>
             </div>
             <div className="flex justify-between mt-4 md:mt-0 md:gap-3 lg:gap-6">
@@ -136,10 +132,11 @@ export default function Booking() {
                 className="w-full h-[36px] text-[16px] px-2 rounded-md border-gray-400 shadow-md md:h-[46px] md:text-[20px] md:max-w-sm lg:max-w-lg"
                 onChange={(e) => setReturnPl(e.target.value)}
               >
-                <option value="Buenos Aires">Buenos Aires</option>
-                <option value="Córdoba">Córdoba</option>
-                <option value="Entre Ríos">Entre Ríos</option>
-                <option value="Santa Fé">Santa Fé</option>
+                <option value="02000010">Buenos Aires</option>
+                <option value="14014010">Córdoba</option>
+                <option value="06441030">La Plata</option>
+                <option value="10077020">Rosario</option>
+                <option value="66028050">Salta</option>
               </select>
             </div>
             <div className="flex justify-between mt-4 md:mt-0 md:gap-3 lg:gap-6">

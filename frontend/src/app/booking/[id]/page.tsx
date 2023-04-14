@@ -17,12 +17,19 @@ const BookingCar = ({ params }) => {
     let user = localStorage.getItem("user");
     user === null ? setShowModal(true) : router.push("/pay");
   };
-  let item=[];
+  let item;
 
-  if (!localStorage.getItem("cars")) {
-    let item = JSON.parse(localStorage.getItem("cars"));
+  if (localStorage.getItem("cars") === undefined) {
+    item = [];
+  } else {
+    if (Array.isArray(JSON.parse(localStorage.getItem("cars")))) {
+      item = JSON.parse(localStorage.getItem("cars"));
+    } else {
+      item = [];
+      console.log("vamos");
+    }
   }
-  console.log(localStorage.getItem("cars"));
+  console.log("resultado " + item);
 
   return (
     <div className="min-h-screen flex justify-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
