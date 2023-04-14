@@ -2,43 +2,43 @@
   {
     "id": 1,
     "title": "Pickup Manual ",
-    "categoria": "1",
-    "info": "Camioneta chica con capacidad de 1,00 x 1,80 x 2,30m perfecto para mudanzas cortas y rápidas",
+    "categoria": "small",
+    "info": "Camioneta chica con capacidad de 1,00 x 1,80 x 2,30m",
     "price": "35.000"
   },
   {
     "id": 2,
     "title": "Pickup Manual ",
-    "categoria": "1",
-    "info": "Camioneta chica con capacidad de 1,00 x 1,80 x 2,30m perfecto para mudanzas cortas y rápidas",
+    "categoria": "small",
+    "info": "Camioneta chica con capacidad de 1,00 x 1,80 x 2,30m",
     "price": "35.000"
   },
   {
     "id": 3,
     "title": "Van Clásica",
-    "categoria": "2",
-    "info": "Van Clásica con capacidad de 1,60 x1,80 x 3,00m perfecto para mudanzas cortas y rápidas",
+    "categoria": "medium",
+    "info": "Van Clásica con capacidad de 1,60 x1,80 x 3,00m",
     "price": "35.000"
   },
   {
     "id": 4,
     "title": "Van Clásica",
-    "categoria": "2",
-    "info": "Van Clásica con capacidad de 1,60 x1,80 x 3,00m perfecto para mudanzas cortas y rápidas",
+    "categoria": "medium",
+    "info": "Van Clásica con capacidad de 1,60 x1,80 x 3,00m",
     "price": "35.000"
   },
   {
     "id": 5,
     "title": "Camión Turbo",
-    "categoria": "3",
-    "info": "Camión 3 con capacidad de 2,30 x 2,30 x 4,80m perfecto para mudanzas cortas y rápidas",
+    "categoria": "large",
+    "info": "Camión 3 con capacidad de 2,30 x 2,30 x 4,80m",
     "price": "35.000"
   },
   {
     "id": 6,
     "title": "Camión Turbo",
-    "categoria": "3",
-    "info": "Camión grande con capacidad de 2,30 x 2,30 x 4,80m perfecto para mudanzas cortas y rápidas",
+    "categoria": "large",
+    "info": "Camión grande con capacidad de 2,30 x 2,30 x 4,80m",
     "price": "35.000"
   }
 ]

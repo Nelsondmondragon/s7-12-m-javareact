@@ -21,25 +21,25 @@ const onRegister = () => {
   return (
     <Box>
       <div className="flex justify-end">
-        <p className=" text-4xl cursor-pointer mb-2" onClick={()=>setShowModal(false)}>X</p>
+        <p className=" text-2xl md:text-3xl cursor-pointer mb-2" onClick={()=>setShowModal(false)}>X</p>
       </div>
-      <div className="flex flex-col gap-14 h-full">
+      <div className="flex flex-col gap-5 md:gap-16 h-full">
         <div>
-          <h3 className=" text-center text-[29px] font-semibold mb-2">
+          <h3 className=" text-center text-[23px] md:text-[29px] font-semibold mb-2">
             Gracias por elegirnos!
           </h3>
-          <p className=" text-[23px] text-center ">
+          <p className=" text-[16px] md:text-[23px] text-center ">
             Para continuar con la reserva, inicia sesión con tu correo
             electrónico{" "}
           </p>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <button className=" bg-white w-[342px] h-[67px] rounded-xl text-primary-600 text-[23px] font-semibold mx-auto"
+          <button className=" bg-white w-[167px] h-[39px] md:w-[342px] md:h-[67px] rounded-xl text-primary-600 text-[16px] md:text-[23px] font-semibold mx-auto"
           onClick={onLogin}>
             Iniciar Sesion
           </button>
-          <p className="text-[23px]">¿aun no tienes una cuenta?</p>
-          <button className="bg-primary-600 w-[342px] h-[67px] rounded-xl text-white text-[23px] font-semibold"
+          <p className="text-[16px]">¿aun no tienes una cuenta?</p>
+          <button className="bg-primary-600 w-[167px] h-[39px] md:w-[342px] md:h-[67px]  rounded-xl text-white text-[16px] md:text-[23px] font-semibold"
           onClick={onRegister}>
             Registrarme
           </button>
