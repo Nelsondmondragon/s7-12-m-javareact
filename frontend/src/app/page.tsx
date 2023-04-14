@@ -1,5 +1,4 @@
 'use client';
-import { Faq } from '@/components/faq';
 import { TypesVehicle } from '@/components/typeVehicle';
 import { Requirement } from '@/components/requierement';
 import { useRouter } from 'next/navigation';
@@ -35,7 +34,6 @@ export default function Home() {
               </button>
             </div>
           </div>
-          {/* <Faq /> */}
         </div>
       </section>
     </main>

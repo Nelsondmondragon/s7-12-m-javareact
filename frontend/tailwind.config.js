@@ -74,6 +74,7 @@ module.exports = {
       },
 
       backgroundImage: {
+        'login-pattern': "url('/assets/images/hero/hero0.png')",
         'global-pattern': "url('/assets/images/routes.svg')",
         'mobile-pattern': "url('/assets/images/RouteMobile.svg')",
       },

@@ -25,7 +25,7 @@ const ModalError = (props: Props) => {
   };
 
   return (
-    <section className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-[100]  ">
+    <section className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-[200]  ">
       <article className="h-[500px] w-[500px] relative p-4 rounded-2xl bg-neutral-200 mx-auto">
         <FaTimes
           size={24}

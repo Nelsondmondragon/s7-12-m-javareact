@@ -1,5 +1,6 @@
 const getAllUsers = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  const URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const response = await fetch(`${URL}customers/all`);
 
   if (!response.ok) throw new Error('Ups ! :(, Some error fetching Users');
 
