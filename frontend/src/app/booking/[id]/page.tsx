@@ -19,7 +19,7 @@ const BookingCar = ({ params }) => {
   };
   let item;
 
-  if (localStorage.getItem("cars") === undefined) {
+  if (localStorage.getItem("cars") === 'undefined') {
     item = [];
   } else {
     if (Array.isArray(JSON.parse(localStorage.getItem("cars")))) {
