@@ -1,8 +1,8 @@
 package com.nocountry.backend.service;
 
+import com.nocountry.backend.dto.customer.CustomerRegisterDto;
 import com.nocountry.backend.dto.customer.CustomerRequestDto;
 import com.nocountry.backend.dto.token.TokenDto;
-import com.nocountry.backend.dto.customer.CustomerRegisterDto;
 
 public interface IAuthService {
 

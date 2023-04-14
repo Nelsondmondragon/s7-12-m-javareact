@@ -2,11 +2,15 @@ package com.nocountry.backend.dto.payment;
 
 import com.nocountry.backend.util.enums.Currency;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-
-@Getter
-@Setter
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PaymentDto {
 
     private String description;

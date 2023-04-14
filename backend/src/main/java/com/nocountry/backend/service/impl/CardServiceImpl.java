@@ -1,14 +1,16 @@
 package com.nocountry.backend.service.impl;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.nocountry.backend.dto.card.CardSaveDto;
 import com.nocountry.backend.mapper.ICardMapper;
 import com.nocountry.backend.model.Card;
 import com.nocountry.backend.repository.ICardRepository;
 import com.nocountry.backend.service.ICardService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -17,7 +19,6 @@ public class CardServiceImpl implements ICardService {
     private final ICardRepository cardRepository;
 
     private final ICardMapper cardMapper;
-
 
     @Override
     public List<CardSaveDto> findAllById(Long id) {

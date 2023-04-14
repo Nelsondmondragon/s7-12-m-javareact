@@ -29,6 +29,9 @@ public class Category {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "DEFAULT_IMAGE_URL")
+    private String defaultImageUrl;
+
     @Column(name = "VOLUME")
     private Double volume;
 

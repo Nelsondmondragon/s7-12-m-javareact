@@ -1,16 +1,12 @@
 package com.nocountry.backend.service;
 
-
 import com.nocountry.backend.dto.location.LocationDto;
 
 import java.util.List;
 
 public interface ILocationService {
 
+    public void save(LocationDto locationDto);
 
-    void save(LocationDto locationDto);
-
-
-    List<LocationDto> findAll();
-
+    public List<LocationDto> findAll();
 }

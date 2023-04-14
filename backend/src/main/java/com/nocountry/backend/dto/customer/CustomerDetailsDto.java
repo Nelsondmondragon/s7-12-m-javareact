@@ -1,12 +1,12 @@
 package com.nocountry.backend.dto.customer;
 
+import java.time.LocalDateTime;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -35,5 +35,4 @@ public class CustomerDetailsDto {
 
     @Schema(example = "2023-01-15T12:00:00")
     private LocalDateTime dateExpiration;
-
 }

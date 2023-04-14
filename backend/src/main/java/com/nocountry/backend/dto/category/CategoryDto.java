@@ -19,6 +19,8 @@ public class CategoryDto {
     @Schema(example = "Other")
     private String name;
 
+    private String defaultImageUrl;
+
     @Schema(example = "5.0")
     private Double volume;
 

@@ -1,17 +1,18 @@
 package com.nocountry.backend.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import com.nocountry.backend.dto.payment.PaymentDto;
 import com.nocountry.backend.service.IPaymentService;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class PaymentService implements IPaymentService {
@@ -19,8 +20,7 @@ public class PaymentService implements IPaymentService {
     @Value("${stripe.key.secret}")
     String secretKey;
 
-    public PaymentIntent paymentIntent(PaymentDto paymentIntentDto) throws
-            StripeException {
+    public PaymentIntent paymentIntent(PaymentDto paymentIntentDto) throws StripeException {
         Stripe.apiKey = secretKey;
         List<String> paymentMethodTypes = new ArrayList<>();
 

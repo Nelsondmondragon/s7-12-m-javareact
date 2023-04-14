@@ -4,21 +4,21 @@ import java.util.List;
 
 import com.nocountry.backend.dto.customer.CustomerDetailsDto;
 import com.nocountry.backend.dto.customer.CustomerListDto;
-
 import com.nocountry.backend.dto.customer.CustomerRegisterDto;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 public interface ICustomerService {
 
-    List<CustomerListDto> findAllCustomers();
+    public List<CustomerListDto> findAllCustomers();
 
-    CustomerDetailsDto save(CustomerRegisterDto customerRegisterDto);
+    public CustomerDetailsDto save(CustomerRegisterDto customerRegisterDto);
 
-    CustomerDetailsDto findCustomerByEmail(HttpServletRequest request);
+    public CustomerDetailsDto findCustomerByEmail(HttpServletRequest request);
 
-    CustomerDetailsDto findCustomerById(Long customerId);
+    public CustomerDetailsDto findCustomerById(Long customerId);
 
-    CustomerDetailsDto updateCustomer(Long customerId, CustomerDetailsDto customerDetailsDto);
+    public CustomerDetailsDto updateCustomer(Long customerId, CustomerDetailsDto customerDetailsDto);
 
-    void deleteCustomer(Long customerId);
+    public void deleteCustomer(Long customerId);
 }

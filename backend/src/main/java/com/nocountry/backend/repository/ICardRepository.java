@@ -1,13 +1,12 @@
 package com.nocountry.backend.repository;
 
-import com.nocountry.backend.model.Card;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import com.nocountry.backend.model.Card;
 
 public interface ICardRepository extends JpaRepository<Card, Long> {
 
-
-    List<Card> findAllById(Long id);
-
+    public List<Card> findAllById(Long id);
 }

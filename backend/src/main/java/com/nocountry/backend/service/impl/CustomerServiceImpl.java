@@ -3,12 +3,12 @@ package com.nocountry.backend.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import com.nocountry.backend.dto.customer.CustomerRegisterDto;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.config.jwt.JwtProvider;
 import com.nocountry.backend.dto.customer.CustomerDetailsDto;
 import com.nocountry.backend.dto.customer.CustomerListDto;
+import com.nocountry.backend.dto.customer.CustomerRegisterDto;
 import com.nocountry.backend.mapper.ICustomerMapper;
 import com.nocountry.backend.model.Customer;
 import com.nocountry.backend.repository.ICustomerRepository;
@@ -74,7 +74,7 @@ public class CustomerServiceImpl implements ICustomerService {
             updatedCustomerDto.setEmail(updatedCustomer.getUser().getEmail());
             return updatedCustomerDto;
         } else {
-            throw new EntityNotFoundException("customer not found with id: " + customerId);
+            throw new EntityNotFoundException("Customer not found with id: " + customerId);
         }
     }
 

@@ -1,30 +1,31 @@
 package com.nocountry.backend.util.georefapi.impl;
 
-import com.nocountry.backend.service.ILocationService;
-import com.nocountry.backend.util.georefapi.IExecute;
-import com.nocountry.backend.util.georefapi.ISaveLocation;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
-
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
+import com.nocountry.backend.service.ILocationService;
+import com.nocountry.backend.util.georefapi.IExecute;
+import com.nocountry.backend.util.georefapi.ISaveLocation;
+
+import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
 public class SaveLocationImpl implements ISaveLocation {
+
     private final IExecute execute;
 
     private final ILocationService locationsService;
-
 
     @Override
     public void save() {
         this.locationsService.save(execute.execute(this.cityCaba()).getLocations().get(0));
         this.locationsService.save(execute.execute(this.cityCordoba()).getLocations().get(0));
         this.locationsService.save(execute.execute(this.cityPlata()).getLocations().get(0));
-        this.locationsService.save(execute.execute( this.cityRosario()).getLocations().get(0));
-        this.locationsService.save(execute.execute( this.citySalta()).getLocations().get(0));
+        this.locationsService.save(execute.execute(this.cityRosario()).getLocations().get(0));
+        this.locationsService.save(execute.execute(this.citySalta()).getLocations().get(0));
     }
 
     private Map<String, Object> cityCaba() {
@@ -65,5 +66,4 @@ public class SaveLocationImpl implements ISaveLocation {
         params.put("max", "1");
         return params;
     }
-
 }

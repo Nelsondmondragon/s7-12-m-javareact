@@ -3,14 +3,15 @@ package com.nocountry.backend.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nocountry.backend.Error.Exceptions.GenericNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.nocountry.backend.Error.Exceptions.GenericNotFoundException;
 import com.nocountry.backend.dto.category.CategoryDto;
 import com.nocountry.backend.mapper.ICategoryMapper;
 import com.nocountry.backend.model.Category;
 import com.nocountry.backend.repository.ICategoryRepository;
 import com.nocountry.backend.service.ICategoryService;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -34,7 +35,8 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public CategoryDto findCategoryById(Long categoryId) {
         Category categoryEntity = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new GenericNotFoundException(String.format("The category with the provided ID (%s) was not found", categoryId)));
+                .orElseThrow(() -> new GenericNotFoundException(
+                        String.format("The category with the provided ID (%s) was not found", categoryId)));
         return categoryMapper.CategoryToCategoryDto(categoryEntity);
     }
 
@@ -47,19 +49,20 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public CategoryDto updateCategory(Long categoryId, CategoryDto categoryDto) {
         Category category = categoryRepository.findById(categoryId)
-            .orElseThrow(() -> new GenericNotFoundException(String.format("The category with the provided ID (%s) was not found", categoryId)));
-        categoryMapper.updateCategoryFromDto(categoryDto,category);
-        Category updatedCategory= categoryRepository.save(category);
+                .orElseThrow(() -> new GenericNotFoundException(
+                        String.format("The category with the provided ID (%s) was not found", categoryId)));
+        categoryMapper.updateCategoryFromDto(categoryDto, category);
+        Category updatedCategory = categoryRepository.save(category);
         return categoryMapper.CategoryToCategoryDto(updatedCategory);
-
 
     }
 
     @Override
     public void deleteCategory(Long categoryId) {
-        Category category = categoryRepository.findById(categoryId).orElseThrow(() ->
-                new GenericNotFoundException(String.format("La categoría con ID %s no se ha encontrado. No se puede eliminar una categoría que no existe. Por favor, compruebe si el ID de la categoría es correcto e intente de nuevo."
-                        , categoryId)));
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new GenericNotFoundException(String.format(
+                        "The category with ID %s was not found. It is not possible to delete a category that does not exist. Please check if the category ID is correct and try again.",
+                        categoryId)));
         categoryRepository.delete(category);
     }
 }

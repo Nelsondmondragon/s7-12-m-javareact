@@ -4,12 +4,15 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import com.nocountry.backend.dto.location.LocationDto;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class InformationLocationDto {
 
     @SerializedName("localidades_censales")

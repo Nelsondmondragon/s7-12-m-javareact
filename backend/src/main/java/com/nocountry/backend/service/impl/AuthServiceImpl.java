@@ -1,25 +1,25 @@
 package com.nocountry.backend.service.impl;
 
-import com.nocountry.backend.Error.ErrorCode;
-import com.nocountry.backend.Error.Exceptions.LoginException;
-import com.nocountry.backend.Error.Exceptions.RegisterException;
-import com.nocountry.backend.dto.card.CardSaveDto;
-import com.nocountry.backend.dto.customer.CustomerDetailsDto;
-import com.nocountry.backend.service.ICardService;
-import com.nocountry.backend.service.ICustomerService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.nocountry.backend.Error.ErrorCode;
+import com.nocountry.backend.Error.Exceptions.LoginException;
+import com.nocountry.backend.Error.Exceptions.RegisterException;
 import com.nocountry.backend.config.jwt.JwtProvider;
+import com.nocountry.backend.dto.card.CardSaveDto;
+import com.nocountry.backend.dto.customer.CustomerDetailsDto;
+import com.nocountry.backend.dto.customer.CustomerRegisterDto;
 import com.nocountry.backend.dto.customer.CustomerRequestDto;
 import com.nocountry.backend.dto.token.TokenDto;
-import com.nocountry.backend.dto.customer.CustomerRegisterDto;
 import com.nocountry.backend.model.User;
 import com.nocountry.backend.repository.IUserRepository;
 import com.nocountry.backend.service.IAuthService;
+import com.nocountry.backend.service.ICardService;
+import com.nocountry.backend.service.ICustomerService;
 import com.nocountry.backend.service.IMailSenderService;
 import com.nocountry.backend.util.enums.Role;
 
@@ -33,6 +33,7 @@ public class AuthServiceImpl implements IAuthService {
     private final IUserRepository userRepository;
 
     private final ICustomerService customerService;
+
     private final PasswordEncoder passwordEncoder;
 
     private final JwtProvider jwtProvider;
@@ -48,7 +49,9 @@ public class AuthServiceImpl implements IAuthService {
 
         if (!mailSenderService.isMailValid(request.getEmail())) {
             throw new RegisterException(
-                    String.format("the email address you provided is either not following the correct format or has been misspelled.Please check and re-enter the email address correctly.", request.getEmail()));
+                    String.format(
+                            "the email address you provided is either not following the correct format or has been misspelled.Please check and re-enter the email address correctly.",
+                            request.getEmail()));
         }
 
         var userOptional = userRepository.findByEmail(request.getEmail());
@@ -64,9 +67,6 @@ public class AuthServiceImpl implements IAuthService {
                 .role(Role.USER.name())
                 .build();
 
-
-
-
         var userRepo = userRepository.save(user);
         System.out.println(userRepo.getId() + " jjjj id");
 
@@ -81,14 +81,11 @@ public class AuthServiceImpl implements IAuthService {
 
         String to = request.getEmail();
         String subject = "Bienvenido/a a MoveAR, " + request.getFullName() + "!";
-        String text = "<html><body>"
-                + "<p>Estimado/a " + request.getFullName() + ",</p>"
+        String text = "<p>Estimado/a Francisco,</p>"
                 + "<p>¡Bienvenido/a a MoveAR! Nos complace mucho que te hayas registrado en nuestra plataforma de alquiler de vehículos para mudanzas. Con MoveAR, mudarse nunca fue tan fácil.</p>"
-                + "<p>Nuestro objetivo es ayudarte a que tu experiencia de mudanza sea lo más cómoda y sin estrés posible. Con nuestra amplia selección de vehículos disponibles para alquilar, podrás encontrar la opción perfecta para transportar tus pertenencias de manera segura y eficiente.</p>"
-                + "<p>Además, nuestro equipo de expertos en mudanzas está siempre disponible para responder a cualquier pregunta o preocupación que puedas tener durante el proceso de alquiler. Nos enorgullece ofrecer un servicio al cliente excepcional y estamos comprometidos en hacer que tu experiencia con nosotros sea lo más satisfactoria posible.</p>"
+                + "<p>Nuestro objetivo es ayudarte a que tu experiencia de mudanza sea lo más cómoda posible. Con nuestra amplia selección de vehículos disponibles para alquilar, podrás encontrar la opción perfecta para transportar tus pertenencias de manera segura y eficiente.</p>"
                 + "<p>Gracias por confiar en MoveAR para tus necesidades de mudanza. Esperamos que encuentres nuestro servicio fácil de usar y confiable. No dudes en contactarnos si necesitas ayuda en cualquier momento.</p>"
-                + "<p>Atentamente,<br>El equipo de MoveAR</p>"
-                + "</body></html>";
+                + "<p>Atentamente,<br>El equipo de MoveAR</p>";
 
         try {
             mailSenderService.sendEmail(to, subject, text);
@@ -104,8 +101,8 @@ public class AuthServiceImpl implements IAuthService {
     @Override
     public TokenDto login(CustomerRequestDto request) {
 
-        userRepository.findByEmail(request.getEmail()).orElseThrow(() ->
-                new LoginException(String.format("the email address you provided is either not registered in our system")));
+        userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new LoginException(
+                String.format("the email address you provided is either not registered in our system")));
         try {
             authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),

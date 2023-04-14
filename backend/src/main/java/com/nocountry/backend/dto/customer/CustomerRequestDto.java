@@ -17,5 +17,4 @@ public class CustomerRequestDto {
 
     @Schema(example = "1234")
     private String password;
-
 }
