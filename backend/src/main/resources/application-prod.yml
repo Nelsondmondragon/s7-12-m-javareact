@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:${DB_URL}?createDatabaseIfNotExist=true&useSSL=false
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    url: jdbc:${DATABASE_URL}?createDatabaseIfNotExist=true&useSSL=false
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
