@@ -4,15 +4,25 @@ import getAllCars from '@/lib/getAllCars';
 import Image from 'next/image';
 import cars from '../../cars.json';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { setCategory as setCat } from '@/features/users/userSlice';
 
 const Vehicles = () => {
-    const [category, setCategory] = useState('1');
-
-    const filter = cars.filter((vh) => vh.categoria == category);
+    const [category, setCategory] = useState('small');
+    const router = useRouter();
+    const dispatch = useDispatch();
+    const filter = cars.filter((vh) => vh.categoria === category);
 
     const getCars = async () => {
         let test = await getAllCars();
         console.log(test);
+    };
+
+    const handleBooking = () => {
+        dispatch(setCat(category));
+        localStorage.setItem('category', JSON.stringify(category));
+        router.push('/booking');
     };
     //onClick={getCars}
     //getCars();
@@ -25,11 +35,13 @@ const Vehicles = () => {
                     className="h-[46px] text-[18px] md:text-[23px] px-2 rounded-md border-gray-400 shadow-md text-center"
                     onChange={(e) => setCategory(e.target.value)}
                 >
-                    <option value="1">Vehículos pequeños</option>
-                    <option value="2">Vehículos medianos</option>
-                    <option value="3">Vehículos grandes</option>
+                    <option value="small">Vehículos pequeños</option>
+                    <option value="medium">Vehículos medianos</option>
+                    <option value="large">Vehículos grandes</option>
                 </select>
-                <p className="text-[18px] md:text-[23px] text-[#FAFAFA] mt-5">Seleccione el tamaño del vehículo</p>
+                <p className="text-[18px] md:text-[23px] text-[#FAFAFA] mt-5">
+                    Seleccione el tamaño del vehículo
+                </p>
             </div>
             <div className="w-[92%] sm:w-[90%] h-fit my-10 py-[2%] bg-white/80 rounded-3xl flex flex-col items-center gap-8">
                 {filter.map((car) => {
@@ -44,10 +56,15 @@ const Vehicles = () => {
                             />
                             <div className="flex flex-col justify-around w-full">
                                 <h3 className="text-lg md:text-[29px] font-semibold">{car.title}</h3>
-                                <p className="leading-5 md:leading-7 md:text-[23px] md:mt-4">{car.info}</p>
+                                <p className="leading-5 md:leading-7 md:text-[23px] md:mt-4">
+                                    {car.info}
+                                </p>
                                 <div className="flex justify-between items-end w-full">
                                     <p className="md:text-[29px] font-semibold">$ {car.price}</p>
-                                    <button className="bg-primary-600  w-[78px] md:w-[288px] h-[27px] md:h-[59px] rounded-[5px] md:rounded-[10px] text-white md:text-2xl">
+                                    <button
+                                        onClick={handleBooking}
+                                        className="bg-primary-600  w-[78px] md:w-[288px] h-[27px] md:h-[59px] rounded-[5px] md:rounded-[10px] text-white md:text-2xl"
+                                    >
                                         Reservar
                                     </button>
                                 </div>

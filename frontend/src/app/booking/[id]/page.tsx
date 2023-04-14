@@ -1,73 +1,75 @@
-"use client";
-import Image from "next/image";
-import cars from "../../../cars.json";
-import ModalInicio from "@/components/ui/ModalInicio";
-import ModalLoading from "@/components/ui/ModalLoading";
-import ModalConfirm from "@/components/ui/ModalConfirm";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+'use client';
+import Image from 'next/image';
+import cars from '../../../cars.json';
+import ModalInicio from '@/components/ui/ModalInicio';
+import ModalLoading from '@/components/ui/ModalLoading';
+import ModalConfirm from '@/components/ui/ModalConfirm';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const BookingCar = ({ params }) => {
-  const result = cars.filter((vh) => vh.categoria === params.id);
+    const result = cars.filter((vh) => vh.categoria === params.id);
 
-  const [showModal, setShowModal] = useState(false);
-  const router = useRouter();
+    const [showModal, setShowModal] = useState(false);
+    const router = useRouter();
 
-  const handleBooking = () => {
-    let user = localStorage.getItem("user");
-    user === null ? setShowModal(true) : router.push("/pay");
-  };
-  let item;
+    const handleBooking = () => {
+        let user = localStorage.getItem('user');
+        user === null ? setShowModal(true) : router.push('/pay');
+    };
+    let item;
 
-  if (localStorage.getItem("cars") === 'undefined') {
-    item = [];
-  } else {
-    if (Array.isArray(JSON.parse(localStorage.getItem("cars")))) {
-      item = JSON.parse(localStorage.getItem("cars"));
+    if (localStorage.getItem('cars') === 'undefined') {
+        item = [];
     } else {
-      item = [];
-      console.log("vamos");
+        if (Array.isArray(JSON.parse(localStorage.getItem('cars')))) {
+            item = JSON.parse(localStorage.getItem('cars'));
+        } else {
+            item = [];
+            console.log('vamos');
+        }
     }
-  }
-  console.log("resultado " + item);
+    console.log('resultado ' + item);
 
-  return (
-    <div className="min-h-screen flex justify-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
-      <div className="w-full h-fit mx-10 my-10 p-10 bg-white/80 rounded-3xl flex flex-col items-center gap-8">
-        {item.length === 0 ? (
-          <p>No hay resultados para su busqueda o regrese más tarde</p>
-        ) : (
-          item.map((it) => {
-            return (
-              <div key={it.id} className="w-11/12 flex">
-                <Image
-                  src={`/assets/images/booking/vh-small.jpg`}
-                  alt={it.model}
-                  width={200}
-                  height={200}
-                  className="rounded-3xl"
-                />
-                <div className="flex flex-col w-5/12 justify-around ml-14">
-                  <h3 className="text-3xl font-medium">{it.model}</h3>
-                  <p className="text-2xl leading-7">
-                    {it.make} {it.year} de capacidad de: {it.passengers}
-                  </p>
-                  <p className="text-3xl font-medium">$ 50000</p>
-                </div>
-                <button
-                  className="bg-primary-600 self-end w-[288px] h-[59px] rounded-xl text-white text-2xl"
-                  onClick={handleBooking}
-                >
-                  Reservar
-                </button>
-              </div>
-            );
-          })
-        )}
-      </div>
-      {showModal ? <ModalInicio setShowModal={setShowModal} /> : null}
-    </div>
-  );
+    return (
+        <div className="min-h-screen flex justify-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
+            <div className="w-[92%] sm:w-[90%] h-fit my-10 py-[2%] bg-white/80 rounded-3xl flex flex-col items-center gap-8">
+                {result.length === 0 ? (
+                    <p>No hay resultados para su busqueda o regrese más tarde</p>
+                ) : (
+                    result.map((it) => {
+                        return (
+                            <div key={it.id} className="w-[96%] flex gap-2">
+                                <Image
+                                    src={`/assets/images/booking/vh-small.jpg`}
+                                    alt={it.title}
+                                    width={200}
+                                    height={200}
+                                    className="rounded-3xl object-contain"
+                                />
+                                <div className="flex flex-col justify-around w-full">
+                                    <h3 className="text-lg md:text-[29px] font-semibold">{it.title}</h3>
+                                    <p className="leading-5 md:leading-7 md:text-[23px] md:mt-4">
+                                        {it.info}
+                                    </p>
+                                    <div className="flex justify-between items-end w-full">
+                                        <p className="md:text-[29px] font-semibold">$ {it.price}</p>
+                                        <button
+                                            onClick={handleBooking}
+                                            className="bg-primary-600  w-[78px] md:w-[288px] h-[27px] md:h-[59px] rounded-[5px] md:rounded-[10px] text-white md:text-2xl"
+                                        >
+                                            Reservar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })
+                )}
+            </div>
+            {showModal ? <ModalInicio setShowModal={setShowModal} /> : null}
+        </div>
+    );
 };
 
 export default BookingCar;
