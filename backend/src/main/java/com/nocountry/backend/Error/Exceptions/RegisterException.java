@@ -3,8 +3,11 @@ package com.nocountry.backend.Error.Exceptions;
 import com.nocountry.backend.Error.ErrorCode;
 
 public class RegisterException extends RuntimeException {
+
     private static final long serialVersionUID = 1L;
+
     private final String errMsgKey;
+
     private final String errorCode;
 
     public RegisterException(ErrorCode code) {
@@ -13,13 +16,11 @@ public class RegisterException extends RuntimeException {
         this.errorCode = code.getErrCode();
     }
 
-
     public RegisterException(final String message) {
         super(message);
         this.errMsgKey = ErrorCode.REGISTER_BAD_REQUEST.getErrMsgKey();
         this.errorCode = ErrorCode.REGISTER_BAD_REQUEST.getErrCode();
     }
-
 
     public String getErrMsgKey() {
         return errMsgKey;
@@ -29,4 +30,3 @@ public class RegisterException extends RuntimeException {
         return errorCode;
     }
 }
-

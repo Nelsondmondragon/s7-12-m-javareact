@@ -50,7 +50,7 @@ public class CarDto {
     private Integer height;
 
     @Schema(example = "02000010")
-    private String idLocation;
+    private String fkLocation;
 
     @Schema(example = "1")
     private Category category;

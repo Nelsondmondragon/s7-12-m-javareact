@@ -2,9 +2,12 @@ package com.nocountry.backend.Error.Exceptions;
 
 import com.nocountry.backend.Error.ErrorCode;
 
-public class GenericNotFoundException extends RuntimeException{
+public class GenericNotFoundException extends RuntimeException {
+
     private static final long serialVersionUID = 1L;
+
     private final String errMsgKey;
+
     private final String errorCode;
 
     public GenericNotFoundException(ErrorCode code) {

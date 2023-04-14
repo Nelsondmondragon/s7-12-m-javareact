@@ -13,7 +13,7 @@ public class CustomerListDto {
 
     private Long id;
 
-    private String firstName;
+    private String email;
 
-    private String lastName;
+    private String fullName;
 }

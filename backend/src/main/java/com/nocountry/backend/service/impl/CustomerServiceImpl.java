@@ -33,7 +33,13 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public List<CustomerListDto> findAllCustomers() {
-        return customerMapper.toCustomerListDtos(customerRepository.findAll());
+        var customers = customerRepository.findAll();
+        var customersDto = customerMapper.toCustomerListDtos(customers);
+        for (CustomerListDto customerDto : customersDto) {
+            var customer = customerRepository.findById(customerDto.getId()).orElseThrow();
+            customerDto.setEmail(customer.getUser().getEmail());
+        }
+        return customersDto;
     }
 
     @Override

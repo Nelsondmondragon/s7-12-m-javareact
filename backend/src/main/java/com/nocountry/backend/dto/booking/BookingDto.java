@@ -34,6 +34,8 @@ public class BookingDto {
     @Schema(example = "false")
     private Boolean helperPawn;
 
+    private Boolean active;
+
     private Long fkCar;
 
     private Long fkCustomer;

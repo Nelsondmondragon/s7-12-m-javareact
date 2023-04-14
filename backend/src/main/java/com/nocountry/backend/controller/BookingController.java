@@ -25,14 +25,14 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/v1/bookings")
 @RequiredArgsConstructor
-@Tag(name = "Bookings", description = "Management of vehicle rental bookings in MoveAr. It allows creating, modifying, and deleting bookings, as well as obtaining detailed information about them.")
+@Tag(name = "Bookings", description = "Management of bookings in MoveAr. It allows creating, modifying, and deleting bookings, as well as obtaining detailed information about them.")
 @SecurityRequirement(name = "bearerAuth")
 public class BookingController {
 
     private final IBookingService bookingService;
 
     @GetMapping("/all")
-    @Operation(summary = "Get all vehicle rental bookings.")
+    @Operation(summary = "Get all bookings.")
     public ResponseEntity<List<BookingDto>> getAll() {
         var bookings = bookingService.findAllBookings();
         if (bookings.isEmpty()) {
@@ -42,14 +42,31 @@ public class BookingController {
         }
     }
 
+    @GetMapping("/active")
+    @Operation(summary = "Get all active bookings.")
+    public ResponseEntity<List<BookingDto>> getAllActiveBookings() {
+        var bookings = bookingService.findAllActiveBookings();
+        if (bookings.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(bookings, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/{customerId}")
+    @Operation(summary = "Get all bookings by customer Id.")
+    public ResponseEntity<List<BookingDto>> getBookingByCustomerId(@PathVariable Long customerId) {
+        return new ResponseEntity<>(bookingService.findBookingByCustomerId(customerId), HttpStatus.OK);
+    }
+
     @GetMapping("/{bookingId}")
-    @Operation(summary = "Get a vehicle rental booking by Id.")
+    @Operation(summary = "Get a booking by Id.")
     public ResponseEntity<BookingDto> getBookingById(@PathVariable Long bookingId) {
         return new ResponseEntity<>(bookingService.findBookingById(bookingId), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    @Operation(summary = "Create a new vehicle rental booking.")
+    @Operation(summary = "Create a new booking.")
     public ResponseEntity<BookingDto> createBooking(
             @RequestParam Long carId,
             @RequestParam Long customerId,
@@ -58,14 +75,14 @@ public class BookingController {
     }
 
     @PutMapping("/{bookingId}/update")
-    @Operation(summary = "Update an existing vehicle rental booking by Id.")
+    @Operation(summary = "Update an existing booking by Id.")
     public ResponseEntity<BookingDto> updateBooking(@PathVariable Long bookingId,
             @RequestBody BookingDto bookingDto) {
         return new ResponseEntity<>(bookingService.updateBooking(bookingId, bookingDto), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{bookingId}/delete")
-    @Operation(summary = "Delete an existing vehicle rental booking by Id.")
+    @Operation(summary = "Delete an existing booking by Id.")
     public ResponseEntity<String> deleteBooking(@PathVariable Long bookingId) {
         bookingService.deleteBooking(bookingId);
         return new ResponseEntity<>("Booking successfully deleted", HttpStatus.ACCEPTED);

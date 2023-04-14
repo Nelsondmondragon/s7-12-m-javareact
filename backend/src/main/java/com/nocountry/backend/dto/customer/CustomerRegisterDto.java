@@ -3,7 +3,6 @@ package com.nocountry.backend.dto.customer;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nocountry.backend.dto.card.CardSaveDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -17,6 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CustomerRegisterDto {
 
+    @Schema(example = "user@test.com")
     private String email;
 
     @Schema(example = "1234")
@@ -24,9 +24,6 @@ public class CustomerRegisterDto {
 
     @Schema(example = "User Test")
     private String fullName;
-
-    @Schema(example = "02000010")
-    private String idLocation;
 
     @Schema(example = "Calle sin nombre 123, Buenos Aires")
     private String address;
@@ -40,8 +37,11 @@ public class CustomerRegisterDto {
     @Schema(example = "2023-01-15T12:00:00")
     private LocalDateTime dateExpiration;
 
-    private CardSaveDto card;
+    @Schema(example = "02000010")
+    private String idLocation;
 
     @JsonIgnore
     private Long fkUser;
+
+    // private CardSaveDto card;
 }

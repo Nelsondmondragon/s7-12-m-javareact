@@ -1,14 +1,16 @@
 package com.nocountry.backend.Error.Exceptions;
 
-import com.nocountry.backend.Error.ErrorCode;
-
 import java.io.Serial;
 
-public class CarNotFoundException extends RuntimeException{
+import com.nocountry.backend.Error.ErrorCode;
+
+public class CarNotFoundException extends RuntimeException {
 
     @Serial
     private static final long serialVersionUID = 1L;
+
     private final String errMsgKey;
+
     private final String errorCode;
 
     public CarNotFoundException(ErrorCode code) {

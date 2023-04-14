@@ -1,25 +1,28 @@
 package com.nocountry.backend.Error.Exceptions;
 
+import java.io.Serial;
+
 import com.nocountry.backend.Error.ErrorCode;
 
-public class LoginException extends RuntimeException {
+public class OverlappedBookingException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private final String errMsgKey;
 
     private final String errorCode;
 
-    public LoginException(ErrorCode code) {
+    public OverlappedBookingException(ErrorCode code) {
         super(code.getErrMsgKey());
         this.errMsgKey = code.getErrMsgKey();
         this.errorCode = code.getErrCode();
     }
 
-    public LoginException(final String message) {
+    public OverlappedBookingException(final String message) {
         super(message);
-        this.errMsgKey = ErrorCode.LOGIN_BAD_CREDENTIALS.getErrMsgKey();
-        this.errorCode = ErrorCode.LOGIN_BAD_CREDENTIALS.getErrCode();
+        this.errMsgKey = ErrorCode.OVERLAPPED_BOOKING.getErrMsgKey();
+        this.errorCode = ErrorCode.OVERLAPPED_BOOKING.getErrCode();
     }
 
     public String getErrMsgKey() {

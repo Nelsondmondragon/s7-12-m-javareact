@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.utils.ObjectUtils;
+import com.nocountry.backend.Error.ErrorCode;
+import com.nocountry.backend.Error.Exceptions.CarNotFoundException;
 import com.nocountry.backend.dto.car.CarDto;
 import com.nocountry.backend.mapper.ICarMapper;
 import com.nocountry.backend.model.Booking;
@@ -52,8 +54,8 @@ public class CarServiceImpl implements ICarService {
 
     @Override
     public List<CarDto> findCarsByFilters(String model, String make, Integer year, Boolean air, Boolean gps,
-                                          Integer passengers, String idLocation, Long idCategory, LocalDateTime startTime,
-                                          LocalDateTime endTime) {
+            Integer passengers, String idLocation, Long idCategory, LocalDateTime startTime,
+            LocalDateTime endTime) {
 
         // Create a new query with the specified filters
         Specification<Car> spec = Specification.where(null);
@@ -105,8 +107,6 @@ public class CarServiceImpl implements ICarService {
         List<Car> allCars = carRepository.findAllByCategoryIdAndLocationId(idCategory,
                 idLocation);
 
-
-
         // trae todas las reservas por Location
         List<Booking> reservasPorUbicacionRetiro = bookingRepository.findAllByPickUpLocation(idLocation);
         List<Booking> reservasFinales = new ArrayList<>();
@@ -127,7 +127,7 @@ public class CarServiceImpl implements ICarService {
         if (carEntity.isPresent()) {
             return carMapper.CarToCarDto(carEntity.get());
         } else {
-            throw new EntityNotFoundException("Car not found with id: " + carId);
+            throw new CarNotFoundException(ErrorCode.CAR_NOT_FOUND);
         }
 
     }

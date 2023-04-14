@@ -8,6 +8,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.nocountry.backend.Error.ErrorCode;
+import com.nocountry.backend.Error.Exceptions.OverlappedBookingException;
 import com.nocountry.backend.dto.booking.BookingDto;
 import com.nocountry.backend.mapper.IBookingMapper;
 import com.nocountry.backend.model.Booking;
@@ -18,7 +20,6 @@ import com.nocountry.backend.service.IBookingService;
 import com.nocountry.backend.service.IMailSenderService;
 
 import jakarta.mail.MessagingException;
-import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
@@ -41,6 +42,28 @@ public class BookingServiceImpl implements IBookingService {
         return bookingMapper.toBookingDtos(bookingRepository.findAll());
     }
 
+    public List<BookingDto> findAllActiveBookings() {
+        var bookings = bookingRepository.findAll();
+        for (Booking booking : bookings) {
+            if (booking.getEndTime().isBefore(LocalDateTime.now())) {
+                booking.setActive(false);
+                bookingRepository.save(booking);
+            }
+        }
+
+        return bookingMapper.toBookingDtos(bookingRepository.findByActiveTrue());
+    }
+
+    @Override
+    public List<BookingDto> findBookingByCustomerId(Long customerId) {
+        var customer = customerRepository.findById(customerId).orElseThrow();
+        var bookings = customer.getBookings();
+        if (bookings == null || bookings.isEmpty()) {
+            throw new EntityNotFoundException("The customer has no bookings registered.");
+        }
+        return bookingMapper.toBookingDtos(bookings);
+    }
+
     @Override
     public BookingDto findBookingById(Long bookingId) {
         var booking = bookingRepository.findById(bookingId).orElseThrow();
@@ -58,7 +81,7 @@ public class BookingServiceImpl implements IBookingService {
 
         booking.setStartTime(bookingDto.getStartTime());
         booking.setEndTime(bookingDto.getEndTime());
-        // booking.setPickUpLocation(car.getPickUpLocation());
+        booking.setPickUpLocation(car.getLocation().getName());
         booking.setDropOffLocation(bookingDto.getDropOffLocation());
         booking.setAssignedDriver(bookingDto.getAssignedDriver());
         booking.setHelperPawn(bookingDto.getHelperPawn());
@@ -143,8 +166,9 @@ public class BookingServiceImpl implements IBookingService {
             LocalDateTime existingBookingEnd = carBooking.getEndTime();
 
             if (existingBookingStart.isBefore(newBookingEnd) && newBookingStart.isBefore(existingBookingEnd)) {
-                throw new EntityExistsException("The booking overlaps with another existing booking");
+                throw new OverlappedBookingException(ErrorCode.OVERLAPPED_BOOKING);
             }
         }
     }
+
 }

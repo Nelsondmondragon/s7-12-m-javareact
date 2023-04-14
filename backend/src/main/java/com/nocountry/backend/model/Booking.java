@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Builder.Default;
 
 @Data
 @Builder
@@ -46,6 +47,10 @@ public class Booking {
 
     @Column(name = "HELPER_PAWN")
     private Boolean helperPawn;
+
+    @Column(name = "ACTIVE")
+    @Default
+    private Boolean active = true;
 
     @Column(name = "FK_CAR")
     private Long fkCar;

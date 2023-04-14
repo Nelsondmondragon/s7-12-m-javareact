@@ -51,6 +51,10 @@ public class Customer {
     @Column(name = "FK_LOCATION")
     private String fkLocation;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_LOCATION", referencedColumnName = "ID_LOCATION", insertable = false, updatable = false)
+    private Location location;
+
     @Column(name = "FK_USER")
     private Long fkUser;
 
@@ -61,10 +65,6 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_LOCATION", referencedColumnName = "ID_LOCATION", insertable = false, updatable = false)
-    private Location location;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    private List<Card> cards;
+    // @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+    // private List<Card> cards;
 }
