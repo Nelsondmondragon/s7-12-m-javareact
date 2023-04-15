@@ -55,7 +55,9 @@ public class CustomerController {
 
 
     @PutMapping("/{customerId}")
-    @Operation(summary = "Update customer by id.", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Update customer by id."
+//            ,            security = @SecurityRequirement(name = "bearerAuth")
+    )
     public ResponseEntity<CustomerDetailsDto> updateCustomer(@PathVariable Long customerId, @RequestBody CustomerUpdateDto customerUpdateDto) {
 
         System.out.println("eeee");
@@ -66,7 +68,9 @@ public class CustomerController {
 
     @DeleteMapping("/{customerId}")
 
-    @Operation(summary = "Delete customer with JWT, send token in the request header.", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Delete customer with JWT, send token in the request header."
+//            , security = @SecurityRequirement(name = "bearerAuth")
+    )
     public ResponseEntity<CustomerDetailsDto> deleteCustomer(@PathVariable Long customerId) {
         customerService.deleteCustomer(customerId);
         return ResponseEntity.noContent().build();
