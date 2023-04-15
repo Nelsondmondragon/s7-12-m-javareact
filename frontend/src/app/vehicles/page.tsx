@@ -2,22 +2,32 @@
 
 import getAllCars from '@/lib/getAllCars';
 import Image from 'next/image';
-import cars from '../../cars.json';
-import { useState } from 'react';
+//import cars from '../../cars.json';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { setCategory as setCat } from '@/features/users/userSlice';
 
 const Vehicles = () => {
     const [category, setCategory] = useState('small');
+    const [cars, setCars] = useState([]);
     const router = useRouter();
     const dispatch = useDispatch();
     const filter = cars.filter((vh) => vh.categoria === category);
 
-    const getCars = async () => {
-        let test = await getAllCars();
-        console.log(test);
-    };
+    useEffect(() =>  {
+        // let query = await getAllCars();
+        // console.log(query);
+        // setCars(query);
+        getAllCars().then((res)=> setCars(res))
+        
+    }, []);
+
+    // const getCars = async () => {
+    //     let query = await getAllCars();
+    //     console.log(query)
+    //     setCars(query)
+    // };
 
     const handleBooking = () => {
         dispatch(setCat(category));
@@ -25,7 +35,7 @@ const Vehicles = () => {
         router.push('/booking');
     };
     //onClick={getCars}
-    getCars();
+    //getCars();
     return (
         <div className="min-h-screen flex flex-col items-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
             <div className="mt-14 flex flex-col items-center">
@@ -44,20 +54,20 @@ const Vehicles = () => {
                 </p>
             </div>
             <div className="w-[92%] sm:w-[90%] h-fit my-10 py-[2%] bg-white/80 rounded-3xl flex flex-col items-center gap-8">
-                {filter.map((car) => {
+                {cars.map((car) => {
                     return (
                         <div key={car.id} className="w-[96%] flex gap-2">
                             <Image
-                                src={`/assets/images/booking/vh-small.jpg`}
-                                alt={car.title}
+                                src={car.imageResource.urlSecure}
+                                alt={car.make}
                                 width={200}
                                 height={200}
                                 className="rounded-3xl object-contain"
                             />
                             <div className="flex flex-col justify-around w-full">
-                                <h3 className="text-lg md:text-[29px] font-semibold">{car.title}</h3>
+                                <h3 className="text-lg md:text-[29px] font-semibold">{car.make}</h3>
                                 <p className="leading-5 md:leading-7 md:text-[23px] md:mt-4">
-                                    {car.info}
+                                    `$Con capacidad{car.info}`
                                 </p>
                                 <div className="flex justify-between items-end w-full">
                                     <p className="md:text-[29px] font-semibold">$ {car.price}</p>

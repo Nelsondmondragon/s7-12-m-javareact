@@ -16,6 +16,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.revistaautocrash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
     ],
   },
 };
