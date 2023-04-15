@@ -2,10 +2,8 @@ package com.nocountry.backend.controller;
 
 import com.nocountry.backend.dto.PaymentDto;
 import com.nocountry.backend.service.IPaymentService;
-import com.nocountry.backend.service.impl.PaymentService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.nocountry.backend.dto.payment.PaymentDto;
-import com.nocountry.backend.service.IPaymentService;
-import com.stripe.exception.StripeException;
-import com.stripe.model.PaymentIntent;
-
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
