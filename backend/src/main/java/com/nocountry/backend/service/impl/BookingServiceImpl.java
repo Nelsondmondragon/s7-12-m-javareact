@@ -112,8 +112,13 @@ public class BookingServiceImpl implements IBookingService {
         booking.setDropOffLocation(bookingDto.getDropOffLocation());
         booking.setAssignedDriver(bookingDto.getAssignedDriver());
         booking.setHelperPawn(bookingDto.getHelperPawn());
-        booking.setFkCar(carId);
-        booking.setFkCustomer(customerId);
+        booking.setCar(car);
+        booking.setCustomer(customer);
+
+        var bookingDtoResponse = bookingMapper.toBookingDto(bookingRepository.save(booking));
+
+        bookingDtoResponse.getCustomer().setEmail(customer.getUser().getEmail());
+        bookingDtoResponse.getCustomer().setIdLocation(customer.getFkLocation());
 
         String to = customer.getUser().getEmail();
         String subject = "Confirmación de reserva";
@@ -123,7 +128,7 @@ public class BookingServiceImpl implements IBookingService {
                 + "<ul>"
                 + "<li>Fecha y hora de retiro: "
                 + bookingDto.getStartTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "</li>"
-                // + "<li>Lugar de retiro: " + car.getPickUpLocation() + "</li>"
+                + "<li>Lugar de retiro: " + car.getLocation().getName() + "</li>"
                 + "<li>Fecha y hora de entrega: "
                 + bookingDto.getEndTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "</li>"
                 + "<li>Lugar de entrega: " + bookingDto.getDropOffLocation() + "</li>"
@@ -147,7 +152,7 @@ public class BookingServiceImpl implements IBookingService {
             e.printStackTrace();
         }
 
-        return bookingMapper.toBookingDto(bookingRepository.save(booking));
+        return bookingDtoResponse;
     }
 
     @Override

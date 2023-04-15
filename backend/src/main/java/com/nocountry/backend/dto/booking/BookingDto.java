@@ -2,6 +2,9 @@ package com.nocountry.backend.dto.booking;
 
 import java.time.LocalDateTime;
 
+import com.nocountry.backend.dto.car.CarDto;
+import com.nocountry.backend.dto.customer.CustomerDetailsDto;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,7 +39,7 @@ public class BookingDto {
 
     private Boolean active;
 
-    private Long fkCar;
+    private CarDto car;
 
-    private Long fkCustomer;
+    private CustomerDetailsDto customer;
 }
