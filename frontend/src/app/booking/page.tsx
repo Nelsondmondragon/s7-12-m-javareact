@@ -14,17 +14,19 @@ export default function Booking() {
   const [startTime, setstartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
   // const [category, setCategory] = useState(0);
-  const [startPl, setStartPl] = useState('Buenos Aires');
-  const [returnPl, setReturnPl] = useState('Buenos Aires');
+  const [startPl, setStartPl] = useState('02000010');
+  const [returnPl, setReturnPl] = useState('02000010');
 
   const router = useRouter();
 
   registerLocale('es', es);
 
-  let item =
-    typeof window !== 'undefined' && localStorage.getItem('category')
-      ? JSON.parse(localStorage.getItem('category')).firstName
-      : '';
+  // let item =
+  //   typeof window !== 'undefined' && localStorage.getItem('category')
+  //     ? JSON.parse(localStorage.getItem('category')).firstName
+  //     : '';
+  let item = JSON.parse(localStorage.getItem("category"));
+ 
   const onSearch = async () => {
     let category;
     console.log(item);

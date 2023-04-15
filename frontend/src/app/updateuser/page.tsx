@@ -1,18 +1,22 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/navigation';
-// import { Schema as schema } from './registerValidation';
 import { Schema as schema } from './validation';
-import postRegister from '@/lib/postRegister';
-import Image from 'next/image';
-import getUser from '@/lib/getUser';
-import { useEffect } from 'react';
+
+import { setUser, selectCurrentUser } from '@/features/users/userSlice';
+
+import getLocations from '@/lib/getLocation';
+import { Location } from '../../../type';
 
 type FormValues = {
   fullName: string;
-  location: string;
+  idLocation: string;
   address: string;
   dni: string;
   numberLicence: string;
@@ -21,34 +25,49 @@ type FormValues = {
 
 const UpdateUser = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const [locations, setLocations] = useState<Location[]>();
+
+  console.log('ebtrado por segunda vez', currentUser);
+
+  const token: string =
+    typeof window !== 'undefined' && localStorage.getItem('token')
+      ? JSON.parse(localStorage.getItem('token')).token
+      : '';
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      fullName: '',
-      location: '',
-      address: '',
-      dni: '',
-      numberLicence: '',
-      dateExpiration: '',
+      fullName: currentUser.fullName,
+      idLocation: currentUser.idLocation,
+      address: currentUser.address,
+      dni: currentUser.dni,
+      numberLicence: currentUser.numberLicence,
+      dateExpiration: currentUser.dateExpiration,
     },
     resolver: yupResolver(schema),
   });
 
-  const RegisterUser = async (values: FormValues) => {
-    console.log('guardando datos registro2');
-    console.log(values);
-    // validar la respuesta
-    // actualizar datos en el localstorage y estado global
-    // si el usuario esta creado y no esta actalizado se debe de enviar a completar los datos del mismo
+  const onSubmit = (values: FormValues) => {
+    const newUserData = { ...currentUser, ...values };
+    console.log(newUserData);
+    dispatch(setUser(newUserData));
     router.push('/creditcard');
   };
 
-  const onSubmit = (values: FormValues) => {
-    RegisterUser(values);
+  const fetchLocation = async (token: string) => {
+    const data = await getLocations(token);
+    console.log(data);
+    setLocations(data);
   };
+
+  useEffect(() => {
+    fetchLocation(token);
+  }, [token]);
 
   return (
     <section className="flex justify-center px-2 md:px-4 py-2 md:py-4 lg:px-10 lg:py-10 bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center ">
@@ -93,20 +112,30 @@ const UpdateUser = () => {
                 </div>
 
                 <div className=" relative w-full flex flex-col h-24 mb-2 self-end">
-                  <label htmlFor="location" className="font-semibold pb-1">
+                  <label htmlFor="idLocation" className="font-semibold pb-1">
                     Ciudad
                   </label>
-                  <input
-                    className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
-                      errors.location
+
+                  <select
+                    className={`px-2 py-1.5 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
+                      errors.idLocation
                         ? 'outline-2 outline-error-600 border-2 border-error-600'
                         : ''
                     } `}
-                    {...register('location')}
-                    placeholder="Ciudad"
-                  />
+                    {...register('idLocation')}
+                  >
+                    <option value=""> Seleccione la ciudad</option>
+                    {locations &&
+                      locations.map((location) => {
+                        return (
+                          <option key={location.id} value={location.id}>
+                            {location.name}
+                          </option>
+                        );
+                      })}
+                  </select>
                   <p className="text-error-600 text-sm font-bold">
-                    {errors?.location?.message}
+                    {errors?.idLocation?.message}
                   </p>
                 </div>
 
