@@ -1,12 +1,11 @@
 package com.nocountry.backend.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.nocountry.backend.dto.customer.CustomerUpdateDto;
+import com.nocountry.backend.util.jwt.ExtractUsernameJwtUtil;
 import org.springframework.stereotype.Service;
 
-import com.nocountry.backend.config.jwt.JwtProvider;
 import com.nocountry.backend.dto.customer.CustomerDetailsDto;
 import com.nocountry.backend.dto.customer.CustomerListDto;
 import com.nocountry.backend.dto.customer.CustomerRegisterDto;
@@ -16,7 +15,6 @@ import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.service.ICustomerService;
 import com.nocountry.backend.service.IUserService;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
@@ -30,7 +28,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     private final IUserService userService;
 
-    private final JwtProvider jwtProvider;
+    private final ExtractUsernameJwtUtil extractUsernameJwtUtil;
 
     @Override
     public List<CustomerListDto> findAllCustomers() {
@@ -51,24 +49,10 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public CustomerDetailsDto findCustomerByEmail(HttpServletRequest request) {
-        String email = this.getEmail(request);
-
-        var userRepository = userService.findUserByEmail(email);
-        var customerDetailsDto = customerMapper.toCustomerDto(
-                customerRepository.findByFkUser(userRepository.getId()));
-        customerDetailsDto.setEmail(email);
-
-        return customerDetailsDto;
+        Long userId = this.extractUsernameJwtUtil.getId(request);
+        return this.findCustomerById(userId);
     }
 
-
-    public CustomerDetailsDto findCustomerByEmail(String email) {
-        var userRepository = userService.findUserByEmail(email);
-        var customerDetailsDto = customerMapper.toCustomerDto(
-                customerRepository.findByFkUser(userRepository.getId()));
-        customerDetailsDto.setEmail(email);
-        return customerDetailsDto;
-    }
 
     @Override
     public Boolean existsByEmail(String email) {
@@ -85,27 +69,21 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public CustomerDetailsDto updateCustomer(HttpServletRequest request, CustomerUpdateDto customerUpdateDto) {
-        String email = this.getEmail(request);
-
-        Customer customer = this.customerRepository.findById(
-                this.userService.findUserByEmail(email).getId()).orElseThrow(() -> new RuntimeException("Problem in update data customer."));
+        Long userId = this.extractUsernameJwtUtil.getId(request);
+        Customer customer = this.customerRepository.findById(userId).orElseThrow(() -> new RuntimeException("Problem in update data customer."));
         this.customerMapper.updateCustomer(customerUpdateDto, customer);
         this.customerRepository.save(customer);
         CustomerDetailsDto customerDetailsDto = this.customerMapper.toCustomerDto(customer);
-        customerDetailsDto.setEmail(email);
+        customerDetailsDto.setEmail(customer.getUser().getEmail());
         return customerDetailsDto;
     }
 
     @Override
     public void deleteCustomer(HttpServletRequest request) {
-        String email = this.getEmail(request);
-        CustomerDetailsDto customerByEmail = this.findCustomerByEmail(email);
-        customerRepository.deleteById(customerByEmail.getId());
-        userService.deleteUser(customerByEmail.getId());
+        Long userId = this.extractUsernameJwtUtil.getId(request);
+        customerRepository.deleteById(userId);
+        userService.deleteUser(userId);
     }
 
-    private String getEmail(HttpServletRequest request) {
-        String authorization = request.getHeader("Authorization");
-        return jwtProvider.extractUsername(authorization.substring(7));
-    }
+
 }

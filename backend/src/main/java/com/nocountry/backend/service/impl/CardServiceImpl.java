@@ -2,6 +2,10 @@ package com.nocountry.backend.service.impl;
 
 import java.util.List;
 
+import com.nocountry.backend.dto.card.CardDetailDto;
+import com.nocountry.backend.service.IUserService;
+import com.nocountry.backend.util.jwt.ExtractUsernameJwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.dto.card.CardSaveDto;
@@ -20,13 +24,22 @@ public class CardServiceImpl implements ICardService {
 
     private final ICardMapper cardMapper;
 
+    private final ExtractUsernameJwtUtil extractUsernameJwtUtil;
+
+
     @Override
     public List<CardSaveDto> findAllById(Long id) {
         return this.cardMapper.toCardDtos(this.cardRepository.findAllById(id));
     }
 
+
     @Override
-    public CardSaveDto save(CardSaveDto cardSaveDto) {
+    public CardSaveDto save(HttpServletRequest request, CardSaveDto cardSaveDto) {
+        Long id = this.extractUsernameJwtUtil.getId(request);
+        if (this.existsByFkCustomer(id)) {
+            throw new RuntimeException("Exists card register.");
+        }
+        cardSaveDto.setFkCustomer(id);
         return this.cardMapper.toCardDto(this.cardRepository
                 .save(this.cardMapper.toCard(cardSaveDto)));
     }
@@ -49,4 +62,17 @@ public class CardServiceImpl implements ICardService {
         this.findById(id);
         this.cardRepository.deleteById(id);
     }
+
+    @Override
+    public Boolean existsByFkCustomer(Long idCustomer) {
+        return this.cardRepository.existsByFkCustomer(idCustomer);
+    }
+
+    @Override
+    public CardDetailDto findByIdCustomer(Long id) {
+        return this.cardMapper.toCardDetailDto(
+                this.cardRepository.findByFkCustomer(id));
+    }
+
+
 }

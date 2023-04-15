@@ -9,4 +9,8 @@ import com.nocountry.backend.model.Card;
 public interface ICardRepository extends JpaRepository<Card, Long> {
 
     public List<Card> findAllById(Long id);
+
+    Boolean existsByFkCustomer(Long id);
+
+    Card findByFkCustomer(Long id);
 }

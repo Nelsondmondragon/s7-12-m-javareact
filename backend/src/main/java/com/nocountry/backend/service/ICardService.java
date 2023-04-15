@@ -2,17 +2,23 @@ package com.nocountry.backend.service;
 
 import java.util.List;
 
+import com.nocountry.backend.dto.card.CardDetailDto;
 import com.nocountry.backend.dto.card.CardSaveDto;
+import jakarta.servlet.http.HttpServletRequest;
 
 public interface ICardService {
 
-    public List<CardSaveDto> findAllById(Long id);
+    List<CardSaveDto> findAllById(Long id);
 
-    public CardSaveDto save(CardSaveDto cardSaveDto);
+    CardSaveDto save(HttpServletRequest request, CardSaveDto cardSaveDto);
 
-    public CardSaveDto findById(Long id);
+    CardSaveDto findById(Long id);
 
-    public CardSaveDto update(Long id, CardSaveDto cardSaveDto);
+    CardSaveDto update(Long id, CardSaveDto cardSaveDto);
 
-    public void deleteById(Long id);
+    void deleteById(Long id);
+
+    Boolean existsByFkCustomer(Long idCustomer);
+
+    CardDetailDto findByIdCustomer(Long idCustomer);
 }
