@@ -29,7 +29,7 @@ const Vehicles = () => {
     return (
         <div className="min-h-screen flex flex-col items-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
             <div className="mt-14 flex flex-col items-center">
-                {/* <div onClick={getCars}>PRUEBA</div> */}
+                {/* <div onClick={getCars}>PRUEBA</div>  */}
                 <select
                     defaultValue={'Vehículos pequeños'}
                     className="h-[46px] text-[18px] md:text-[23px] px-2 rounded-md border-gray-400 shadow-md text-center"
