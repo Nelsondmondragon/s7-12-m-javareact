@@ -1,6 +1,5 @@
 const getLocations = async (token: string) => {
   const URL = process.env.NEXT_PUBLIC_BASE_URL;
-
   const response = await fetch(`${URL}locations`, {
     method: 'GET',
     headers: {

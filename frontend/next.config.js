@@ -11,11 +11,10 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'www.revistaautocrash.com',
-      },
+    domains: [
+      'media.graphassets.com',
+      'www.revistaautocrash.com',
+      'res.cloudinary.com',
     ],
   },
 };

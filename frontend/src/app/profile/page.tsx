@@ -22,16 +22,14 @@ const Profile = (props: Props) => {
               </span>
               <h1>Mis datos </h1>
             </div>
-            <Link href={'/'}>
+            <Link href={'/updateuser'}>
               <p className="text-lg mb-2 text-left ml-6 hover:underline hover:text-red-400">
-                {' '}
                 Editar datos de contacto
               </p>
             </Link>
-            <Link href={'/'}>
+            <Link href={'/creditcard'}>
               <p className="text-lg mb-2 text-left ml-6 hover:underline hover:text-red-400">
-                {' '}
-                Datos de pago{' '}
+                Datos de pago
               </p>
             </Link>
           </div>
@@ -50,13 +48,11 @@ const Profile = (props: Props) => {
             </div>
             <Link href={'/'}>
               <p className="text-lg mb-2 text-left ml-6 hover:underline hover:text-red-400">
-                {' '}
                 Reservas actuales
               </p>
             </Link>
             <Link href={'/'}>
               <p className="text-lg mb-2 text-left ml-6 hover:underline hover:text-red-400">
-                {' '}
                 Historial de reservas
               </p>
             </Link>
