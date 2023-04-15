@@ -21,13 +21,24 @@ const BookingCar = ({ params }) => {
     user === null ? setShowModal(true) : router.push('/pay');
   };
 
-  let item = JSON.parse(localStorage.getItem('cars'));
-  console.log(item);
+  let item
+  if (localStorage.getItem("cars") === 'undefined') {
+    item = [];
+  } else {
+    if (Array.isArray(JSON.parse(localStorage.getItem("cars")))) {
+      item = JSON.parse(localStorage.getItem("cars"));
+    } else {
+      item = [];
+      console.log("vamos");
+    }
+  }
 
   return (
-    <div className="min-h-screen flex justify-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
+    <div className="min-h-screen flex flex-col items-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
       <div className="w-full h-fit mx-10 my-10 p-10 bg-white/80 rounded-3xl flex flex-col items-center gap-8">
-        {item.map((it) => {
+        {item.length === 0 ? (
+          <p>No hay resultados para su busqueda o regrese más tarde</p>
+        ) : ( item.map((it) => {
           return (
             <div key={it.id} className="w-11/12 flex">
               <Image
@@ -52,7 +63,7 @@ const BookingCar = ({ params }) => {
               </button>
             </div>
           );
-        })}
+        }))}
       </div>
       {showModal ? <ModalInicio setShowModal={setShowModal} /> : null}
       {/* <ModalInicio/> */}
