@@ -34,12 +34,11 @@ public class CardServiceImpl implements ICardService {
 
 
     @Override
-    public CardSaveDto save(HttpServletRequest request, CardSaveDto cardSaveDto) {
-        Long id = this.extractUsernameJwtUtil.getId(request);
-        if (this.existsByFkCustomer(id)) {
+    public CardSaveDto save(Long customerId, CardSaveDto cardSaveDto) {
+        if (this.existsByFkCustomer(customerId)) {
             throw new RuntimeException("Exists card register.");
         }
-        cardSaveDto.setFkCustomer(id);
+        cardSaveDto.setFkCustomer(customerId);
         return this.cardMapper.toCardDto(this.cardRepository
                 .save(this.cardMapper.toCard(cardSaveDto)));
     }
@@ -51,8 +50,8 @@ public class CardServiceImpl implements ICardService {
     }
 
     @Override
-    public CardSaveDto update(Long id, CardSaveDto cardSaveDto) {
-        Card card = this.cardRepository.findById(id).get();
+    public CardSaveDto update(Long customerId, CardSaveDto cardSaveDto) {
+        Card card = this.cardRepository.findById(customerId).get();
         this.cardMapper.updateCard(cardSaveDto, card);
         return this.cardMapper.toCardDto(this.cardRepository.save(card));
     }

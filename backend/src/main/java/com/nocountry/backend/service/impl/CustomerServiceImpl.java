@@ -1,6 +1,7 @@
 package com.nocountry.backend.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.nocountry.backend.dto.customer.CustomerUpdateDto;
 import com.nocountry.backend.util.jwt.ExtractUsernameJwtUtil;
@@ -32,20 +33,22 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public List<CustomerListDto> findAllCustomers() {
-        var customers = customerRepository.findAll();
-        var customersDto = customerMapper.toCustomerListDtos(customers);
-        for (CustomerListDto customerDto : customersDto) {
-            var customer = customerRepository.findById(customerDto.getId()).orElseThrow();
-            customerDto.setEmail(customer.getUser().getEmail());
-        }
-        return customersDto;
+        return customerRepository.findAll().stream().map(
+                customer -> {
+                    CustomerListDto customerListDto = this.customerMapper.toCustomerListDtos(customer);
+                    customerListDto.setEmail(customer.getUser().getEmail());
+                    return customerListDto;
+                }
+
+        ).collect(Collectors.toList());
     }
 
     @Override
     public CustomerDetailsDto save(CustomerRegisterDto customerRegisterDto) {
-        return this.customerMapper.toCustomerDto(
+        return this.customerMapper.toCustomerDetailsDto(
                 this.customerRepository.save(this.customerMapper.toCustomerRegister(customerRegisterDto)));
     }
+
 
     @Override
     public CustomerDetailsDto findCustomerByEmail(HttpServletRequest request) {
@@ -61,28 +64,27 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public CustomerDetailsDto findCustomerById(Long customerId) {
-        var customer = customerRepository.findById(customerId).orElseThrow();
-        var customerDetailsDto = customerMapper.toCustomerDto(customer);
-        customerDetailsDto.setEmail(customer.getUser().getEmail());
-        return customerDetailsDto;
+        return this.customerRepository.findById(customerId).map(
+                customer -> {
+                    CustomerDetailsDto customerDetailsDto = this.customerMapper.toCustomerDetailsDto(customer);
+                    customerDetailsDto.setEmail(customer.getUser().getEmail());
+                    return customerDetailsDto;
+
+                }).orElseThrow(() -> new RuntimeException("Customer not exists."));
     }
 
     @Override
-    public CustomerDetailsDto updateCustomer(HttpServletRequest request, CustomerUpdateDto customerUpdateDto) {
-        Long userId = this.extractUsernameJwtUtil.getId(request);
-        Customer customer = this.customerRepository.findById(userId).orElseThrow(() -> new RuntimeException("Problem in update data customer."));
+    public CustomerDetailsDto updateCustomer(Long customerId, CustomerUpdateDto customerUpdateDto) {
+        Customer customer = this.customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Problem in update data customer."));
         this.customerMapper.updateCustomer(customerUpdateDto, customer);
         this.customerRepository.save(customer);
-        CustomerDetailsDto customerDetailsDto = this.customerMapper.toCustomerDto(customer);
-        customerDetailsDto.setEmail(customer.getUser().getEmail());
-        return customerDetailsDto;
+        return this.findCustomerById(customerId);
     }
 
     @Override
-    public void deleteCustomer(HttpServletRequest request) {
-        Long userId = this.extractUsernameJwtUtil.getId(request);
-        customerRepository.deleteById(userId);
-        userService.deleteUser(userId);
+    public void deleteCustomer(Long customerId) {
+        customerRepository.deleteById(customerId);
+        userService.deleteUser(customerId);
     }
 
 

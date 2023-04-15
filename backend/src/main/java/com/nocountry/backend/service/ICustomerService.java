@@ -22,7 +22,7 @@ public interface ICustomerService {
 
     CustomerDetailsDto findCustomerById(Long customerId);
 
-    CustomerDetailsDto updateCustomer(HttpServletRequest request, CustomerUpdateDto customerUpdateDto);
+    CustomerDetailsDto updateCustomer(Long customerId, CustomerUpdateDto customerUpdateDto);
 
-    void deleteCustomer(HttpServletRequest request);
+    void deleteCustomer(Long customerId);
 }

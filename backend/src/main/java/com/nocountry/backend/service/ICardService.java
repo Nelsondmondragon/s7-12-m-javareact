@@ -10,7 +10,7 @@ public interface ICardService {
 
     List<CardSaveDto> findAllById(Long id);
 
-    CardSaveDto save(HttpServletRequest request, CardSaveDto cardSaveDto);
+    CardSaveDto save(Long customerId, CardSaveDto cardSaveDto);
 
     CardSaveDto findById(Long id);
 

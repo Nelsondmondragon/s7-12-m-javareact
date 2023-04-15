@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.nocountry.backend.dto.card.CardSaveDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CustomerRegisterDto {
 
-    @Schema(example = "user@test.com")
+    @Schema(example = "userr@test.com")
     private String email;
 
     @Schema(example = "1234")
@@ -42,4 +43,6 @@ public class CustomerRegisterDto {
 
     @JsonIgnore
     private Long fkUser;
+
+    private CardSaveDto card;
 }

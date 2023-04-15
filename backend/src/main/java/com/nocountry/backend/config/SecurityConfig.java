@@ -37,8 +37,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/categories/**").permitAll()
                 .requestMatchers("/api/v1/locations/**").permitAll()
                 .requestMatchers("/api/v1/customers/email").permitAll()
-
-
+                .requestMatchers("/api/v1/customers/all").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

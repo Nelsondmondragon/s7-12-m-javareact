@@ -18,10 +18,13 @@ import com.nocountry.backend.model.Customer;
 public interface ICustomerMapper {
 
     @Mapping(target = "email", ignore = true)
-    CustomerDetailsDto toCustomerDto(Customer customer);
+    @Mapping(target = "idLocation", source = "fkLocation")
+    CustomerDetailsDto toCustomerDetailsDto(Customer customer);
 
 
     List<CustomerListDto> toCustomerListDtos(List<Customer> customers);
+
+    CustomerListDto toCustomerListDtos(Customer customers);
 
 
     @Mapping(target = "fkLocation", source = "idLocation")
@@ -33,6 +36,7 @@ public interface ICustomerMapper {
     @Mapping(target = "user", ignore = true)
     @Mapping(target = "bookings", ignore = true)
     @Mapping(target = "location", ignore = true)
+    @Mapping(target = "card", ignore = true)
     @Mapping(target = "fkLocation", source = "idLocation")
     Customer toCustomerRegister(CustomerRegisterDto customerDto);
 

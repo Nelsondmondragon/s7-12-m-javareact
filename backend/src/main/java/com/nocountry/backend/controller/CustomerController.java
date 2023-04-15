@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.nocountry.backend.dto.customer.CustomerUpdateDto;
 import com.nocountry.backend.dto.email.EmailDto;
+import com.nocountry.backend.model.Customer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,6 @@ public class CustomerController {
     private final ICustomerService customerService;
 
     @GetMapping("/all")
-    @SecurityRequirement(name = "bearerAuth")
     @Operation(summary = "List of all clients.")
     public ResponseEntity<List<CustomerListDto>> getAllCustomers() {
         var customers = customerService.findAllCustomers();
@@ -54,19 +54,22 @@ public class CustomerController {
     }
 
 
-    @PutMapping("")
+    @PutMapping("/{customerId}")
     @SecurityRequirement(name = "bearerAuth")
-    @Operation(summary = "Update customer with JWT, send token in the request header.")
-    public ResponseEntity<CustomerDetailsDto> updateCustomer(HttpServletRequest request, @RequestBody CustomerUpdateDto customerUpdateDto) {
-        return new ResponseEntity<>(customerService.updateCustomer(request, customerUpdateDto),
+    @Operation(summary = "Update customer by id.")
+    public ResponseEntity<CustomerDetailsDto> updateCustomer(@PathVariable Long customerId, @RequestBody CustomerUpdateDto customerUpdateDto) {
+
+        System.out.println("eeee");
+
+        return new ResponseEntity<>(customerService.updateCustomer(customerId, customerUpdateDto),
                 HttpStatus.OK);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/{customerId}")
     @SecurityRequirement(name = "bearerAuth")
     @Operation(summary = "Delete customer with JWT, send token in the request header.")
-    public ResponseEntity<CustomerDetailsDto> deleteCustomer(HttpServletRequest request) {
-        customerService.deleteCustomer(request);
+    public ResponseEntity<CustomerDetailsDto> deleteCustomer(@PathVariable  Long customerId) {
+        customerService.deleteCustomer(customerId);
         return ResponseEntity.noContent().build();
     }
 }

@@ -61,9 +61,9 @@ public class Customer {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_USER", referencedColumnName = "ID_USER", insertable = false, updatable = false)
     private User user;
-//
-//    @OneToOne(mappedBy = "customer")
-//    private Card card;
+
+    @OneToOne(mappedBy = "customer")
+    private Card card;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Booking> bookings;
