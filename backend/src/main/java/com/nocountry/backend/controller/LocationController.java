@@ -19,16 +19,23 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1/locations")
-@Tag(name = "Locations", description = "Localidades de Argentina.")
+@Tag(name = "Locations", description = "List of localities in Argentina.")
 @RequiredArgsConstructor
-@SecurityRequirement(name = "bearerAuth")
 public class LocationController {
 
     private final ILocationService locationService;
 
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Lista de todas las localidades de Argentina.")
+    @Operation(summary = "List of all towns in Argentina.")
     public ResponseEntity<List<LocationDto>> getAll() {
         return new ResponseEntity<>(locationService.findAll(), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/branches", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "List of all locations in Argentina with a MoveAr branch.")
+    public ResponseEntity<List<LocationDto>> getAllBranch() {
+        return new ResponseEntity<>(locationService.findAllBranch(), HttpStatus.OK);
+    }
+
+
 }

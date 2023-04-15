@@ -42,6 +42,4 @@ public class CustomerRegisterDto {
 
     @JsonIgnore
     private Long fkUser;
-
-    // private CardSaveDto card;
 }

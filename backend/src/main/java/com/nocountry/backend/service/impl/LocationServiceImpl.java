@@ -28,4 +28,9 @@ public class LocationServiceImpl implements ILocationService {
     public List<LocationDto> findAll() {
         return this.locationMapper.toLocationDtos(this.locationsRepository.findAll());
     }
+
+    @Override
+    public List<LocationDto> findAllBranch() {
+        return this.locationMapper.toLocationDtos(this.locationsRepository.findAllByBranchIsNotNull());
+    }
 }

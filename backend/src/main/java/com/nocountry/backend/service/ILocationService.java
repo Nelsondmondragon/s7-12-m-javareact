@@ -8,5 +8,8 @@ public interface ILocationService {
 
     public void save(LocationDto locationDto);
 
-    public List<LocationDto> findAll();
+    List<LocationDto> findAll();
+
+    List<LocationDto> findAllBranch();
+
 }

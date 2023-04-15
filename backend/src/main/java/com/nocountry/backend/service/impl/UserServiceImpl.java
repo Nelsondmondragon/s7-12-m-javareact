@@ -24,6 +24,11 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public Boolean emailExits(String email) {
+        return this.userRepository.existsByEmail(email);
+    }
+
+    @Override
     public void deleteUser(Long userId) {
         this.userRepository.deleteById(userId);
     }

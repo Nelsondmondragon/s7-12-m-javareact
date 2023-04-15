@@ -36,6 +36,10 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/cars/**").permitAll()
                 .requestMatchers("/api/v1/cards/**").permitAll()
                 .requestMatchers("/api/v1/categories/**").permitAll()
+                .requestMatchers("/api/v1/locations/**").permitAll()
+                .requestMatchers("/api/v1/customers/email").permitAll()
+
+
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

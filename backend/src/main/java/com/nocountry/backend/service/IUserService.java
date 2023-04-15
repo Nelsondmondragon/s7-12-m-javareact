@@ -1,10 +1,13 @@
 package com.nocountry.backend.service;
 
 import com.nocountry.backend.dto.user.UserDto;
+import com.nocountry.backend.model.Booking;
 
 public interface IUserService {
 
-    public UserDto findUserByEmail(String email);
+    UserDto findUserByEmail(String email);
 
-    public void deleteUser(Long userId);
+    Boolean emailExits(String email);
+
+    void deleteUser(Long userId);
 }

@@ -2,6 +2,7 @@ package com.nocountry.backend.mapper;
 
 import java.util.List;
 
+import com.nocountry.backend.dto.customer.CustomerUpdateDto;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -22,8 +23,9 @@ public interface ICustomerMapper {
 
     List<CustomerListDto> toCustomerListDtos(List<Customer> customers);
 
-    @Mapping(target = "id", ignore = true)
-    void updateCustomer(CustomerDetailsDto customerDetailsDto, @MappingTarget Customer customer);
+
+    @Mapping(target = "fkLocation", source = "idLocation")
+    void updateCustomer(CustomerUpdateDto customerUpdateDto, @MappingTarget Customer customer);
 
 
     @InheritInverseConfiguration

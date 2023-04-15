@@ -28,6 +28,9 @@ public class Location {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "BRANCH")
+    private String branch;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "location")
     private List<Car> cars;
 }

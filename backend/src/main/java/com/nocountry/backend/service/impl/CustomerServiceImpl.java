@@ -3,6 +3,7 @@ package com.nocountry.backend.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import com.nocountry.backend.dto.customer.CustomerUpdateDto;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.config.jwt.JwtProvider;
@@ -50,8 +51,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public CustomerDetailsDto findCustomerByEmail(HttpServletRequest request) {
-        String authorization = request.getHeader("Authorization");
-        String email = jwtProvider.extractUsername(authorization.substring(7));
+        String email = this.getEmail(request);
 
         var userRepository = userService.findUserByEmail(email);
         var customerDetailsDto = customerMapper.toCustomerDto(
@@ -59,6 +59,20 @@ public class CustomerServiceImpl implements ICustomerService {
         customerDetailsDto.setEmail(email);
 
         return customerDetailsDto;
+    }
+
+
+    public CustomerDetailsDto findCustomerByEmail(String email) {
+        var userRepository = userService.findUserByEmail(email);
+        var customerDetailsDto = customerMapper.toCustomerDto(
+                customerRepository.findByFkUser(userRepository.getId()));
+        customerDetailsDto.setEmail(email);
+        return customerDetailsDto;
+    }
+
+    @Override
+    public Boolean existsByEmail(String email) {
+        return this.userService.emailExits(email);
     }
 
     @Override
@@ -70,24 +84,28 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public CustomerDetailsDto updateCustomer(Long customerId, CustomerDetailsDto customerDetailsDto) {
-        Optional<Customer> customerEntity = customerRepository.findById(customerId);
-        if (customerEntity.isPresent()) {
-            Customer customer = customerEntity.get();
-            customerMapper.updateCustomer(customerDetailsDto, customer);
-            Customer updatedCustomer = customerRepository.save(customer);
-            CustomerDetailsDto updatedCustomerDto = customerMapper.toCustomerDto(updatedCustomer);
-            updatedCustomerDto.setEmail(updatedCustomer.getUser().getEmail());
-            return updatedCustomerDto;
-        } else {
-            throw new EntityNotFoundException("Customer not found with id: " + customerId);
-        }
+    public CustomerDetailsDto updateCustomer(HttpServletRequest request, CustomerUpdateDto customerUpdateDto) {
+        String email = this.getEmail(request);
+
+        Customer customer = this.customerRepository.findById(
+                this.userService.findUserByEmail(email).getId()).orElseThrow(() -> new RuntimeException("Problem in update data customer."));
+        this.customerMapper.updateCustomer(customerUpdateDto, customer);
+        this.customerRepository.save(customer);
+        CustomerDetailsDto customerDetailsDto = this.customerMapper.toCustomerDto(customer);
+        customerDetailsDto.setEmail(email);
+        return customerDetailsDto;
     }
 
     @Override
-    public void deleteCustomer(Long id) {
-        Long userId = userService.findUserByEmail(findCustomerById(id).getEmail()).getId();
-        customerRepository.deleteById(id);
-        userService.deleteUser(userId);
+    public void deleteCustomer(HttpServletRequest request) {
+        String email = this.getEmail(request);
+        CustomerDetailsDto customerByEmail = this.findCustomerByEmail(email);
+        customerRepository.deleteById(customerByEmail.getId());
+        userService.deleteUser(customerByEmail.getId());
+    }
+
+    private String getEmail(HttpServletRequest request) {
+        String authorization = request.getHeader("Authorization");
+        return jwtProvider.extractUsername(authorization.substring(7));
     }
 }

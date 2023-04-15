@@ -6,19 +6,23 @@ import com.nocountry.backend.dto.customer.CustomerDetailsDto;
 import com.nocountry.backend.dto.customer.CustomerListDto;
 import com.nocountry.backend.dto.customer.CustomerRegisterDto;
 
+import com.nocountry.backend.dto.customer.CustomerUpdateDto;
 import jakarta.servlet.http.HttpServletRequest;
 
 public interface ICustomerService {
 
-    public List<CustomerListDto> findAllCustomers();
+    List<CustomerListDto> findAllCustomers();
 
-    public CustomerDetailsDto save(CustomerRegisterDto customerRegisterDto);
+    CustomerDetailsDto save(CustomerRegisterDto customerRegisterDto);
 
-    public CustomerDetailsDto findCustomerByEmail(HttpServletRequest request);
 
-    public CustomerDetailsDto findCustomerById(Long customerId);
+    CustomerDetailsDto findCustomerByEmail(HttpServletRequest request);
 
-    public CustomerDetailsDto updateCustomer(Long customerId, CustomerDetailsDto customerDetailsDto);
+    Boolean existsByEmail(String email);
 
-    public void deleteCustomer(Long customerId);
+    CustomerDetailsDto findCustomerById(Long customerId);
+
+    CustomerDetailsDto updateCustomer(HttpServletRequest request, CustomerUpdateDto customerUpdateDto);
+
+    void deleteCustomer(HttpServletRequest request);
 }

@@ -68,14 +68,9 @@ public class AuthServiceImpl implements IAuthService {
                 .build();
 
         var userRepo = userRepository.save(user);
-        // System.out.println(userRepo.getId() + " jjjj id");
 
         request.setFkUser(userRepo.getId());
         CustomerDetailsDto customerRegister = this.customerService.save(request);
-
-        // CardSaveDto card1 = request.getCard();
-        // card1.setFkCustomer(customerRegister.getId());
-        // this.cardService.save(card1);
 
         var jwt = jwtProvider.generateToken(user);
 
