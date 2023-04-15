@@ -25,7 +25,7 @@ const Vehicles = () => {
         router.push('/booking');
     };
     //onClick={getCars}
-    //getCars();
+    getCars();
     return (
         <div className="min-h-screen flex flex-col items-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
             <div className="mt-14 flex flex-col items-center">
