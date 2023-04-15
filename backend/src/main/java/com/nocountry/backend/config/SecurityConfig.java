@@ -31,13 +31,10 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
-                .requestMatchers("/api/v1/auth/**").permitAll()
-                .requestMatchers("/api/v1/cars/**").permitAll()
-                .requestMatchers("/api/v1/categories/**").permitAll()
-                .requestMatchers("/api/v1/locations/**").permitAll()
-                .requestMatchers("/api/v1/customers/email").permitAll()
-                .requestMatchers("/api/v1/customers/all").permitAll()
+                .requestMatchers("/api/v1/auth/**", "/api/v1/cars/**", "/swagger-ui/**",
+                        "/api/v1/categories/**", "/api/v1/locations/**",
+                        "/api/v1/customers/email", "/api/v1/customers/all",
+                        "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
