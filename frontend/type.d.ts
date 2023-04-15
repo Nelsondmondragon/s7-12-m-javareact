@@ -1,3 +1,5 @@
+import { type } from 'os';
+
 type User = {
   email: string;
   fullName: string;
@@ -12,4 +14,9 @@ type User = {
     date_expiration: string;
     cvv: string;
   };
+};
+
+type Location = {
+  id: string;
+  name: string;
 };

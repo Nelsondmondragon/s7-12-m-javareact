@@ -6,8 +6,8 @@ export async function middleware(request: NextRequest) {
   const userToken = await request.cookies.get('token')?.value;
   const user = await request.cookies.get('user')?.value;
 
-  console.log(' llego desde ', request.nextUrl.pathname);
   if (userToken) {
+    console.log(' logged ', request.nextUrl.pathname);
     if (user) {
       const userData = JSON.parse(user);
       if (!userData.firstName) {
@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/login', request.url));
     }
   }
-  return NextResponse.redirect(new URL('/home', request.url));
+  return NextResponse.next();
 }
 // See "Matching Paths" below to learn more
 /**
