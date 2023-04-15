@@ -1,5 +1,11 @@
 package com.nocountry.backend.controller;
 
+import com.nocountry.backend.dto.PaymentDto;
+import com.nocountry.backend.service.IPaymentService;
+import com.nocountry.backend.service.impl.PaymentService;
+import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentIntent;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +50,11 @@ public class PaymentController {
     @PostMapping(value = "/cancel/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> cancel(@PathVariable("id") String id) throws StripeException {
         PaymentIntent paymentIntent = paymentService.cancel(id);
-        return new ResponseEntity<String>(paymentIntent.toJson(), HttpStatus.OK);
+        String paymentStr = paymentIntent.toJson();
+        return new ResponseEntity<String>(paymentStr, HttpStatus.OK);
     }
 }
+
+
+
+
