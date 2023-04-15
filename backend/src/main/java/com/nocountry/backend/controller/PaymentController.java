@@ -1,6 +1,7 @@
 package com.nocountry.backend.controller;
 
 import com.nocountry.backend.dto.PaymentDto;
+import com.nocountry.backend.service.IPaymentService;
 import com.nocountry.backend.service.impl.PaymentService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
 
     @Autowired
-    PaymentService paymentService;
+    IPaymentService paymentService;
 
     @PostMapping("/paymentintent")
     public ResponseEntity<String> payment(@RequestBody PaymentDto paymentIntentDto) throws StripeException {

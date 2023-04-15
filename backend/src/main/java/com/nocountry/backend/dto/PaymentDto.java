@@ -1,8 +1,7 @@
 package com.nocountry.backend.dto;
 
 
-
-
+import com.nocountry.backend.model.Payment;
 
 public class PaymentDto {
         public enum Currency{
@@ -12,6 +11,7 @@ public class PaymentDto {
         private String description;
         private int amount;
         private Currency currency;
+
 
 
         public String getDescription() {
@@ -37,6 +37,8 @@ public class PaymentDto {
         public void setCurrency(Currency currency) {
                 this.currency = currency;
         }
+
+
 
 
 }
