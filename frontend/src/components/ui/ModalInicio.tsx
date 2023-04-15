@@ -10,7 +10,8 @@ const ModalInicio = ({setShowModal}) => {
 
 const onLogin = ()=> {
   setShowModal(false)
-  dispatch(openModalLogin());
+  router.push(`/login`);
+  //dispatch(openModalLogin());
 }
 
 const onRegister = () => {

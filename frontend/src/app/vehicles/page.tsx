@@ -16,22 +16,16 @@ const Vehicles = () => {
     //const filter = cars.filter((vh) => vh.categoria === category);
 
     useEffect(() =>  {
-        // let query = await getAllCars();
-        // console.log(query);
-        // setCars(query);
         getAllCars().then((res)=> setCars(res))
         
     }, []);
 
-    // const getCars = async () => {
-    //     let query = await getAllCars();
-    //     console.log(query)
-    //     setCars(query)
-    // };
 
-    const handleBooking = () => {
+    const handleBooking = (id) => {
         dispatch(setCat(category));
         localStorage.setItem('category', JSON.stringify(category));
+        localStorage.setItem('carSelected', JSON.stringify(cars.find((car)=> car.id === id)));
+        localStorage.setItem('vehiclesSection', JSON.stringify("true"));
         router.push('/booking');
     };
     //onClick={getCars}
@@ -57,7 +51,6 @@ const Vehicles = () => {
                 {cars.map((car) => {
                     return (
                         <div key={car.id} className="w-[96%] flex gap-2">
-                            
                             <Image
                                 src="http://res.cloudinary.com/dqkkehztd/image/upload/v1681589620/images/iifwiad6yjiwqkmvvzsj.jpg"
                                 alt={car.make}
@@ -74,7 +67,7 @@ const Vehicles = () => {
                                 <div className="flex justify-between items-end w-full">
                                     <p className="md:text-[29px] font-semibold">$ {car.price}</p>
                                     <button
-                                        onClick={handleBooking}
+                                        onClick={()=> handleBooking(car.id)}
                                         className="bg-primary-600  w-[78px] md:w-[288px] h-[27px] md:h-[59px] rounded-[5px] md:rounded-[10px] text-white md:text-2xl"
                                     >
                                         Reservar
