@@ -13,7 +13,7 @@ const Vehicles = () => {
     const [cars, setCars] = useState([]);
     const router = useRouter();
     const dispatch = useDispatch();
-    const filter = cars.filter((vh) => vh.categoria === category);
+    //const filter = cars.filter((vh) => vh.categoria === category);
 
     useEffect(() =>  {
         // let query = await getAllCars();
@@ -57,13 +57,15 @@ const Vehicles = () => {
                 {cars.map((car) => {
                     return (
                         <div key={car.id} className="w-[96%] flex gap-2">
+                            
                             <Image
-                                src={car.imageResource.urlSecure}
+                                src="http://res.cloudinary.com/dqkkehztd/image/upload/v1681589620/images/iifwiad6yjiwqkmvvzsj.jpg"
                                 alt={car.make}
                                 width={200}
                                 height={200}
                                 className="rounded-3xl object-contain"
                             />
+                            {console.log(car)}
                             <div className="flex flex-col justify-around w-full">
                                 <h3 className="text-lg md:text-[29px] font-semibold">{car.make}</h3>
                                 <p className="leading-5 md:leading-7 md:text-[23px] md:mt-4">
