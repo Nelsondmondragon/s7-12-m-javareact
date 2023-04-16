@@ -84,7 +84,7 @@ export default function Booking() {
             router.push(`/login`);
         } else {
             router.push(`/pay`);
-            localStorage.removeItem('vehiclesSection');
+            //localStorage.removeItem('vehiclesSection');
         }
     };
 

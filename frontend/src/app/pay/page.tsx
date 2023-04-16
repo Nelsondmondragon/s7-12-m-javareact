@@ -36,7 +36,7 @@ const PayPage = () => {
             <div>
               <img
                 className="  object-cover rounded-t-lg sm:max-w-lg lg:w-[393px]"
-                src="http://res.cloudinary.com/dqkkehztd/image/upload/v1681589620/images/iifwiad6yjiwqkmvvzsj.jpg"
+                src={car.imageResource.urlSecure}
                 alt=""
               />
             </div>
