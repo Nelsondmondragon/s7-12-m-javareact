@@ -130,7 +130,21 @@ public class BookingServiceImpl implements IBookingService {
 
     @Override
     public BookingDto updateBooking(Long bookingId, BookingDto bookingDto) {
-        return null;
+        var booking = bookingRepository.findById(bookingId).orElseThrow();
+        var car = carRepository.findById(booking.getFkCar()).orElseThrow();
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        if (currentDateTime.isAfter(booking.getStartTime())) {
+            throw new IllegalArgumentException("Cannot modify booking that has already started.");
+        }
+
+        validateOverlapBooking(car.getId(), booking);
+
+        bookingMapper.updateBooking(bookingDto, booking);
+
+        calculateTotalPrice(car, booking);
+
+        return bookingMapper.toBookingDto(bookingRepository.save(booking));
     }
 
     @Override
