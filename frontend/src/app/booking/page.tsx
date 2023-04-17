@@ -13,6 +13,7 @@ export default function Booking() {
     const [endDate, setEndDate] = useState(new Date());
     const [startTime, setstartTime] = useState(new Date());
     const [endTime, setEndTime] = useState(new Date());
+    const [samePlace, setSamePlace] = useState(false);
     // const [category, setCategory] = useState(0);
     const [startPl, setStartPl] = useState('02000010');
     const [returnPl, setReturnPl] = useState('02000010');
@@ -67,7 +68,7 @@ export default function Booking() {
         const selection = {
             startPlace: startPl,
             start: startDate.toISOString().split('.')[0],
-            returnPlace: returnPl,
+            returnPlace: samePlace ? startPl : returnPl,
             end: endDate.toISOString().split('.')[0],
             id: category,
             location: validateLocation(startPl),
@@ -156,7 +157,7 @@ export default function Booking() {
                     </div>
 
                     <div className="flex gap-4 pl-4 mt-4 mb-5">
-                        <input type="checkbox" />
+                        <input type="checkbox" onChange={e => e.currentTarget.checked ? setSamePlace(true) : setSamePlace(false)}/>
                         <p className="text-[16px] md:text-[20px] ">
                             Retiro y devuelvo en el mismo lugar
                         </p>
@@ -166,8 +167,10 @@ export default function Booking() {
                         <div className="w-full lg:w-[480px]">
                             <select
                                 defaultValue={'default'}
-                                className="w-full h-[36px] text-[16px] px-2 rounded-md border-gray-400 shadow-md md:h-[46px] md:text-[20px] md:max-w-sm lg:max-w-lg"
+                                className={`w-full h-[36px] text-[16px] px-2 rounded-md border-gray-400 shadow-md md:h-[46px] md:text-[20px] md:max-w-sm lg:max-w-lg ${samePlace && 'opacity-[40%] bg-[#bebebe] text-[#bebebe]'}`}
                                 onChange={(e) => setReturnPl(e.target.value)}
+                                disabled={samePlace ? true : false}
+                                
                             >
                                 <option value="02000010">Buenos Aires</option>
                                 <option value="14014010">Córdoba</option>
