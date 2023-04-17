@@ -36,7 +36,7 @@ const PayPage = () => {
             <div>
               <img
                 className="  object-cover rounded-t-lg sm:max-w-lg lg:w-[393px]"
-                src={car.imageResource.urlSecure}
+                src={car.imageResource?.urlSecure}
                 alt=""
               />
             </div>

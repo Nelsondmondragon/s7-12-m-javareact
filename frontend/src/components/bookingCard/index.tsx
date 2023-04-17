@@ -11,7 +11,7 @@ export const BookingCard = ({btn1, btn2}) => {
     return (
         <div className="bg-primary-700 rounded-[20px] w-[90%] md:w-auto">
             <Image
-                src={car.imageResource.urlSecure}
+                src={car.imageResource?.urlSecure}
                 width={591}
                 height={417}
                 alt="vehicle large"

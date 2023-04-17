@@ -44,7 +44,7 @@ const BookingCar = ({ params }) => {
                         return (
                             <div key={car.id} className="w-[96%] flex gap-2">
                                 <Image
-                                    src={car.imageResource.urlSecure}
+                                    src={car.imageResource?.urlSecure}
                                     alt={car.make}
                                     width={130}
                                     height={130}
