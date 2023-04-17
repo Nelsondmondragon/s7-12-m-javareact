@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/v1/payment")
+@RequestMapping("/api/v1/payments")
 @RequiredArgsConstructor
 @SecurityRequirement(name = "bearerAuth")
 @Tag(name = "Payments", description = "Payments description.")
@@ -29,7 +29,7 @@ public class PaymentController {
 
     private final IPaymentService paymentService;
 
-    @PostMapping(value = "/paymentintent", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/intent", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> payment(@RequestBody PaymentDto paymentIntentDto) throws StripeException {
         PaymentIntent paymentIntent = paymentService.paymentIntent(paymentIntentDto);
         JSONObject responseJson = new JSONObject();
@@ -39,14 +39,6 @@ public class PaymentController {
         responseJson.put("id", paymentIntent.getId());
         return new ResponseEntity<String>(responseJson.toString(), HttpStatus.OK);
     }
-
-    // @PostMapping(value = "/confirm/{id}", produces =
-    // MediaType.APPLICATION_JSON_VALUE)
-    // public ResponseEntity<String> confirm(@PathVariable("id") String id) throws
-    // StripeException {
-    // PaymentIntent paymentIntent = paymentService.confirm(id);
-    // return new ResponseEntity<String>(paymentIntent.toJson(), HttpStatus.OK);
-    // }
 
     @PostMapping(value = "/confirm/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> confirm(@PathVariable("id") String id) throws StripeException {

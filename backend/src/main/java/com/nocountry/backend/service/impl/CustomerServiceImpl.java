@@ -3,13 +3,13 @@ package com.nocountry.backend.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.nocountry.backend.dto.customer.CustomerUpdateDto;
-import com.nocountry.backend.util.jwt.ExtractUsernameJwtUtil;
 import org.springframework.stereotype.Service;
 
+import com.nocountry.backend.config.jwt.ExtractUsernameJwtUtil;
 import com.nocountry.backend.dto.customer.CustomerDetailsDto;
 import com.nocountry.backend.dto.customer.CustomerListDto;
 import com.nocountry.backend.dto.customer.CustomerRegisterDto;
+import com.nocountry.backend.dto.customer.CustomerUpdateDto;
 import com.nocountry.backend.mapper.ICustomerMapper;
 import com.nocountry.backend.model.Customer;
 import com.nocountry.backend.repository.ICustomerRepository;
@@ -49,13 +49,11 @@ public class CustomerServiceImpl implements ICustomerService {
                 this.customerRepository.save(this.customerMapper.toCustomerRegister(customerRegisterDto)));
     }
 
-
     @Override
     public CustomerDetailsDto findCustomerByEmail(HttpServletRequest request) {
         Long userId = this.extractUsernameJwtUtil.getId(request);
         return this.findCustomerById(userId);
     }
-
 
     @Override
     public Boolean existsByEmail(String email) {
@@ -75,7 +73,8 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public CustomerDetailsDto updateCustomer(Long customerId, CustomerUpdateDto customerUpdateDto) {
-        Customer customer = this.customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Problem in update data customer."));
+        Customer customer = this.customerRepository.findById(customerId)
+                .orElseThrow(() -> new RuntimeException("Problem in update data customer."));
         this.customerMapper.updateCustomer(customerUpdateDto, customer);
         this.customerRepository.save(customer);
         return this.findCustomerById(customerId);
@@ -86,6 +85,5 @@ public class CustomerServiceImpl implements ICustomerService {
         customerRepository.deleteById(customerId);
         userService.deleteUser(customerId);
     }
-
 
 }

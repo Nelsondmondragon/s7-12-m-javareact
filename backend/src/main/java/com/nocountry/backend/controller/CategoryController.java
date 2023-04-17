@@ -30,7 +30,7 @@ public class CategoryController {
     private final ICategoryService categoryService;
 
     @GetMapping("/all")
-    @Operation(summary = "Get all Categories.")
+    @Operation(summary = "Get all categories.")
     public ResponseEntity<List<CategoryDto>> getAllCategorys() {
         var categories = categoryService.findAllCategories();
         if (categories.isEmpty()) {
@@ -55,7 +55,7 @@ public class CategoryController {
     @PutMapping("/{categoryId}/update")
     @Operation(summary = "Update an existing category by Id.")
     public ResponseEntity<CategoryDto> updateCategory(@PathVariable Long categoryId,
-                                                      @RequestBody CategoryDto category) {
+            @RequestBody CategoryDto category) {
         return new ResponseEntity<>(categoryService.updateCategory(categoryId, category), HttpStatus.OK);
     }
 

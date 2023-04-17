@@ -8,10 +8,7 @@ import com.nocountry.backend.model.User;
 
 public interface IUserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findByEmail(String email);
+    public Optional<User> findByEmail(String email);
 
-
-    boolean existsByEmail(String email);
-
-
+    public boolean existsByEmail(String email);
 }

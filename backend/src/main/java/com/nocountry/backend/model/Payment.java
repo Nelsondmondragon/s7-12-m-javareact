@@ -26,12 +26,12 @@ public class Payment {
     @Column(name = "ID_PAYMENT")
     private long idPayments;
 
-    @Column(name = "payment_status")
+    @Column(name = "PAYMENT_STATUS")
     private String paymentStatus;
 
-    @Column(name = "payment_date")
+    @Column(name = "PAYMENT_DATE")
     private Date paymentDate;
 
-    @Column(name = "stripe_payment_id")
+    @Column(name = "STRIPE_PAYMENT_ID")
     private String stripePaymentId;
 }

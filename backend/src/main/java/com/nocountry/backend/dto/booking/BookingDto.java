@@ -1,5 +1,6 @@
 package com.nocountry.backend.dto.booking;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.nocountry.backend.dto.car.CarDto;
@@ -28,7 +29,7 @@ public class BookingDto {
 
     private String pickUpLocation;
 
-    @Schema(example = "CABA")
+    @Schema(example = "Ciudad Autonoma de Buenos Aires")
     private String dropOffLocation;
 
     @Schema(example = "false")
@@ -42,4 +43,6 @@ public class BookingDto {
     private CarDto car;
 
     private CustomerDetailsDto customer;
+
+    private BigDecimal totalPrice;
 }

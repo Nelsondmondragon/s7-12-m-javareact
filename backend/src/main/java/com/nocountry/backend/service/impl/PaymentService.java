@@ -1,5 +1,14 @@
 package com.nocountry.backend.service.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import com.nocountry.backend.dto.PaymentDto;
 import com.nocountry.backend.dto.PaymentDto2;
 import com.nocountry.backend.mapper.PaymentMapper;
@@ -7,12 +16,7 @@ import com.nocountry.backend.model.Payment;
 import com.nocountry.backend.repository.PaymentRepository;
 import com.nocountry.backend.service.IPaymentService;
 import com.stripe.Stripe;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 import com.stripe.exception.StripeException;
-
-import java.util.*;
-
 import com.stripe.model.PaymentIntent;
 
 @Service
@@ -37,7 +41,6 @@ public class PaymentService implements IPaymentService {
         params.put("payment_method_types", paymentMethodTypes);
         PaymentIntent paymentIntent = PaymentIntent.create(params);
 
-
         PaymentDto2 paymentDto2 = new PaymentDto2();
         paymentDto2.setPaymentStatus("Pago pendiente");
         paymentDto2.setPaymentDate(new Date());
@@ -61,7 +64,6 @@ public class PaymentService implements IPaymentService {
         paymentDto.setPaymentDate(new Date());
         paymentRepository.save(PaymentMapper.toModel(paymentDto));
 
-
         return paymentIntent;
     }
 
@@ -69,7 +71,6 @@ public class PaymentService implements IPaymentService {
         Stripe.apiKey = secretKey;
         PaymentIntent paymentIntent = PaymentIntent.retrieve(stripePaymentId);
         paymentIntent.cancel();
-
 
         PaymentDto2 paymentDto = PaymentMapper.toDto(paymentRepository.findByStripePaymentId(stripePaymentId));
         paymentDto.setPaymentStatus("Cancelado");

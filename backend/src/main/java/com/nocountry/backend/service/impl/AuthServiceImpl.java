@@ -11,7 +11,6 @@ import com.nocountry.backend.Error.Exceptions.LoginException;
 import com.nocountry.backend.Error.Exceptions.RegisterException;
 import com.nocountry.backend.config.jwt.JwtProvider;
 import com.nocountry.backend.dto.card.CardSaveDto;
-import com.nocountry.backend.dto.customer.CustomerDetailsDto;
 import com.nocountry.backend.dto.customer.CustomerRegisterDto;
 import com.nocountry.backend.dto.customer.CustomerRequestDto;
 import com.nocountry.backend.dto.token.TokenDto;
