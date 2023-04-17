@@ -54,7 +54,7 @@ export default function NewRegister() {
               <div className="flex flex-col justify-center items-center">
                 <button
                   className="btn btnSecond my-4 block"
-                  onClick={() => dispatch(openModalLogin())}
+                  onClick={() => router.push('/login')}
                 >
                   Iniciar sesión
                 </button>

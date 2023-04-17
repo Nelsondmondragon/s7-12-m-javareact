@@ -5,6 +5,7 @@ const user: User =
   typeof window !== 'undefined' && localStorage.getItem('user')
     ? JSON.parse(localStorage.getItem('user'))
     : {
+        id: 0,
         email: '',
         fullName: '',
         idLocation: '',
@@ -23,6 +24,9 @@ const user: User =
 const initialState = {
   currentUser: user,
   showModalLoginError: false,
+  showModalRegisterSuccess: false,
+  showModalLogin: false,
+  newUser: user.id === 0,
   category:
     typeof window !== 'undefined' && localStorage.getItem('category')
       ? JSON.parse(localStorage.getItem('category'))
@@ -52,6 +56,12 @@ export const userSlice = createSlice({
     closeModalLogin: (state) => {
       state.showModalLogin = false;
     },
+    openModalRegisterSuccess: (state) => {
+      state.showModalRegisterSuccess = true;
+    },
+    closeModalRegisterSuccess: (state) => {
+      state.showModalRegisterSuccess = false;
+    },
     openModalLoginError: (state) => {
       state.showModalLoginError = true;
     },
@@ -70,12 +80,17 @@ export const {
   closeModalLogin,
   openModalLoginError,
   closeModalLoginError,
+  openModalRegisterSuccess,
+  closeModalRegisterSuccess,
 } = userSlice.actions;
 
 export const selectCurrentUser = (state) => state.user.currentUser;
 export const selectShowModalLogin = (state) => state.user.showModalLogin;
 export const selectShowModalLoginError = (state) =>
   state.user.showModalLoginError;
+export const selectShowModalRegisterSuccess = (state) =>
+  state.user.showModalRegisterSuccess;
 export const selectCategory = (state) => state.user.category;
+export const selectNewUser = (state) => state.user.newUser;
 
 export default userSlice.reducer;
