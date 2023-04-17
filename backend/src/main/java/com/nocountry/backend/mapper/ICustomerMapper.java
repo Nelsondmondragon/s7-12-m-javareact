@@ -2,7 +2,6 @@ package com.nocountry.backend.mapper;
 
 import java.util.List;
 
-import com.nocountry.backend.dto.customer.CustomerUpdateDto;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,6 +11,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 import com.nocountry.backend.dto.customer.CustomerDetailsDto;
 import com.nocountry.backend.dto.customer.CustomerListDto;
 import com.nocountry.backend.dto.customer.CustomerRegisterDto;
+import com.nocountry.backend.dto.customer.CustomerUpdateDto;
 import com.nocountry.backend.model.Customer;
 
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
@@ -21,15 +21,12 @@ public interface ICustomerMapper {
     @Mapping(target = "idLocation", source = "fkLocation")
     CustomerDetailsDto toCustomerDetailsDto(Customer customer);
 
-
     List<CustomerListDto> toCustomerListDtos(List<Customer> customers);
 
     CustomerListDto toCustomerListDtos(Customer customers);
 
-
     @Mapping(target = "fkLocation", source = "idLocation")
     void updateCustomer(CustomerUpdateDto customerUpdateDto, @MappingTarget Customer customer);
-
 
     @InheritInverseConfiguration
     @Mapping(target = "id", ignore = true)
@@ -39,5 +36,4 @@ public interface ICustomerMapper {
     @Mapping(target = "card", ignore = true)
     @Mapping(target = "fkLocation", source = "idLocation")
     Customer toCustomerRegister(CustomerRegisterDto customerDto);
-
 }

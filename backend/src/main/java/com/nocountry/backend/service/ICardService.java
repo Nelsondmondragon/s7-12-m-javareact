@@ -2,7 +2,7 @@ package com.nocountry.backend.service;
 
 import java.util.List;
 
-import com.nocountry.backend.dto.card.CardDetailDto;
+import com.nocountry.backend.dto.card.CardDetailsDto;
 import com.nocountry.backend.dto.card.CardSaveDto;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -20,5 +20,5 @@ public interface ICardService {
 
     Boolean existsByFkCustomer(Long idCustomer);
 
-    CardDetailDto findByIdCustomer(Long idCustomer);
+    CardDetailsDto findByIdCustomer(Long idCustomer);
 }

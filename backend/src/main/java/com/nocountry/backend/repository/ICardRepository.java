@@ -10,7 +10,7 @@ public interface ICardRepository extends JpaRepository<Card, Long> {
 
     public List<Card> findAllById(Long id);
 
-    Boolean existsByFkCustomer(Long id);
+    public Boolean existsByFkCustomer(Long id);
 
-    Card findByFkCustomer(Long id);
+    public Card findByFkCustomer(Long id);
 }

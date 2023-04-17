@@ -2,17 +2,15 @@ package com.nocountry.backend.service.impl;
 
 import java.util.List;
 
-import com.nocountry.backend.dto.card.CardDetailDto;
-import com.nocountry.backend.service.IUserService;
-import com.nocountry.backend.util.jwt.ExtractUsernameJwtUtil;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
+import com.nocountry.backend.dto.card.CardDetailsDto;
 import com.nocountry.backend.dto.card.CardSaveDto;
 import com.nocountry.backend.mapper.ICardMapper;
 import com.nocountry.backend.model.Card;
 import com.nocountry.backend.repository.ICardRepository;
 import com.nocountry.backend.service.ICardService;
+import com.nocountry.backend.util.jwt.ExtractUsernameJwtUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,12 +24,10 @@ public class CardServiceImpl implements ICardService {
 
     private final ExtractUsernameJwtUtil extractUsernameJwtUtil;
 
-
     @Override
     public List<CardSaveDto> findAllById(Long id) {
         return this.cardMapper.toCardDtos(this.cardRepository.findAllById(id));
     }
-
 
     @Override
     public CardSaveDto save(Long customerId, CardSaveDto cardSaveDto) {
@@ -68,10 +64,9 @@ public class CardServiceImpl implements ICardService {
     }
 
     @Override
-    public CardDetailDto findByIdCustomer(Long id) {
+    public CardDetailsDto findByIdCustomer(Long id) {
         return this.cardMapper.toCardDetailDto(
                 this.cardRepository.findByFkCustomer(id));
     }
-
 
 }

@@ -13,7 +13,6 @@ import com.nocountry.backend.dto.location.LocationDto;
 import com.nocountry.backend.service.ILocationService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -36,6 +35,5 @@ public class LocationController {
     public ResponseEntity<List<LocationDto>> getAllBranch() {
         return new ResponseEntity<>(locationService.findAllBranch(), HttpStatus.OK);
     }
-
 
 }
