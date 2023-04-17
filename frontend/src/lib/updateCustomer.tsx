@@ -1,30 +1,23 @@
-type registerProps = {
-  email: string;
-  password: string;
+type UpdateProps = {
   fullName: string;
   address: string;
   dni: string;
   numberLicence: string;
   dateExpiration: string;
   idLocation: string;
-  card?: {
-    numberCard: string;
-    fullName: string;
-    date_expiration: string;
-    cvv: string;
-  };
 };
 
-const postRegister = async (registerData: registerProps) => {
-  console.log(registerData);
+const updateCustomer = async (updateData: UpdateProps) => {
+  console.log('en updateCustomer', updateData);
   const URL = process.env.NEXT_PUBLIC_BASE_URL;
   try {
-    const response = await fetch(`${URL}auth/register`, {
-      method: 'POST',
+    const response = await fetch(`${URL}customers/${id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(registerData),
+      body: JSON.stringify(updateData),
     });
 
     if (!response.ok) {
@@ -37,4 +30,4 @@ const postRegister = async (registerData: registerProps) => {
     console.log('error es', error);
   }
 };
-export default postRegister;
+export default updateCustomer;

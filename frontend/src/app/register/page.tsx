@@ -2,10 +2,13 @@
 
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, selectCurrentUser } from '@/features/users/userSlice';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Schema as schema } from './registerValidation';
 import postRegister from '@/lib/postRegister';
+import verifyEmail from '@/lib/verifyEmail';
 
 type FormValues = {
   password: string;
@@ -14,6 +17,8 @@ type FormValues = {
 };
 
 const Register = () => {
+  const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const {
@@ -22,22 +27,36 @@ const Register = () => {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      email: '',
-      password: '',
+      email: currentUser.email,
+      password: currentUser.password,
       confirmPassword: '',
     },
     resolver: yupResolver(schema),
   });
 
   const RegisterUser = async (values: FormValues) => {
+    // valida si el correo esta o no tomado
+
+    const validEmail = await verifyEmail({ email: values.email });
+
+    if (validEmail) {
+      alert('el correo ya esta en uso');
+      return;
+    }
+
     const data = {
       email: values.email,
       password: values.password,
     };
-    // crear el usuario
-    // validar la respuesta
+
+    // se crea el estado usuario en Creación y se pasa al siguiente paso
     // actualizar datos en el localstorage y estado global
-    // si el usuario esta creado y no esta actalizado se debe de enviar a completar los datos del mismo
+    const newUser: User = {
+      ...currentUser,
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(setUser(newUser));
     router.push('/updateuser');
   };
 

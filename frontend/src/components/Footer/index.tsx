@@ -5,7 +5,7 @@ export const Footer = () => {
   const router = useRouter();
 
   return (
-    <footer className="text-sm lg:text-lg p-4  md:p-8 lg:p-10">
+    <footer className="text-sm md:text-base lg:text-lg p-4  md:p-8 lg:p-10">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 w-full">
         <div className="flex order-1">
           <Image
@@ -24,7 +24,7 @@ export const Footer = () => {
                   alt="instagram logo"
                   width={48}
                   height={48}
-                  className="w-6 h-6  lg:w-10 lg:h-10"
+                  className="w-6 h-6  md:w-8 md:h-8 xl:w-10 xl:h-10"
                 />
               </span>
               <span>
@@ -33,7 +33,7 @@ export const Footer = () => {
                   alt="facebook logo"
                   width={48}
                   height={48}
-                  className="w-6 h-6  lg:w-10 lg:h-10"
+                  className="w-6 h-6  md:w-8 md:h-8 xl:w-10 xl:h-10"
                 />
               </span>
               <span>
@@ -42,7 +42,7 @@ export const Footer = () => {
                   alt="linkedin logo"
                   width={48}
                   height={48}
-                  className="w-6 h-6  lg:w-10 lg:h-10"
+                  className="w-6 h-6  md:w-8 md:h-8 xl:w-10 xl:h-10"
                 />
               </span>
             </div>
@@ -76,7 +76,7 @@ export const Footer = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-start lg:items-center lg:space-y-4 order-3">
+        <div className="flex flex-col justify-center items-start lg:items-center lg:space-y-4 order-3 pb-2">
           <div className="justify-center items-center space-x-4 hidden lg:flex">
             <span>
               <Image
@@ -89,14 +89,17 @@ export const Footer = () => {
             </span>
             <span className="text-xl">+54 9 12 2659-2638</span>
           </div>
-          <div className="flex justify-center items-center space-x-4">
-            <Image
-              src={'/assets/images/secure.png'}
-              alt="secure image"
-              width={226}
-              height={77}
-              className="w-auto h-6 lg:w-56 lg:h-20"
-            />
+          <div className="flex flex-col items-start">
+            <p className="lg:hidden mb-2">Garantías de seguridad</p>
+            <div className="flex justify-center items-center space-x-4">
+              <Image
+                src={'/assets/images/secure.png'}
+                alt="secure image"
+                width={226}
+                height={77}
+                className="w-auto h-6 lg:w-56 lg:h-20"
+              />
+            </div>
           </div>
         </div>
       </div>
