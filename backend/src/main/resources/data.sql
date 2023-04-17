@@ -9,18 +9,16 @@ VALUES
 
 -- insert locations --
 
-
-
-INSERT INTO LOCATIONS(ID_LOCATION,NAME)
+INSERT INTO LOCATIONS(ID_LOCATION, NAME)
 VALUES
 ('06014030','Juan E. Barra'),
 ('06063030','Napaleofú'),
 ('06063040','Ramos Otero');
 
 
-INSERT INTO LOCATIONS(ID_LOCATION, BRANCH,NAME)
+INSERT INTO LOCATIONS(ID_LOCATION, BRANCH, NAME)
 VALUES
-('02000010', 1,'Ciudad Autónoma de Buenos Aires'),
+('02000010', 1,'Ciudad Autonoma de Buenos Aires'),
 ('14014010',2,'Córdoba'),
 ('06441030',3,'La Plata'),
 ('10077020',4,'Rosario'),

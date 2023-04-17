@@ -1,5 +1,6 @@
 package com.nocountry.backend.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -14,7 +15,6 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Builder.Default;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -50,8 +50,7 @@ public class Booking {
     private Boolean helperPawn;
 
     @Column(name = "ACTIVE")
-    @Default
-    private Boolean active = true;
+    private Boolean active;
 
     @Column(name = "FK_CAR")
     private Long fkCar;
@@ -66,6 +65,9 @@ public class Booking {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_CUSTOMER", referencedColumnName = "ID_CUSTOMER", insertable = false, updatable = false)
     private Customer customer;
+
+    @Column(name = "TOTAL_PRICE")
+    private BigDecimal totalPrice;
 
     @OneToOne
     @JoinColumn(name = "PAYMENT", referencedColumnName = "ID_PAYMENT")
