@@ -49,10 +49,10 @@ public class AppConfig implements WebMvcConfigurer {
         return cloudinary;
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**");
+//    }
 
     @Bean
     public UserDetailsService userDetailsService() {

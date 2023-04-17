@@ -19,31 +19,30 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-        private final JwtAuthFilter JwtAuthenticationFilter;
+    private final JwtAuthFilter JwtAuthenticationFilter;
 
-        private final AuthenticationProvider authenticationProvider;
+    private final AuthenticationProvider authenticationProvider;
 
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                return http
-                                .cors()
-                                .and()
-                                .csrf().disable()
-                                .authorizeHttpRequests()
-                                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                                .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**",
-                                                "/api/v1/auth/**", "/api/v1/cars/**",
-                                                "/api/v1/categories/**", "/api/v1/locations/**",
-                                                "/api/v1/customers/**")
-                                .permitAll()
-                                .anyRequest().authenticated()
-                                .and()
-                                .sessionManagement()
-                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                                .and()
-                                .authenticationProvider(authenticationProvider)
-                                .addFilterBefore(JwtAuthenticationFilter,
-                                                UsernamePasswordAuthenticationFilter.class)
-                                .build();
-        }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .cors()
+                .and()
+                .csrf().disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**",
+                        "/api/v1/auth/**", "/api/v1/cars/**",
+                        "/api/v1/categories/**", "/api/v1/locations/**",
+                        "/api/v1/customers/**"
+                ).permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(JwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class)
+                .build();
+    }
 }

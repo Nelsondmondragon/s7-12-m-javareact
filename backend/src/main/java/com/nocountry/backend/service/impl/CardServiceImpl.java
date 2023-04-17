@@ -1,6 +1,7 @@
 package com.nocountry.backend.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -47,7 +48,11 @@ public class CardServiceImpl implements ICardService {
 
     @Override
     public CardSaveDto update(Long customerId, CardSaveDto cardSaveDto) {
-        Card card = this.cardRepository.findById(customerId).get();
+        Card card = this.cardRepository.findByFkCustomer(customerId);
+        if (card == null) {
+            throw new RuntimeException("Customer not exists.");
+        }
+        cardSaveDto.setFkCustomer(customerId);
         this.cardMapper.updateCard(cardSaveDto, card);
         return this.cardMapper.toCardDto(this.cardRepository.save(card));
     }
