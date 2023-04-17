@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.nocountry.backend.config.jwt.ExtractUsernameJwtUtil;
 import com.nocountry.backend.dto.customer.CustomerDetailsDto;
 import com.nocountry.backend.dto.customer.CustomerListDto;
 import com.nocountry.backend.dto.customer.CustomerRegisterDto;
@@ -14,7 +15,6 @@ import com.nocountry.backend.model.Customer;
 import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.service.ICustomerService;
 import com.nocountry.backend.service.IUserService;
-import com.nocountry.backend.util.jwt.ExtractUsernameJwtUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

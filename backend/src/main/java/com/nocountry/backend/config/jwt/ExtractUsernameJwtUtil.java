@@ -1,6 +1,5 @@
-package com.nocountry.backend.util.jwt;
+package com.nocountry.backend.config.jwt;
 
-import com.nocountry.backend.config.jwt.JwtProvider;
 import com.nocountry.backend.dto.user.UserDto;
 import com.nocountry.backend.service.IUserService;
 import jakarta.servlet.http.HttpServletRequest;
