@@ -126,13 +126,16 @@ export const FormStripe = (props: Props) => {
         amount: 9500,
         description: 'Reserva de Vehículo',
       };
-      const response = await fetch('http://localhost:3500/api/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataPurchase),
-      });
+      const response = await fetch(
+        'https://srtipe-server.vercel.app/checkout',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataPurchase),
+        }
+      );
       const result = await response.json();
       console.log(result);
       //------
