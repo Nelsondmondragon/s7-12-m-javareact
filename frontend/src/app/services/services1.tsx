@@ -9,8 +9,8 @@ export default function Services1({pasos}) {
         {' '}
         ¡Nuestros servicios!
       </h2>
-      <div className="flex flex-row w-full justify-center">
-        <div className=" bg-[#FFFFFF] rounded-[10px] w-96 border-[#6EC8FC] border-solid border-2">
+      <div className="flex flex-row w-full justify-center max-sm:flex-col pb-16">
+        <div className=" bg-[#FFFFFF] rounded-[10px] w-96 border-[#6EC8FC] border-solid border-2 max-sm:self-center max-sm:w-[22rem]">
           <Image
             src={personal}
             alt="Personal"
@@ -27,12 +27,12 @@ export default function Services1({pasos}) {
             Ver mas
           </button>
         </div>
-        <div className=" bg-[#FFFFFF] rounded-[10px] w-96 border-[#6EC8FC] border-solid border-2 ml-20 max-lg:ml-4 max-md:ml-0">
+        <div className=" bg-[#FFFFFF] rounded-[10px] w-96 border-[#6EC8FC] border-solid border-2 ml-20 max-lg:ml-4 max-md:ml-0 max-sm:mt-12 max-sm:self-center max-sm:w-[22rem]">
           <Image
             src={lecciones}
             alt="Lecciones"
-            className="w-full h-60 rounded-t-lg border-b-[#6EC8FC] border-b-solid border-b-4"
-          />
+            className="w-full h-60 rounded-t-lg border-b-[#6EC8FC] border-b-solid border-b-4 "
+          /> 
           <h3 className="text-xl text-[#024369] flex justify-center font-extrabold px-8 pt-2">
             LECCIONES DE USO DEL VEHÍCULO
           </h3>

@@ -9,6 +9,15 @@ import consejo5 from "../../../public/assets/images/services/consejo5.png"
 
 
 export default function Services3() {
+
+    const item = [
+        {
+            id: 1,
+            url: 'https://www.youtube.com/watch?v=j5Eps87j0oA',
+            title: 'vaca',
+        }
+    ];
+
     return (
         <section className="min-h-screen flex flex-col  items-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
             <h2 className="text-3xl text-[#FFFEFE] pt-10 pb-10"> ¡Nuestros servicios!</h2>
@@ -24,12 +33,12 @@ export default function Services3() {
                     </div>
                 </div>
                 <div className="flex flex-col">
-                    <div>
+                    {/* <div>
                         <h2>Video de lecciones de uso vehícular </h2>
-                        {/* <video className="w-[43rem]" controls>
+                         <video className="w-[43rem]" controls>
                             <source src={} type="video/mp4"/>
-                        </video> */}
-                    </div>
+                        </video> 
+                    </div> */}
                     <div className="bg-[#FFFFFF] rounded-lg flex flex-col pt-5 mt-10 mb-10 w-[43rem] max-md:w-[35rem] max-sm:w-80">
                         <h2 className="flex justify-center text-center text-[#024369] font-black">CONSEJOS PARA UNA MUDANZA ORGANIZADA</h2>
                         <div className="flex justify-start align-middle px-10 pt-5 max-sm:px-2 ">
@@ -65,6 +74,6 @@ export default function Services3() {
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }
