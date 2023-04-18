@@ -27,6 +27,7 @@
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
     "typescript": "5.0.2",
+    "webpack": "^5.79.0",
     "yup": "^1.0.2"
   },
   "devDependencies": {
