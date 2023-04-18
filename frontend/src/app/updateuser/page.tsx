@@ -30,6 +30,8 @@ const UpdateUser = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+  const [test, setTest] = useState(currentUser.dateExpiration);
+
   const newUser = useSelector(selectNewUser);
   const [locations, setLocations] = useState<Location[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +49,7 @@ const UpdateUser = () => {
       address: currentUser.address,
       dni: currentUser.dni,
       numberLicence: currentUser.numberLicence,
-      dateExpiration: new Date(currentUser.dateExpiration),
+      dateExpiration: test,
     },
     resolver: yupResolver(schema),
   });
@@ -80,7 +82,7 @@ const UpdateUser = () => {
               <span className="hidden md:block">
                 <Image
                   src={'/assets/images/updateuser.svg'}
-                  alt="location icon"
+                  alt="Profile icon"
                   width={60}
                   height={60}
                   className="w-[60px] h-[60px] mr-2 md:mr-4"

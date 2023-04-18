@@ -7,8 +7,8 @@ import { Hero } from '@/components/Hero';
 
 export default function Home() {
   const router = useRouter();
-  
-  localStorage.removeItem('vehiclesSection');
+
+  // localStorage.removeItem('vehiclesSection');
 
   return (
     <main>
