@@ -36,8 +36,6 @@ const UpdateUser = () => {
   const [locations, setLocations] = useState<Location[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log('En userUpdate', currentUser, 'newuser ', newUser);
-
   const {
     register,
     handleSubmit,
@@ -56,7 +54,6 @@ const UpdateUser = () => {
 
   const onSubmit = (values: FormValues) => {
     const newUserData = { ...currentUser, ...values };
-    console.log(newUserData);
     dispatch(setUser(newUserData));
     router.push('/creditcard');
   };
@@ -64,7 +61,6 @@ const UpdateUser = () => {
   const fetchLocation = async () => {
     setIsLoading(false);
     const data = await getLocations();
-    console.log(data);
     setLocations(data);
     setIsLoading(true);
   };

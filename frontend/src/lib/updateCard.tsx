@@ -5,7 +5,6 @@ type UpdateProps = {
 };
 
 const updateCard = async (updateData: UpdateProps) => {
-  console.log('en updateCard', updateData);
   const URL = process.env.NEXT_PUBLIC_BASE_URL;
   try {
     const response = await fetch(`${URL}cards/${updateData.id}`, {
@@ -18,18 +17,9 @@ const updateCard = async (updateData: UpdateProps) => {
     });
 
     if (!response.ok) {
-      console.log(response.status);
       return { status: response.status, msg: 'credential not valid' };
     }
-    const a = await response.json();
-    console.log(
-      `${URL}cards/${updateData.id}`,
-      'body: ',
-      updateData.card,
-      'resultado = ',
-      a
-    );
-    return a;
+    return await response.json();
   } catch (error) {
     console.log('error es', error);
   }

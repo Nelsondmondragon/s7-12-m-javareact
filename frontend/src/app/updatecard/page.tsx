@@ -7,7 +7,6 @@ import { selectCurrentUser } from '@/features/users/userSlice';
 
 const CrediCard = () => {
   const currentUser = useSelector(selectCurrentUser);
-  console.log(currentUser);
   const router = useRouter();
 
   return (

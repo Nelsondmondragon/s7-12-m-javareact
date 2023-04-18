@@ -60,12 +60,12 @@ export default function Contact() {
   return (
     <section className="bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-top px-2 py-2 md:px-4 md:py-4 lg:px-12 lg:py-12">
       <div className="max-w-5xl bg-white bg-opacity-50 px-2 md:px-10 lg:px-8 py-4 mx-auto mb-8 rounded-[20px] text-black text-lg">
-        <h1 className="text-base md:text-4xl font-semibold text-center pt-4">
-          Contáctenos
+        <h1 className="text-2xl md:text-4xl font-semibold text-center pt-4">
+          Contacto
         </h1>
         <p className="mb-4">
-          Escribenos y una de nuestras ejecutivas especializadas se contactará
-          contigo a la brevedad posible.
+          Déjanos tu mensaje y alguien de nuestro equipo se comunicará contigo a
+          la brevedad posible
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)}>

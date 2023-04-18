@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaRegTrashAlt } from 'react-icons/fa';
@@ -70,8 +71,8 @@ const Counter = ({ thing }) => {
   );
 };
 
-type Props = {};
-export const SelectedArticles = (props: Props) => {
+export const SelectedArticles = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
 
   const selectedItems = useSelector(selectTruckItems);
@@ -125,7 +126,7 @@ export const SelectedArticles = (props: Props) => {
         )}
       </article>
       <div className="mt-8 mx-auto">
-        <button className="btn" onClick={() => alert('Ver vehículos')}>
+        <button className="btn" onClick={() => router.push('/vehicles')}>
           Ver Vehículos
         </button>
       </div>

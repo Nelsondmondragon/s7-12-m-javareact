@@ -61,7 +61,6 @@ export const FormCreditCard = (props: Props) => {
         const updateData = { ...currentUser, card: creditCardData };
         dispatch(setUser(updateData));
       }
-      console.log(' datos del cliente', currentUser, hasCreditCard);
     }
   };
 
