@@ -14,7 +14,7 @@ const Profile = (props: Props) => {
               <span>
                 <Image
                   src={'/assets/images/perfil.svg'}
-                  alt="instagram logo"
+                  alt="profile icon"
                   width={48}
                   height={48}
                   className="w-6 h-6  lg:w-10 lg:h-10"
@@ -27,9 +27,14 @@ const Profile = (props: Props) => {
                 Editar datos de contacto
               </p>
             </Link>
-            <Link href={'/creditcard'}>
+            <Link href={'/updatecard'}>
               <p className="text-lg mb-2 text-left ml-6 hover:underline hover:text-red-400">
                 Datos de pago
+              </p>
+            </Link>
+            <Link href={'/changepassword'}>
+              <p className="text-lg mb-2 text-left ml-6 hover:underline hover:text-red-400">
+                Cambiar contraseña
               </p>
             </Link>
           </div>

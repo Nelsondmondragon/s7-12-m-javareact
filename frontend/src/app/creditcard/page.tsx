@@ -3,7 +3,13 @@
 // import { FaArrowLeft } from 'react-icons/fa';
 
 import { FormCreditCard } from '@/components/payments/FormPay';
+import { FormStripe } from '@/components/payments/stripe';
 import Image from 'next/image';
+
+// stripe varible
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 export default function CrediCard() {
   // const router = useRouter();
@@ -55,7 +61,11 @@ export default function CrediCard() {
           </p>
 
           <div className="max-w-lg mx-auto">
-            <FormCreditCard />
+            {/* <FormCreditCard /> */}
+
+            <Elements stripe={stripePromise}>
+              <FormStripe />
+            </Elements>
           </div>
         </div>
       </div>

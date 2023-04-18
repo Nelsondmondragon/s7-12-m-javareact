@@ -28,6 +28,12 @@ type User = {
     cvv: string;
   };
 };
+type Card = {
+  numberCard: string;
+  fullName: string;
+  date_expiration: string;
+  cvv: string;
+};
 
 type Location = {
   id: string;
