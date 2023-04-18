@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import persMudanza from '../../../public/assets/images/persMudanza.png';
+import persMudanza from '../../../public/assets/images/services/persMudanza.png';
 
-export default function Services() {
+export default function Services2() {
   return (
     <section className="min-h-screen flex flex-col  items-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
       <h2 className="text-3xl text-[#FFFEFE] pt-10 pb-10">
