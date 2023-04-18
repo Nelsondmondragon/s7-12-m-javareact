@@ -9,13 +9,15 @@ import postCarsAvailable from '../../lib/postCarsAvailable';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 export default function Booking() {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [startTime, setstartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
-  // const [category, setCategory] = useState(0);
-  const [startPl, setStartPl] = useState('02000010');
-  const [returnPl, setReturnPl] = useState('02000010');
+
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [startTime, setstartTime] = useState(new Date());
+    const [endTime, setEndTime] = useState(new Date());
+    const [samePlace, setSamePlace] = useState(false);
+    // const [category, setCategory] = useState(0);
+    const [startPl, setStartPl] = useState('02000010');
+    const [returnPl, setReturnPl] = useState('02000010');
 
   const router = useRouter();
 
@@ -68,9 +70,29 @@ export default function Booking() {
           return 'Salta';
           break;
 
-        default:
-          break;
-      }
+
+        const selection = {
+            startPlace: startPl,
+            start: startDate.toISOString().split('.')[0],
+            returnPlace: samePlace ? startPl : returnPl,
+            end: endDate.toISOString().split('.')[0],
+            id: category,
+            location: validateLocation(startPl),
+        };
+
+        const postCar = await postCarsAvailable(selection);
+        localStorage.setItem('cars', JSON.stringify(postCar));
+        localStorage.setItem('bookingDates', JSON.stringify(selection));
+        // console.log(postCar);
+        console.log(selection);
+        if (section === null) {
+            router.push(`/booking/${item}`);
+        } else if (section !== null && user === null) {
+            router.push(`/login`);
+        } else {
+            router.push(`/pay`);
+            //localStorage.removeItem('vehiclesSection');
+        }
     };
 
     const selection = {
@@ -170,45 +192,45 @@ export default function Booking() {
             </div>
           </div>
 
-          <div className="flex gap-4 pl-4 mt-4 mb-5">
-            <input type="checkbox" />
-            <p className="text-[16px] md:text-[20px] ">
-              Retiro y devuelvo en el mismo lugar
-            </p>
-          </div>
-          <p className="text-[15px] mb-1 font-bold md:text-[22px]">
-            Lugar de Entrega
-          </p>
-          <div className="flex flex-col md:flex-row md:gap-3 lg:justify-between lg:gap-6">
-            <div className="w-full lg:w-[480px]">
-              <select
-                defaultValue={'default'}
-                className="w-full h-[36px] text-[16px] px-2 rounded-md border-gray-400 shadow-md md:h-[46px] md:text-[20px] md:max-w-sm lg:max-w-lg"
-                onChange={(e) => setReturnPl(e.target.value)}
-              >
-                <option value="02000010">Buenos Aires</option>
-                <option value="14014010">Córdoba</option>
-                <option value="06441030">La Plata</option>
-                <option value="10077020">Rosario</option>
-                <option value="66028050">Salta</option>
-              </select>
-            </div>
-            <div className="flex justify-between mt-4 md:mt-0 md:gap-3 lg:gap-6">
-              <div className="">
-                <p className="text-[15px] mb-1 font-bold md:hidden">Fecha</p>
-                <DatePicker
-                  wrapperClassName="w-[200px]"
-                  selected={endDate}
-                  onChange={(date) => setEndDate(date)}
-                  selectsEnd
-                  startDate={startDate}
-                  endDate={endDate}
-                  minDate={startDate}
-                  locale="es"
-                  customInput={<ExampleCustomInput />}
-                  dateFormat="dd/MM/yyyy"
-                />
-              </div>
+                    <div className="flex gap-4 pl-4 mt-4 mb-5">
+                        <input type="checkbox" onChange={e => e.currentTarget.checked ? setSamePlace(true) : setSamePlace(false)}/>
+                        <p className="text-[16px] md:text-[20px] ">
+                            Retiro y devuelvo en el mismo lugar
+                        </p>
+                    </div>
+                    <p className="text-[15px] mb-1 font-bold md:text-[22px]">Lugar de Entrega</p>
+                    <div className="flex flex-col md:flex-row md:gap-3 lg:justify-between lg:gap-6">
+                        <div className="w-full lg:w-[480px]">
+                            <select
+                                defaultValue={'default'}
+                                className={`w-full h-[36px] text-[16px] px-2 rounded-md border-gray-400 shadow-md md:h-[46px] md:text-[20px] md:max-w-sm lg:max-w-lg ${samePlace && 'opacity-[40%] bg-[#bebebe] text-[#bebebe]'}`}
+                                onChange={(e) => setReturnPl(e.target.value)}
+                                disabled={samePlace ? true : false}
+                                
+                            >
+                                <option value="02000010">Buenos Aires</option>
+                                <option value="14014010">Córdoba</option>
+                                <option value="06441030">La Plata</option>
+                                <option value="10077020">Rosario</option>
+                                <option value="66028050">Salta</option>
+                            </select>
+                        </div>
+                        <div className="flex justify-between mt-4 md:mt-0 md:gap-3 lg:gap-6">
+                            <div className="">
+                                <p className="text-[15px] mb-1 font-bold md:hidden">Fecha</p>
+                                <DatePicker
+                                    wrapperClassName="w-[200px]"
+                                    selected={endDate}
+                                    onChange={(date) => setEndDate(date)}
+                                    selectsEnd
+                                    startDate={startDate}
+                                    endDate={endDate}
+                                    minDate={startDate}
+                                    locale="es"
+                                    customInput={<ExampleCustomInput />}
+                                    dateFormat="dd/MM/yyyy"
+                                />
+                            </div>
 
               <div>
                 <p className="text-[15px] mb-1 font-bold md:hidden">Hora</p>
