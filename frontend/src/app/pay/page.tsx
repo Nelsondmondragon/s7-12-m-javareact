@@ -4,6 +4,12 @@ import ModalLoading from "@/components/ui/ModalLoading";
 import React from "react";
 import { useState } from "react";
 
+import { FormStripe } from '@/components/payments/stripe';
+// stripe varible
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+
 const PayPage = () => {
   const [modal, setModal] = useState("");
   const car = JSON.parse(localStorage.getItem('carSelected'))
@@ -52,7 +58,7 @@ const PayPage = () => {
             </div>
           </div>
           {/* form pay */}
-          <div className=" bg-form rounded-2xl text-[15px] md:text-[22px] px-8 md:px-14 md:py-10 py-3 md:w-[90%] lg:max-w-[616px]">
+          {/* <div className=" bg-form rounded-2xl text-[15px] md:text-[22px] px-8 md:px-14 md:py-10 py-3 md:w-[90%] lg:max-w-[616px]">
             <div className="mb-4">
               <p className=" shadow-md font-bold">N° Tarjeta</p>
               <input
@@ -103,7 +109,10 @@ const PayPage = () => {
                 Reservar
               </button>
             </div>
-          </div>
+          </div> */}
+                <Elements stripe={stripePromise}>
+              <FormStripe />
+            </Elements>
           {modal === "loading" && <ModalLoading />}
           {modal === "confirm" && <ModalConfirm />}
         </section>

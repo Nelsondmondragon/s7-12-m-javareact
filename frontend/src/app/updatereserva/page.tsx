@@ -9,7 +9,7 @@ import postCarsAvailable from "../../lib/postCarsAvailable";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { CardTruck } from "@/components/typeVehicle";
 
-const updateReservation = () => {
+const UpdateReservation = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [startTime, setstartTime] = useState(new Date());
@@ -321,4 +321,4 @@ const updateReservation = () => {
   );
 };
 
-export default updateReservation;
+export default UpdateReservation;
