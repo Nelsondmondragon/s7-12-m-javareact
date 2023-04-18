@@ -126,6 +126,7 @@ export const FormStripe = (props: Props) => {
         amount: 9500,
         description: 'Reserva de Vehículo',
       };
+<<<<<<< HEAD
       const response = await fetch('https://srtipe-server.vercel.app/checkout', {
         method: 'POST',
         headers: {
@@ -133,6 +134,18 @@ export const FormStripe = (props: Props) => {
         },
         body: JSON.stringify(dataPurchase),
       });
+=======
+      const response = await fetch(
+        'https://srtipe-server.vercel.app/checkout',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataPurchase),
+        }
+      );
+>>>>>>> 887c86918dad21b592debeddef692c6b92d0eaea
       const result = await response.json();
       console.log(result);
       //------
