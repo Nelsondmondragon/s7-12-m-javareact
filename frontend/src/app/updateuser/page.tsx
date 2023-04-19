@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { DateTime } from 'luxon';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -18,7 +17,6 @@ import {
 
 import getLocations from '@/lib/getLocation';
 import updateCustomer from '@/lib/updateCustomer';
-import { FormatDate } from '@/lib/formats';
 type FormValues = {
   fullName: string;
   idLocation: string;
@@ -50,7 +48,7 @@ const UpdateUser = () => {
       address: currentUser.address,
       dni: currentUser.dni,
       numberLicence: currentUser.numberLicence,
-      dateExpiration: FormatDate(currentUser.dateExpiration).toString,
+      dateExpiration: currentUser.dateExpiration,
     },
     resolver: yupResolver(schema),
   });

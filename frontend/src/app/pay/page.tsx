@@ -1,8 +1,8 @@
-"use client";
-import ModalConfirm from "@/components/ui/ModalConfirm";
-import ModalLoading from "@/components/ui/ModalLoading";
-import React from "react";
-import { useState } from "react";
+'use client';
+import ModalConfirm from '@/components/ui/ModalConfirm';
+import ModalLoading from '@/components/ui/ModalLoading';
+import React from 'react';
+import { useState } from 'react';
 
 import { FormStripe } from '@/components/payments/stripe';
 // stripe varible
@@ -11,13 +11,16 @@ import { loadStripe } from '@stripe/stripe-js';
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const PayPage = () => {
-  const [modal, setModal] = useState("");
-  const car = JSON.parse(localStorage.getItem('carSelected'))
+  const [modal, setModal] = useState('');
+  const car =
+    typeof window !== 'undefined' && localStorage.getItem('carSelected')
+      ? JSON.parse(localStorage.getItem('carSelected'))
+      : '';
 
   const timer = async () => {
-    setModal("loading");
+    setModal('loading');
     setTimeout(() => {
-      setModal("confirm");
+      setModal('confirm');
     }, 3000);
   };
 
@@ -31,10 +34,11 @@ const PayPage = () => {
 
           <p className="text-[12px] font-bold md:text-[18px] md:font-normal lg:text-[29px]">
             Atención: Esta tarjeta será utilizada solo a fin de asegurar y
-            confirmar la reserva. 
+            confirmar la reserva.
           </p>
-          <p className="text-[12px] font-bold md:text-[18px] md:font-normal lg:text-[29px]">El pago lo realizarás al momento de retirar el
-            vehículo.</p>
+          <p className="text-[12px] font-bold md:text-[18px] md:font-normal lg:text-[29px]">
+            El pago lo realizarás al momento de retirar el vehículo.
+          </p>
         </div>
         <section className=" flex flex-col lg:flex-row justify-evenly items-center gap-5 md:gap-8">
           {/* card */}
@@ -47,14 +51,20 @@ const PayPage = () => {
               />
             </div>
             <div className=" bg-primary-700 pt-5 rounded-b-lg sm:max-w-lg">
-              <p className=" text-center text-[18px] md:text-[29px]">Vehículo {car.category.name}</p>
+              <p className=" text-center text-[18px] md:text-[29px]">
+                Vehículo {car.category?.name}
+              </p>
               <hr className="w-[90%] m-auto" />
               <div className="py-5 px-10 text-[16px] md:text-[23px]">
-                <li>Modelo: {car.model} {car.make}</li>
-                <li>Capacidad de carga: {car.category.capacityLimit} Kg</li>
-                <li>Costo por hora: ${car.category.hourlyPrice}</li>
+                <li>
+                  Modelo: {car.model} {car.make}
+                </li>
+                <li>Capacidad de carga: {car.category?.capacityLimit} Kg</li>
+                <li>Costo por hora: ${car?.category?.hourlyPrice}</li>
               </div>
-              <p className="ml-5 text-[18px] pb-5 md:text-[29px]">TOTAL IVA incl: ${car.category.hourlyPrice * 2}</p>
+              <p className="ml-5 text-[18px] pb-5 md:text-[29px]">
+                TOTAL IVA incl: ${car?.category?.hourlyPrice * 2}
+              </p>
             </div>
           </div>
           {/* form pay */}
@@ -110,11 +120,11 @@ const PayPage = () => {
               </button>
             </div>
           </div> */}
-                <Elements stripe={stripePromise}>
-              <FormStripe />
-            </Elements>
-          {modal === "loading" && <ModalLoading />}
-          {modal === "confirm" && <ModalConfirm />}
+          <Elements stripe={stripePromise}>
+            <FormStripe />
+          </Elements>
+          {modal === 'loading' && <ModalLoading />}
+          {modal === 'confirm' && <ModalConfirm />}
         </section>
       </div>
     </div>
