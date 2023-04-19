@@ -9,6 +9,7 @@ export default function Home() {
   const router = useRouter();
 
   typeof window !== 'undefined' && localStorage.removeItem('vehiclesSection');
+  typeof window !== 'undefined' && localStorage.removeItem('filter');
 
   return (
     <main>
