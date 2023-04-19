@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export const BookingCard = ({ btn1, btn2 }) => {
   // const car = JSON.parse(localStorage.getItem('carSelected'))

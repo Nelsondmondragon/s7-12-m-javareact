@@ -86,7 +86,7 @@ const Vehicles = () => {
                                     </p>
                                     <div className="flex justify-between items-end w-full">
                                         <p className="md:text-[29px] font-semibold">
-                                            $ {car.category.hourlyPrice}
+                                            $ {car.category.hourlyPrice} x h
                                         </p>
                                         <button
                                             onClick={() => handleBooking(car.id)}

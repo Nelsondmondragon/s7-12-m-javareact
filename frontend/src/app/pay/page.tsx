@@ -16,6 +16,7 @@ const PayPage = () => {
     typeof window !== 'undefined' && localStorage.getItem('carSelected')
       ? JSON.parse(localStorage.getItem('carSelected'))
       : '';
+  const bookindate = JSON.parse(localStorage.getItem('bookingDates'));
 
   const timer = async () => {
     setModal('loading');
@@ -63,7 +64,7 @@ const PayPage = () => {
                 <li>Costo por hora: ${car?.category?.hourlyPrice}</li>
               </div>
               <p className="ml-5 text-[18px] pb-5 md:text-[29px]">
-                TOTAL IVA incl: ${car?.category?.hourlyPrice * 2}
+                TOTAL IVA incl: ${bookindate.total}
               </p>
             </div>
           </div>
@@ -121,7 +122,7 @@ const PayPage = () => {
             </div>
           </div> */}
           <Elements stripe={stripePromise}>
-            <FormStripe />
+            <FormStripe timer={timer} />
           </Elements>
           {modal === 'loading' && <ModalLoading />}
           {modal === 'confirm' && <ModalConfirm />}
