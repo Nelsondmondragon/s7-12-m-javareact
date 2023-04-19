@@ -90,9 +90,15 @@ export default function Booking() {
 
     const selection = {
       startPlace: startPl,
-      start: startDate.toISOString().split(".")[0],
+      start:
+        startDate.toISOString().split("T")[0].toString() +
+        "T" +
+        startTime.toTimeString().split(" ")[0],
       returnPlace: samePlace ? startPl : returnPl,
-      end: endDate.toISOString().split(".")[0],
+      end:
+        endDate.toISOString().split("T")[0].toString() +
+        "T" +
+        endTime.toTimeString().split(" ")[0],
       endDat: endDate,
       startDat: startDate,
       id: category,
@@ -101,6 +107,7 @@ export default function Booking() {
       total: validatePriceTotal(item),
       driver: driver,
       pawn,
+      startTime: startTime.toTimeString().split(" ")[0],
     };
 
     const postCar = await postCarsAvailable(selection);

@@ -1,24 +1,24 @@
-'use client';
-import { useDispatch, useSelector } from 'react-redux';
-import { usePathname, useRouter } from 'next/navigation';
-import { FaTimes } from 'react-icons/fa';
+"use client";
+import { useDispatch, useSelector } from "react-redux";
+import { usePathname, useRouter } from "next/navigation";
+import { FaTimes } from "react-icons/fa";
 
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Schema as schema } from './loginValidation';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Schema as schema } from "./loginValidation";
 
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 import {
   openModalLoginError,
   selectShowModalLoginError,
   setUser,
-} from '@/features/users/userSlice';
-import postLogin from '@/lib/postLogin';
-import getUser from '@/lib/getUser';
-import ModalError from './ModalError';
-import { Hero } from '@/components/Hero';
-import { TypesVehicle } from '@/components/typeVehicle';
+} from "@/features/users/userSlice";
+import postLogin from "@/lib/postLogin";
+import getUser from "@/lib/getUser";
+import ModalError from "./ModalError";
+import { Hero } from "@/components/Hero";
+import { TypesVehicle } from "@/components/typeVehicle";
 
 type FormValues = {
   password: string;
@@ -38,8 +38,8 @@ const Login = () => {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
     resolver: yupResolver(schema),
   });
@@ -59,15 +59,15 @@ const Login = () => {
 
     const getUserData = getUser(result.token);
     const userData = await getUserData;
-    localStorage.setItem('token', JSON.stringify(result));
-    Cookies.set('token', result.token);
+    localStorage.setItem("token", JSON.stringify(result));
+    Cookies.set("token", result.token);
 
     // if (userData.fullName) {
     //   router.push('/updateuser');
     // } else {
     dispatch(setUser(userData));
     // Cookies.set('user', JSON.stringify(userData));
-    localStorage.setItem('user', JSON.stringify(userData));
+    localStorage.setItem("user", JSON.stringify(userData));
     reset();
     closeModal();
     // }
@@ -79,7 +79,7 @@ const Login = () => {
     //   router.push(`/pay`);
 
     // }
-    ['small', 'medium', 'large'].includes(pathname) && router.push(`/pay`);
+    ["small", "medium", "large"].includes(pathname) && router.push(`/pay`);
   };
 
   return (
@@ -102,12 +102,12 @@ const Login = () => {
                 Email
               </label>
               <input
-                {...register('email')}
+                {...register("email")}
                 placeholder="usuario@correo.com"
                 className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
                   errors.email
-                    ? 'outline-2 outline-error-600 border-2 border-error-600'
-                    : ''
+                    ? "outline-2 outline-error-600 border-2 border-error-600"
+                    : ""
                 } `}
               />
               <p className="text-error-600 text-sm font-bold">
@@ -119,13 +119,14 @@ const Login = () => {
                 Clave
               </label>
               <input
-                {...register('password')}
+                {...register("password")}
                 placeholder="Clave"
                 className={`px-2 py-1 rounded-lg border-2 border-transparent outline-0 focus:border-2 focus:border-primary-500 ${
                   errors.password
-                    ? 'outline-2 outline-error-600 border-2 border-error-600'
-                    : ''
+                    ? "outline-2 outline-error-600 border-2 border-error-600"
+                    : ""
                 } `}
+                type="password"
               />
               <p className="text-error-600 text-sm font-bold">
                 {errors?.password?.message}
@@ -133,10 +134,10 @@ const Login = () => {
             </div>
 
             <p className="text-center text-sm mb-8 ">
-              <span className="italic  "> ¿Olvidaste tu contraseña?</span>{' '}
+              <span className="italic  "> ¿Olvidaste tu contraseña?</span>{" "}
               <span
                 className="font-semibold cursor-pointer hover:underline"
-                onClick={() => alert('recuperar')}
+                onClick={() => alert("recuperar")}
               >
                 Recuperar
               </span>
