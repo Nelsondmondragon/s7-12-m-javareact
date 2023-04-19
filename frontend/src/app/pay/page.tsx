@@ -16,7 +16,10 @@ const PayPage = () => {
     typeof window !== 'undefined' && localStorage.getItem('carSelected')
       ? JSON.parse(localStorage.getItem('carSelected'))
       : '';
-  const bookindate = JSON.parse(localStorage.getItem('bookingDates'));
+  const bookindate =
+    typeof window !== 'undefined' && localStorage.getItem('bookingDates')
+      ? JSON.parse(localStorage.getItem('bookingDates'))
+      : '';
 
   const timer = async () => {
     setModal('loading');

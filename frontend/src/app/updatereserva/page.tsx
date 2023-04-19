@@ -1,23 +1,35 @@
-"use client";
-import React, { forwardRef, useState } from "react";
-import DatePicker from "react-datepicker";
-import { registerLocale } from "react-datepicker";
-import es from "date-fns/locale/es";
-import "react-datepicker/dist/react-datepicker.css";
-import { useRouter } from "next/navigation";
-import postCarsAvailable from "../../lib/postCarsAvailable";
-import { AiOutlineArrowLeft } from "react-icons/ai";
-import { CardTruck } from "@/components/typeVehicle";
+'use client';
+import React, { forwardRef, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import { registerLocale } from 'react-datepicker';
+import es from 'date-fns/locale/es';
+import 'react-datepicker/dist/react-datepicker.css';
+import { useRouter } from 'next/navigation';
+import postCarsAvailable from '../../lib/postCarsAvailable';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { CardTruck } from '@/components/typeVehicle';
 
 const UpdateReservation = () => {
-  const bookinDat = JSON.parse(localStorage.getItem("bookingDates"));
-  const car = JSON.parse(localStorage.getItem("carSelected"));
-  let item = JSON.parse(localStorage.getItem("category"));
+  const bookinDat =
+    typeof window !== 'undefined' && localStorage.getItem('bookingDates')
+      ? JSON.parse(localStorage.getItem('bookingDates'))
+      : '';
+
+  const car =
+    typeof window !== 'undefined' && localStorage.getItem('carSelected')
+      ? JSON.parse(localStorage.getItem('carSelected'))
+      : '';
+
+  let item =
+    typeof window !== 'undefined' && localStorage.getItem('category')
+      ? JSON.parse(localStorage.getItem('category'))
+      : '';
+
   console.log(bookinDat);
 
   const [startDate, setStartDate] = useState(new Date(bookinDat.startDat));
   const [endDate, setEndDate] = useState(new Date(bookinDat.endDat));
-  const [startTime, setstartTime] = useState(new Date(bookinDat.startDat));
+  const [startTime, setStartTime] = useState(new Date(bookinDat.startDat));
   const [endTime, setEndTime] = useState(new Date(bookinDat.endDat));
   const [startPl, setStartPl] = useState(bookinDat.startPlace);
   const [returnPl, setReturnPl] = useState(bookinDat.returnPlace);
@@ -26,7 +38,7 @@ const UpdateReservation = () => {
 
   const router = useRouter();
 
-  registerLocale("es", es);
+  registerLocale('es', es);
 
   // let item =
   //   typeof window !== 'undefined' && localStorage.getItem('category')
@@ -39,9 +51,9 @@ const UpdateReservation = () => {
   const onSearch = async () => {
     let category;
 
-    if (item === "small") {
+    if (item === 'small') {
       category = 1;
-    } else if (item === "medium") {
+    } else if (item === 'medium') {
       category = 2;
     } else {
       category = 3;
@@ -49,20 +61,20 @@ const UpdateReservation = () => {
 
     const validateLocation = (loc) => {
       switch (loc) {
-        case "02000010":
-          return "Buenos Aires";
+        case '02000010':
+          return 'Buenos Aires';
           break;
-        case "14014010":
-          return "Córdoba";
+        case '14014010':
+          return 'Córdoba';
           break;
-        case "06441030":
-          return "La Plata";
+        case '06441030':
+          return 'La Plata';
           break;
-        case "10077020":
-          return "Rosario";
+        case '10077020':
+          return 'Rosario';
           break;
-        case "66028050":
-          return "Salta";
+        case '66028050':
+          return 'Salta';
           break;
 
         default:
@@ -72,16 +84,16 @@ const UpdateReservation = () => {
 
     const selection = {
       startPlace: startPl,
-      start: startDate.toISOString().split(".")[0],
+      start: startDate.toISOString().split('.')[0],
       returnPlace: returnPl,
-      end: endDate.toISOString().split(".")[0],
+      end: endDate.toISOString().split('.')[0],
       id: category,
       location: validateLocation(startPl),
     };
 
     const postCar = await postCarsAvailable(selection);
-    localStorage.setItem("cars", JSON.stringify(postCar));
-    localStorage.setItem("bookingDates", JSON.stringify(selection));
+    localStorage.setItem('cars', JSON.stringify(postCar));
+    localStorage.setItem('bookingDates', JSON.stringify(selection));
     // console.log(postCar);
 
     // if (section === null) {
@@ -96,12 +108,13 @@ const UpdateReservation = () => {
   };
 
   const anularBooking = () => {
-    localStorage.removeItem("bookingDates");
-    localStorage.removeItem("cars");
-    localStorage.removeItem("carSelected");
+    localStorage.removeItem('bookingDates');
+    localStorage.removeItem('cars');
+    localStorage.removeItem('carSelected');
     router.push(`/booking`);
   };
 
+  // eslint-disable-next-line react/display-name
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <button
       className="text-[16px] bg-white w-[147px] h-[36px] text-left pl-2 rounded-md border-gray-400 shadow-md md:h-[46px] md:text-[20px] lg:w-[220px]"
@@ -165,7 +178,7 @@ const UpdateReservation = () => {
                   <DatePicker
                     wrapperClassName="w-[148px]"
                     selected={startTime}
-                    onChange={(date) => setstartTime(date)}
+                    onChange={(date) => setStartTime(date)}
                     showTimeSelect
                     showTimeSelectOnly
                     timeIntervals={15}
@@ -293,7 +306,7 @@ const UpdateReservation = () => {
                 <div>
                   <img
                     className="  object-cover rounded-t-lg sm:w-autolg:w-[393px]"
-                    src={car.imageResource.urlSecure}
+                    src={car?.imageResource?.urlSecure}
                     alt=""
                   />
                 </div>
@@ -304,8 +317,10 @@ const UpdateReservation = () => {
                   <hr className="w-[90%] m-auto" />
                   <div className="py-5 px-10 text-[16px] md:text-[16px]">
                     <li>Modelo: {car.model} </li>
-                    <li>Capacidad de carga:{car.category.capacityLimit} Kg</li>
-                    <li>Costo por hora: $ {car.category.hourlyPrice} </li>
+                    <li>
+                      Capacidad de carga:{car?.category?.capacityLimit} Kg
+                    </li>
+                    <li>Costo por hora: $ {car?.category?.hourlyPrice} </li>
                   </div>
                   <p className="ml-5 text-[18px] pb-5 md:text-[24px]">
                     TOTAL IVA incl: {bookinDat.total} $

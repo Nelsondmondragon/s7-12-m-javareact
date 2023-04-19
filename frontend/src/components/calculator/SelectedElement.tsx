@@ -89,15 +89,35 @@ export const SelectedArticles = () => {
   const selectedItems = useSelector(selectTruckItems);
   const selectedVolume = useSelector(selectTruckVolume);
 
+  let needVehicle: {
+    name: string;
+    id: number;
+    type: string;
+  } = { name: '', id: 0, type: '' };
+
   const calcVolumen = () => {
-    let type = 'small';
     for (let i = 0; i < categories.length; i++) {
       if (categories[i].volume > selectedVolume) {
-        type = categories[i].name;
+        needVehicle = {
+          name: categories[i].name,
+          id: categories[i].id,
+          type: '',
+        };
         break;
       }
     }
-    return type;
+    switch (needVehicle.id) {
+      case 1:
+        needVehicle.type = '1';
+        break;
+      case 2:
+        needVehicle.type = '2';
+        break;
+      default:
+        needVehicle.type = '3';
+        break;
+    }
+    return needVehicle;
   };
 
   const onRemoveFromTruck = (item) => {
@@ -132,12 +152,18 @@ export const SelectedArticles = () => {
         </div>
         {selectedItems.length > 0 && (
           <p className="absolute bottom-0 left-0 right-0 text-center text-lg">
-            Necesitas un {calcVolumen()}
+            Necesitas un {calcVolumen().name}
           </p>
         )}
       </article>
       <div className="mt-8 mx-auto">
-        <button className="btn" onClick={() => router.push('/vehicles')}>
+        <button
+          className="btn"
+          onClick={() => {
+            localStorage.setItem('filter', needVehicle.type);
+            router.push('/vehicles');
+          }}
+        >
           Ver Vehículos
         </button>
       </div>
