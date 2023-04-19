@@ -13,6 +13,7 @@ import {
 
 import { SubmitButton } from './SubmitButton';
 import { ErrorMessage } from './ErrorMessage';
+import createBooking from '@/lib/createBooking';
 
 type FormValues = {
   name: string;
@@ -59,14 +60,14 @@ const ELEMENT_OPTIONS = {
   },
 };
 
-export const FormStripe = (props: Props) => {
+export const FormStripe = ({timer}) => {
   const stripe = useStripe();
   const elements = useElements();
 
   const [error, setError] = useState(null);
   const [cardComplete, setCardComplete] = useState(false);
   const [processing, setProcessing] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState(null);
+  // const [paymentMethod, setPaymentMethod] = useState(null);
 
   const {
     register,
@@ -126,15 +127,6 @@ export const FormStripe = (props: Props) => {
         amount: 9500,
         description: 'Reserva de Vehículo',
       };
-<<<<<<< HEAD
-      const response = await fetch('https://srtipe-server.vercel.app/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataPurchase),
-      });
-=======
       const response = await fetch(
         'https://srtipe-server.vercel.app/checkout',
         {
@@ -145,7 +137,6 @@ export const FormStripe = (props: Props) => {
           body: JSON.stringify(dataPurchase),
         }
       );
->>>>>>> 887c86918dad21b592debeddef692c6b92d0eaea
       const result = await response.json();
       console.log(result);
       //------
@@ -153,7 +144,12 @@ export const FormStripe = (props: Props) => {
         setError({ message: 'Tarjeta Rechazada' });
         console.log(result.message.code);
       } else {
-        setPaymentMethod(payload.paymentMethod);
+        // setPaymentMethod(payload.paymentMethod);
+        const {token} = JSON.parse(localStorage.getItem("token"))
+        const {id: idcar} = JSON.parse(localStorage.getItem("carSelected"))
+        const {id} = JSON.parse(localStorage.getItem("user"))
+        const creatBooking = await createBooking(token, idcar, id)
+        timer()
       }
     }
   };

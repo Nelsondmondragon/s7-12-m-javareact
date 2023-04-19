@@ -1,12 +1,15 @@
 "use client"
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export const BookingCard = ({btn1, btn2}) => {
     const car = JSON.parse(localStorage.getItem('carSelected'))
     const dates = JSON.parse(localStorage.getItem('bookingDates'))
-
-
+    const router = useRouter();
+    const updateBooking = () => {
+        router.push(`/updatereserva`);
+    }
     
     return (
         <div className="bg-primary-700 rounded-[20px] w-[90%] md:w-auto">
@@ -29,7 +32,8 @@ export const BookingCard = ({btn1, btn2}) => {
                     <li className="ml-2">Oficina: {dates.location}</li>
                 </div>
                 <div className="flex justify-around mt-9">
-                    <button className="text-[16px] md:text-[23px] md:w-[198px] font-semibold text-[#FAFAFA] w-[130px]">
+                    <button className="text-[16px] md:text-[23px] md:w-[198px] font-semibold text-[#FAFAFA] w-[130px]" onClick={updateBooking}
+                    >
                         {btn1}
                     </button>
                     <button className="bg-[#FAFAFA] rounded-[10px] w-[130px] md:w-[167px] h-[47px] text-primary-600 text-[16px] md:text-[23px] font-semibold">
