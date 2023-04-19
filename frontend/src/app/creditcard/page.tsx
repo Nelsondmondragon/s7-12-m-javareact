@@ -1,8 +1,8 @@
 'use client';
+import { FormCreditCard } from '@/components/payments/FormPay';
 // import { useRouter } from 'next/navigation';
 // import { FaArrowLeft } from 'react-icons/fa';
 
-import { FormCreditCard } from '@/components/payments/FormPay';
 import Image from 'next/image';
 
 export default function CrediCard() {

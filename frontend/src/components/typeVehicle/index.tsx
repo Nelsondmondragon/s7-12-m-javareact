@@ -12,7 +12,7 @@ type TruckType = {
   line3: string;
 };
 
-const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
+ export const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
   const router = useRouter();
 
   const dispatch = useDispatch();

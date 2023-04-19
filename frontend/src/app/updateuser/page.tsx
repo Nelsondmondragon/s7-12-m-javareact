@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
+import { DateTime } from 'luxon';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -16,28 +17,30 @@ import {
 } from '@/features/users/userSlice';
 
 import getLocations from '@/lib/getLocation';
-import moment from 'moment';
+import updateCustomer from '@/lib/updateCustomer';
+import { FormatDate } from '@/lib/formats';
 type FormValues = {
   fullName: string;
   idLocation: string;
   address: string;
   dni: string;
   numberLicence: string;
-  dateExpiration: Date;
+  dateExpiration: string;
 };
 
 const UpdateUser = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+  const [test, setTest] = useState(currentUser.dateExpiration);
+
   const newUser = useSelector(selectNewUser);
   const [locations, setLocations] = useState<Location[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log('En userUpdate', currentUser, 'newuser ', newUser);
-
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
@@ -47,22 +50,29 @@ const UpdateUser = () => {
       address: currentUser.address,
       dni: currentUser.dni,
       numberLicence: currentUser.numberLicence,
-      dateExpiration: new Date(currentUser.dateExpiration),
+      dateExpiration: FormatDate(currentUser.dateExpiration).toString,
     },
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (values: FormValues) => {
+  const onSubmit = async (values: FormValues) => {
     const newUserData = { ...currentUser, ...values };
-    console.log(newUserData);
     dispatch(setUser(newUserData));
-    router.push('/creditcard');
+    localStorage.setItem('user', JSON.stringify(newUserData));
+    if (currentUser.id === 0) {
+      router.push('/creditcard');
+    } else {
+      const token = JSON.parse(localStorage.getItem('token'));
+      const updateUser = updateCustomer({ token: token, user: newUserData });
+      const result = await updateUser;
+      reset();
+      router.push('/profile');
+    }
   };
 
   const fetchLocation = async () => {
     setIsLoading(false);
     const data = await getLocations();
-    console.log(data);
     setLocations(data);
     setIsLoading(true);
   };
@@ -80,13 +90,13 @@ const UpdateUser = () => {
               <span className="hidden md:block">
                 <Image
                   src={'/assets/images/updateuser.svg'}
-                  alt="location icon"
+                  alt="Profile icon"
                   width={60}
                   height={60}
                   className="w-[60px] h-[60px] mr-2 md:mr-4"
                 />
               </span>
-              Datos de contacto {newUser ? 'NEW' : 'Update'}
+              Datos de contacto
             </h1>
           </div>
           {isLoading && (
