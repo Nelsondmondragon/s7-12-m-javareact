@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +12,7 @@ import {
   setDecreaseItemFromTruck,
   setRemoveItemFromTruck,
 } from '../../features/truck/truckSlice';
+import getAllCategories from '@/lib/getCategories';
 
 const Counter = ({ thing }) => {
   const [processing, setProcessing] = useState(false);
@@ -74,19 +75,49 @@ const Counter = ({ thing }) => {
 export const SelectedArticles = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const categoryData = await getAllCategories();
+      categoryData.sort((x, y) => x.volume - y.volume);
+      setCategories(categoryData);
+    };
+    const data = fetchCategories();
+  }, []);
 
   const selectedItems = useSelector(selectTruckItems);
   const selectedVolume = useSelector(selectTruckVolume);
 
-  const calcVolumen = () => {
-    if (1500 < selectedVolume && selectedVolume < 4000) {
-      return 'Camión Mediano';
-    }
-    if (4000 < selectedVolume) {
-      return 'Camión Grande';
-    }
+  let needVehicle: {
+    name: string;
+    id: number;
+    type: string;
+  } = { name: '', id: 0, type: '' };
 
-    return 'Vehículo Pequeño';
+  const calcVolumen = () => {
+    for (let i = 0; i < categories.length; i++) {
+      if (categories[i].volume > selectedVolume) {
+        needVehicle = {
+          name: categories[i].name,
+          id: categories[i].id,
+          type: '',
+        };
+        break;
+      }
+    }
+    switch (needVehicle.id) {
+      case 1:
+        needVehicle.type = '1';
+        break;
+      case 2:
+        needVehicle.type = '2';
+        break;
+      default:
+        needVehicle.type = '3';
+        break;
+    }
+    return needVehicle;
   };
 
   const onRemoveFromTruck = (item) => {
@@ -111,7 +142,7 @@ export const SelectedArticles = () => {
                 <div className="flex flex-1 justify-between">
                   <span className=""> {item.title}</span>
                 </div>
-                <span>{item.qty * item.volume}</span>
+                <span>{(item.qty * item.volume).toFixed(2)}</span>
                 <div className="cursor-pointer text-error-500 hover:text-error-300 ">
                   <FaRegTrashAlt onClick={() => onRemoveFromTruck(item)} />
                 </div>
@@ -121,12 +152,18 @@ export const SelectedArticles = () => {
         </div>
         {selectedItems.length > 0 && (
           <p className="absolute bottom-0 left-0 right-0 text-center text-lg">
-            Necesitas un {calcVolumen()}
+            Necesitas un {calcVolumen().name}
           </p>
         )}
       </article>
       <div className="mt-8 mx-auto">
-        <button className="btn" onClick={() => router.push('/vehicles')}>
+        <button
+          className="btn"
+          onClick={() => {
+            localStorage.setItem('filter', needVehicle.type);
+            router.push('/vehicles');
+          }}
+        >
           Ver Vehículos
         </button>
       </div>

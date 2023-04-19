@@ -40,3 +40,12 @@ type Location = {
   id: string;
   name: string;
 };
+
+type Category = {
+  id: number;
+  name: string;
+  defaultImageUrl: string;
+  volume: number;
+  capacityLimit: number;
+  hourlyPrice: number;
+};
