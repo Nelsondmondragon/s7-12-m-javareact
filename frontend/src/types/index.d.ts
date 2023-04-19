@@ -15,6 +15,7 @@ type RegisterProps = {
 type User = {
   id: number;
   email: string;
+  password?: string;
   fullName: string;
   idLocation: string;
   address: string;

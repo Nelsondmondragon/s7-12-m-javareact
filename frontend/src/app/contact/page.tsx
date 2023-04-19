@@ -34,7 +34,6 @@ export default function Contact() {
   });
 
   const onSubmit = (values: FormValues) => {
-    // alert('revisar parametros y variables de entorno');
     setIsSending(true);
     emailjs
       .send(

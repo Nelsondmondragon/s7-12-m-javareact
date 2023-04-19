@@ -1,5 +1,4 @@
 import * as Yup from 'yup';
-import moment from 'moment';
 
 export const Schema = Yup.object().shape({
   fullName: Yup.string().required('Requerido'),
