@@ -72,7 +72,7 @@ public class CarController {
     public ResponseEntity<List<CarDto>> getAllCarsByFilter(
             @Parameter(example = "1") @RequestParam(required = false) Long idCategory,
             @Parameter(example = "02000010") @RequestParam(required = true) String idLocation,
-            @RequestParam(required = true) LocalDateTime startTime,
+            @RequestParam(required = true) LocalDateTime  startTime,
             @RequestParam(required = true) LocalDateTime endTime) {
         List<CarDto> cars = carService.findAllCarsByFilters(idCategory, idLocation, startTime, endTime);
         if (cars.isEmpty()) {

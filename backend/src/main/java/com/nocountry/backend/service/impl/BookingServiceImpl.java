@@ -47,8 +47,8 @@ public class BookingServiceImpl implements IBookingService {
 
     @Override
     public List<BookingDto> findBookingsByFilters(LocalDateTime startTime, LocalDateTime endTime, String pickUpLocation,
-            String dropOffLocation, Boolean assignedDriver, Boolean helperPawn, Boolean active, Long fkCar,
-            Long fkCustomer) {
+                                                  String dropOffLocation, Boolean assignedDriver, Boolean helperPawn, Boolean active, Long fkCar,
+                                                  Long fkCustomer) {
 
         Specification<Booking> spec = Specification.where(null);
 
@@ -115,8 +115,9 @@ public class BookingServiceImpl implements IBookingService {
         booking.setHelperPawn(bookingRequestDto.getHelperPawn());
         booking.setActive(true);
         booking.setCar(car);
+        booking.setFkCar(car.getId());
         booking.setCustomer(customer);
-
+        booking.setFkCustomer(customer.getId());
         sendBookingEmail(booking, car, customer);
 
         var bookingResponseDto = bookingMapper.toBookingDto(bookingRepository.save(booking));
@@ -131,7 +132,7 @@ public class BookingServiceImpl implements IBookingService {
     @Override
     public BookingDto updateBooking(Long bookingId, BookingDto bookingDto) {
         var booking = bookingRepository.findById(bookingId).orElseThrow();
-        var car = carRepository.findById(booking.getFkCar()).orElseThrow();
+        var car = carRepository.findById(booking.getCar().getId()).orElseThrow();
 
         LocalDateTime currentDateTime = LocalDateTime.now();
         if (currentDateTime.isAfter(booking.getStartTime())) {
@@ -153,15 +154,15 @@ public class BookingServiceImpl implements IBookingService {
     }
 
     @Override
-    public boolean validateDateBooking(LocalDateTime startDate, LocalDateTime endDate, Booking booking) {
-
-        if (startDate.isBefore(booking.getStartTime()) && endDate.isBefore(booking.getStartTime())) {
-            return false;
-        }
-        if (startDate.isAfter(booking.getEndTime()) && endDate.isAfter(booking.getEndTime())) {
-            return false;
-        }
-        return true;
+    public boolean bookingIsActiveByDate(LocalDateTime startDate, LocalDateTime endDate, Booking booking) {
+////
+//        if (startDate.isAfter(booking.getStartTime()) && endDate.isBefore(booking.getStartTime())) {
+//            return false;
+//        }
+////        if (startDate.isAfter(booking.getEndTime()) && endDate.isAfter(booking.getEndTime())) {
+////            return false;
+////        }
+        return booking.getEndTime().isAfter(LocalDateTime.now());
 
     }
 
@@ -174,7 +175,6 @@ public class BookingServiceImpl implements IBookingService {
             LocalDateTime newBookingEnd = booking.getEndTime().plus(margin);
             LocalDateTime existingBookingStart = carBooking.getStartTime();
             LocalDateTime existingBookingEnd = carBooking.getEndTime();
-
             if (existingBookingStart.isBefore(newBookingEnd) && newBookingStart.isBefore(existingBookingEnd)) {
                 throw new OverlappedBookingException(ErrorCode.OVERLAPPED_BOOKING);
             }

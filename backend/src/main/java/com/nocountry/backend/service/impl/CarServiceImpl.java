@@ -54,8 +54,8 @@ public class CarServiceImpl implements ICarService {
 
     @Override
     public List<CarDto> findCarsByFilters(String model, String make, Integer year, Boolean air, Boolean gps,
-            Integer passengers, String idLocation, Long idCategory, LocalDateTime startTime,
-            LocalDateTime endTime) {
+                                          Integer passengers, String idLocation, Long idCategory, LocalDateTime startTime,
+                                          LocalDateTime endTime) {
 
         Specification<Car> spec = Specification.where(null);
 
@@ -107,10 +107,10 @@ public class CarServiceImpl implements ICarService {
                 idLocation);
 
         // trae todas las reservas por Location
-        List<Booking> reservasPorUbicacionRetiro = bookingRepository.findAllByPickUpLocation(idLocation);
+        List<Booking> reservasPorUbicacionRetiro = bookingRepository.findAll();
         List<Booking> reservasFinales = new ArrayList<>();
         for (Booking book : reservasPorUbicacionRetiro) {
-            if (bookingService.validateDateBooking(startTime, endTime, book)) {
+            if (bookingService.bookingIsActiveByDate(startTime, endTime, book)) {
                 reservasFinales.add(book);
             }
         }
