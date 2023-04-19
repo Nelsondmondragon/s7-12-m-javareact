@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +12,7 @@ import {
   setDecreaseItemFromTruck,
   setRemoveItemFromTruck,
 } from '../../features/truck/truckSlice';
+import getAllCategories from '@/lib/getCategories';
 
 const Counter = ({ thing }) => {
   const [processing, setProcessing] = useState(false);
@@ -74,19 +75,29 @@ const Counter = ({ thing }) => {
 export const SelectedArticles = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const categoryData = await getAllCategories();
+      categoryData.sort((x, y) => x.volume - y.volume);
+      setCategories(categoryData);
+    };
+    const data = fetchCategories();
+  }, []);
 
   const selectedItems = useSelector(selectTruckItems);
   const selectedVolume = useSelector(selectTruckVolume);
 
   const calcVolumen = () => {
-    if (1500 < selectedVolume && selectedVolume < 4000) {
-      return 'Camión Mediano';
+    let type = 'small';
+    for (let i = 0; i < categories.length; i++) {
+      if (categories[i].volume > selectedVolume) {
+        type = categories[i].name;
+        break;
+      }
     }
-    if (4000 < selectedVolume) {
-      return 'Camión Grande';
-    }
-
-    return 'Vehículo Pequeño';
+    return type;
   };
 
   const onRemoveFromTruck = (item) => {
@@ -111,7 +122,7 @@ export const SelectedArticles = () => {
                 <div className="flex flex-1 justify-between">
                   <span className=""> {item.title}</span>
                 </div>
-                <span>{item.qty * item.volume}</span>
+                <span>{(item.qty * item.volume).toFixed(2)}</span>
                 <div className="cursor-pointer text-error-500 hover:text-error-300 ">
                   <FaRegTrashAlt onClick={() => onRemoveFromTruck(item)} />
                 </div>

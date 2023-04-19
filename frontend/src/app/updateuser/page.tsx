@@ -30,7 +30,7 @@ const UpdateUser = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
-  const [test, setTest] = useState(currentUser.dateExpiration);
+  const [test, setTest] = useState(currentUser);
 
   const newUser = useSelector(selectNewUser);
   const [locations, setLocations] = useState<Location[]>([]);
@@ -48,7 +48,7 @@ const UpdateUser = () => {
       address: currentUser.address,
       dni: currentUser.dni,
       numberLicence: currentUser.numberLicence,
-      dateExpiration: currentUser.dateExpiration,
+      dateExpiration: test?.dateExpiration,
     },
     resolver: yupResolver(schema),
   });
