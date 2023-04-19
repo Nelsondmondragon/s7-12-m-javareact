@@ -2,7 +2,6 @@
 
 import getAllCars from '@/lib/getAllCars';
 import Image from 'next/image';
-//import cars from '../../cars.json';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
@@ -14,13 +13,19 @@ const Vehicles = () => {
     const [filteredCars, setFilteredCars] = useState(false);
     const router = useRouter();
     const dispatch = useDispatch();
-    //const filter = cars.filter((vh) => vh.categoria === category);
 
     useEffect(() => {
+        let localFilter =
+            typeof window !== 'undefined' && localStorage.getItem('filter')
+                ? JSON.parse(localStorage.getItem('filter'))
+                : '';
         getAllCars().then((res) => {
             setCars(res);
-            const filterRes = res.filter((vh) => vh.category.id == category);
+            const filterRes = res.filter(
+                (vh) => vh.category.id == (localFilter ? localFilter : category)
+            );
             setFilteredCars(filterRes);
+            localFilter !== null && setCategory(localFilter);
         });
     }, []);
 
@@ -36,9 +41,9 @@ const Vehicles = () => {
         if (category == 1) {
             newCategory = 'small';
         } else if (category == 2) {
-            newCategory = "medium";
+            newCategory = 'medium';
         } else {
-            newCategory = "large";
+            newCategory = 'large';
         }
         dispatch(setCat(newCategory));
         localStorage.setItem('category', JSON.stringify(newCategory));
@@ -51,7 +56,7 @@ const Vehicles = () => {
         <div className="min-h-screen flex flex-col items-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
             <div className="mt-14 flex flex-col items-center">
                 <select
-                    defaultValue={'Vehículos pequeños'}
+                    value={category}
                     className="h-[46px] text-[18px] md:text-[23px] px-2 rounded-md border-gray-400 shadow-md text-center"
                     onChange={(cat) => filterCars(cat.target.value)}
                 >
