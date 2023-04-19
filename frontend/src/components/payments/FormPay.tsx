@@ -14,7 +14,6 @@ import {
   setUser,
 } from '@/features/users/userSlice';
 import postRegister from '@/lib/postRegister';
-import getUser from '@/lib/getUser';
 import ModalSuccess from './ModalSuccess';
 import verifyCreditCard from '@/lib/verifyCreditCard';
 import { useEffect, useState } from 'react';
@@ -61,7 +60,6 @@ export const FormCreditCard = (props: Props) => {
         const updateData = { ...currentUser, card: creditCardData };
         dispatch(setUser(updateData));
       }
-      console.log(' datos del cliente', currentUser, hasCreditCard);
     }
   };
 
@@ -96,9 +94,13 @@ export const FormCreditCard = (props: Props) => {
       ...currentUser,
       card,
     };
-    dispatch(setUser(newUser));
 
     if (currentUser.id === 0) {
+      /*
+        register new user / customer
+        - Contact data
+        - credit card data
+      */
       const registerResult = postRegister(newUser);
       const result = await registerResult;
       if (!result.token) {
@@ -106,16 +108,17 @@ export const FormCreditCard = (props: Props) => {
         return;
       }
 
-      const getUserData = getUser(result.token);
-      const userData = await getUserData;
-      localStorage.setItem('token', JSON.stringify(result));
       Cookies.set('token', result.token);
-
-      dispatch(setUser(userData));
-      localStorage.setItem('user', JSON.stringify(userData));
-      reset();
+      localStorage.setItem('token', JSON.stringify(result));
+      localStorage.setItem('user', JSON.stringify(newUser));
+      dispatch(setUser(newUser));
       dispatch(openModalRegisterSuccess());
+      reset();
     } else {
+      /*
+        update user / customer
+        - credit card data
+      */
       const data = { card, token: token.token, id: currentUser.id };
       if (hasCreditCard) {
         const res = await updateCard(data);

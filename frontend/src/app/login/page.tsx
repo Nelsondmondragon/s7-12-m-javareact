@@ -62,8 +62,6 @@ const Login = () => {
     localStorage.setItem('token', JSON.stringify(result));
     Cookies.set('token', result.token);
 
-    console.log(userData);
-
     // if (userData.fullName) {
     //   router.push('/updateuser');
     // } else {

@@ -4,7 +4,6 @@ type GetCardProps = {
 };
 
 const getCard = async ({ id, token }: GetCardProps) => {
-  console.log(token);
   const URL = process.env.NEXT_PUBLIC_BASE_URL;
   try {
     const response = await fetch(`${URL}cards/detail/${id}`, {

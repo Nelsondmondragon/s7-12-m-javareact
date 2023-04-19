@@ -16,7 +16,6 @@ type registerProps = {
 };
 
 const postRegister = async (registerData: registerProps) => {
-  console.log(registerData);
   const URL = process.env.NEXT_PUBLIC_BASE_URL;
   try {
     const response = await fetch(`${URL}auth/register`, {
@@ -28,7 +27,6 @@ const postRegister = async (registerData: registerProps) => {
     });
 
     if (!response.ok) {
-      console.log(response.status);
       return { status: response.status, msg: 'credential not valid' };
     }
     const a = await response.json();

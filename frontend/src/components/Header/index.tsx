@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -95,6 +95,10 @@ export const Header = () => {
     setShowModalPerfil(false);
     router.push('/profile');
   };
+
+  useEffect(() => {
+    setShowMenu(false);
+  }, []);
 
   return (
     <>

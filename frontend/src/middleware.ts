@@ -7,7 +7,6 @@ export async function middleware(request: NextRequest) {
   const user = await request.cookies.get('user')?.value;
 
   if (userToken) {
-    console.log(' logged ', request.nextUrl.pathname);
     if (user) {
       const userData = JSON.parse(user);
       if (!userData.firstName) {
