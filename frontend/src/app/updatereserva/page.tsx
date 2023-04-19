@@ -27,10 +27,18 @@ const UpdateReservation = () => {
 
   console.log(bookinDat);
 
-  const [startDate, setStartDate] = useState(new Date(bookinDat.startDat));
-  const [endDate, setEndDate] = useState(new Date(bookinDat.endDat));
-  const [startTime, setStartTime] = useState(new Date(bookinDat.startDat));
-  const [endTime, setEndTime] = useState(new Date(bookinDat.endDat));
+  // esto lo estoy cambiando temporalmene para poder pasar a producción
+  // const [startDate, setStartDate] = useState(new Date(bookinDat.startDat));
+  // const [endDate, setEndDate] = useState(new Date(bookinDat.endDat));
+  // const [startTime, setStartTime] = useState(new Date(bookinDat.startDat));
+  // const [endTime, setEndTime] = useState(new Date(bookinDat.endDat));
+
+  //  esta es la modificación que hice para poder pasar a producción
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [startTime, setStartTime] = useState(new Date());
+  const [endTime, setEndTime] = useState(new Date());
+
   const [startPl, setStartPl] = useState(bookinDat.startPlace);
   const [returnPl, setReturnPl] = useState(bookinDat.returnPlace);
   const [driver, setDriver] = useState(bookinDat.driver);
