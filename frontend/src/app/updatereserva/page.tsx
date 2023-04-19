@@ -10,13 +10,19 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import { CardTruck } from "@/components/typeVehicle";
 
 const UpdateReservation = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [startTime, setstartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
-  // const [category, setCategory] = useState(0);
-  const [startPl, setStartPl] = useState("02000010");
-  const [returnPl, setReturnPl] = useState("02000010");
+  const bookinDat = JSON.parse(localStorage.getItem("bookingDates"));
+  const car = JSON.parse(localStorage.getItem("carSelected"));
+  let item = JSON.parse(localStorage.getItem("category"));
+  console.log(bookinDat);
+
+  const [startDate, setStartDate] = useState(new Date(bookinDat.startDat));
+  const [endDate, setEndDate] = useState(new Date(bookinDat.endDat));
+  const [startTime, setstartTime] = useState(new Date(bookinDat.startDat));
+  const [endTime, setEndTime] = useState(new Date(bookinDat.endDat));
+  const [startPl, setStartPl] = useState(bookinDat.startPlace);
+  const [returnPl, setReturnPl] = useState(bookinDat.returnPlace);
+  const [driver, setDriver] = useState(bookinDat.driver);
+  const [pawn, setPawn] = useState(bookinDat.pawn);
 
   const router = useRouter();
 
@@ -32,7 +38,6 @@ const UpdateReservation = () => {
 
   const onSearch = async () => {
     let category;
-    console.log(item);
 
     if (item === "small") {
       category = 1;
@@ -78,18 +83,25 @@ const UpdateReservation = () => {
     localStorage.setItem("cars", JSON.stringify(postCar));
     localStorage.setItem("bookingDates", JSON.stringify(selection));
     // console.log(postCar);
-    console.log(selection);
-    if (section === null) {
-      router.push(`/booking/${item}`);
-    } else if (section !== null && user === null) {
-      router.push(`/login`);
-    } else {
-      router.push(`/pay`);
-      //localStorage.removeItem('vehiclesSection');
-    }
+
+    // if (section === null) {
+    //   router.push(`/booking/${item}`);
+    // } else if (section !== null && user === null) {
+    //   router.push(`/login`);
+    // } else {
+    //   router.push(`/pay`);
+    //   //localStorage.removeItem('vehiclesSection');
+    // }
+    router.push(`/confirmed`);
   };
 
-  // eslint-disable-next-line react/display-name
+  const anularBooking = () => {
+    localStorage.removeItem("bookingDates");
+    localStorage.removeItem("cars");
+    localStorage.removeItem("carSelected");
+    router.push(`/booking`);
+  };
+
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <button
       className="text-[16px] bg-white w-[147px] h-[36px] text-left pl-2 rounded-md border-gray-400 shadow-md md:h-[46px] md:text-[20px] lg:w-[220px]"
@@ -122,8 +134,8 @@ const UpdateReservation = () => {
             <div className="flex flex-col md:flex-row md:gap-3 lg:justify-between lg:gap-6">
               <div className="w-full lg:w-[480px]">
                 <select
-                  defaultValue={"default"}
                   className="w-full h-[36px] text-[16px] px-2 rounded-md border-gray-400 shadow-md md:h-[46px] md:text-[20px] md:max-w-sm lg:max-w-lg"
+                  value={startPl}
                   onChange={(e) => setStartPl(e.target.value)}
                 >
                   <option value="02000010">Buenos Aires</option>
@@ -177,9 +189,9 @@ const UpdateReservation = () => {
             <div className="flex flex-col md:flex-row md:gap-3 lg:justify-between lg:gap-6">
               <div className="w-full lg:w-[480px]">
                 <select
-                  defaultValue={"default"}
                   className="w-full h-[36px] text-[16px] px-2 rounded-md border-gray-400 shadow-md md:h-[46px] md:text-[20px] md:max-w-sm lg:max-w-lg"
                   onChange={(e) => setReturnPl(e.target.value)}
+                  value={returnPl}
                 >
                   <option value="02000010">Buenos Aires</option>
                   <option value="14014010">Córdoba</option>
@@ -229,7 +241,13 @@ const UpdateReservation = () => {
                 <div className="pl-3">
                   <div className="flex gap-4">
                     <p className=" text-[16px] w-[30px] md:text-[20px]">Si</p>
-                    <input type="radio" name="helper" value="Yes" />
+                    <input
+                      type="radio"
+                      name="helper"
+                      value="Yes"
+                      checked={pawn}
+                      onChange={() => setPawn(true)}
+                    />
                   </div>
                   <div className="flex gap-4">
                     <p className=" text-[16px] w-[30px] md:text-[20px]">No</p>
@@ -237,7 +255,8 @@ const UpdateReservation = () => {
                       type="radio"
                       name="helper"
                       value="No"
-                      defaultChecked
+                      checked={!pawn}
+                      onChange={() => setPawn(true)}
                     />
                   </div>
                 </div>
@@ -248,11 +267,23 @@ const UpdateReservation = () => {
               <div className="pl-3">
                 <div className="flex gap-4">
                   <p className=" text-[16px] w-[30px] md:text-[20px]">Si</p>
-                  <input type="radio" name="driver" value="Yes" />
+                  <input
+                    type="radio"
+                    name="driver"
+                    value="Yes"
+                    checked={driver}
+                    onChange={() => setDriver(true)}
+                  />
                 </div>
                 <div className="flex gap-4">
                   <p className=" text-[16px] w-[30px] md:text-[20px]">No</p>
-                  <input type="radio" name="driver" value="No" defaultChecked />
+                  <input
+                    type="radio"
+                    name="driver"
+                    value="No"
+                    checked={!driver}
+                    onChange={() => setDriver(true)}
+                  />
                 </div>
               </div>
               <p className=" text-[16px] mt-3 mb-3 md:text-[20px]">
@@ -262,26 +293,26 @@ const UpdateReservation = () => {
                 <div>
                   <img
                     className="  object-cover rounded-t-lg sm:w-autolg:w-[393px]"
-                    src="/assets/images/camion1.png"
+                    src={car.imageResource.urlSecure}
                     alt=""
                   />
                 </div>
                 <div className=" bg-primary-700 pt-5 rounded-b-lg sm:max-w-lg">
                   <p className=" text-center text-[18px] md:text-[24px]">
-                    Vehículo{" "}
+                    Vehículo {car.make}
                   </p>
                   <hr className="w-[90%] m-auto" />
                   <div className="py-5 px-10 text-[16px] md:text-[16px]">
-                    <li>Modelo: </li>
-                    <li>Capacidad de carga: Kg</li>
-                    <li>Costo por hora: $ </li>
+                    <li>Modelo: {car.model} </li>
+                    <li>Capacidad de carga:{car.category.capacityLimit} Kg</li>
+                    <li>Costo por hora: $ {car.category.hourlyPrice} </li>
                   </div>
                   <p className="ml-5 text-[18px] pb-5 md:text-[24px]">
-                    TOTAL IVA incl: $
+                    TOTAL IVA incl: {bookinDat.total} $
                   </p>
                 </div>
               </div>
-              <p className=" text-[16px] mt-3 mb-3 md:text-[20px]">
+              {/* <p className=" text-[16px] mt-3 mb-3 md:text-[20px]">
                 ¿Desear Cambiar de Vehiculo?
               </p>
               <div className="relative grid grid-cols-3 md:grid-cols-1 lg:grid-cols-3 gap-2 md:gap-4 text-lg text-white">
@@ -306,15 +337,23 @@ const UpdateReservation = () => {
                   line2="5 Cargadores"
                   line3="Departamento y/o casa de 6 personas y objetos extras"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
-          <button
-            className=" bg-primary-600 text-white text-[16px] font-bold w-[167px] m-auto py-3 rounded-md mt-4 mb-5 md:w-[180px]"
-            onClick={onSearch}
-          >
-            Actualizar Reserva
-          </button>
+          <div className="flex">
+            <button
+              className=" bg-primary-600 text-white text-[16px] font-bold w-[167px] m-auto py-3 rounded-md mt-4 mb-5 md:w-[180px]"
+              onClick={onSearch}
+            >
+              Actualizar Reserva
+            </button>
+            <button
+              className=" bg-white text-primary-600 text-[16px] font-bold w-[167px] m-auto py-3 rounded-md mt-4 mb-5 md:w-[180px]"
+              onClick={anularBooking}
+            >
+              Anular Reserva
+            </button>
+          </div>
         </div>
       </section>
     </div>

@@ -17,8 +17,8 @@ export default function Booking() {
   // const [category, setCategory] = useState(0);
   const [startPl, setStartPl] = useState("02000010");
   const [returnPl, setReturnPl] = useState("02000010");
-  const [driver, setDriver] = useState(false)
-  const [pawn, setPawn] = useState(false)
+  const [driver, setDriver] = useState(false);
+  const [pawn, setPawn] = useState(false);
 
   const router = useRouter();
 
@@ -88,19 +88,19 @@ export default function Booking() {
       }
     };
 
-    
-
     const selection = {
       startPlace: startPl,
       start: startDate.toISOString().split(".")[0],
       returnPlace: samePlace ? startPl : returnPl,
       end: endDate.toISOString().split(".")[0],
+      endDat: endDate,
+      startDat: startDate,
       id: category,
       location: validateLocation(startPl),
       locationend: validateLocation(returnPl),
       total: validatePriceTotal(item),
-      driver: driver, 
-      pawn
+      driver: driver,
+      pawn,
     };
 
     const postCar = await postCarsAvailable(selection);
@@ -266,11 +266,22 @@ export default function Booking() {
               <div className="pl-3">
                 <div className="flex gap-4">
                   <p className=" text-[16px] w-[30px] md:text-[20px]">Si</p>
-                  <input type="radio" name="helper" value="Yes" onClick={()=>setPawn(true)} />
+                  <input
+                    type="radio"
+                    name="helper"
+                    value="Yes"
+                    onClick={() => setPawn(true)}
+                  />
                 </div>
                 <div className="flex gap-4">
                   <p className=" text-[16px] w-[30px] md:text-[20px]">No</p>
-                  <input type="radio" name="helper" value="No" defaultChecked onClick={()=>setPawn(false)}/>
+                  <input
+                    type="radio"
+                    name="helper"
+                    value="No"
+                    defaultChecked
+                    onClick={() => setPawn(false)}
+                  />
                 </div>
               </div>
             </div>
@@ -280,11 +291,22 @@ export default function Booking() {
             <div className="pl-3">
               <div className="flex gap-4">
                 <p className=" text-[16px] w-[30px] md:text-[20px]">Si</p>
-                <input type="radio" name="driver" value="Yes" onChange={()=> setDriver(true)} />
+                <input
+                  type="radio"
+                  name="driver"
+                  value="Yes"
+                  onChange={() => setDriver(true)}
+                />
               </div>
               <div className="flex gap-4">
                 <p className=" text-[16px] w-[30px] md:text-[20px]">No</p>
-                <input type="radio" name="driver" value="No" defaultChecked onChange={()=> setDriver(false)} />
+                <input
+                  type="radio"
+                  name="driver"
+                  value="No"
+                  defaultChecked
+                  onChange={() => setDriver(false)}
+                />
               </div>
             </div>
           </div>
