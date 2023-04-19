@@ -17,7 +17,7 @@ export default function Services1({pasos}) {
             className="w-full h-60 rounded-t-lg border-b-[#6EC8FC] border-b-solid border-b-4"
           />
           <h3 className="text-xl text-[#024369] flex justify-center font-extrabold px-8 pt-2">
-            PERSONAL DE MUDANZA
+            Personal de mudanza
           </h3>
           <p className="mx-5 pt-3 text-[#024369] text-xs border-t-[#024369] border-t-solid border-t-4 tracking-wider">
             Si preferís mudarte de la forma tradicional, contrata el servicio
@@ -34,7 +34,7 @@ export default function Services1({pasos}) {
             className="w-full h-60 rounded-t-lg border-b-[#6EC8FC] border-b-solid border-b-4 "
           /> 
           <h3 className="text-xl text-[#024369] flex justify-center font-extrabold px-8 pt-2">
-            LECCIONES DE USO DEL VEHÍCULO
+            Lecciones de uso vehicular
           </h3>
           <p className="mx-5 pt-3 text-[#024369] text-xs border-t-[#024369] border-t-solid border-t-4">
             Te damos los mejores tips para realizar una mudanza organizada.
