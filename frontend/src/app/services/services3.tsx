@@ -10,13 +10,6 @@ import consejo5 from "../../../public/assets/images/services/consejo5.png"
 
 export default function Services3() {
 
-    const item = [
-        {
-            id: 1,
-            url: 'https://www.youtube.com/watch?v=j5Eps87j0oA',
-            title: 'vaca',
-        }
-    ];
 
     return (
         <section className="min-h-screen flex flex-col  items-center bg-mobile-pattern md:bg-global-pattern bg-no-repeat bg-cover bg-center">
@@ -33,12 +26,10 @@ export default function Services3() {
                     </div>
                 </div>
                 <div className="flex flex-col">
-                    {/* <div>
-                        <h2>Video de lecciones de uso vehícular </h2>
-                         <video className="w-[43rem]" controls>
-                            <source src={} type="video/mp4"/>
-                        </video> 
-                    </div> */}
+                    <div>
+                        <h2 className="text-[#FFFFFF] text-2xl max-sm:text-lg font-extrabold mt-10">Video de lecciones de uso vehícular </h2>
+                        <iframe className="w-[43rem] max-md:w-[35rem] max-md:h-[19.5rem] max-sm:w-80 max-sm:h-[11rem] mt-10 h-[25rem] max-sm:flex max-sm:self-center" src="https://www.youtube.com/embed/jy4qlNqObp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
                     <div className="bg-[#FFFFFF] rounded-lg flex flex-col pt-5 mt-10 mb-10 w-[43rem] max-md:w-[35rem] max-sm:w-80">
                         <h2 className="flex justify-center text-center text-[#024369] font-black">CONSEJOS PARA UNA MUDANZA ORGANIZADA</h2>
                         <div className="flex justify-start align-middle px-10 pt-5 max-sm:px-2 ">
