@@ -28,8 +28,11 @@
 ![Redux](https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white) 
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white) 
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white) 
+![Tailwind](https://img.shields.io/badge/Tailwind-01b7d6?style=for-the-badge&logo=TailwindCSS&logoColor=white) 
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white)
-
+![ReactHookForm](https://img.shields.io/badge/React%20Hook%20Form-ec5990?style=for-the-badge&logo=ReactHookForm&logoColor=000000)
+![Stripe](https://img.shields.io/badge/Stripe-5469d4?style=for-the-badge&logo=Stripe&logoColor=000000)
+![Emailjs](https://img.shields.io/badge/Email.js-fca253?style=for-the-badge&logo=emailjs&logoColor=000000)  
 
 #### 🧑‍💻 Desarrolladores:
 
