@@ -44,7 +44,7 @@
 ![Postgresql](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=PostgreSQL&logoColor=white)
 ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)
-![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white
+![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=json-web-tokens&logoColor=white)
 ![Cloudinary](https://img.shields.io/badge/Cloudinary-7E57C2?style=for-the-badge&logo=Cloudinary&logoColor=white)
 ![Stripe](https://img.shields.io/badge/Stripe-6772E5?style=for-the-badge&logo=Stripe&logoColor=white)
