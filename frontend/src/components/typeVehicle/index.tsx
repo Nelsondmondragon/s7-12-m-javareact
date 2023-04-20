@@ -12,7 +12,7 @@ type TruckType = {
   line3: string;
 };
 
- export const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
+export const CardTruck = ({ image, title, line1, line2, line3 }: TruckType) => {
   const router = useRouter();
 
   const dispatch = useDispatch();
@@ -46,8 +46,8 @@ type TruckType = {
           height={45}
           alt={title}
         />
-        <div className=" lg:h-64 bg-primary-600 md:bg-primary-700 md:rounded-[20px] lg:rounded-t-none px-0 md:px-4 lg:px-6 pb-4 md:pb-0 pt-4 rounded-b-[20px] grid">
-          <h3 className="text-center text-base md:text-xl font-bold md:pb-2  md:border-b-4 md:border-b-white">
+        <div className=" min-h-[72px] lg:h-64 bg-primary-600 md:bg-primary-700 md:rounded-[20px] lg:rounded-t-none px-0 md:px-4 lg:px-6 pb-4 md:pb-0 pt-4 rounded-b-[20px] grid">
+          <h3 className="text-center text-sm sm:text-base md:text-xl font-bold md:pb-2  md:border-b-4 md:border-b-white">
             {title}
           </h3>
           <div className="hidden md:block text-sm py-4">

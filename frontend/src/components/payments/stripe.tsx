@@ -60,7 +60,7 @@ const ELEMENT_OPTIONS = {
   },
 };
 
-export const FormStripe = ({timer}) => {
+export const FormStripe = ({ timer }) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -145,11 +145,11 @@ export const FormStripe = ({timer}) => {
         console.log(result.message.code);
       } else {
         // setPaymentMethod(payload.paymentMethod);
-        const {token} = JSON.parse(localStorage.getItem("token"))
-        const {id: idcar} = JSON.parse(localStorage.getItem("carSelected"))
-        const {id} = JSON.parse(localStorage.getItem("user"))
-        const creatBooking = await createBooking(token, idcar, id)
-        timer()
+        const { token } = JSON.parse(localStorage.getItem('token'));
+        const { id: idcar } = JSON.parse(localStorage.getItem('carSelected'));
+        const { id } = JSON.parse(localStorage.getItem('user'));
+        const creatBooking = await createBooking(token, idcar, id);
+        timer();
       }
     }
   };
