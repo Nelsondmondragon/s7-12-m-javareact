@@ -30,16 +30,19 @@ public class SecurityConfig {
                 .and()
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                .requestMatchers("/api/v1/auth/**", "/api/v1/hello/**").permitAll()
-                .anyRequest()
-                .authenticated()
+                .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**",
+                        "/api/v1/auth/**", "/api/v1/cars/**",
+                        "/api/v1/categories/**", "/api/v1/locations/**",
+                        "/api/v1/customers/**"
+                ).permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(JwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(JwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 }

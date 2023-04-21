@@ -1,5 +1,9 @@
 package com.nocountry.backend.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.cloudinary.Cloudinary;
 import com.nocountry.backend.repository.IUserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -24,24 +29,38 @@ public class AppConfig implements WebMvcConfigurer {
 
     private final IUserRepository userRepository;
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOriginPatterns("*")
-                .allowedMethods("*")
-                .allowedHeaders("*")
-                .exposedHeaders("Authorization")
-                .allowCredentials(true)
-                .maxAge(3600);
+    @Value("${CLOUD_NAME}")
+    private String CLOUD_NAME;
+
+    @Value("${API_KEY_CLOUD}")
+    private String API_KEY_CLOUD;
+
+    @Value("${API_SECRET}")
+    private String API_SECRET;
+
+    @Bean
+    public Cloudinary cloudinaryConfig() {
+        Cloudinary cloudinary;
+        Map<String, String> config = new HashMap<String, String>();
+        config.put("cloud_name", CLOUD_NAME);
+        config.put("api_key", API_KEY_CLOUD);
+        config.put("api_secret", API_SECRET);
+        cloudinary = new Cloudinary(config);
+        return cloudinary;
     }
+
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**");
+//    }
 
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {
             @Override
-            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                return userRepository.findByEmail(username)
-                        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+                return userRepository.findByEmail(email)
+                        .orElseThrow(() -> new UsernameNotFoundException("Email not found"));
             }
         };
     }

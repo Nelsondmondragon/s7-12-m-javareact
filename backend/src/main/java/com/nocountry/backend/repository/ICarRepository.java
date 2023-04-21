@@ -1,11 +1,15 @@
 package com.nocountry.backend.repository;
 
-import com.nocountry.backend.dto.CarDto;
-import com.nocountry.backend.model.Car;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 
-public interface ICarRepository extends JpaRepository<Car,Long>{
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.nocountry.backend.model.Car;
+
+public interface ICarRepository extends JpaRepository<Car, Long> {
+
+    public List<Car> findAll(Specification<Car> spec);
+
+    public List<Car> findAllByCategoryIdAndLocationId(Long category, String pickUpLocation);
 }

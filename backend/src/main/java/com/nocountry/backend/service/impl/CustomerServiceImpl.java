@@ -1,15 +1,23 @@
 package com.nocountry.backend.service.impl;
 
-import com.nocountry.backend.config.jwt.JwtProvider;
-import com.nocountry.backend.dto.CustomerDto;
-import com.nocountry.backend.dto.UserDto;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.nocountry.backend.config.jwt.ExtractUsernameJwtUtil;
+import com.nocountry.backend.dto.customer.CustomerDetailsDto;
+import com.nocountry.backend.dto.customer.CustomerListDto;
+import com.nocountry.backend.dto.customer.CustomerRegisterDto;
+import com.nocountry.backend.dto.customer.CustomerUpdateDto;
 import com.nocountry.backend.mapper.ICustomerMapper;
+import com.nocountry.backend.model.Customer;
 import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.service.ICustomerService;
 import com.nocountry.backend.service.IUserService;
+
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -17,22 +25,65 @@ public class CustomerServiceImpl implements ICustomerService {
 
     private final ICustomerRepository customerRepository;
 
-    private final IUserService userService;
-
     private final ICustomerMapper customerMapper;
 
-    private final JwtProvider jwtProvider;
+    private final IUserService userService;
+
+    private final ExtractUsernameJwtUtil extractUsernameJwtUtil;
 
     @Override
-    public CustomerDto findByEmail(HttpServletRequest request) {
-        String authorization = request.getHeader("Authorization");
-        String email = this.jwtProvider.extractUsername(authorization.substring(7));
-        UserDto userRepository = this.userService.findByEmail(email);
-        CustomerDto customerDto = this.customerMapper.toCustomerDto(
-                this.customerRepository.findByFkUser(userRepository.getId()));
-        customerDto.setEmail(email);
-        return customerDto;
+    public List<CustomerListDto> findAllCustomers() {
+        return customerRepository.findAll().stream().map(
+                customer -> {
+                    CustomerListDto customerListDto = this.customerMapper.toCustomerListDtos(customer);
+                    customerListDto.setEmail(customer.getUser().getEmail());
+                    return customerListDto;
+                }
+
+        ).collect(Collectors.toList());
     }
 
+    @Override
+    public CustomerDetailsDto save(CustomerRegisterDto customerRegisterDto) {
+        return this.customerMapper.toCustomerDetailsDto(
+                this.customerRepository.save(this.customerMapper.toCustomerRegister(customerRegisterDto)));
+    }
+
+    @Override
+    public CustomerDetailsDto findCustomerByEmail(HttpServletRequest request) {
+        Long userId = this.extractUsernameJwtUtil.getId(request);
+        return this.findCustomerById(userId);
+    }
+
+    @Override
+    public Boolean existsByEmail(String email) {
+        return this.userService.emailExits(email);
+    }
+
+    @Override
+    public CustomerDetailsDto findCustomerById(Long customerId) {
+        return this.customerRepository.findById(customerId).map(
+                customer -> {
+                    CustomerDetailsDto customerDetailsDto = this.customerMapper.toCustomerDetailsDto(customer);
+                    customerDetailsDto.setEmail(customer.getUser().getEmail());
+                    return customerDetailsDto;
+
+                }).orElseThrow(() -> new RuntimeException("Customer not exists."));
+    }
+
+    @Override
+    public CustomerDetailsDto updateCustomer(Long customerId, CustomerUpdateDto customerUpdateDto) {
+        Customer customer = this.customerRepository.findById(customerId)
+                .orElseThrow(() -> new RuntimeException("Problem in update data customer."));
+        this.customerMapper.updateCustomer(customerUpdateDto, customer);
+        this.customerRepository.save(customer);
+        return this.findCustomerById(customerId);
+    }
+
+    @Override
+    public void deleteCustomer(Long customerId) {
+        customerRepository.deleteById(customerId);
+        userService.deleteUser(customerId);
+    }
 
 }

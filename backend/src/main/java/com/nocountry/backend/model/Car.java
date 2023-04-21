@@ -1,67 +1,72 @@
 package com.nocountry.backend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.*;
-import org.hibernate.Hibernate;
-
-import java.util.Objects;
-
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "CARS")
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_CAR")
     private Long id;
 
-    private String image;
+    @OneToOne
+    @JoinColumn(name = "ID_MEDIA")
+    private MediaResource imageResource;
 
+    @Column(name = "MODEL")
     private String model;
 
+    @Column(name = "MAKE")
     private String make;
 
-    private int year;
+    @Column(name = "YEAR")
+    private Integer year;
 
-    private boolean air;
+    @Column(name = "AIR")
+    private Boolean air;
 
-    private boolean gps;
+    @Column(name = "GPS")
+    private Boolean gps;
 
+    @Column(name = "PASSENGERS")
     private Integer passengers;
 
+    @Column(name = "PATENT")
     private String patent;
 
-    private boolean Available;
-
-/*
-    private Category category;
-
-    private Booking booking;
-
-    private Double volume;
-    private Double Capacity;
+    @Column(name = "LENGTH")
     private Integer length;
+
+    @Column(name = "WIDTH")
     private Integer width;
+
+    @Column(name = "HEIGHT")
     private Integer height;
 
-    */
+    @Column(name = "FK_LOCATION")
+    private String fkLocation;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Car car = (Car) o;
-        return id != null && Objects.equals(id, car.id);
-    }
+    @ManyToOne
+    @JoinColumn(name = "ID_CATEGORY")
+    private Category category;
 
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_LOCATION", referencedColumnName = "ID_LOCATION", insertable = false, updatable = false)
+    private Location location;
 }

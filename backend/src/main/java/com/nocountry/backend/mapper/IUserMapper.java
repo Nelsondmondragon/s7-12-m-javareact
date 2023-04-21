@@ -1,16 +1,16 @@
 package com.nocountry.backend.mapper;
 
-import com.nocountry.backend.dto.UserDto;
-import com.nocountry.backend.model.User;
-import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
-@Mapper(componentModel = "spring")
+import com.nocountry.backend.dto.user.UserDto;
+import com.nocountry.backend.model.User;
+
+@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface IUserMapper {
 
     UserDto toUserDto(User user);
 
-
-//    @InheritInverseConfiguration
-//    User toUser(UserDto userDto);
+    // @InheritInverseConfiguration
+    // User toUser(UserDto userDto);
 }

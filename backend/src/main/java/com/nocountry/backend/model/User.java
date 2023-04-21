@@ -3,6 +3,7 @@ package com.nocountry.backend.model;
 import java.util.Collection;
 import java.util.List;
 
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,35 +14,29 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_USER")
     private Long id;
 
-    @Column(unique = true)
+    @Column(name = "EMAIL", unique = true)
     private String email;
 
-
+    @Column(name = "PASSWORD")
     private String password;
 
+    @Column(name = "ROLE")
     private String role;
-
-    // @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    // @JoinColumn(name = "customer_id")
-    // @JsonIgnore
-    // private Customer customer;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -4,44 +4,39 @@
 
 @layer base {
   :root {
-    --header-height: 60px;
+    --header-height: 98px;
+    --tablet-header-height: 64px;
+    --mobile-header-height: 44px;
+    --footer-height: 189px;
   }
   html {
-    @apply scroll-smooth;
-  }
-
-  body {
-    @apply bg-light-100 text-dark tracking-wide;
+    @apply scroll-smooth text-black;
   }
 
   header {
-    @apply fixed top-0 z-50 flex w-full h-[var(--header-height)] items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6 bg-dark text-light-100 duration-200;
+    @apply sticky z-10 flex w-full h-[var(--mobile-header-height)] md:h-[var(--tablet-header-height)] lg:h-[var(--header-height)] items-center justify-between px-4 py-4 transition-all lg:px-6 xl:px-10 lg:py-6 bg-primary-800 text-light-100 duration-200;
   }
 
   footer {
-    @apply flex w-full items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6  bg-dark text-light-100;
+    @apply w-full items-center justify-between px-16 py-16 transition-all lg:px-10 lg:py-6  bg-primary-700 text-white;
   }
 }
 
 @layer components {
   .headerLink {
-    @apply max-w-xs mx-auto p-4 md:p-2 cursor-pointer transition duration-500 hover:text-yellow-700 hover:bg-gray-700;
+    @apply max-w-xs mx-auto md:ml-7 p-2 cursor-pointer transition duration-300 hover:bg-primary-100 md:text-lg font-medium hover:text-black hover:rounded-lg;
   }
 
   .bannerButton {
     @apply flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;
   }
 
-  .modalButton {
-    @apply flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10;
-  }
-
   .menuDesktop {
-    @apply md:relative md:flex md:space-x-2 md:min-h-0 md:px-0 md:py-0 md:space-y-0 md:translate-x-0 md:text-base;
+    @apply lg:relative lg:flex lg:space-x-1  xl:space-x-4 lg:min-h-0 lg:top-0 lg:px-0 lg:py-0 lg:space-y-0 lg:translate-x-0 lg:text-base;
   }
 
   .menuMobile {
-    @apply fixed left-0 right-0 min-h-screen px-4 pt-8 space-y-4 bg-dark text-2xl transform text-center transition duration-300;
+    @apply fixed left-0 w-2/3 top-[var(--mobile-header-height)] md:top-[var(--tablet-header-height)]  min-h-[calc(100vh-var(--header-height))] px-8 pt-8 space-y-4 bg-primary-700 lg:bg-primary-800 transform text-left transition duration-300;
   }
 
   .title {
@@ -52,30 +47,45 @@
     @apply text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl;
   }
 
-  .socialIcons {
-    @apply rounded-full shadow-md shadow-yellow-700 p-6 cursor-pointer hover:scale-105 hover:bg-purple hover:text-white ease-in duration-300;
+  .gradient {
+    @apply bg-gradient-to-b from-primary-700 to-primary-300;
   }
 
-  .timeline-img {
-    @apply h-24 w-24 object-cover rounded-full shadow-md border-4 bg-purple border-yellow-500 xs:absolute md:mx-auto md:left-0 md:right-0;
+  .btn {
+    @apply text-lg text-primary-700  px-12 py-1 md:py-1 bg-white rounded-[10px] hover:bg-primary-100;
   }
-  .timeline-container {
-    @apply relative pt-2 xs:pl-28 xs:pt-0 md:w-1/2 md:ml-auto md:pl-16;
+  .btnSecond {
+    @apply text-primary-50  bg-primary-700 hover:bg-primary-50 hover:text-primary-600;
   }
-  .timeline-container-left {
-    @apply md:ml-0 md:mr-auto md:pl-0 md:pr-16;
-  }
-  .timeline-pointer {
-    @apply absolute inset-0 left-10 h-4 w-4 transform rotate-45 bg-gray-100 xs:top-11 xs:left-26 md:left-14;
-  }
-  .timeline-pointer-left {
-    @apply md:left-auto md:right-14;
-  }
-  .summary {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+
+  .move {
+    animation: move-to-right 1.5s forwards;
+    animation-timing-function: linear;
   }
 }
+@keyframes move-to-rigth {
+  0% {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(50%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+
+.react-datepicker-wrapper {
+  width: fit-content !important;
+}
+.react-datepicker__input-container {
+  width: fit-content;
+}
+
+.react-datepicker__tab-loop {
+  position: absolute;
+}
+
