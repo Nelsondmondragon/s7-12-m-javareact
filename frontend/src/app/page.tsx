@@ -1,125 +1,41 @@
-import Image from 'next/image';
-import profilePic from '../../public/assets/images/Ford-camion1.jpg';
-import image1 from '../../public/assets/images/Chevrolet-Silverado-3500-HD-III-K2XX-Double-Cab-Long-Box.jpg';
+'use client';
+import { TypesVehicle } from '@/components/typeVehicle';
+import { Requirement } from '@/components/requierement';
+import { useRouter } from 'next/navigation';
+
+import { Hero } from '@/components/Hero';
 
 export default function Home() {
+  const router = useRouter();
+
+  typeof window !== 'undefined' && localStorage.removeItem('vehiclesSection');
+  typeof window !== 'undefined' && localStorage.removeItem('filter');
+
   return (
     <main>
-      <section className="mt-[80px] max-w-5xl mx-auto bg-blue-200 px-10 ">
-        <h1 className="text-3xl">Vehiculos disponibles</h1>
-        <div id="section0">
-          <h2 className="text-2xl text-blue-500 my-10">
-            Chevrolet Silverado 3500
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
-            <Image
-              src={image1}
-              alt="Chevrolet Silverado 3500"
-              placeholder="blur" // Optional blur-up while loading
-            />
-
-            <p className="my-120">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-              loren50 Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Consequuntur voluptas, praesentium et natus repellat porro ipsam
-              modi vel vitae ipsa nobis veniam odit suscipit magni reiciendis
-              eum harum perspiciatis explicabo! Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Impedit loren50 Lorem ipsum dolor
-              sit amet consectetur, adipisicing elit. Consequuntur voluptas,
-              praesentium et natus repellat porro ipsam modi vel vitae ipsa
-              nobis veniam odit suscipit magni reiciendis eum harum perspiciatis
-            </p>
+      <section>
+        <div className="gradient relative z-0">
+          <Hero />
+          <div className="bg-mobile-pattern md:bg-global-pattern bg-cover bg-no-repeat bg-center w-full h-full absolute top-0 left-0 -z-10"></div>
+          <TypesVehicle />
+          <div className="hidden md:block">
+            <Requirement />
           </div>
-        </div>
-        <div id="section1">
-          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
-            <div>
-              <h2 className="text-2xl text-blue-500 my-10">Camión Ford 2019</h2>
-              <p className="my-120">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-                loren50 Lorem ipsum dolor sit amet consectetur, adipisicing
-                elit. Consequuntur voluptas, praesentium et natus repellat porro
-                ipsam modi vel vitae ipsa nobis veniam odit suscipit magni
-                reiciendis eum harum perspiciatis explicabo! Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Impedit loren50 Lorem
-                ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur
-                voluptas, praesentium et natus repellat porro ipsam modi vel
-                vitae ipsa nobis veniam odit suscipit magni reiciendis eum harum
-                perspiciatis
-              </p>
+          <div className="p-4 text-white md:hidden">
+            <h2 className="text-lg  my-6 font-semibold ">
+              ¿No sabes que vehículo necesitas?
+            </h2>
+            <p className="max-w-[280px]">
+              Utiliza nuestra calculadora de volumen y no adivines más
+            </p>
+            <div className="flex justify-center items-center my-8">
+              <button
+                className="btn px-12 py-2"
+                onClick={() => router.push('/calculator')}
+              >
+                Calcular
+              </button>
             </div>
-            <Image
-              src={profilePic}
-              alt="foto"
-              placeholder="blur" // Optional blur-up while loading
-            />
-          </div>
-        </div>
-        <div id="section2">
-          <h2 className="text-2xl text-blue-500 my-10">section 2</h2>
-
-          <p className="my-120">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea
-            veritatis inventore deleniti iusto sit, dignissimos fuga accusamus
-            rerum rem aperiam recusandae facere exercitationem pariatur! Quae
-            accusamus quidem aperiam quo rem! Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Impedit loren50 Lorem ipsum dolor sit
-            amet consectetur, adipisicing elit. Consequuntur voluptas,
-            praesentium et natus repellat porro ipsam modi vel vitae ipsa nobis
-            veniam odit suscipit magni reiciendis eum harum perspiciatis
-            explicabo! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Impedit loren50 Lorem ipsum dolor sit amet consectetur, adipisicing
-            elit. Consequuntur voluptas, praesentium et natus repellat porro
-            ipsam modi vel vitae ipsa nobis veniam odit suscipit magni
-            reiciendis eum harum perspiciatis explicabo! Lorem ipsum dolor sit
-            amet consectetur adipisicing elit. Impedit loren50 Lorem ipsum dolor
-            sit amet consectetur, adipisicing elit. Consequuntur voluptas,
-            praesentium et natus repellat porro ipsam modi vel vitae ipsa nobis
-            veniam odit suscipit magni reiciendis eum harum perspiciatis
-            explicabo! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Impedit loren50 Lorem ipsum dolor sit amet consectetur, adipisicing
-            elit. Consequuntur voluptas, praesentium et natus repellat porro
-            ipsam modi vel vitae ipsa nobis veniam odit suscipit magni
-            reiciendis eum harum perspiciatis explicabo!
-          </p>
-        </div>
-        <div id="section3">
-          <h2 className="text-2xl text-blue-500 my-10">section 3</h2>
-
-          <div className="grid grid-cols-2 gap-4">
-            <Image
-              src="https://images.pexels.com/photos/5066935/pexels-photo-5066935.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt="Picture of the author"
-              width={500}
-              height={200}
-            />
-            <p className="my-120">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-              aliquid a unde, accusantium totam dignissimos, et illo molestiae,
-              aspernatur magnam perferendis cum repudiandae atque placeat
-              corporis saepe vero facere architecto.Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Impedit loren50 Lorem ipsum dolor
-              sit amet consectetur, adipisicing elit. Consequuntur voluptas,
-              praesentium et natus repellat porro ipsam modi vel vitae ipsa
-              nobis veniam odit suscipit magni reiciendis eum harum perspiciatis
-              explicabo! Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Impedit loren50 Lorem ipsum dolor sit amet consectetur,
-              adipisicing elit. Consequuntur voluptas, praesentium et natus
-              repellat porro ipsam modi vel vitae ipsa nobis veniam odit
-              suscipit magni reiciendis eum harum perspiciatis explicabo! Lorem
-              ipsum dolor sit amet consectetur adipisicing elit. Impedit loren50
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Consequuntur voluptas, praesentium et natus repellat porro ipsam
-              modi vel vitae ipsa nobis veniam odit suscipit magni reiciendis
-              eum harum perspiciatis explicabo! Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Impedit loren50 Lorem ipsum dolor
-              sit amet consectetur, adipisicing elit. Consequuntur voluptas,
-              praesentium et natus repellat porro ipsam modi vel vitae ipsa
-              nobis veniam odit suscipit magni reiciendis eum harum perspiciatis
-              explicabo!
-            </p>
           </div>
         </div>
       </section>
