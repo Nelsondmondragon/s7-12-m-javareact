@@ -33,7 +33,6 @@
 ![ReactHookForm](https://img.shields.io/badge/React%20Hook%20Form-ec5990?style=for-the-badge&logo=ReactHookForm&logoColor=000000)
 ![Stripe](https://img.shields.io/badge/Stripe-5469d4?style=for-the-badge&logo=Stripe&logoColor=white)
 ![Emailjs](https://img.shields.io/badge/Email.js-fca253?style=for-the-badge&logo=emailjs&logoColor=white)
-![Trello](https://img.shields.io/badge/Trello-0079BF?style=for-the-badge&logo=Trello&logoColor=white)
 
 #### 🧑‍💻 Desarrolladores:
 
@@ -59,7 +58,6 @@
 ![Stripe](https://img.shields.io/badge/Stripe-6772E5?style=for-the-badge&logo=Stripe&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
 ![Railway](https://img.shields.io/badge/Railway-7928C1?style=for-the-badge&logo=Railway&logoColor=white)
-![Trello](https://img.shields.io/badge/Trello-0079BF?style=for-the-badge&logo=Trello&logoColor=white)
 
 #### 🧑‍💻 Desarrolladores:
 
@@ -80,7 +78,6 @@
 ![Design Thinking](https://img.shields.io/badge/Design_Thinking-FF4088?style=for-the-badge&logo=Design-Thinking&logoColor=white)
 ![Clipchamp](https://img.shields.io/badge/Clipchamp-000000?style=for-the-badge&logo=Clipchamp&logoColor=white)
 ![Figjam](https://img.shields.io/badge/Figjam-000000?style=for-the-badge&logo=Figjam&logoColor=white)
-![Trello](https://img.shields.io/badge/Trello-0079BF?style=for-the-badge&logo=Trello&logoColor=white)
 
 #### 🧑‍💻 Diseñadores:
 
