@@ -32,7 +32,7 @@
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white)
 ![ReactHookForm](https://img.shields.io/badge/React%20Hook%20Form-ec5990?style=for-the-badge&logo=ReactHookForm&logoColor=000000)
 ![Stripe](https://img.shields.io/badge/Stripe-5469d4?style=for-the-badge&logo=Stripe&logoColor=white)
-![Emailjs](https://img.shields.io/badge/Email.js-fca253?style=for-the-badge&logo=emailjs&logoColor=white)  
+![Emailjs](https://img.shields.io/badge/Email.js-fca253?style=for-the-badge&logo=emailjs&logoColor=white)
 ![Trello](https://img.shields.io/badge/Trello-0079BF?style=for-the-badge&logo=Trello&logoColor=white)
 
 #### 🧑‍💻 Desarrolladores:
