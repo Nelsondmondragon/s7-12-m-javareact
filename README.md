@@ -11,7 +11,7 @@
 
 <hr/>
 
-### ✅ Links del proyecto:
+### ⚡ Links del proyecto:
 
 <h3><a href="https://www.figma.com/file/IJaAGjDDUNR84gAROEA4jd/Rent-a-truck?t=hQrFi5FS9AC1XlDR-6"> <img src="https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=Figma&logoColor=white"/></a> <a href="https://s7-12-m-javareact-production.up.railway.app/swagger-ui/index.html#"> <img src="https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white"/></a></h3>
 
