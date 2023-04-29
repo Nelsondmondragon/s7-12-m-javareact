@@ -33,6 +33,7 @@
 ![ReactHookForm](https://img.shields.io/badge/React%20Hook%20Form-ec5990?style=for-the-badge&logo=ReactHookForm&logoColor=000000)
 ![Stripe](https://img.shields.io/badge/Stripe-5469d4?style=for-the-badge&logo=Stripe&logoColor=white)
 ![Emailjs](https://img.shields.io/badge/Email.js-fca253?style=for-the-badge&logo=emailjs&logoColor=white)  
+![Trello](https://img.shields.io/badge/Trello-0079BF?style=for-the-badge&logo=Trello&logoColor=white)
 
 #### 🧑‍💻 Desarrolladores:
 
@@ -52,11 +53,13 @@
 ![Postgresql](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=PostgreSQL&logoColor=white)
 ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)
+![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=json-web-tokens&logoColor=white)
 ![Cloudinary](https://img.shields.io/badge/Cloudinary-7E57C2?style=for-the-badge&logo=Cloudinary&logoColor=white)
 ![Stripe](https://img.shields.io/badge/Stripe-6772E5?style=for-the-badge&logo=Stripe&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
 ![Railway](https://img.shields.io/badge/Railway-7928C1?style=for-the-badge&logo=Railway&logoColor=white)
+![Trello](https://img.shields.io/badge/Trello-0079BF?style=for-the-badge&logo=Trello&logoColor=white)
 
 #### 🧑‍💻 Desarrolladores:
 
@@ -68,6 +71,16 @@
 <hr/>
 
 ### 🎨 UX/UI:
+
+#### 🛠️ Tech Stack:
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white)
+![Optimal Workshop](https://img.shields.io/badge/Optimal_Workshop-584?style=for-the-badge&logo=Optimal-Workshop&logoColor=white)
+![Color Contrast Analyzer](https://img.shields.io/badge/Color_Contrast_Analyzer-282828?style=for-the-badge&logo=Color-Contrast-Analyzer&logoColor=white)
+![Adobe Color](https://img.shields.io/badge/Adobe_Color-FF0000?style=for-the-badge&logo=Adobe-Color&logoColor=white)
+![Design Thinking](https://img.shields.io/badge/Design_Thinking-FF4088?style=for-the-badge&logo=Design-Thinking&logoColor=white)
+![Clipchamp](https://img.shields.io/badge/Clipchamp-000000?style=for-the-badge&logo=Clipchamp&logoColor=white)
+![Figjam](https://img.shields.io/badge/Figjam-000000?style=for-the-badge&logo=Figjam&logoColor=white)
+![Trello](https://img.shields.io/badge/Trello-0079BF?style=for-the-badge&logo=Trello&logoColor=white)
 
 #### 🧑‍💻 Diseñadores:
 
