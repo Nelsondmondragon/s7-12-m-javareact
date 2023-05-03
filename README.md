@@ -1,17 +1,17 @@
 <img align="center" src="https://res.cloudinary.com/dqkkehztd/image/upload/v1681943615/readme/vz9kz18jvhkosw6ic4ps.png">
 
 
-<h3>👉🏻 Las mudanzas pueden ser estresantes, costosas y difíciles de coordinar y por ende, nosotros te queremos ayudar durante todo el proceso. </h3>
+<h3>👉🏻 Moving can be stressful, expensive, and difficult to coordinate, so we want to help you throughout the entire process.</h3>
 
-<h3>👉🏻 En MoveAR te ofrecemos la posibilidad de alquilar un vehículo de carga para que puedas organizar tu mudanza, cuando quieras y en los horarios que puedas. Sin depender de intermediarios y ahorrando mucho dinero.</h3>
+<h3>👉🏻 At MoveAR, we offer you the possibility to rent a cargo vehicle so that you can organize your move whenever you want and at the times you can. Without depending on intermediaries and saving a lot of money.</h3>
 
-<h3>👉🏻 <b>Visite nuestro sitio web en <a href="https://s7-12-m-javareact.vercel.app/">MoveAR</a> 🚛</b></h3>
+<h3>👉🏻 <b>Visit our website at <a href="https://s7-12-m-javareact.vercel.app/">MoveAR</a> 🚛</b></h3>
 
 <h3><a href="https://www.youtube.com/watch?v=82TCjyU-N6w"> <img src="https://img.shields.io/badge/Video Preview%20-%23FF0000.svg?&style=for-the-badge&logo=YouTube&logoColor=white"/></h3>
 
 <hr/>
 
-### ⚡ Links del proyecto:
+### ⚡ Project links:
 
 <h3><a href="https://www.figma.com/file/IJaAGjDDUNR84gAROEA4jd/Rent-a-truck?t=hQrFi5FS9AC1XlDR-6"> <img src="https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=Figma&logoColor=white"/></a> <a href="https://s7-12-m-javareact-production.up.railway.app/swagger-ui/index.html#"> <img src="https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white"/></a></h3>
 
@@ -34,7 +34,7 @@
 ![Stripe](https://img.shields.io/badge/Stripe-5469d4?style=for-the-badge&logo=Stripe&logoColor=white)
 ![Emailjs](https://img.shields.io/badge/Email.js-fca253?style=for-the-badge&logo=emailjs&logoColor=white)
 
-#### 🧑‍💻 Desarrolladores:
+#### 🧑‍💻 Developers:
 
 | <img src="https://res.cloudinary.com/dqkkehztd/image/upload/v1681946264/readme/umdkjc0xjdskxazyqgon.jpg" width=50>| <img src="https://res.cloudinary.com/dqkkehztd/image/upload/v1681946264/readme/r2p0aijcz0q8ozmomvsp.jpg" width=50>| <img src="https://res.cloudinary.com/dqkkehztd/image/upload/v1681946601/readme/s2m2rdvkd4tb1yhrnsua.jpg" width=50>| <img src="https://res.cloudinary.com/dqkkehztd/image/upload/v1681947822/readme/zzzbiaiwteyuoojsq5hm.jpg" width=50>|
 |:-:|:-:|:-:|:-:|
@@ -59,7 +59,7 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
 ![Railway](https://img.shields.io/badge/Railway-7928C1?style=for-the-badge&logo=Railway&logoColor=white)
 
-#### 🧑‍💻 Desarrolladores:
+#### 🧑‍💻 Developers:
 
 | <img src="https://res.cloudinary.com/dqkkehztd/image/upload/v1681943770/readme/thm4sniemmlxs0mdqzd8.png" width=50>| <img src="https://res.cloudinary.com/dqkkehztd/image/upload/v1681946820/readme/ewmb83tbh6kouwvspd6v.jpg" width=50>| <img src="https://res.cloudinary.com/dqkkehztd/image/upload/v1681946601/readme/ggb8cgny4tlty884hdnr.jpg" width=50>| <img src="https://res.cloudinary.com/dqkkehztd/image/upload/v1681946914/readme/t814uvlq0clvbehwaey4.jpg" width=50>|
 |:-:|:-:|:-:|:-:|
@@ -79,7 +79,7 @@
 ![Clipchamp](https://img.shields.io/badge/Clipchamp-000000?style=for-the-badge&logo=Clipchamp&logoColor=white)
 ![Figjam](https://img.shields.io/badge/Figjam-000000?style=for-the-badge&logo=Figjam&logoColor=white)
 
-#### 🧑‍💻 Diseñadores:
+#### 🧑‍💻 Designers:
 
 | <img src="https://res.cloudinary.com/dqkkehztd/image/upload/v1681946264/readme/ma5coacaaiwbelmhldzi.jpg" width=50>| <img src="https://res.cloudinary.com/dqkkehztd/image/upload/v1681946264/readme/qb6dm8bt0n1k5x6gwcpt.jpg" width=50>| <img src="https://res.cloudinary.com/dqkkehztd/image/upload/v1681946264/readme/b7nbbxwibd55pgqdgvfx.jpg" width=50>|
 |:-:|:-:|:-:|
