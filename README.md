@@ -3,9 +3,9 @@
 
 <h3>👉🏻 Las mudanzas pueden ser estresantes, costosas y difíciles de coordinar y por ende, nosotros te queremos ayudar durante todo el proceso. </h3>
 
-<h3>👉🏻 En MOVE AR te ofrecemos la posibilidad de alquilar un vehículo de carga para que puedas organizar tu mudanza, cuando quieras y en los horarios que puedas. Sin depender de intermediarios y ahorrando mucho dinero.</h3>
+<h3>👉🏻 En MoveAR te ofrecemos la posibilidad de alquilar un vehículo de carga para que puedas organizar tu mudanza, cuando quieras y en los horarios que puedas. Sin depender de intermediarios y ahorrando mucho dinero.</h3>
 
-<h3>👉🏻 <b>Visite nuestro sitio web en <a href="https://s7-12-m-javareact.vercel.app/">MOVE AR</a> 🚛</b></h3>
+<h3>👉🏻 <b>Visite nuestro sitio web en <a href="https://s7-12-m-javareact.vercel.app/">MoveAR</a> 🚛</b></h3>
 
 <h3><a href="https://www.youtube.com/watch?v=82TCjyU-N6w"> <img src="https://img.shields.io/badge/Video Preview%20-%23FF0000.svg?&style=for-the-badge&logo=YouTube&logoColor=white"/></h3>
 
