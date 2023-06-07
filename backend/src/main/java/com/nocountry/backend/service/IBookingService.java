@@ -3,8 +3,8 @@ package com.nocountry.backend.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.nocountry.backend.dto.booking.BookingDto;
-import com.nocountry.backend.model.Booking;
+import com.nocountry.backend.model.dto.booking.BookingDto;
+import com.nocountry.backend.model.entity.Booking;
 
 public interface IBookingService {
 

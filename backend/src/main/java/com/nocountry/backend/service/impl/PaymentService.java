@@ -9,10 +9,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.nocountry.backend.dto.PaymentDto;
-import com.nocountry.backend.dto.PaymentDto2;
-import com.nocountry.backend.mapper.PaymentMapper;
-import com.nocountry.backend.model.Payment;
+import com.nocountry.backend.model.dto.PaymentDto;
+import com.nocountry.backend.model.dto.PaymentDto2;
+import com.nocountry.backend.model.entity.Payment;
+import com.nocountry.backend.model.mapper.PaymentMapper;
 import com.nocountry.backend.repository.PaymentRepository;
 import com.nocountry.backend.service.IPaymentService;
 import com.stripe.Stripe;

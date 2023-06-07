@@ -1,6 +1,6 @@
 package com.nocountry.backend.config.jwt;
 
-import com.nocountry.backend.dto.user.UserDto;
+import com.nocountry.backend.model.dto.user.UserDto;
 import com.nocountry.backend.service.IUserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

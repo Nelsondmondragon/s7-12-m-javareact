@@ -5,10 +5,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.nocountry.backend.Error.Exceptions.GenericNotFoundException;
-import com.nocountry.backend.dto.category.CategoryDto;
-import com.nocountry.backend.mapper.ICategoryMapper;
-import com.nocountry.backend.model.Category;
+import com.nocountry.backend.handler.Exceptions.GenericNotFoundException;
+import com.nocountry.backend.model.dto.category.CategoryDto;
+import com.nocountry.backend.model.entity.Category;
+import com.nocountry.backend.model.mapper.ICategoryMapper;
 import com.nocountry.backend.repository.ICategoryRepository;
 import com.nocountry.backend.service.ICategoryService;
 

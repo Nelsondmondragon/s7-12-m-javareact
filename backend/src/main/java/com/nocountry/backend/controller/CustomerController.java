@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nocountry.backend.dto.customer.CustomerDetailsDto;
-import com.nocountry.backend.dto.customer.CustomerListDto;
-import com.nocountry.backend.dto.customer.CustomerUpdateDto;
-import com.nocountry.backend.dto.email.EmailDto;
+import com.nocountry.backend.model.dto.customer.CustomerDetailsDto;
+import com.nocountry.backend.model.dto.customer.CustomerListDto;
+import com.nocountry.backend.model.dto.customer.CustomerUpdateDto;
+import com.nocountry.backend.model.dto.email.EmailDto;
 import com.nocountry.backend.service.ICustomerService;
 
 import io.swagger.v3.oas.annotations.Operation;

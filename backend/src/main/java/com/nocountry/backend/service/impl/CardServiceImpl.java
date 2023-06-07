@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.nocountry.backend.config.jwt.ExtractUsernameJwtUtil;
-import com.nocountry.backend.dto.card.CardDetailsDto;
-import com.nocountry.backend.dto.card.CardSaveDto;
-import com.nocountry.backend.mapper.ICardMapper;
-import com.nocountry.backend.model.Card;
+import com.nocountry.backend.model.dto.card.CardDetailsDto;
+import com.nocountry.backend.model.dto.card.CardSaveDto;
+import com.nocountry.backend.model.entity.Card;
+import com.nocountry.backend.model.mapper.ICardMapper;
 import com.nocountry.backend.repository.ICardRepository;
 import com.nocountry.backend.service.ICardService;
 

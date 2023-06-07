@@ -15,19 +15,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.utils.ObjectUtils;
-import com.nocountry.backend.Error.ErrorCode;
-import com.nocountry.backend.Error.Exceptions.CarNotFoundException;
-import com.nocountry.backend.dto.car.CarDto;
-import com.nocountry.backend.mapper.ICarMapper;
-import com.nocountry.backend.model.Booking;
-import com.nocountry.backend.model.Car;
-import com.nocountry.backend.model.MediaResource;
+import com.nocountry.backend.handler.ErrorCode;
+import com.nocountry.backend.handler.Exceptions.CarNotFoundException;
+import com.nocountry.backend.model.dto.car.CarDto;
+import com.nocountry.backend.model.entity.Booking;
+import com.nocountry.backend.model.entity.Car;
+import com.nocountry.backend.model.entity.MediaResource;
+import com.nocountry.backend.model.mapper.ICarMapper;
 import com.nocountry.backend.repository.IBookingRepository;
 import com.nocountry.backend.repository.ICarRepository;
 import com.nocountry.backend.service.IBookingService;
 import com.nocountry.backend.service.ICarService;
 import com.nocountry.backend.service.ICloudinaryService;
-import com.nocountry.backend.specification.CarSpecification;
+import com.nocountry.backend.service.spec.CarSpecification;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

@@ -2,11 +2,11 @@ package com.nocountry.backend.service;
 
 import java.util.List;
 
-import com.nocountry.backend.dto.customer.CustomerDetailsDto;
-import com.nocountry.backend.dto.customer.CustomerListDto;
-import com.nocountry.backend.dto.customer.CustomerRegisterDto;
+import com.nocountry.backend.model.dto.customer.CustomerDetailsDto;
+import com.nocountry.backend.model.dto.customer.CustomerListDto;
+import com.nocountry.backend.model.dto.customer.CustomerRegisterDto;
+import com.nocountry.backend.model.dto.customer.CustomerUpdateDto;
 
-import com.nocountry.backend.dto.customer.CustomerUpdateDto;
 import jakarta.servlet.http.HttpServletRequest;
 
 public interface ICustomerService {

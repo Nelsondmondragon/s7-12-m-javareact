@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.nocountry.backend.model.MediaResource;
+import com.nocountry.backend.model.entity.MediaResource;
 
 public interface ICloudinaryService {
 

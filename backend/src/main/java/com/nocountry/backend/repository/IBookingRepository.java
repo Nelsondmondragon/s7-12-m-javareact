@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.nocountry.backend.model.Booking;
+import com.nocountry.backend.model.entity.Booking;
 
 public interface IBookingRepository extends JpaRepository<Booking, Long> {
 

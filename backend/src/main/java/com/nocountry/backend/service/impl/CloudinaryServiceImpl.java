@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.nocountry.backend.model.MediaResource;
+import com.nocountry.backend.model.entity.MediaResource;
 import com.nocountry.backend.repository.IMediaRepository;
 import com.nocountry.backend.service.ICloudinaryService;
 

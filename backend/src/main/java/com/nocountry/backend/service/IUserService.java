@@ -1,7 +1,7 @@
 package com.nocountry.backend.service;
 
-import com.nocountry.backend.dto.user.UserDto;
-import com.nocountry.backend.model.Booking;
+import com.nocountry.backend.model.dto.user.UserDto;
+import com.nocountry.backend.model.entity.Booking;
 
 public interface IUserService {
 

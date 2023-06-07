@@ -1,8 +1,8 @@
 package com.nocountry.backend.service;
 
-import com.nocountry.backend.dto.location.LocationDto;
-
 import java.util.List;
+
+import com.nocountry.backend.model.dto.location.LocationDto;
 
 public interface ILocationService {
 

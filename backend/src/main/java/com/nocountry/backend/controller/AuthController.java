@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nocountry.backend.dto.customer.CustomerRegisterDto;
-import com.nocountry.backend.dto.customer.CustomerRequestDto;
-import com.nocountry.backend.dto.token.TokenDto;
+import com.nocountry.backend.model.dto.customer.CustomerRegisterDto;
+import com.nocountry.backend.model.dto.customer.CustomerRequestDto;
+import com.nocountry.backend.model.dto.token.TokenDto;
 import com.nocountry.backend.service.IAuthService;
 
 import io.swagger.v3.oas.annotations.Operation;

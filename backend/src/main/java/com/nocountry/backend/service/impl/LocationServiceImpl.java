@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.nocountry.backend.dto.location.LocationDto;
-import com.nocountry.backend.mapper.ILocationMapper;
+import com.nocountry.backend.model.dto.location.LocationDto;
+import com.nocountry.backend.model.mapper.ILocationMapper;
 import com.nocountry.backend.repository.ILocationRepository;
 import com.nocountry.backend.service.ILocationService;
 

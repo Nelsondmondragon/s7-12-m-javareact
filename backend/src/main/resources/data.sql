@@ -1,5 +1,6 @@
 -- INSERT users --
 INSERT INTO USERS (EMAIL, PASSWORD, ROLE) VALUES ('maria@correo.com', '$2a$10$6BOKBHct.1.6NvCb2UDBuOM.w1S7SC29ggEzhYO.LlffwfxD9kjta', 'ADMIN'), ('pedro@correo.com', '$2a$10$6BOKBHct.1.6NvCb2UDBuOM.w1S7SC29ggEzhYO.LlffwfxD9kjta', 'ADMIN'), ('admin@movear.com', '$2a$10$6BOKBHct.1.6NvCb2UDBuOM.w1S7SC29ggEzhYO.LlffwfxD9kjta', 'ADMIN'), ('user@test.com', '$2a$10$6BOKBHct.1.6NvCb2UDBuOM.w1S7SC29ggEzhYO.LlffwfxD9kjta', 'ADMIN');
+
 --INSERT locations --
 INSERT INTO LOCATIONS(ID_LOCATION, NAME) VALUES ('06014030', 'Juan E. Barra'), ('06063030', 'Napaleofú'), ('06063040', 'Ramos Otero');
 INSERT INTO LOCATIONS(ID_LOCATION, BRANCH, NAME) VALUES ('02000010', 1, 'Ciudad Autonoma de Buenos Aires'), ('14014010', 2, 'Córdoba'), ('06441030', 3, 'La Plata'), ('10077020', 4, 'Rosario'), ('66028050', 5, 'Salta');

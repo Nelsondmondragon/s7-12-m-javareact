@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.nocountry.backend.model.Car;
+import com.nocountry.backend.model.entity.Car;
 
 public interface ICarRepository extends JpaRepository<Car, Long> {
 

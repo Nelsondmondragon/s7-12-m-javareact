@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nocountry.backend.dto.booking.BookingDto;
+import com.nocountry.backend.model.dto.booking.BookingDto;
 import com.nocountry.backend.service.IBookingService;
 
 import io.swagger.v3.oas.annotations.Operation;

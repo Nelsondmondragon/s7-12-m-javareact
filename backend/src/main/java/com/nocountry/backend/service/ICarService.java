@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.nocountry.backend.dto.car.CarDto;
+import com.nocountry.backend.model.dto.car.CarDto;
 
 public interface ICarService {
 

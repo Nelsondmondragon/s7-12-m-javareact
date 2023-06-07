@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nocountry.backend.dto.location.LocationDto;
+import com.nocountry.backend.model.dto.location.LocationDto;
 import com.nocountry.backend.service.ILocationService;
 
 import io.swagger.v3.oas.annotations.Operation;

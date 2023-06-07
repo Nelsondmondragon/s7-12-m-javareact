@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.nocountry.backend.dto.location.InformationLocationDto;
+import com.nocountry.backend.model.dto.location.InformationLocationDto;
 import com.nocountry.backend.util.georefapi.APIFunctions;
 import com.nocountry.backend.util.georefapi.GeorefArAPI;
 import com.nocountry.backend.util.georefapi.IExecute;

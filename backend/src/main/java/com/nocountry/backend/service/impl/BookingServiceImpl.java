@@ -9,19 +9,19 @@ import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import com.nocountry.backend.Error.ErrorCode;
-import com.nocountry.backend.Error.Exceptions.OverlappedBookingException;
-import com.nocountry.backend.dto.booking.BookingDto;
-import com.nocountry.backend.mapper.IBookingMapper;
-import com.nocountry.backend.model.Booking;
-import com.nocountry.backend.model.Car;
-import com.nocountry.backend.model.Customer;
+import com.nocountry.backend.handler.ErrorCode;
+import com.nocountry.backend.handler.Exceptions.OverlappedBookingException;
+import com.nocountry.backend.model.dto.booking.BookingDto;
+import com.nocountry.backend.model.entity.Booking;
+import com.nocountry.backend.model.entity.Car;
+import com.nocountry.backend.model.entity.Customer;
+import com.nocountry.backend.model.mapper.IBookingMapper;
 import com.nocountry.backend.repository.IBookingRepository;
 import com.nocountry.backend.repository.ICarRepository;
 import com.nocountry.backend.repository.ICustomerRepository;
 import com.nocountry.backend.service.IBookingService;
 import com.nocountry.backend.service.IMailSenderService;
-import com.nocountry.backend.specification.BookingSpecification;
+import com.nocountry.backend.service.spec.BookingSpecification;
 
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;

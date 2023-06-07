@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nocountry.backend.dto.category.CategoryDto;
+import com.nocountry.backend.model.dto.category.CategoryDto;
 import com.nocountry.backend.service.ICategoryService;
 
 import io.swagger.v3.oas.annotations.Operation;

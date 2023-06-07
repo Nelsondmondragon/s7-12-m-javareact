@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nocountry.backend.dto.card.CardDetailsDto;
-import com.nocountry.backend.dto.card.CardSaveDto;
+import com.nocountry.backend.model.dto.card.CardDetailsDto;
+import com.nocountry.backend.model.dto.card.CardSaveDto;
 import com.nocountry.backend.service.ICardService;
 
 import io.swagger.v3.oas.annotations.Operation;

@@ -2,7 +2,7 @@ package com.nocountry.backend.service;
 
 import java.util.List;
 
-import com.nocountry.backend.dto.category.CategoryDto;
+import com.nocountry.backend.model.dto.category.CategoryDto;
 
 public interface ICategoryService {
 

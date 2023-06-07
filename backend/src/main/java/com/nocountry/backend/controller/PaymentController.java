@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nocountry.backend.dto.PaymentDto;
+import com.nocountry.backend.model.dto.PaymentDto;
 import com.nocountry.backend.service.IPaymentService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
